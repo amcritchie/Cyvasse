@@ -37,3 +37,9 @@ $(document).ready(function() {
         $(".nav .more").removeClass("active-nav-item");
     });
 });
+
+$(document).ready(function(){
+
+
+
+});

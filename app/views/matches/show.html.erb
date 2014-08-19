@@ -1,172 +1,120 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Scott</h1>
 <p>
   <strong>Game status:</strong>
-  <%= @match.game_status_id %>
-</p>
+  <%= @match.game_status_id %> |
 
-<p>
-  <strong>User:</strong>
-  <%= @match.user_id %>
-</p>
+  <strong>User ID:</strong>
+  <%= @match.user_id %> |
 
-<p>
-  <strong>Challenger:</strong>
-  <%= @match.challenger_id %>
-</p>
+  <strong>Challenger ID:</strong>
+  <%= @match.challenger_id %> |
 
-<%= link_to 'Edit', edit_match_path(@match) %> |
-<%= link_to 'Back', matches_path %>
+  <%= link_to 'Edit', edit_match_path(@match) %> |
+  <%= link_to 'Back', matches_path %>
+</p>
 
 <h1>Match</h1>
 
+<% green_hex_hex = "<article class='grid_square'>
+        <div class='top'></div>
+        <div class='square'></div>
+        <div class='bottom'></div>
+          </article>" %>
+<% void_hex = "<article class='grid_square'>
+          </article>" %>
 
-<h1>Top</h1>
-<div class='grid'>
-  <div class="grid_even">
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-  </div>
+<% green_hex = "<svg class='space'>
+<polygon points='268,0 0,158 0,483 268,644 558,483 558,158' />
+</svg>" %>
+
+<% array_11 = [green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
+<% array_10 = [green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
+<% array_9 = [ green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
+<% array_8 = [ green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
+<% array_7 = [ green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
+<% array_6 = [ green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
+
+<% top_to_bottom = [array_6, array_7, array_8, array_9, array_10, array_11, array_10, array_9, array_8, array_7, array_6] %>
+
+<div class="match">
+  <article class="info">
+    <p>
+      This is where the info on pieces, and other info thats not on the board.
+      This is where the info on pieces, and other info thats not on the board.
+      This is where the info on pieces, and other info thats not on the board.
+      This is where the info on pieces, and other info thats not on the board.
+      This is where the info on pieces, and other info thats not on the board.
+      This is where the info on pieces, and other info thats not on the board.
+    </p>
+  </article>
+
+  <article class="map">
+
+    <div class="grid grid-top grid-end">
+      <% array_6.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class='grid grid_odd'>
+      <% array_7.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid_even">
+      <% array_8.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid_odd">
+      <% array_9.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid_even">
+      <% array_10.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid_odd">
+      <% array_11.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid_even">
+      <% array_10.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid_odd">
+      <% array_9.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid_even">
+      <% array_8.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid_odd">
+      <% array_7.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="grid grid-bottom grid-end">
+      <% array_6.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+  </article>
 </div>
-<div class='grid'>
-  <article class="grid_square">
-    <div class='hex'>
-      <div class='top'></div>
-      <div class='square'></div>
-      <div class='bottom'></div>
-    </div>
-  </article>
-  <article class="grid_square">
-    <div class='hex'>
-      <div class='top'></div>
-      <div class='square'></div>
-      <div class='bottom'></div>
-    </div>
-  </article>
-
-  <article class="grid_square">
-    <div class='hex'>
-      <div class='top'></div>
-      <div class='square'></div>
-      <div class='bottom'></div>
-    </div>
-  </article>
-  <article class="grid_square">
-    <div class='hex'>
-      <div class='top'></div>
-      <div class='square'></div>
-      <div class='bottom'></div>
-    </div>
-  </article>
-  <article class="grid_square">
-    <div class='hex'>
-      <div class='top'></div>
-      <div class='square'></div>
-      <div class='bottom'></div>
-    </div>
-  </article>
-  <article class="grid_square">
-    <div class='hex'>
-      <div class='top'></div>
-      <div class='square'></div>
-      <div class='bottom'></div>
-    </div>
-  </article>
-  <article class="grid_square">
-    <div class='hex'>
-      <div class='top'></div>
-      <div class='square'></div>
-      <div class='bottom'></div>
-    </div>
-  </article>
-</div>
-<div class='grid'>
-  <div class="grid_even">
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-    <article class="grid_square">
-      <div class='hex'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-      </div>
-    </article>
-  </div>
-</div>
-
-<h1>Bottom</h1>
-
