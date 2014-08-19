@@ -1,6 +1,5 @@
 require 'rails_helper'
-require 'rspec'
-require "capybara"
+require "capybara/rails"
 require "spec_helper"
 
 feature 'User Auth' do

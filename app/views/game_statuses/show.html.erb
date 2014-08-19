@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>P1 piece loc:</strong>
+  <%= @game_status.p1_piece_loc %>
+</p>
+
+<p>
+  <strong>P2 piece loc:</strong>
+  <%= @game_status.p2_piece_loc %>
+</p>
+
+<p>
+  <strong>Turn:</strong>
+  <%= @game_status.turn %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @game_status.status %>
+</p>
+
+<%= link_to 'Edit', edit_game_status_path(@game_status) %> |
+<%= link_to 'Back', game_statuses_path %>

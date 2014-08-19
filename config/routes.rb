@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+  resources :matches
+
+  get '/', to: 'home#index'
+  post '/about', to: 'home#about'
+
+  resources :game_statuses
+
   resources :users
   # get '/users', to: 'users#index'
 
