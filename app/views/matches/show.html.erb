@@ -16,31 +16,43 @@
 
 <h1>Match</h1>
 
-<% green_hex_hex = "<article class='grid_square'>
-        <div class='top'></div>
-        <div class='square'></div>
-        <div class='bottom'></div>
-          </article>" %>
-<% void_hex = "<article class='grid_square'>
-          </article>" %>
+<%
+   #Hexagon-triangle dimensions
+   height = 30
+   width = 52
+   hypotenuse = 60
+   hex_scale = 5.35
 
-<% green_hex = "<svg class='space'>
-<polygon points='268,0 0,158 0,483 268,644 558,483 558,158' />
+   green_hex = "<svg> <polygon points='
+    #{width*hex_scale},0
+    0,#{height*hex_scale}
+    0,#{(height+hypotenuse)*hex_scale}
+    #{width*hex_scale},#{(hypotenuse*2)*hex_scale}
+    #{(width*2)*hex_scale},#{(height+hypotenuse)*hex_scale}
+    #{(width*2)*hex_scale},#{(height)*hex_scale}'
+    /> </svg>" %>
+
+<%
+robot = "<svg class='robot' xmlns='http://www.w3.org/2000/svg'>
+  <rect height='20' width='40' rx='3' ry='3' fill='#B32317' />
+  <circle cx='10' cy='10' r='5' fill='white'></circle>
+  <circle cx='30' cy='10' r='5' fill='white'></circle>
+  <circle cx='10' cy='10' r='2' fill='#B32317'></circle>
+  <circle cx='30' cy='10' r='2' fill='#B32317'></circle>
 </svg>" %>
 
-<% array_11 = [green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
-<% array_10 = [green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
-<% array_9 = [ green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
-<% array_8 = [ green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
-<% array_7 = [ green_hex, green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
-<% array_6 = [ green_hex, green_hex, green_hex, green_hex, green_hex, green_hex] %>
-
-<% top_to_bottom = [array_6, array_7, array_8, array_9, array_10, array_11, array_10, array_9, array_8, array_7, array_6] %>
+<% array_11 = Array.new(11, green_hex) %>
+<% array_10 = Array.new(10, green_hex) %>
+<% array_9 = Array.new(9, green_hex) %>
+<% array_8 = Array.new(8, green_hex) %>
+<% array_7 = Array.new(7, green_hex) %>
+<% array_6 = Array.new(6, green_hex) %>
 
 <div class="match">
   <article class="info">
     <p>
       This is where the info on pieces, and other info thats not on the board.
+      <%= robot.html_safe %>
       This is where the info on pieces, and other info thats not on the board.
       This is where the info on pieces, and other info thats not on the board.
       This is where the info on pieces, and other info thats not on the board.
@@ -50,7 +62,6 @@
   </article>
 
   <article class="map">
-
     <div class="grid grid-top grid-end">
       <% array_6.each do |square| %>
           <%= square.html_safe %>

@@ -65,18 +65,25 @@
   width: 700px;
   border: solid red 2px;
   float: left;
+//  transform: perspective(400px) rotateX(40deg);
 }
 
-$black:   #333333;
-$brown:   #403939;
-$red:     #4A2929;
-$dred:    #402424;
-$white:   #fff;
+$black:     #333333;
+$brown:     #403939;
+$red:       #4A2929;
+$devil-gray:#666;
+$dred:      #402424;
+$white:     #fff;
 
 svg {
   float: left;
   width: 60px;
   height: 68px;
+}
+
+.robot {
+  width: 42px;
+  height: 21px;
 }
 
 polygon {
@@ -86,7 +93,8 @@ polygon {
   transform: scale(.107);
 
   &:hover {
-    fill: $red;
+//    fill: $red;
+    fill: $devil-gray;
     stroke: $white;
   }
 }
