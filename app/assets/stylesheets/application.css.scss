@@ -68,6 +68,22 @@
 //  transform: perspective(400px) rotateX(40deg);
 }
 
+.heading .title{
+  width: 700px;
+  float: left;
+}
+
+.heading .flash{
+  width: 220px;
+  float: left;
+  color: green;
+  margin-top: 10px;
+  margin-left: -8px;
+  margin-right: auto;
+  margin-bottom: auto;
+  @extend .clearfix;
+}
+
 $black:     #333333;
 $brown:     #403939;
 $red:       #4A2929;
@@ -153,26 +169,11 @@ polygon {
   float: left;
 }
 
-
-.top {
-  width: 0;
-  border-bottom: 12px solid #6C6;
-  border-left: 28px solid transparent;
-  border-right: 28px solid transparent;
+.names {
+  width: 200px;
+  display: inline;
+  margin: auto;
 }
-.square{
-  width: 56px;
-  height: 30px;
-  background-color: #6C6;
-}
-.bottom {
-  width: 0;
-  border-top: 12px solid #6C6;
-  border-left: 28px solid transparent;
-  border-right: 28px solid transparent;
-}
-
-
 
 header.navigation {
   $navigation-padding: 1em;
@@ -513,4 +514,8 @@ header.navigation {
       }
     }
   }
+}
+
+article {
+  display: inline;
 }

@@ -1,18 +1,10 @@
 require 'rails_helper'
-require "capybara/rails"
-require "spec_helper"
-
-feature 'User Auth' do
-  scenario 'User can do stufff' do
-
-  end
-end
 
 # save_and_open_page
 
 def create_user
   visit "/"
-  click_button "Register"
+  click_button "SIGN UP"
   fill_in_registration("Alex","alexmcray")
   click_button "submit_button"
 end
@@ -43,7 +35,7 @@ feature "New user." do
 
   scenario "Visit home page." do
     visit "/"
-    click_button "Register"
+    click_link "Sign Up"
     expect(page).to have_content("Register for Cyvasse")
   end
   scenario "Blank user info." do

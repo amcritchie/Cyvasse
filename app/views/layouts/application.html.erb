@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cyvasse</title>
   <!--bootstrap-->
   <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
   <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <%= csrf_meta_tags %>
@@ -20,6 +19,7 @@
 
     </a>
     <a href="" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+
     <div class="nav">
       <ul id="navigation-menu">
         <li class="nav-link"><a href="/">Home</a></li>
@@ -48,22 +48,38 @@
     <div class="navigation-tools">
       <div class="search-bar">
         <div class="search-and-submit">
-          <input type="search" placeholder="Enter Search" />
+          <input type="search" placeholder="Enter Search"/>
           <button type="submit">
             <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="">
           </button>
         </div>
       </div>
-      <a href="javascript:void(0)" class="sign-up">Sign Up</a>
+      <a href="users/new" class="sign-up">Sign Up</a>
     </div>
   </div>
 </header>
 
 
-<h1>Cyvasse</h1>
 <div class="wrapper">
   <section class="clearfix">
-<%= yield %>
+    <div class="heading">
+    <article class="title">
+      <h1>Cyvasse</h1>
+    </article>
+    <article class="flash">
+      <% if flash[:success] %>
+          <%= flash[:success].html_safe %>
+      <% end %>
+    </article>
+    </div>
+  </section>
+</div>
+
+
+
+<div class="wrapper">
+  <section class="clearfix">
+    <%= yield %>
   </section>
 </div>
 <!--Bootstrap-->

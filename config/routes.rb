@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   post '/about', to: 'home#about'
 
   resources :game_statuses
-
   resources :users
+
+  get "signin" => "sessions#new", as: :signin
+  post "signin" => "sessions#create"
+  delete "signout" => "sessions#destroy", as: :signout
+
   # get '/users', to: 'users#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
