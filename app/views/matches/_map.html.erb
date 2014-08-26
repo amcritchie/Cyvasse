@@ -1,0 +1,105 @@
+<script type='text/javascript' src='map.js'></script>
+
+<% #Hexagon-triangle dimensions
+   height = 30
+   width = 52
+   hypotenuse = 60
+   hex_scale = 5.35
+
+   green_hex = "<svg> <polygon points='
+    #{width*hex_scale},0
+    0,#{height*hex_scale}
+    0,#{(height+hypotenuse)*hex_scale}
+   #{width*hex_scale},#{(hypotenuse*2)*hex_scale}
+   #{(width*2)*hex_scale},#{(height+hypotenuse)*hex_scale}
+   #{(width*2)*hex_scale},#{(height)*hex_scale}'
+    /> </svg>" %>
+
+<% array_11 = Array.new(11, @hexagon) %>
+<% array_10 = Array.new(10, @hexagon) %>
+<% array_9 = Array.new(9, @hexagon) %>
+<% array_8 = Array.new(8, @hexagon) %>
+<% array_7 = Array.new(7, @hexagon) %>
+<% array_6 = Array.new(6, @hexagon) %>
+
+<svg id="snowman" class='unit'>
+  <circle cx='30' cy='20' r='5' fill='white'></circle>
+  <circle cx='30' cy='30' r='8' fill='white'></circle>
+  <circle cx='30' cy='43' r='12' fill='white'></circle>
+  <circle cx='28' cy='19' r='1' fill='black'></circle>
+  <circle cx='32' cy='19' r='1' fill='black'></circle></svg>
+
+<svg id="swampman" class='unit'>
+  <circle cx='30' cy='20' r='5' fill='green'></circle>
+  <circle cx='30' cy='30' r='8' fill='green'></circle>
+  <circle cx='30' cy='43' r='12' fill='green'></circle>
+  <circle cx='28' cy='19' r='1' fill='black'></circle>
+  <circle cx='32' cy='19' r='1' fill='black'></circle></svg>
+
+
+
+<div class="grid grid-top grid-end">
+  <% array_6.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class='grid grid_odd'>
+  <% array_7.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid_even">
+  <% array_8.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid_odd">
+  <% array_9.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid_even">
+  <% array_10.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid_odd">
+  <% array_11.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid_even">
+  <% array_10.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid_odd">
+  <% array_9.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid_even">
+  <% array_8.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid_odd">
+  <% array_7.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>
+
+<div class="grid grid-bottom grid-end">
+  <% array_6.each do |square| %>
+      <%= square.html_safe %>
+  <% end %>
+</div>

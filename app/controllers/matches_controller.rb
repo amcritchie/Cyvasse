@@ -10,7 +10,7 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
-    @hexagon = Hexagon.hex_html
+    @hexagon = Hexagon.complete
   end
 
   # GET /matches/new
@@ -27,8 +27,10 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
 
+
     respond_to do |format|
       if @match.save
+
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else

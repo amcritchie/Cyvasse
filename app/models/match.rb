@@ -1,4 +1,8 @@
 class Match < ActiveRecord::Base
   belongs_to :user
-  has_one :game_status
+
+  def initialize(*args)
+    super
+    # hash = {}
+  end
 end
