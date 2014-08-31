@@ -151,25 +151,31 @@ svg {
   height: 21px;
 }
 
+
 #snowman{
   margin-top: 153px;
   margin-left: 200px;
   cursor:pointer;
+  position: absolute;
 }
 
 #swampman {
   margin-top: 153px;
   margin-left: 260px;
   cursor:pointer;
+  position: absolute;
 }
 
-.unit {
-  -webkit-box-shadow: 0 0 8px #FFD700;
-  -moz-box-shadow: 0 0 8px #FFD700;
-  box-shadow: 0 0 8px #FFD700;
-  position: absolute;
+#lavaman {
+  margin-top: 153px;
+  margin-left: 320px;
   cursor:pointer;
+  position: absolute;
 }
+
+.rabble {}
+.spearman {}
+.elephant {}
 
 polygon {
   fill: $black;

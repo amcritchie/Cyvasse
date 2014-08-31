@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'home#index'
   post '/about', to: 'home#about'
+  get '/piece_attributes', to: 'game#piece_attributes'
 
   resources :game_statuses
   resources :users

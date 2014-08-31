@@ -10,7 +10,31 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
-    @hexagon = Hexagon.complete
+
+    @rabble = Rabble.image
+    @spearman = Spearman.image
+    @elephant = Elephant.image
+    @vangaurd = [Rabble.attributes, Spearman.attributes, Elephant.attributes]
+
+    @hexagon = Hexagon.hexagon
+
+    @map = [Array.new(6),Array.new(7),Array.new(8),Array.new(9),
+            Array.new(10),Array.new(11),Array.new(10,"Arya"),
+            Array.new(9),Array.new(8),Array.new(7),Array.new(6)]
+
+    x_pos = 0
+    y_pos = 1
+
+
+    @map.each do |row|
+      row.map! do |column|
+        x_pos += 1
+        Hexagon.hexagon(x_pos,y_pos)
+      end
+      x_pos = 0
+      y_pos += 1
+    end
+
   end
 
   # GET /matches/new

@@ -1,4 +1,4 @@
-<script type='text/javascript' src='map.js'></script>
+<script type='text/javascript' src='match.js'></script>
 
 <p id="notice"><%= notice %></p>
 <article class="full_column">
@@ -30,18 +30,17 @@
 <div class="match">
   <article class="info">
     <p>
-      This is where the info on pieces, and other info thats not on the board.
-      <%= robot.html_safe %>
-      <svg>
-        <polygon points="0,0 0,80 120,40" fill='white'></polygon>
-      </svg>
-      This is where the info on pieces, and other info thats not on the board.
-      This is where the info on pieces, and other info thats not on the board.
-      This is where the info on pieces, and other info thats not on the board.
-      This is where the info on pieces, and other info thats not on the board.
-     <div class="test1"></div>
+    <h3 id="selectedUnitName"></h3>
+    <%= image_tag "../assets/pieces/#{@vangaurd[1][:name].downcase}.png", :id => 'selectedUnitImage' %>
+    <h6 id="selectedStrength"></h6>
+    <h6 id="selectedMovement"></h6>
+    <h6 id="selectedFlank"></h6>
+    <h6 id="selectedTrump"></h6>
 
     This is where the info on pieces, and other info thats not on the board.
+      This is where the info on pieces, and other info thats not on the board.
+      <%= robot.html_safe %>
+     <div class="test1"></div>
     </p>
   </article>
 
