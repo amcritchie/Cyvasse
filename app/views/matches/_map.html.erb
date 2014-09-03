@@ -1,77 +1,9 @@
 
-<% @array_11 = Array.new(11, @hexagon) %>
-<% array_10 = Array.new(10, @hexagon) %>
-<% array_9 = Array.new(9, @hexagon) %>
-<% array_8 = Array.new(8, @hexagon) %>
-<% array_7 = Array.new(7, @hexagon) %>
-<% array_6 = Array.new(6, @hexagon) %>
+<% @map.each do |row| %>
+    <div class="grid">
+      <% row.each do |square| %>
+          <%= square.html_safe %>
+      <% end %>
+    </div>
+<% end %>
 
-<%= @rabble.html_safe %>
-<%= @spearman.html_safe %>
-<%= @elephant.html_safe %>
-
-<div class="grid grid-top grid-end">
-  <% @map[0].each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class='grid grid_odd'>
-  <% @map[1].each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid_even">
-  <% @map[2].each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid_odd">
-  <% array_9.each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid_even">
-  <% array_10.each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid_odd">
-  <% @array_11.each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid_even">
-  <% array_10.each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid_odd">
-  <% array_9.each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid_even">
-  <% array_8.each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid_odd">
-  <% array_7.each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>
-
-<div class="grid grid-bottom grid-end">
-  <% array_6.each do |square| %>
-      <%= square.html_safe %>
-  <% end %>
-</div>

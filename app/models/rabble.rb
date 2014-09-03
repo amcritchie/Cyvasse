@@ -13,8 +13,16 @@ class Rabble < ActiveRecord::Base
     }
   end
 
-  def self.image
+  def self.image(x_pos = '', y_pos = '')
+
+    if y_pos < 7
+      size = y_pos + 5
+    else
+      size = 17 - y_pos
+    end
+
     image = "<svg id='snowman' class='unit' data-team='1' data-codename='rabble'
+    data-x_pos=#{x_pos} data-y_pos=#{y_pos} data-row_size=#{size} data-alive='unplaced'
     data-codename='elephant' data-englishname=#{attributes[:name]}
     data-movement=#{attributes[:movement]} data-flank=#{attributes[:flank]}
     data-strength=#{attributes[:strength]} data-trump=#{attributes[:trump]}>>

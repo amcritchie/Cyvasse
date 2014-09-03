@@ -35,16 +35,33 @@
     <h6 id="selectedStrength"></h6>
     <h6 id="selectedMovement"></h6>
     <h6 id="selectedFlank"></h6>
-    <h6 id="selectedTrump"></h6>
+    <h6 id="selected"></h6>
 
     This is where the info on pieces, and other info thats not on the board.
       This is where the info on pieces, and other info thats not on the board.
       <%= robot.html_safe %>
-     <div class="test1"></div>
     </p>
   </article>
 
   <article class="map">
-    <%= render 'map' %>
+
+    <!--<div id="placeUnits"></div>-->
+
+    <%= @rabble.html_safe %>
+    <%= @spearman.html_safe %>
+    <%= @elephant.html_safe %>
+    <% y_pos = 1 %>
+
+    <% @map.each do |row| %>
+        <div class="grid" data-y-pos=<%= y_pos%>>
+          <% row.each do |square| %>
+              <%= square.html_safe %>
+          <% end %>
+        </div>
+        <% y_pos += 1%>
+    <% end %>
+
+    <!--<div id="placeUnits"></div>-->
+
   </article>
 </div>

@@ -29,86 +29,23 @@
 /* clearfix */
 .clearfix:before,
 .clearfix:after {
-    content: " ";
-    display: table;
+  content: " ";
+  display: table;
 }
 
 .clearfix:after {
-    clear: both;
+  clear: both;
 }
 
 /* * For IE 6/7 only * Include this rule to trigger hasLayout and contain floats. */
 .clearfix {
-    *zoom: 1;
+  *zoom: 1;
 }
 
 .wrapper {
-    margin: auto;
-    width: 980px;
-    border: solid green 3px;
-}
-
-article{
-  position: relative;
-  margin-left: 20px;
-}
-
-.class_title{
   margin: auto;
-  position: relative;
-  display: block;
-}
-
-.about_unit {
-  height: 100px;
-  display: inline-block;
-  border-top: solid 1px #666;
-
-}
-
-.about_unit_description{
-  padding-top: 0;
-  width: 225px;
-  display: inline-block;
-  border-left: solid 1px #666;
-  p {
-    height: 20%;
-    line-height: 90%;
-  }
-}
-
-.about_unit_image{
-  width: 60px;
-  display: inline-block;
-  margin: auto;
-  max-width:175%;
-  max-height:100%;
-}
-
-
-
-
-/* ----- =columns ----- */
-.one_half { 	 width:460px; }
-.one_third {	 width:300px; }
-.two_third {	 width:620px; }
-.one_fourth {	 width:220px; }
-.three_fourth { width:700px; }
-.full_column {
-  width:940px;
-  float: left;
-}
-
-.match .info {
-  width: 220px;
-  float: left;
-}
-
-.match .map {
-  width: 700px;
-//  border: solid red 2px;
-  float: left;
-//  transform: perspective(400px) rotateX(40deg);
+  width: 984px;
+  border: solid green 3px;
 }
 
 .heading .title{
@@ -134,139 +71,6 @@ $devil-gray:#666;
 $dred:      #402424;
 $white:     #fff;
 
-svg {
-  float: left;
-  width: 60px;
-  height: 68px;
-}
-
-.robot {
-  width: 42px;
-  height: 21px;
-}
-
-
-#snowman{
-  cursor:pointer;
-  position: absolute;
-}
-
-#swampman {
-  cursor:pointer;
-  position: absolute;
-}
-
-#lavaman {
-  cursor:pointer;
-  position: absolute;
-}
-
-#placeUnits {
-  width: 100%;
-  height: 4px;
-//  position: absolute;
-//  margin-top: -570px;
-  background-color: yellowgreen;
-  border: solid crimson 2px;
-}
-
-.rabble {}
-.spearman {}
-.elephant {}
-
-polygon {}
-
-.unSelected{
-  fill: $black;
-  stroke: $white;
-  stroke-width: 15;
-  transform: scale(.107);
-
-  &:hover {
-    //    fill: $red;
-    fill: $devil-gray;
-    stroke: $white;
-  }
-}
-
-.selected{
-  fill: $black;
-  stroke: $devil-gray;
-  stroke-width: 25;
-  transform: scale(.107);
-}
-
-.inRange {
-  fill: red;
-  stroke: $white;
-  stroke-width: 15;
-  transform: scale(.107);
-}
-
-
-.selectedPiece{
-  -webkit-box-shadow: 0 0 200px green;
-  -moz-box-shadow: 0 0 200px green;
-  box-shadow: 0 0 200px green;
-  cursor:pointer;
-}
-
-
-.names {
-  width: 200px;
-  display: inline;
-  margin: auto;
-}
-
-.grid {
-//  border: solid red 2px;
-  width: 100%;
-  height: 68px;
-  overflow: hidden;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: -16px;
-  @extend .clearfix;
-
-  &:nth-of-type(1){
-    max-width: 364px;
-  }
-  &:nth-of-type(2){
-    max-width: 424px;
-  }
-  &:nth-of-type(3){
-    max-width: 484px;
-  }
-  &:nth-of-type(4){
-    max-width: 544px;
-  }
-  &:nth-of-type(5){
-    max-width: 604px;
-  }
-  &:nth-of-type(6){
-    max-width: 664px;
-  }
-  &:nth-of-type(7){
-    max-width: 604px;
-  }
-  &:nth-of-type(8){
-    max-width: 544px;
-  }
-  &:nth-of-type(9){
-    max-width: 484px;
-  }
-  &:nth-of-type(10){
-    max-width: 424px;
-  }
-  &:nth-of-type(11){
-    max-width: 364px;
-  }
-  &:last-of-type {
-
-    margin-bottom: 0;
-  }
-}
 
 header.navigation {
   $navigation-padding: 1em;
@@ -607,9 +411,4 @@ header.navigation {
       }
     }
   }
-}
-
-article {
-  border: solid blueviolet 1px;
-  display: inline;
 }
