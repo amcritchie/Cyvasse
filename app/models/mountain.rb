@@ -1,4 +1,4 @@
-class Mountain < ActiveRecord::Base
+class Mountain < Unit
 
   def initialize
   end
@@ -6,9 +6,10 @@ class Mountain < ActiveRecord::Base
   def self.attributes
     attributes = {
         :name => "Mountain",
+        :codename => "mountain",
         :movement => 0,
-        :strength => "Impassable, to non-dragons.",
-        :flank => "--",
+        :strength => 12,
+        :flank => 0,
         :trump => nil
     }
   end

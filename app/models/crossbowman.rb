@@ -1,4 +1,4 @@
-class Crossbowman < ActiveRecord::Base
+class Crossbowman < Unit
 
   def initialize
   end
@@ -6,6 +6,7 @@ class Crossbowman < ActiveRecord::Base
   def self.attributes
     attributes = {
         :name => "Crossbowman",
+        :codename => "crossbowman",
         :movement => 2,
         :strength => 2,
         :range => 2,

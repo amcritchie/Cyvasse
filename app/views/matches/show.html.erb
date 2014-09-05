@@ -1,7 +1,10 @@
-<script type='text/javascript' src='match.js'></script>
+<!--<script type='text/javascript' src='match.js'></script>-->
+<script type='text/javascript' src='new_match.js'></script>
 
 <p id="notice"><%= notice %></p>
 <article class="full_column">
+
+  <!--Match Header-->
   <p>
     <strong>Game status:</strong>
     <%= @match.game_status_id %> |
@@ -16,10 +19,8 @@
     <%= link_to 'Back', matches_path %>
   </p>
 
-  <h1>Match</h1>
-</article>
-
-<% robot = "<svg class='robot' xmlns='http://www.w3.org/2000/svg'>
+  <!--Robot SVG-->
+  <% robot = "<svg class='robot' xmlns='http://www.w3.org/2000/svg'>
   <rect height='20' width='40' rx='3' ry='3' fill='#B32317' />
   <circle cx='10' cy='10' r='5' fill='white'></circle>
   <circle cx='30' cy='10' r='5' fill='white'></circle>
@@ -27,38 +28,48 @@
   <circle cx='30' cy='10' r='2' fill='#B32317'></circle>
 </svg>" %>
 
+  <h1>Match <%= robot.html_safe %></h1>
+</article>
+
+
 <div class="match">
   <article class="info">
-    <p>
-    <h3 id="selectedUnitName"></h3>
-    <%= image_tag "../assets/pieces/#{@vangaurd[1][:name].downcase}.png", :id => 'selectedUnitImage' %>
-    <h6 id="selectedStrength"></h6>
-    <h6 id="selectedMovement"></h6>
-    <h6 id="selectedFlank"></h6>
-    <h6 id="selected"></h6>
+    <div class="selectedPieceInformation">
+      <h3 id="selectedUnitName"></h3>
+      <%= image_tag "", :id => 'selectedUnitImage' %>
+      <h6 id="selectedStrength" class="selectedAttributes"></h6>
+      <h6 id="selectedMovement" class="selectedAttributes"></h6>
+      <h6 id="selectedFlank" class="selectedAttributes"></h6>
+      <h6 id="selected"></h6>
+    </div>
 
-    This is where the info on pieces, and other info thats not on the board.
-      This is where the info on pieces, and other info thats not on the board.
-      <%= robot.html_safe %>
-    </p>
+    <div class="auxSpace">
+      <%= @elephant.html_safe %>
+      <%= @spearman.html_safe %>
+      <%= @rabble.html_safe %>
+      <%= @lighthorse.html_safe %>
+      <%= @heavyhorse.html_safe %>
+      <%= @crossbowman.html_safe %>
+      <%= @catapult.html_safe %>
+      <%= @trebuchet.html_safe %>
+      <%= @king.html_safe %>
+      <%= @dragon.html_safe %>
+      <%= @mountain.html_safe %>
+
+    </div>
   </article>
 
   <article class="map">
 
-    <!--<div id="placeUnits"></div>-->
-
-    <%= @rabble.html_safe %>
-    <%= @spearman.html_safe %>
-    <%= @elephant.html_safe %>
     <% y_pos = 1 %>
 
     <% @map.each do |row| %>
-        <div class="grid" data-y-pos=<%= y_pos%>>
+        <div class="grid" data-y-pos=<%= y_pos %>>
           <% row.each do |square| %>
               <%= square.html_safe %>
           <% end %>
         </div>
-        <% y_pos += 1%>
+        <% y_pos += 1 %>
     <% end %>
 
     <!--<div id="placeUnits"></div>-->

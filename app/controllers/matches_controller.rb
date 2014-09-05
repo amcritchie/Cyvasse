@@ -11,9 +11,21 @@ class MatchesController < ApplicationController
   # GET /matches/1.json
   def show
 
-    @rabble = Rabble.image(5,8)
-    @spearman = Spearman.image(5,4)
-    @elephant = Elephant.image(4,6)
+    @elephant = Elephant.imagepng
+    @spearman = Spearman.imagepng
+    @rabble = Rabble.imagepng
+
+    @lighthorse = LightHorse.imagepng
+    @heavyhorse = HeavyHorse.imagepng
+
+    @crossbowman = Crossbowman.imagepng
+    @catapult = Catapult.imagepng
+    @trebuchet = Trebuchet.imagepng
+
+    @king = King.imagepng
+    @dragon = Dragon.imagepng
+    @mountain = Mountain.imagepng
+
     @vangaurd = [Rabble.attributes, Spearman.attributes, Elephant.attributes]
 
     @map = [Array.new(6),Array.new(7),Array.new(8),Array.new(9),

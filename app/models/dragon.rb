@@ -1,14 +1,14 @@
-class Dragon < ActiveRecord::Base
-
+class Dragon < Unit
   def initialize
   end
 
   def self.attributes
     attributes = {
         :name => "Dragon",
-        :movement => "Any distance in a line.",
+        :codename => "dragon",
+        :movement => 6,
         :strength => 5,
-        :flank => "--",
+        :flank => 0,
         :trump => nil
     }
   end

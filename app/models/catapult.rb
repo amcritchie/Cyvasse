@@ -1,4 +1,4 @@
-class Catapult < ActiveRecord::Base
+class Catapult < Unit
 
   def initialize
   end
@@ -6,6 +6,7 @@ class Catapult < ActiveRecord::Base
   def self.attributes
     attributes = {
         :name => "Catapult",
+        :codename => "catapult",
         :movement => 2,
         :strength => 3,
         :range => 2,

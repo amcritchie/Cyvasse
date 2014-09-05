@@ -1,4 +1,4 @@
-class LightHorse < ActiveRecord::Base
+class LightHorse < Unit
 
   def initialize
   end
@@ -6,6 +6,7 @@ class LightHorse < ActiveRecord::Base
   def self.attributes
     attributes = {
         :name => "Light Horse",
+        :codename => "light horse",
         :movement => 4,
         :strength => 2,
         :flank => 2,

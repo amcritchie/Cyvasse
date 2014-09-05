@@ -1,4 +1,4 @@
-class King < ActiveRecord::Base
+class King < Unit
 
   def initialize
   end
@@ -6,9 +6,10 @@ class King < ActiveRecord::Base
   def self.attributes
     attributes = {
         :name => "King",
+        :codename => "king",
         :movement => 1,
         :strength => 1,
-        :flank => "--",
+        :flank => 0,
         :trump => nil
     }
   end

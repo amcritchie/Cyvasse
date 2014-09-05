@@ -18,7 +18,6 @@
 //  }
 //}
 
-
 // Todo:
 // - remove element selectors like article
 // - refactor grid classes to be DRY
@@ -29,31 +28,31 @@
 /* clearfix */
 .clearfix:before,
 .clearfix:after {
-    content: " ";
-    display: table;
+  content: " ";
+  display: table;
 }
 
 .clearfix:after {
-    clear: both;
+  clear: both;
 }
 
 /* * For IE 6/7 only * Include this rule to trigger hasLayout and contain floats. */
 .clearfix {
-    *zoom: 1;
+  *zoom: 1;
 }
 
 .wrapper {
-    margin: auto;
-    width: 980px;
-    border: solid green 3px;
+  margin: auto;
+  width: 1100px;
+  border: solid green 3px;
 }
 
-article{
+article {
   position: relative;
   margin-left: 20px;
 }
 
-.class_title{
+.class_title {
   margin: auto;
   position: relative;
   display: block;
@@ -66,7 +65,7 @@ article{
 
 }
 
-.about_unit_description{
+.about_unit_description {
   padding-top: 0;
   width: 225px;
   display: inline-block;
@@ -77,46 +76,57 @@ article{
   }
 }
 
-.about_unit_image{
+.about_unit_image {
   width: 60px;
   display: inline-block;
   margin: auto;
-  max-width:175%;
-  max-height:100%;
+  max-width: 175%;
+  max-height: 100%;
 }
 
-
-
-
 /* ----- =columns ----- */
-.one_half { 	 width:460px; }
-.one_third {	 width:300px; }
-.two_third {	 width:620px; }
-.one_fourth {	 width:220px; }
-.three_fourth { width:700px; }
+.one_half {
+  width: 460px;
+}
+
+.one_third {
+  width: 300px;
+}
+
+.two_third {
+  width: 620px;
+}
+
+.one_fourth {
+  width: 220px;
+}
+
+.three_fourth {
+  width: 700px;
+}
+
 .full_column {
-  width:940px;
+  width: 940px;
   float: left;
 }
 
 .match .info {
-  width: 220px;
+  width: 320px;
   float: left;
 }
 
 .match .map {
   width: 700px;
-//  border: solid red 2px;
   float: left;
-//  transform: perspective(400px) rotateX(40deg);
+//    transform: perspective(400px) rotateX(20deg);
 }
 
-.heading .title{
+.heading .title {
   width: 700px;
   float: left;
 }
 
-.heading .flash{
+.heading .flash {
   width: 220px;
   float: left;
   color: green;
@@ -127,12 +137,12 @@ article{
   @extend .clearfix;
 }
 
-$black:     #333333;
-$brown:     #403939;
-$red:       #4A2929;
-$devil-gray:#666;
-$dred:      #402424;
-$white:     #fff;
+$black: #333333;
+$brown: #403939;
+$red: #4A2929;
+$devil-gray: #666;
+$dred: #402424;
+$white: #fff;
 
 svg {
   float: left;
@@ -145,38 +155,43 @@ svg {
   height: 21px;
 }
 
-
-#snowman{
-  cursor:pointer;
-  position: absolute;
-}
-
-#swampman {
-  cursor:pointer;
-  position: absolute;
-}
-
-#lavaman {
-  cursor:pointer;
-  position: absolute;
-}
-
 #placeUnits {
   width: 100%;
   height: 4px;
-//  position: absolute;
-//  margin-top: -570px;
+  //  position: absolute;
+  //  margin-top: -570px;
   background-color: yellowgreen;
   border: solid crimson 2px;
 }
 
-.rabble {}
-.spearman {}
-.elephant {}
+polygon {
+  z-index: 1;
+}
 
-polygon {}
+.inPlayUnit{
+  z-index: 2;
+  position: absolute;
+  margin-left: 0px;
+  margin-bottom: -5px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border: solid blue 1px;
+  display: inline-block;
 
-.unSelected{
+}
+
+.newUnit {
+  z-index: 2;
+  position: relative;
+  margin-bottom: -5px;
+  width: 60px;
+  height: 60px;
+
+  //  transform: scale(.3);
+}
+
+.unSelected {
   fill: $black;
   stroke: $white;
   stroke-width: 15;
@@ -189,7 +204,7 @@ polygon {}
   }
 }
 
-.selected{
+.selected {
   fill: $black;
   stroke: $devil-gray;
   stroke-width: 25;
@@ -203,14 +218,39 @@ polygon {}
   transform: scale(.107);
 }
 
+.selectedPieceInformation {
+  background-color: greenyellow;
+  height: 345px;
+  width: 100%;
+}
 
-.selectedPiece{
+.auxSpace {
+  background-color: red;
+  height: 243px;
+  width: 100%;
+}
+
+#selectedUnitName{
+  position: relative;
+  margin: auto;
+  margin-bottom: 0;
+}
+
+#selectedUnitImage{
+  height: 250px;
+}
+
+.selectedAttributes{
+  display: inline-block;
+}
+
+
+.selectedPiece {
   -webkit-box-shadow: 0 0 200px green;
   -moz-box-shadow: 0 0 200px green;
   box-shadow: 0 0 200px green;
-  cursor:pointer;
+  cursor: pointer;
 }
-
 
 .names {
   width: 200px;
@@ -219,7 +259,7 @@ polygon {}
 }
 
 .grid {
-//  border: solid red 2px;
+  //  border: solid red 2px;
   width: 100%;
   height: 68px;
   overflow: hidden;
@@ -229,37 +269,37 @@ polygon {}
   margin-bottom: -16px;
   @extend .clearfix;
 
-  &:nth-of-type(1){
+  &:nth-of-type(1) {
     max-width: 364px;
   }
-  &:nth-of-type(2){
+  &:nth-of-type(2) {
     max-width: 424px;
   }
-  &:nth-of-type(3){
+  &:nth-of-type(3) {
     max-width: 484px;
   }
-  &:nth-of-type(4){
+  &:nth-of-type(4) {
     max-width: 544px;
   }
-  &:nth-of-type(5){
+  &:nth-of-type(5) {
     max-width: 604px;
   }
-  &:nth-of-type(6){
+  &:nth-of-type(6) {
     max-width: 664px;
   }
-  &:nth-of-type(7){
+  &:nth-of-type(7) {
     max-width: 604px;
   }
-  &:nth-of-type(8){
+  &:nth-of-type(8) {
     max-width: 544px;
   }
-  &:nth-of-type(9){
+  &:nth-of-type(9) {
     max-width: 484px;
   }
-  &:nth-of-type(10){
+  &:nth-of-type(10) {
     max-width: 424px;
   }
-  &:nth-of-type(11){
+  &:nth-of-type(11) {
     max-width: 364px;
   }
   &:last-of-type {
@@ -323,7 +363,7 @@ header.navigation {
     padding-right: 1em;
     text-transform: uppercase;
 
-    @include media ($horizontal-bar-mode) {
+    @include media($horizontal-bar-mode) {
       display: none;
     }
 
@@ -337,7 +377,7 @@ header.navigation {
   .nav {
     z-index: 9999999;
     float: none;
-    @include media ($horizontal-bar-mode) {
+    @include media($horizontal-bar-mode) {
       float: left;
     }
   }
@@ -352,7 +392,7 @@ header.navigation {
     width: 100%;
     z-index: 9999;
 
-    @include media ($horizontal-bar-mode) {
+    @include media($horizontal-bar-mode) {
       display: inline;
       margin: 0;
       padding: 0;
@@ -371,7 +411,7 @@ header.navigation {
     width: 100%;
     z-index: 9999;
 
-    @include media ($horizontal-bar-mode) {
+    @include media($horizontal-bar-mode) {
       background: transparent;
       display: inline;
       line-height: $navigation-height;
@@ -384,7 +424,7 @@ header.navigation {
       display: inline-block;
       font-weight: 400;
 
-      @include media ($horizontal-bar-mode) {
+      @include media($horizontal-bar-mode) {
         padding-right: 1em;
       }
 
@@ -408,7 +448,7 @@ header.navigation {
       padding-right: $navigation-submenu-padding;
     }
 
-    > ul > li:first-child a  {
+    > ul > li:first-child a {
       padding-top: 1em;
     }
 
@@ -533,7 +573,7 @@ header.navigation {
   a.sign-up {
     margin-top: 1.2em;
     float: right;
-    @include transition (all 0.2s ease-in-out);
+    @include transition(all 0.2s ease-in-out);
     display: inline;
     background: $navigation-nav-button-background;
     border-radius: $base-border-radius;
@@ -612,4 +652,14 @@ header.navigation {
 article {
   border: solid blueviolet 1px;
   display: inline;
+}
+
+.unplacedUnit {
+//  border: solid blue 1px;
+//  display: inline-block;
+//  position: relative;
+//  margin-left: 0px;
+//  margin-bottom: -5px;
+//  width: 60px;
+//  height: 60px;
 }
