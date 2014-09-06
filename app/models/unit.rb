@@ -1,11 +1,13 @@
 class Unit
 
 
-  def self.imagepng(x_pos = '', y_pos = '')
-    x_pos = 1
-    y_pos = 1
+  def self.imagepng(team = '')
+    x_pos = -5
+    y_pos = -5
     size = 3
-    image = "<img src='../assets/pieces/#{attributes[:codename]}.png' id='#{attributes[:codename]}' class='newUnit' data-team='1'
+    # team = 1
+    image = "<img src='../assets/pieces/#{attributes[:codename]}.png'
+      id='#{attributes[:codename]}' class='newUnit' data-team=#{team}
       data-x_pos=#{x_pos} data-y_pos=#{y_pos} data-row_size=#{size} data-alive='unplaced'
       data-codename='#{attributes[:codename]}' data-englishname=#{attributes[:name]}
       data-movement=#{attributes[:movement]} data-flank=#{attributes[:flank]}

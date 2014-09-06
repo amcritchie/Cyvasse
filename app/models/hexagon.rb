@@ -5,7 +5,7 @@ class Hexagon < ActiveRecord::Base
     @y_pos = y_coordinate
   end
 
-  def self.hexagon(x_pos,y_pos)
+  def self.hexagon(x_pos, y_pos, hex_class)
     #Hexagon-triangle dimensions
     height = 30
     width = 52
@@ -15,13 +15,13 @@ class Hexagon < ActiveRecord::Base
 
 
     if y_pos < 7
-        size = y_pos + 5
-      else
-        size = 17 - y_pos
-      end
+      size = y_pos + 5
+    else
+      size = 17 - y_pos
+    end
 
     hexagon = "<svg class='brick'>
-                    <polygon class='unSelected' data-x-pos=#{x_pos} data-y-pos=#{y_pos}
+                    <polygon class=#{hex_class} data-x-pos=#{x_pos} data-y-pos=#{y_pos}
                     data-size=#{size} data-occupided=#{false} data-even=#{true}
                     points='#{width*hex_scale},0 0,#{height*hex_scale}
                     0,#{(height+hypotenuse)*hex_scale}

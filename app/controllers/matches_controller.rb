@@ -11,22 +11,31 @@ class MatchesController < ApplicationController
   # GET /matches/1.json
   def show
 
-    @elephant = Elephant.imagepng
-    @spearman = Spearman.imagepng
-    @rabble = Rabble.imagepng
 
-    @lighthorse = LightHorse.imagepng
-    @heavyhorse = HeavyHorse.imagepng
+    team1 = 1
+    team0 = 0
 
-    @crossbowman = Crossbowman.imagepng
-    @catapult = Catapult.imagepng
-    @trebuchet = Trebuchet.imagepng
+    @elephant = Elephant.imagepng(team1)
+    @spearman = Spearman.imagepng(team1)
+    @rabble = Rabble.imagepng(team1)
 
-    @king = King.imagepng
-    @dragon = Dragon.imagepng
-    @mountain = Mountain.imagepng
+    @lighthorse = LightHorse.imagepng(team0)
+    @heavyhorse = HeavyHorse.imagepng(team0)
 
-    @vangaurd = [Rabble.attributes, Spearman.attributes, Elephant.attributes]
+    @crossbowman = Crossbowman.imagepng(team0)
+    @catapult = Catapult.imagepng(team1)
+    @trebuchet = Trebuchet.imagepng(team0)
+
+    @king = King.imagepng(team1)
+    @dragon = Dragon.imagepng(team0)
+    @mountain = Mountain.imagepng(team0)
+
+    @vangaurd = [@rabble, @rabble, @rabble, @spearman, @spearman, @elephant, @elephant]
+    @cavalry = [@lighthorse, @lighthorse, @heavyhorse, @heavyhorse]
+    @range = [@crossbowman, @crossbowman, @catapult, @catapult, @trebuchet]
+    @unique = [@dragon, @king, @mountain, @mountain]
+
+    @units = [@vangaurd, @cavalry, @range, @unique]
 
     @map = [Array.new(6),Array.new(7),Array.new(8),Array.new(9),
             Array.new(10),Array.new(11),Array.new(10),
@@ -38,7 +47,14 @@ class MatchesController < ApplicationController
     @map.each do |row|
       row.map! do |column|
         x_pos += 1
-        Hexagon.hexagon(x_pos,y_pos)
+
+        if y_pos < 7
+          hex_class = 'unSelected'
+        else
+          hex_class = 'selectedRange'
+        end
+
+        Hexagon.hexagon(x_pos,y_pos,hex_class)
       end
       x_pos = 0
       y_pos += 1

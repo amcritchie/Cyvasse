@@ -10,7 +10,8 @@ class King < Unit
         :movement => 1,
         :strength => 1,
         :flank => 0,
-        :trump => nil
+        :trump => nil,
+        :team => 1
     }
   end
 
