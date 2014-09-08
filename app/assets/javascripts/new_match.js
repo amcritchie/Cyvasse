@@ -15,6 +15,7 @@ $(document).ready(function () {
     var $clicked_y;
 
     var $unit;
+    var $allyUnit;
     var $enemyUnit;
 
     var $defender = $('.inPlayUnit');
@@ -23,7 +24,8 @@ $(document).ready(function () {
     var $all_polygons = $('polygon');
     var $initialSpace = $('.selectedRange');
     var $selectedRange;
-    var $movableArea = $('*.selectedRange');
+//    var $movableArea = $('*.selectedRange');
+    var $movableArea;
     var $range;
     var $defenderr;
     var $defender_x;
@@ -43,74 +45,109 @@ $(document).ready(function () {
     var $player0name = "Tyrion";
 
     $unit = $('*[data-team=' + Math.abs($turn - 1) + '], *[data-team=' + Math.abs($turn) + ']');
-//    $allienit = $('*[data-team=' + Math.abs($turn - 1) + ']
+    $allyUnit = $('*[data-team=' + Math.abs($turn - 1) + ']');
     $enemyUnit = $('*[data-team=' + Math.abs($turn) + ']');
 
-    var range;
-    range = function (unit_moves, unit_x, unit_y, unit_class) {
 
-//      ==Display hexagons adjacent to selected unit.==
-//      =========Left=========
+//    Functions.
+
+    var newRange;
+    var row;
+    var initialSizeUp;
+    var initialSizeDown;
+    var finalSizeUp;
+    var finalSizeDown;
+    var constantUp;
+    var constantDown;
+
+    function hexClassChange(xPos, yPos, className, horizontal){
+        $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").delay(100 * horizontal).fadeOut().queue(function (next) {
+        $(this).attr('class', className).fadeIn();
+        next();
+    });
+    }
+
+    function hexClassChangeTest(xPos, yPos, className, horizontal){
+        $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").delay(100 * horizontal).fadeOut().queue(function (next) {
+            $(this).attr('class', className).fadeIn();
+            next();
+        });
+    }
+
+
+    function findHex(x_pos, y_pos) {
+        var hexagon;
+        hexagon = $("polygon[data-x-pos=" + x_pos + "][data-y-pos=" + y_pos + "]");
+        return hexagon;
+    }
+
+    //      ==Display hexagons adjacent to selected unit.==
+
+    newRange = function (unit_moves, unit_x, unit_y, unit_class) {
         var horizontal = 1;
+        var vertical = 1;
+        console.log("THEStartTHEEND");
+
+
+//        initialSizeDown = findHex(unit_x, unit_y).data('size');
+//        initialSizeUp = findHex(unit_x, unit_y).data('size');
+
         while (horizontal <= unit_moves) {
-            $("polygon[data-x-pos=" + (unit_x - horizontal) + "][data-y-pos=" + (unit_y) + "]").attr('class', unit_class);
+            constantUp = 0;
+            constantDown = 0;
+            vertical = 1;
+            initialSizeDown = findHex(unit_x, unit_y).data('size');
+            initialSizeUp = findHex(unit_x, unit_y).data('size');
+
+
+
+            hexClassChange((unit_x - horizontal), (unit_y), unit_class, horizontal);
+
+            while (horizontal >= vertical) {
+
+                finalSizeDown = findHex(unit_x, unit_y + vertical).data('size');
+                finalSizeUp = findHex(unit_x, unit_y - vertical).data('size');
+
+                if (initialSizeDown < finalSizeDown) { constantDown = constantDown + 1}
+                console.log("Start -=-=--=-=-=--");
+                console.log(constantDown);
+                console.log("Horiz : " + horizontal);
+                console.log("Vert : " + vertical);
+                console.log("Initial Size : " + initialSizeDown);
+                console.log("Final Size : " + finalSizeDown);
+                console.log("-=-=--=-=-=--");
+                if (initialSizeUp < finalSizeUp) { constantUp = constantUp + 1}
+
+                if (horizontal <= vertical) {
+                    row = 0;
+                    while (row <= horizontal) {
+                        hexClassChange((unit_x - (horizontal + row - vertical - constantDown)), (unit_y + vertical), unit_class, horizontal);
+                        hexClassChange((unit_x - (horizontal + row - vertical - constantUp)), (unit_y - vertical), unit_class, horizontal);
+                        row = row + 1
+                    }
+                } else {
+                    hexClassChangeTest((unit_x - (horizontal - constantDown)), (unit_y + vertical), unit_class, horizontal);
+                    hexClassChangeTest((unit_x - (horizontal - constantUp)), (unit_y - vertical), unit_class, horizontal);
+                    initialSizeDown = finalSizeDown;
+                    initialSizeUp = finalSizeUp;
+                }
+                vertical = vertical + 1;
+            }
             horizontal = horizontal + 1;
         }
+        console.log("THEENDTHEEND");
 //      =========Right=========
-        horizontal = 1;
-        while (horizontal <= unit_moves) {
-            $("polygon[data-x-pos=" + (unit_x + horizontal) + "][data-y-pos=" + (unit_y) + "]").attr('class', unit_class);
-            horizontal = horizontal + 1;
-        }
-//      =========Bottom=========
-        var verticle = 1;
-        horizontal = 1;
-        var initialSize = $("polygon[data-x-pos=" + unit_x + "][data-y-pos=" + unit_y + "]").data('size');
-        var finalSize;
-        var constant = -1;
-        while (verticle <= $hovering_moves) {
-            finalSize = $("polygon[data-x-pos=" + unit_x + "][data-y-pos=" + (unit_y + verticle) + "]").data('size');
-            if (initialSize < finalSize) {
-                constant = constant + 1
-            }
-            while (horizontal <= ((unit_moves * 2) - (verticle - 1))) {
-
-                $("polygon[data-x-pos=" + (unit_x - (unit_moves - (horizontal + constant))) + "][data-y-pos=" + (unit_y + verticle) + "]").attr('class', unit_class);
-                horizontal = horizontal + 1;
-            }
-            initialSize = finalSize;
-            horizontal = 1;
-            verticle = verticle + 1;
-        }
-//      =========Top=========
-        verticle = 1;
-        horizontal = 1;
-        initialSize = $("polygon[data-x-pos=" + unit_x + "][data-y-pos=" + unit_y + "]").data('size');
-        constant = -1;
-        while (verticle <= unit_moves) {
-            finalSize = $("polygon[data-x-pos=" + unit_x + "][data-y-pos=" + (unit_y - verticle) + "]").data('size');
-            if (initialSize < finalSize) {
-                constant = constant + 1
-            }
-            while (horizontal <= ((unit_moves * 2) - (verticle - 1))) {
-
-                $("polygon[data-x-pos=" + (unit_x - (unit_moves - (horizontal + constant))) + "][data-y-pos=" + (unit_y - verticle) + "]").attr('class', unit_class);
-                horizontal = horizontal + 1;
-            }
-            initialSize = finalSize;
-            horizontal = 1;
-            verticle = verticle + 1;
-        }
+//        horizontal = 1;
+//        while (horizontal <= unit_moves) {
+//            $("polygon[data-x-pos=" + (unit_x + horizontal) + "][data-y-pos=" + (unit_y) + "]").delay(60 * horizontal).queue(function (next) {
+//                $(this).attr('class', unit_class);
+//                next();
+//            });
+//            horizontal = horizontal + 1;
+//        }
     };
 
-    console.log($initialSpace);
-//    console.log("==================");
-//    console.log(Math.abs($turn - 1));
-//    console.log($('*[data-team=' + Math.abs($turn ) + ']'));
-//    console.log("==================");
-
-
-    $unit.mouseover(function () {
+    $unit.click(function () {
 
         $hoverPiece = $(this);
         $hovering_moves = $hoverPiece.data('movement');
@@ -125,12 +162,8 @@ $(document).ready(function () {
         $('#selectedFlank').empty().append('Flank: ' + $hoverPiece.data('flank'));
         $('#selectedTrump').empty().append('Trump: ' + $hoverPiece.data('trump'));
 
-        range($hovering_moves, $hovering_x, $hovering_y, 'hoverRange');
+        newRange($hovering_moves, $hovering_x, $hovering_y, 'hoverRange');
 
-        console.log("==================");
-        console.log($(this));
-        console.log($(this).data('team'));
-        console.log("==================");
 
         $(this).click(function () {
             $all_polygons.attr('class', 'unSelected');
@@ -139,23 +172,23 @@ $(document).ready(function () {
             $clicked_moves = $clickedPiece.data('movement');
             $clicked_x = $clickedPiece.data('x_pos');
             $clicked_y = $clickedPiece.data('y_pos');
-            range($clicked_moves, $clicked_x, $clicked_y, 'selectedRange');
+            newRange($clicked_moves, $clicked_x, $clicked_y, 'selectedRange');
             $selectedRange = $('.selectedRange');
 
 //            $initialSpace = $('.selectedRange')
 
+            $movableArea = 0;
             $initialSpace.attr('class', 'selectedRange');
             $selectedRange.attr('class', 'selectedRange');
             $movableArea = $('*.selectedRange');
         });
 
-        $hoverPiece.mouseleave(function () {
-            $all_polygons.attr('class', 'unSelected');
-            console.log($initialSpace);
-            console.log($selectedRange);
-            $initialSpace.attr('class', 'selectedRange');
-            $selectedRange.attr('class', 'selectedRange');
-        });
+//        $hoverPiece.mouseleave(function () {
+//            $all_polygons.attr('class', 'unSelected');
+//
+//            $initialSpace.attr('class', 'selectedRange');
+//            $selectedRange.attr('class', 'selectedRange');
+//        });
     });
 
 
@@ -167,10 +200,7 @@ $(document).ready(function () {
         $defender_size = $defenderr.data('size');
 
 
-        if ($clickedPiece.data('strength') >= $defenderr.data('strength')){
-
-            console.log("*******");
-            console.log("win");
+        if ($clickedPiece.data('strength') >= $defenderr.data('strength')) {
 
             $clickedPiece.data('x_pos', $defender_x);
             $clickedPiece.data('y_pos', $defender_y);
@@ -194,6 +224,7 @@ $(document).ready(function () {
     });
 
 //    $movableArea = $('.selectedRange');
+    $movableArea = $('*.selectedRange');
     $movableArea.click(function () {
         $Hexagon = $(this);
         $Hexagon_x = $Hexagon.data('x-pos');
@@ -206,12 +237,8 @@ $(document).ready(function () {
             $clickedPiece.prependTo(".map");
             $clickedPiece.attr('class', 'inPlayUnit')
         }
-        console.log('vvvvvvvvv');
-        console.log($clickedPiece.hasClass('newUnit'));
-        console.log('^^^^^^^^^');
 
 //      Updating the $movingPiece's coordinates.
-        console.log($clickedPiece.data('x_pos'));
         $clickedPiece.data('x_pos', $Hexagon_x);
         $clickedPiece.data('y_pos', $Hexagon_y);
         $clickedPiece.data('row_size', $Hexagon_size);
@@ -220,8 +247,6 @@ $(document).ready(function () {
         $clickedPiece.css('margin-top', ($Hexagon_y * 52) - 52);
         $clickedPiece.css('margin-left', 17 + ((11 - $Hexagon_size) * 30) + (($Hexagon_x * 60) - 60));
 
-
-//
 
 //      Turn over -> Hexagons back to normal & Moving Piece is nothing.
         if ($turn == 1) {
@@ -236,10 +261,12 @@ $(document).ready(function () {
         $unit = $('*[data-team=' + Math.abs($turn - 1) + ']');
         $enemyUnit = $('*[data-team=' + Math.abs($turn) + ']');
 
-        $clickedPiece = 0;
-
         $all_polygons.attr('class', 'unSelected');
+
         $initialSpace.attr('class', 'selectedRange');
+        newRange($clicked_moves, $Hexagon_x, $Hexagon_y, 'hoverRange');
+
+        $clickedPiece = 0;
         $selectedRange = 0;
         $movingPiece = 0;
     });

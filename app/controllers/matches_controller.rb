@@ -48,7 +48,7 @@ class MatchesController < ApplicationController
       row.map! do |column|
         x_pos += 1
 
-        if y_pos < 7
+        if y_pos < 2
           hex_class = 'unSelected'
         else
           hex_class = 'selectedRange'
