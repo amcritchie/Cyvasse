@@ -60,18 +60,25 @@ $(document).ready(function () {
     var constantUp;
     var constantDown;
 
-    function hexClassChange(xPos, yPos, className, horizontal){
-        $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").delay(100 * horizontal).fadeOut().queue(function (next) {
-        $(this).attr('class', className).fadeIn();
-        next();
-    });
-    }
-
-    function hexClassChangeTest(xPos, yPos, className, horizontal){
+    function hexClassChange(xPos, yPos, className, horizontal) {
         $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").delay(100 * horizontal).fadeOut().queue(function (next) {
             $(this).attr('class', className).fadeIn();
             next();
         });
+    }
+
+    function hexClassChangeTest(xPos, yPos, className, horizontal, click) {
+        if (click) {
+            $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").delay(70 * horizontal).queue(function (next) {
+                $(this).attr('class', className);
+                next();
+            });
+        } else {
+            $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").delay(30 * horizontal).fadeOut().queue(function (next) {
+                $(this).attr('class', className).fadeIn();
+                next();
+            });
+        }
     }
 
 
@@ -83,14 +90,9 @@ $(document).ready(function () {
 
     //      ==Display hexagons adjacent to selected unit.==
 
-    newRange = function (unit_moves, unit_x, unit_y, unit_class) {
+    newRange = function (unit_moves, unit_x, unit_y, unit_class, click) {
         var horizontal = 1;
         var vertical = 1;
-        console.log("THEStartTHEEND");
-
-
-//        initialSizeDown = findHex(unit_x, unit_y).data('size');
-//        initialSizeUp = findHex(unit_x, unit_y).data('size');
 
         while (horizontal <= unit_moves) {
             constantUp = 0;
@@ -100,34 +102,30 @@ $(document).ready(function () {
             initialSizeUp = findHex(unit_x, unit_y).data('size');
 
 
-
-            hexClassChange((unit_x - horizontal), (unit_y), unit_class, horizontal);
+            hexClassChangeTest((unit_x - horizontal), (unit_y), unit_class, horizontal, click);
+            hexClassChangeTest((unit_x + horizontal), (unit_y), unit_class, horizontal, click);
 
             while (horizontal >= vertical) {
 
                 finalSizeDown = findHex(unit_x, unit_y + vertical).data('size');
                 finalSizeUp = findHex(unit_x, unit_y - vertical).data('size');
 
-                if (initialSizeDown < finalSizeDown) { constantDown = constantDown + 1}
-                console.log("Start -=-=--=-=-=--");
-                console.log(constantDown);
-                console.log("Horiz : " + horizontal);
-                console.log("Vert : " + vertical);
-                console.log("Initial Size : " + initialSizeDown);
-                console.log("Final Size : " + finalSizeDown);
-                console.log("-=-=--=-=-=--");
-                if (initialSizeUp < finalSizeUp) { constantUp = constantUp + 1}
+                if (initialSizeDown < finalSizeDown) {constantDown = constantDown + 1}
+                if (initialSizeUp < finalSizeUp) {constantUp = constantUp + 1}
 
                 if (horizontal <= vertical) {
                     row = 0;
                     while (row <= horizontal) {
-                        hexClassChange((unit_x - (horizontal + row - vertical - constantDown)), (unit_y + vertical), unit_class, horizontal);
-                        hexClassChange((unit_x - (horizontal + row - vertical - constantUp)), (unit_y - vertical), unit_class, horizontal);
+                        hexClassChangeTest((unit_x - (horizontal + row - vertical - constantDown)), (unit_y + vertical), unit_class, horizontal, click);
+                        hexClassChangeTest((unit_x - (horizontal + row - vertical - constantUp)), (unit_y - vertical), unit_class, horizontal, click);
                         row = row + 1
                     }
                 } else {
-                    hexClassChangeTest((unit_x - (horizontal - constantDown)), (unit_y + vertical), unit_class, horizontal);
-                    hexClassChangeTest((unit_x - (horizontal - constantUp)), (unit_y - vertical), unit_class, horizontal);
+                    hexClassChangeTest((unit_x - (horizontal - constantDown)), (unit_y + vertical), unit_class, horizontal, click);
+                    hexClassChangeTest((unit_x - (horizontal - constantUp)), (unit_y - vertical), unit_class, horizontal, click);
+
+                    hexClassChangeTest((unit_x + (horizontal - constantDown - vertical)), (unit_y + vertical), unit_class, horizontal, click);
+                    hexClassChangeTest((unit_x + (horizontal - constantUp - vertical)), (unit_y - vertical), unit_class, horizontal, click);
                     initialSizeDown = finalSizeDown;
                     initialSizeUp = finalSizeUp;
                 }
@@ -135,7 +133,8 @@ $(document).ready(function () {
             }
             horizontal = horizontal + 1;
         }
-        console.log("THEENDTHEEND");
+
+
 //      =========Right=========
 //        horizontal = 1;
 //        while (horizontal <= unit_moves) {
@@ -147,7 +146,7 @@ $(document).ready(function () {
 //        }
     };
 
-    $unit.click(function () {
+    $unit.mouseenter(function () {
 
         $hoverPiece = $(this);
         $hovering_moves = $hoverPiece.data('movement');
@@ -162,7 +161,7 @@ $(document).ready(function () {
         $('#selectedFlank').empty().append('Flank: ' + $hoverPiece.data('flank'));
         $('#selectedTrump').empty().append('Trump: ' + $hoverPiece.data('trump'));
 
-        newRange($hovering_moves, $hovering_x, $hovering_y, 'hoverRange');
+        newRange($hovering_moves, $hovering_x, $hovering_y, 'hoverRange', false);
 
 
         $(this).click(function () {
@@ -172,7 +171,7 @@ $(document).ready(function () {
             $clicked_moves = $clickedPiece.data('movement');
             $clicked_x = $clickedPiece.data('x_pos');
             $clicked_y = $clickedPiece.data('y_pos');
-            newRange($clicked_moves, $clicked_x, $clicked_y, 'selectedRange');
+            newRange($clicked_moves, $clicked_x, $clicked_y, 'selectedRange', true);
             $selectedRange = $('.selectedRange');
 
 //            $initialSpace = $('.selectedRange')
@@ -264,7 +263,7 @@ $(document).ready(function () {
         $all_polygons.attr('class', 'unSelected');
 
         $initialSpace.attr('class', 'selectedRange');
-        newRange($clicked_moves, $Hexagon_x, $Hexagon_y, 'hoverRange');
+        newRange($clicked_moves, $Hexagon_x, $Hexagon_y, 'hoverRange', false);
 
         $clickedPiece = 0;
         $selectedRange = 0;
