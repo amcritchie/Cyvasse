@@ -10,6 +10,7 @@ class Trebuchet < Unit
         :movement => 1,
         :strength => 4,
         :range => 3,
+        :flank => 0,
         :trump => ["Dragon"]
     }
   end

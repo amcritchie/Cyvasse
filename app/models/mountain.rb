@@ -8,7 +8,8 @@ class Mountain < Unit
         :name => "Mountain",
         :codename => "mountain",
         :movement => 0,
-        :strength => 12,
+        :strength => 10,
+        :range => 0,
         :flank => 0,
         :trump => nil
     }

@@ -9,9 +9,9 @@ class King < Unit
         :codename => "king",
         :movement => 1,
         :strength => 1,
+        :range => 0,
         :flank => 0,
         :trump => nil,
-        :team => 1
     }
   end
 

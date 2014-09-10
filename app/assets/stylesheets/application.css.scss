@@ -2,28 +2,19 @@
 @import "neat";
 @import "base/base";
 
-//div.match {
-//  @include outer-container;
-//  article.info {
-//    @include span-columns(12);
-//    @media screen and (min-device-width: 40.5rem) {
-//      @include span-columns(3);
-//    }
-//  }
-//  article.map {
-//    @include span-columns(12);
-//    @media screen and (min-device-width: 40.5rem) {
-//      @include span-columns(9);
-//    }
-//  }
-//}
 
-// Todo:
-// - remove element selectors like article
-// - refactor grid classes to be DRY
-// -
-//
-//
+$black: #333333;
+$brown: #403939;
+$red: #4A2929;
+$devil-gray: #666;
+$dred: #402424;
+$white: #fff;
+
+$temp1: #1c2124;
+$temp2: #4F8164;
+$temp3: #9cd6a4;
+$temp4: #f6f6ae;
+$temp5: #d52822;
 
 /* clearfix */
 .clearfix:before,
@@ -31,40 +22,27 @@
   content: " ";
   display: table;
 }
-
 .clearfix:after {
   clear: both;
 }
-
 /* * For IE 6/7 only * Include this rule to trigger hasLayout and contain floats. */
 .clearfix {
   *zoom: 1;
 }
 
-.wrapper {
-  margin: auto;
-  width: 960px;
-  border: solid green 3px;
-}
 
-article {
-  position: relative;
-  margin-left: 20px;
-}
-
+//About Page CSS
 .class_title {
   margin: auto;
   position: relative;
   display: block;
 }
-
 .about_unit {
   height: 100px;
   display: inline-block;
   border-top: solid 1px #666;
 
 }
-
 .about_unit_description {
   padding-top: 0;
   width: 225px;
@@ -75,7 +53,6 @@ article {
     line-height: 90%;
   }
 }
-
 .about_unit_image {
   width: 60px;
   display: inline-block;
@@ -84,48 +61,80 @@ article {
   max-height: 100%;
 }
 
+
 /* ----- =columns ----- */
 .one_half {
   width: 460px;
 }
-
 .one_third {
   width: 300px;
 }
-
 .two_third {
   width: 620px;
 }
-
 .one_fourth {
   width: 220px;
 }
-
 .three_fourth {
   width: 700px;
 }
-
 .full_column {
   width: 940px;
   float: left;
 }
 
-.match .info {
-  width: 200px;
-  float: left;
+
+.wrapper {
+  margin: auto;
+  width: 980px;
+  border: solid green 3px;
+  background: #ffffff; /* Old browsers */
+//  background: -webkit-linear-gradient(right top, $temp2, $temp3);
 }
 
+article {
+  position: relative;
+  margin-left: 20px;
+}
+
+//Match Page
+.matchHeading{
+  width: 920px;
+  float: left;
+}
+.match .info {
+  width: 210px;
+  float: left;
+}
+.selectedPieceInformation {
+//  background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+  text-align: center;
+  border: solid #000000 4px;
+  border-bottom: solid #000000 2px;
+  height: 428px;
+  width: 100%;
+}
+#selectedUnitName{
+  height: 50px;
+}
+.auxSpace {
+//  background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
+  border: solid #000000 4px;
+  border-top: 0;
+  height: 165px;
+  width: 100%;
+}
 .match .map {
   width: 700px;
   float: left;
 //    transform: perspective(400px) rotateX(20deg);
 }
 
+//Unsure What For
 .heading .title {
   width: 700px;
   float: left;
 }
-
 .heading .flash {
   width: 220px;
   float: left;
@@ -137,35 +146,16 @@ article {
   @extend .clearfix;
 }
 
-$black: #333333;
-$brown: #403939;
-$red: #4A2929;
-$devil-gray: #666;
-$dred: #402424;
-$white: #fff;
 
-svg {
-  float: left;
-  width: 60px;
-  height: 68px;
+//Unit Classes
+.newUnit {
+  z-index: 6;
+  position: relative;
+  margin-bottom: -6px;
+  margin-right: -5px;
+  width: 40px;
+  height: 40px;
 }
-
-.robot {
-  width: 42px;
-  height: 21px;
-}
-
-#placeUnits {
-  width: 100%;
-  height: 4px;
-  background-color: yellowgreen;
-  border: solid crimson 2px;
-}
-
-polygon {
-  z-index: 1;
-}
-
 .inPlayUnit{
   z-index: 6;
   position: absolute;
@@ -174,123 +164,49 @@ polygon {
   width: 60px;
   height: 60px;
   cursor: pointer;
-//  border: solid blue 1px;
-  display: inline-block;
-
-}
-
-.newUnit {
-  z-index: 6;
-  position: relative;
-  margin-bottom: -6px;
-  margin-right: -5px;
-  width: 40px;
-  height: 40px;
-//  border: solid yellowgreen;
-  //  transform: scale(.3);
-}
-
-.unSelected {
-  fill: $black;
-  stroke: $white;
-  stroke-width: 15;
-  z-index: 3;
-
-  transform: scale(.107);
-
-  &:hover {
-    //    fill: $red;
-    fill: $devil-gray;
-    stroke: $white;
-  }
-}
-
-.selected {
-  fill: $black;
-  stroke: $devil-gray;
-  stroke-width: 25;
-  transform: scale(.107);
-}
-
-.inRange {
-  fill: red;
-  stroke: $white;
-  stroke-width: 15;
-  transform: scale(.107);
-}
-
-.hoverRange {
-  fill: $black;
-  z-index: 4;
-  stroke: darkred;
-  stroke-width: 15;
-  transform: scale(.108);
-  &:hover {
-    //    fill: $red;
-    fill: $devil-gray;
-    stroke: $white;
-  }
-}
-
-.selectedRange {
-  fill: $black;
-  z-index: 3;
-  stroke: blue;
-  stroke-width: 15;
-  transform: scale(.108);
-  &:hover {
-    //    fill: $red;
-    fill: $devil-gray;
-    stroke: $brown;
-  }
-}
-
-.selectedPieceInformation {
-  background-color: greenyellow;
-  height: 428px;
-  width: 100%;
-}
-
-.auxSpace {
-  background-color: red;
-  height: 160px;
-  width: 100%;
-}
-
-#selectedUnitName{
-  position: relative;
-  margin: auto;
-  margin-bottom: 0;
-}
-
-#selectedUnitImage{
-  height: 250px;
-}
-
-.selectedAttributes{
   display: inline-block;
 }
 
-
-.selectedPiece {
-  -webkit-box-shadow: 0 0 200px green;
-  -moz-box-shadow: 0 0 200px green;
-  box-shadow: 0 0 200px green;
-  cursor: pointer;
-}
-
-.names {
-  width: 200px;
-  display: inline;
-  margin: auto;
-}
-
-.grid {
-  //  border: solid red 2px;
-  width: 100%;
+//SVG
+svg {
+  float: left;
+  width: 60px;
   height: 68px;
+}
+polygon {
+  z-index: 1;
+  position: relative;
+//  fill: url(#grad1);
+  stroke-width: 25;
+  transform: scale(.108);
+  &:hover {
+    fill: $devil-gray;
+    stroke: $white;
+  }
+}
+.robot {
+  width: 42px;
+  height: 21px;
+}
+
+
+//Hexagon Classes
+.unSelected {
+  stroke: $white;
+  z-index: 3;
+}
+.hoverRange {
+  stroke: darkred;
+  z-index: 4;
+}
+.selectedRange {
+  stroke: blueviolet;
+  z-index: 3;
+}
+
+//CSS for each row of Hexagons.
+.grid {
   overflow: hidden;
-  display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: -16px;
@@ -334,6 +250,7 @@ polygon {
     margin-bottom: 0;
   }
 }
+
 
 header.navigation {
   $navigation-padding: 1em;
@@ -674,19 +591,4 @@ header.navigation {
       }
     }
   }
-}
-
-article {
-  border: solid blueviolet 1px;
-  display: inline;
-}
-
-.unplacedUnit {
-//  border: solid blue 1px;
-//  display: inline-block;
-//  position: relative;
-//  margin-left: 0px;
-//  margin-bottom: -5px;
-//  width: 60px;
-//  height: 60px;
 }

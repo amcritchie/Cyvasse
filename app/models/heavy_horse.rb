@@ -5,10 +5,11 @@ class HeavyHorse < Unit
 
   def self.attributes
     attributes = {
-        :name => "Heavy Horse",
-        :codename => "heavy horse",
+        :name => "Heavy_Horse",
+        :codename => "heavy_horse",
         :movement => 3,
         :strength => 3,
+        :range => 0,
         :flank => 2,
         :trump => nil
     }

@@ -9,6 +9,7 @@ class Elephant < Unit
         :codename => "elephant",
         :movement => 3,
         :strength => 4,
+        :range => 0,
         :flank => 1,
         :trump => nil
     }

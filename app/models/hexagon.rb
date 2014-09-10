@@ -21,6 +21,16 @@ class Hexagon < ActiveRecord::Base
     end
 
     hexagon = "<svg class='brick'>
+  <defs>
+    <linearGradient id='grad1' x1='0%' y1='100%' x2='100%' y2='0%'>
+      <stop offset='0%' style='stop-color:#666;stop-opacity:1' />
+      <stop offset='100%' style='stop-color:#1c2124;stop-opacity:1' />
+    </linearGradient>
+    <linearGradient id='grad2' x1='0%' y1='100%' x2='100%' y2='0%'>
+      <stop offset='0%' style='stop-color:#666;stop-opacity:1' />
+      <stop offset='100%' style='stop-color:#1c2124;stop-opacity:1' />
+    </linearGradient>
+  </defs>
                     <polygon class=#{hex_class} data-x-pos=#{x_pos} data-y-pos=#{y_pos}
                     data-size=#{size} data-occupided=#{false} data-even=#{true}
                     points='#{width*hex_scale},0 0,#{height*hex_scale}

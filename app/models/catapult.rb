@@ -9,7 +9,8 @@ class Catapult < Unit
         :codename => "catapult",
         :movement => 2,
         :strength => 3,
-        :range => 2,
+        :range => 3,
+        :flank => 0,
         :trump => nil
     }
   end
