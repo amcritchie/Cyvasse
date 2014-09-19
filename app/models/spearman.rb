@@ -9,7 +9,7 @@ class Spearman < Unit
         :codename => "spearman",
         :movement => 2,
         :strength => 2,
-        :range => 0,
+        :changeClassOfHexagonInRange => 0,
         :flank => 2,
         :trump => ["Light Horse", "Heavy Horse"]
     }

@@ -23,11 +23,11 @@ class Hexagon < ActiveRecord::Base
     hexagon = "<svg class='brick'>
   <defs>
     <linearGradient id='grad1' x1='0%' y1='100%' x2='100%' y2='0%'>
-      <stop offset='0%' style='stop-color:#666;stop-opacity:1' />
+      <stop offset='0%' style='stop-color:##1c6124;stop-opacity:1' />
       <stop offset='100%' style='stop-color:#1c2124;stop-opacity:1' />
     </linearGradient>
     <linearGradient id='grad2' x1='0%' y1='100%' x2='100%' y2='0%'>
-      <stop offset='0%' style='stop-color:#666;stop-opacity:1' />
+      <stop offset='0%' style='stop-color:#1c6124;stop-opacity:1' />
       <stop offset='100%' style='stop-color:#1c2124;stop-opacity:1' />
     </linearGradient>
   </defs>

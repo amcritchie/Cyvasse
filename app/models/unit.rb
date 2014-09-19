@@ -11,9 +11,9 @@ class Unit
       data-x_pos=#{x_pos} data-y_pos=#{y_pos} data-row_size=#{size} data-alive='unplaced'
       data-codename='#{attributes[:codename]}' data-englishname=#{attributes[:name]}
       data-movement=#{attributes[:movement]} data-flank=#{attributes[:flank]}
-      data-range=#{attributes[:range]}
+      data-changeClassOfHexagonInRange=#{attributes[:changeClassOfHexagonInRange]}
       data-strength=#{attributes[:strength]} data-trump=#{attributes[:trump]}
-      data-numericalStats=#{[attributes[:codename], attributes[:movement], attributes[:strength], attributes[:range], attributes[:flank]]}>"
+      data-numericalStats=#{[attributes[:codename], attributes[:movement], attributes[:strength], attributes[:changeClassOfHexagonInRange], attributes[:flank]]}>"
   end
 
   # def self.image(x_pos = '', y_pos = '')

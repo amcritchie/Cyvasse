@@ -89,7 +89,7 @@ $temp5: #d52822;
   width: 980px;
   border: solid green 3px;
   background: #ffffff; /* Old browsers */
-//  background: -webkit-linear-gradient(right top, $temp2, $temp3);
+  background: -webkit-linear-gradient(right top, $temp2, $temp3);
 }
 
 article {
@@ -107,7 +107,7 @@ article {
   float: left;
 }
 .selectedPieceInformation {
-//  background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+  background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
   text-align: center;
   border: solid #000000 4px;
   border-bottom: solid #000000 2px;
@@ -118,7 +118,7 @@ article {
   height: 50px;
 }
 .auxSpace {
-//  background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
+  background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
   border: solid #000000 4px;
   border-top: 0;
   height: 165px;
@@ -128,6 +128,11 @@ article {
   width: 700px;
   float: left;
 //    transform: perspective(400px) rotateX(20deg);
+}
+
+.startGameButton{
+  position: absolute;
+  visibility: hidden;
 }
 
 //Unsure What For
@@ -175,8 +180,9 @@ svg {
 }
 polygon {
   z-index: 1;
+  background-color: #1c2324;
   position: relative;
-//  fill: url(#grad1);
+  fill: url(#grad1);
   stroke-width: 25;
   transform: scale(.108);
   &:hover {
@@ -203,6 +209,11 @@ polygon {
   stroke: blueviolet;
   z-index: 3;
 }
+.testRange {
+  stroke: limegreen;
+  z-index: 3;
+}
+
 
 //CSS for each row of Hexagons.
 .grid {

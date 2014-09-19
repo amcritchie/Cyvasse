@@ -30,12 +30,12 @@ class MatchesController < ApplicationController
     @dragon = Dragon.imagepng(team0)
     @mountain = Mountain.imagepng(team0)
 
-    @vangaurd = [@rabble, @rabble, @rabble, @spearman, @spearman, @elephant, @elephant]
+    @vangaurd = [@rabble, @rabble, @rabble] #, @spearman, @spearman, @elephant, @elephant]
     @cavalry = [@lighthorse, @lighthorse, @heavyhorse, @heavyhorse]
     @range = [@crossbowman, @crossbowman, @catapult, @catapult, @trebuchet]
     @unique = [@dragon, @king, @mountain, @mountain]
 
-    @units = [@vangaurd, @cavalry, @range, @unique]
+    @units = [@vangaurd] #, @cavalry, @range, @unique]
 
     @map = [Array.new(6),Array.new(7),Array.new(8),Array.new(9),
             Array.new(10),Array.new(11),Array.new(10),

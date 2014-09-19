@@ -10,7 +10,7 @@ class Crossbowman < Unit
         :movement => 2,
         :strength => 2,
         :flank => 0,
-        :range => 2,
+        :changeClassOfHexagonInRange => 2,
         :trump => nil
     }
   end

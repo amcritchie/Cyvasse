@@ -1,48 +1,247 @@
 
-var $all_polygons = $('polygon');
-//var $initialSpace = $('.selectedRange');
 
 var $turn = 1;
-var pregame = 1;
+//var pregame = 1;
 var $selectedUnit = 0;
 var $player1name = "Alex";
 var $player0name = "Tyrion";
 
-var $clickedPiece = 0;
-var $selected_unit = 0;
-var $selected_range = $("polygon.selected_range");
+//Units that can be hovered/clicked
+var $moveable_units;
+//Selected Unit Global Variables
+var $selected_unit;
 var $selected_moves;
-
-var $allHexagons = $('polygon');
+var $selected_range;
+//Initializing the Hexagon Selectors
+var $allHexagons;
 var $initialRange;
-var $movableArea = $('.selectedRange');
-//var $rangeHexagons = $('.selectedRange');
-
+var $movableArea;
+var pregame_var;
 
 
 //  Functions.
-//  ==display hexagons in the range of the selected unit.==
+function pregame(){
+//    registerHoverUnit();
+    gameRegisterHoverUnit();
+    $('.startGameButton').on('click', function(){
+        console.log('let it begin');
+//        $initialRange = 0;
+        clearAllUnitMethods();
+        startGame()
+    })
+}
 
-//  (6)****************************************************************
-//  .delay() issues, if I do another JS function before the .queue is finished
-//  it messes with the flow of movement, and sometimes there multiple flashes.
-function hexClassChange(xPos, yPos, className, horizontal, click) {
+function startGame(){
+//    Player with King closest to te center goes first
+//    but for not player 1 will go first.
+    var whoGoesFirst = 1;
+    turn(whoGoesFirst)
+}
 
-    if (!click) {
-        $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").attr('class', className);
-    } else {
-        $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").delay(30 * horizontal).queue(function (next) {
-            $(this).fadeOut().attr('class', className).fadeIn();
-            next();
-        });
+function clearAllUnitMethods(){
+    var $allUnits = $('*[data-team=' + 1 + '], *[data-team=' + 0 + ']');
+    $allUnits.off('mouseenter');
+    $allUnits.off('mouseleave');
+    $allUnits.off('click')
+}
+
+function turn(team_id){
+    $moveable_units = $('*[data-team=' + team_id + ']');
+    gameRegisterHoverUnit()
+}
+
+
+function gameRegisterHoverUnit(){
+    $moveable_units.off('mouseenter');
+    $moveable_units.off('mouseleave');
+
+    $moveable_units.on({
+        mouseenter: function () {
+            var $hoverPiece = $(this);
+            var $hovering_moves = $hoverPiece.data('movement');
+            var $hovering_x = $hoverPiece.data('x_pos');
+            var $hovering_y = $hoverPiece.data('y_pos');
+
+//            changeClassOfHexagonInRange($hovering_moves, $hovering_x, $hovering_y, 'hoverRange', false);
+            updateInfoBox($hoverPiece);
+
+//            $(this).click(function () {
+//                $moveable_units.off('mouseenter');
+//                $selected_range.off('click');
+//                debugger;
+//
+//                selectUnit($(this));
+//                $selected_unit.off('click');
+//            });
+        },
+        mouseleave: function () {
+            $allHexagons.attr('class', 'unSelected');
+            $initialRange.attr('class', 'selectedRange');
+            if ($selected_unit != 0){$selected_range.attr('class', 'selectedRange')}
+        }
+    });
+    $moveable_units.on('click', function(){
+//        $moveable_units.off('click');
+        $selected_range.off('click');
+
+        selectUnit($(this));
+        $selected_unit.off('click');
+    })
+}
+function selectUnit(el_unit) {
+    $selected_unit = el_unit;
+    $selected_moves = $selected_unit.data('movement');
+    var $selected_x = $selected_unit.data('x_pos');
+    var $selected_y = $selected_unit.data('y_pos');
+
+    $allHexagons.attr('class', 'unSelected');
+    $initialRange.attr('class', 'selectedRange');
+
+//    Saving the $selected_range
+//    debugger;
+//    gameRegisterHoverUnit();
+
+    updateSelectedRange($selected_x, $selected_y);
+    registerMovableHexs();
+}
+function moveUnit(xPos, yPos, hexRowSize){
+    $selected_unit.css('margin-top', (yPos * 52) - 52);
+    $selected_unit.css('margin-left', 17 + ((11 - hexRowSize) * 30) + ((xPos * 60) - 60));
+
+    $allHexagons.attr('class', 'unSelected');
+    $initialRange.attr('class', 'selectedRange');
+
+//    changeClassOfHexagonInRange($selected_moves, xPos, yPos, 'hoverRange', false);
+    $selected_range.off();
+    $selected_unit = 0;
+
+//    registerStartGame();
+    gameRegisterHoverUnit()
+}
+function registerMovableHexs() {
+
+    if (pregame_var == true) {
+        $movableArea = $initialRange.add($selected_range);
+    }else{
+        $movableArea = $selected_range;
     }
+
+    $movableArea = $initialRange.add($selected_range);
+    $allHexagons = $('polygon');
+
+    $movableArea.off('click');
+    $initialRange.off('click');
+
+    $allHexagons.attr("class", "unSelected");
+    $movableArea.attr("class", "selectedRange");
+
+    $movableArea.on('click', function () {
+        var $Hexagon = $(this);
+        var $Hexagon_x = $Hexagon.data('x-pos');
+        var $Hexagon_y = $Hexagon.data('y-pos');
+        var $Hexagon_size = $Hexagon.data('size');
+
+//      If new unit, it undergoes a class change
+        if ($selected_unit.hasClass('newUnit')) {
+            $selected_unit.prependTo(".map");
+            $selected_unit.attr('class', 'inPlayUnit')
+        }
+        if ( $(".auxSpace").children().length == 0) {
+            $('.startGameButton').css('visibility', 'visible');
+        }
+
+//      Updating the $movingPiece's coordinates.
+        $selected_unit.data('x_pos', $Hexagon_x);
+        $selected_unit.data('y_pos', $Hexagon_y);
+        $selected_unit.data('row_size', $Hexagon_size);
+
+//      Moving the $movingPiece to it's new position
+        moveUnit($Hexagon_x, $Hexagon_y, $Hexagon_size);
+    });
 }
-function findHex(x_pos, y_pos) {
-    var hexagon;
-    hexagon = $("polygon[data-x-pos=" + x_pos + "][data-y-pos=" + y_pos + "]");
-    return hexagon;
+
+
+//function registerHoverUnit(){
+//    $moveable_units.off('mouseenter');
+//    $moveable_units.off('mouseleave');
+//
+//    $moveable_units.on({
+//        mouseenter: function () {
+//            var $hoverPiece = $(this);
+//            var $hovering_moves = $hoverPiece.data('movement');
+//            var $hovering_x = $hoverPiece.data('x_pos');
+//            var $hovering_y = $hoverPiece.data('y_pos');
+//
+//            changeClassOfHexagonInRange($hovering_moves, $hovering_x, $hovering_y, 'hoverRange', false);
+//            updateInfoBox($hoverPiece);
+//
+//            $(this).click(function () {
+//                $moveable_units.off('mouseenter');
+//                $selected_range.off('click');
+//                pregameSelectUnit($(this));
+//                $selected_unit.off('click');
+//            });
+//        },
+//        mouseleave: function () {
+////            if ($(this) !=  $selected_unit) return;
+//            $allHexagons.attr('class', 'unSelected');
+//            $initialRange.attr('class', 'selectedRange');
+//            if ($selected_unit != 0){$selected_range.attr('class', 'selectedRange')}
+//        }
+//    });
+//}
+function pregameSelectUnit(el_unit) {
+    $selected_unit = el_unit;
+    $selected_moves = $selected_unit.data('movement');
+    var $selected_x = $selected_unit.data('x_pos');
+    var $selected_y = $selected_unit.data('y_pos');
+//    debugger;
+    $allHexagons.attr('class', 'unSelected');
+    $initialRange.attr('class', 'selectedRange');
+
+//    updateSelectedRange($selected_x, $selected_y);
+
+    registerHoverUnit();
+    pregameRegisterMovableHexs();
 }
-function range(unit_moves, unit_x, unit_y, unit_class, click) {
+function pregameRegisterMovableHexs() {
+
+    $movableArea = $initialRange.add($selected_range);
+    $allHexagons = $('polygon');
+
+    $movableArea.off('click');
+    $initialRange.off('click');
+
+    $allHexagons.attr("class", "unSelected");
+    $movableArea.attr("class", "selectedRange");
+
+    $movableArea.on('click', function () {
+        var $Hexagon = $(this);
+        var $Hexagon_x = $Hexagon.data('x-pos');
+        var $Hexagon_y = $Hexagon.data('y-pos');
+        var $Hexagon_size = $Hexagon.data('size');
+
+//      If new unit, it undergoes a class change
+        if ($selected_unit.hasClass('newUnit')) {
+            $selected_unit.prependTo(".map");
+            $selected_unit.attr('class', 'inPlayUnit')
+        }
+        if ( $(".auxSpace").children().length == 0) {
+            $('.startGameButton').css('visibility', 'visible');
+        }
+
+//      Updating the $movingPiece's coordinates.
+        $selected_unit.data('x_pos', $Hexagon_x);
+        $selected_unit.data('y_pos', $Hexagon_y);
+        $selected_unit.data('row_size', $Hexagon_size);
+
+//      Moving the $movingPiece to it's new position
+        moveUnit($Hexagon_x, $Hexagon_y, $Hexagon_size);
+    });
+}
+
+
+function changeClassOfHexagonInRange(unit_moves, unit_x, unit_y, unit_class, click) {
     var row;
     var initialSizeUp;
     var initialSizeDown;
@@ -98,250 +297,62 @@ function range(unit_moves, unit_x, unit_y, unit_class, click) {
         horizontal = horizontal + 1;
     }
 }
+function updateSelectedRange(xPos, yPos) {
+    changeClassOfHexagonInRange($selected_moves, xPos, yPos, 'testRange', false);
+    $selected_range = $('polygon.testRange');
+    changeClassOfHexagonInRange($selected_moves, xPos, yPos, 'selectedRange', false);
+}
+function hexClassChange(xPos, yPos, className, horizontal, click) {
 
-function moveUnit(hexagon){
-
-//    var $movableArea = $('*.selectedRange').off('click');
-    var $Hexagon = hexagon;
-    var $Hexagon_x = $Hexagon.data('x-pos');
-    var $Hexagon_y = $Hexagon.data('y-pos');
-    var $Hexagon_size = $Hexagon.data('size');
-
-//      If new unit, it undergoes a class change
-    if ($clickedPiece.hasClass('newUnit')) {
-        $clickedPiece.prependTo(".map");
-        $clickedPiece.attr('class', 'inPlayUnit')
+    if (!click) {
+        $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").attr('class', className);
+    } else {
+        $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").delay(30 * horizontal).queue(function (next) {
+            $(this).fadeOut().attr('class', className).fadeIn();
+            next();
+        });
     }
-
-//      Updating the $movingPiece's coordinates.
-    $clickedPiece.data('x_pos', $Hexagon_x);
-    $clickedPiece.data('y_pos', $Hexagon_y);
-    $clickedPiece.data('row_size', $Hexagon_size);
-
-//      Moving the $movingPiece to it's new position
-    $clickedPiece.css('margin-top', ($Hexagon_y * 52) - 52);
-    $clickedPiece.css('margin-left', 17 + ((11 - $Hexagon_size) * 30) + (($Hexagon_x * 60) - 60));
-    $all_polygons.attr('class', 'unSelected');
 }
 
 
-//  (8)****************************************************************
-//  Once a player completes an action, e.g. moves or attacks, the turn
-//  variable should be changed, signifying the next players turn.
-function registerMovableHexs($clickedPiece, $clicked_moves) {
-
-    $movableArea = $('.selectedRange');
-    $allHexagons = $('polygon');
-
-    $movableArea.off('click');
-    $initialRange.off('click');
-
-
-    $allHexagons.attr("class", "unSelected");
-    $movableArea.attr("class", "selectedRange");
-//    $initialRange.attr("class", "selectedRange");
-
-
-//    $movableArea = $('.selectedRange').off('click');
-//    $allHexagons = $('polygon').off('click');
-
-    $movableArea.on('click', function () {
-        var $Hexagon = $(this);
-        var $Hexagon_x = $Hexagon.data('x-pos');
-        var $Hexagon_y = $Hexagon.data('y-pos');
-        var $Hexagon_size = $Hexagon.data('size');
-
-//      If new unit, it undergoes a class change
-        if ($selected_unit.hasClass('newUnit')) {
-            $selected_unit.prependTo(".map");
-            $selected_unit.attr('class', 'inPlayUnit')
-        }
-
-//      Updating the $movingPiece's coordinates.
-        $selected_unit.data('x_pos', $Hexagon_x);
-        $selected_unit.data('y_pos', $Hexagon_y);
-        $selected_unit.data('row_size', $Hexagon_size);
-
-//      Moving the $movingPiece to it's new position
-        $selected_unit.css('margin-top', ($Hexagon_y * 52) - 52);
-        $selected_unit.css('margin-left', 17 + ((11 - $Hexagon_size) * 30) + (($Hexagon_x * 60) - 60));
-
-//        $unit = $('*[data-team=' + Math.abs($turn - 1) + ']');
-//        $enemyUnit = $('*[data-team=' + Math.abs($turn) + ']');
-
-        debugger;
-        $allHexagons.attr('class', 'unSelected');
-        debugger;
-//        $initialRange = $movableArea;
-        $movableArea.attr("class", "hoverRange");
-        debugger;
-        $initialRange.attr('class', 'selectedRange');
-        debugger;
-
-        range($selected_moves, $Hexagon_x, $Hexagon_y, 'hoverRange', false);
-
-//        $all_polygons.attr('class', 'unSelected');
-
-        $selected_unit = 0;
-        $selectedRange = 0;
-    });
+function updateInfoBox(unit){
+    $('#selectedUnitName').empty().append(unit.data('englishname'));
+    $('#selectedUnitImage').attr('src', "../assets/pieces/" + unit.data('codename') + ".png");
+    $('#selectedStrength').empty().append('Strength: ' + unit.data('strength'));
+    $('#selectedMovement').empty().append('Movement: ' + unit.data('movement'));
+    $('#selectedRange').empty().append('Range: ' + unit.data('changeClassOfHexagonInRange'));
+    $('#selectedFlank').empty().append('Flank: ' + unit.data('flank'));
+    $('#selectedTrump').empty().append('Trump: ' + unit.data('trump'));
 }
-
-function registerHoverUnit(){
-
-    var $unitt = $('*[data-team=' + 1 + '], *[data-team=' + 0 + ']').off('click');
-
-    $unitt.on({
-        mouseenter: function () {
-            var $hoverPiece = $(this);
-            var $hovering_moves = $hoverPiece.data('movement');
-            var $hovering_x = $hoverPiece.data('x_pos');
-            var $hovering_y = $hoverPiece.data('y_pos');
-
-            range($hovering_moves, $hovering_x, $hovering_y, 'hoverRange', true);
-
-            $('#selectedUnitName').empty().append($hoverPiece.data('englishname'));
-            $('#selectedUnitImage').attr('src', "../assets/pieces/" + $hoverPiece.data('codename') + ".png");
-            $('#selectedStrength').empty().append('Strength: ' + $hoverPiece.data('strength'));
-            $('#selectedMovement').empty().append('Movement: ' + $hoverPiece.data('movement'));
-            $('#selectedRange').empty().append('Range: ' + $hoverPiece.data('range'));
-            $('#selectedFlank').empty().append('Flank: ' + $hoverPiece.data('flank'));
-            $('#selectedTrump').empty().append('Trump: ' + $hoverPiece.data('trump'));
-
-            $(this).click(function () {
-                selectUnit($(this));
-            });
-        },
-        mouseleave: function () {
-//            if ($(this) !=  $selected_unit) return;
-
-            var $selectedRange = $('.selectedRange');
-            $selected_range.attr('class', 'selectedRange');
-        }
-    });
-}
-
-function hoverOverUnit(el_unit) {
-
-    var $hoverPiece = el_unit;
-    var $hovering_moves = $hoverPiece.data('movement');
-    var $hovering_x = $hoverPiece.data('x_pos');
-    var $hovering_y = $hoverPiece.data('y_pos');
-
-    range($hovering_moves, $hovering_x, $hovering_y, 'hoverRange', true);
-
-    console.log($hoverPiece.data('englishname'));
-    $('#selectedUnitName').empty().append($hoverPiece.data('englishname'));
-    $('#selectedUnitImage').attr('src', "../assets/pieces/" + $hoverPiece.data('codename') + ".png");
-    $('#selectedStrength').empty().append('Strength: ' + $hoverPiece.data('strength'));
-    $('#selectedMovement').empty().append('Movement: ' + $hoverPiece.data('movement'));
-    $('#selectedRange').empty().append('Range: ' + $hoverPiece.data('range'));
-    $('#selectedFlank').empty().append('Flank: ' + $hoverPiece.data('flank'));
-    $('#selectedTrump').empty().append('Trump: ' + $hoverPiece.data('trump'));
-
-}
-
-function selectUnit(el_unit) {
-
-    $all_polygons.off('click');
-    $selected_unit = el_unit;
-    $selected_moves = $selected_unit.data('movement');
-    $selected_range = $("polygon.selected_range");
-    var $clicked_x = $selected_unit.data('x_pos');
-    var $clicked_y = $selected_unit.data('y_pos');
-
-    range($selected_moves, $clicked_x, $clicked_y, 'selectedRange', false);
-
-    $selectedRange = $('polygon.selectedRange');
-
-//    $rangeHexagons = $('.selectedRange').off('click');
-
-    registerMovableHexs();
+function findHex(x_pos, y_pos) {
+    return $("polygon[data-x-pos=" + x_pos + "][data-y-pos=" + y_pos + "]");
 }
 
 
 $(document).ready(function () {
+//  Hexagon selectors
+//  $selected_range just need an initial selector
+    $selected_range = $("polygon.selected_range");
     $initialRange = $('.selectedRange');
-//    registerMovableHexs();
-    registerHoverUnit();
-////    Json
-//    var pieceAtt;
-//
-////    Unit Stats
-//    var $movableArea;
-//    var $initialSpace = $('.selectedRange');
-//    var $unit = $('*[data-team=' + Math.abs($turn - 1) + '], *[data-team=' + Math.abs($turn) + ']');
-//    var $allyUnit = $('*[data-team=' + Math.abs($turn - 1) + ']');
-//    var $enemyUnit = $('*[data-team=' + Math.abs($turn) + ']');
-//
-////    (4)****************************************************************
-////    Hovering over Unit, Should be able to hover over all units, but only select there Units
-//
-////    $unit.on({
-////        mouseenter: function () {
-////            $all_polygons.off('click');
-//////            registerMovableHexs();
-////            hoverOverUnit($(this));
-////            $(this).click(function () {
-////                $all_polygons.attr('class', 'unSelected');
-////                selectUnit($(this));
-////            });
-////        },
-////        mouseleave: function () {
-////
-//////            if ($(this) !=  $selected_unit) return;
-////
-////            var $selectedRange = $('.selectedRange');
-//////            $all_polygons.attr('class', 'unSelected');
-//////            $initialSpace.attr('class', 'selectedRange');
-////            $selected_range.attr('class', 'selectedRange');
-////        }
-////    });
-//
-////    ****************************************************************
-////    Not Selecting ALL Polygons, but preferably can only click polys with class='inRange', and not hex containing your team or a stronger unit.
-//    $selected_range.on('click', function(){
-//        console.log('Start --->' + $(this).attr('class'));
-//        if ($selected_unit == 0){
-//            console.log("unselected")
-//        }else if ($(this).attr('class') == "unSelected"){
-//            console.log($(this));
-//            moveUnit($(this))
-//        }else {
-//            console.log("last chance.")
-//        }
-//    });
-//
-////    ****************************************************************
-////    Clicking on the Enemy with the attention of attacking, can only happen if unit is selected, enemy is on a hex class=inRange, and it has greater power.
-//    $enemyUnit.click(function () {
-//
-//        var $defender = $(this);
-//        var $defender_x = $defender.data('x_pos');
-//        var $defender_y = $defender.data('y_pos');
-//        var $defender_size = $defender.data('size');
-//
-//
-//        if ($clickedPiece.data('strength') >= $defender.data('strength')) {
-//
-//            $clickedPiece.data('x_pos', $defender_x);
-//            $clickedPiece.data('y_pos', $defender_y);
-//            $clickedPiece.data('row_size', $defender_size);
-//
-//            $clickedPiece.css('margin-top', ($defender_y * 52) - 52);
-//            $clickedPiece.css('margin-left', 17 + ((11 - $defender_size) * 30) + (($defender_x * 60) - 60));
-//
-//        }
-//
-//    });
-//
-////  var getAttributes = function (){};
-//    var getPieceAttributes = function () {
-//        var pieceJson = $.getJSON('/piece_attributes');
-//        pieceJson.success(function (jsonResponse) {
-//            pieceAtt = jsonResponse;
-//            console.log(jsonResponse)
-//        });
-//    };
-//    getPieceAttributes();
+    $allHexagons = $('polygon');
+
+    pregame_var = true;
+
+    $selected_unit = 0;
+    $moveable_units = $('*[data-team=' + 1 + '], *[data-team=' + 0 + ']');
+
+    pregame();
+//    registerHoverUnit();
+    console.log("hello this is fast");
+
+//  Json
+    var pieceAtt;
+    var getPieceAttributes = function () {
+        var pieceJson = $.getJSON('/piece_attributes');
+        pieceJson.success(function (jsonResponse) {
+            pieceAtt = jsonResponse;
+            console.log(jsonResponse)
+        });
+    };
+    getPieceAttributes();
 });
