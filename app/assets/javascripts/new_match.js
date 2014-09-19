@@ -26,6 +26,8 @@ function pregame(){
     $('.startGameButton').on('click', function(){
         console.log('let it begin');
 //        $initialRange = 0;
+        pregame_var = false;
+        $allHexagons.attr('class', 'unSelected');
         clearAllUnitMethods();
         startGame()
     })
@@ -62,28 +64,19 @@ function gameRegisterHoverUnit(){
             var $hovering_x = $hoverPiece.data('x_pos');
             var $hovering_y = $hoverPiece.data('y_pos');
 
-//            changeClassOfHexagonInRange($hovering_moves, $hovering_x, $hovering_y, 'hoverRange', false);
             updateInfoBox($hoverPiece);
 
-//            $(this).click(function () {
-//                $moveable_units.off('mouseenter');
-//                $selected_range.off('click');
-//                debugger;
-//
-//                selectUnit($(this));
-//                $selected_unit.off('click');
-//            });
         },
         mouseleave: function () {
-            $allHexagons.attr('class', 'unSelected');
-            $initialRange.attr('class', 'selectedRange');
-            if ($selected_unit != 0){$selected_range.attr('class', 'selectedRange')}
+//            $allHexagons.attr('class', 'unSelected');
+//            $initialRange.attr('class', 'selectedRange');
+//            if ($selected_unit != 0){$selected_range.attr('class', 'selectedRange')}
         }
     });
     $moveable_units.on('click', function(){
-//        $moveable_units.off('click');
-        $selected_range.off('click');
 
+        $moveable_units.off('click');
+        $selected_range.off('click');
         selectUnit($(this));
         $selected_unit.off('click');
     })
@@ -97,43 +90,51 @@ function selectUnit(el_unit) {
     $allHexagons.attr('class', 'unSelected');
     $initialRange.attr('class', 'selectedRange');
 
-//    Saving the $selected_range
-//    debugger;
-//    gameRegisterHoverUnit();
-
     updateSelectedRange($selected_x, $selected_y);
     registerMovableHexs();
 }
+
 function moveUnit(xPos, yPos, hexRowSize){
     $selected_unit.css('margin-top', (yPos * 52) - 52);
     $selected_unit.css('margin-left', 17 + ((11 - hexRowSize) * 30) + ((xPos * 60) - 60));
 
     $allHexagons.attr('class', 'unSelected');
+    if (pregame_var == true) {
+        console.log('+ initial range');
     $initialRange.attr('class', 'selectedRange');
+    }else{
+        console.log('selected range');
+//        $movableArea = $selected_range;
+    }
 
-//    changeClassOfHexagonInRange($selected_moves, xPos, yPos, 'hoverRange', false);
     $selected_range.off();
     $selected_unit = 0;
 
-//    registerStartGame();
     gameRegisterHoverUnit()
 }
+
 function registerMovableHexs() {
 
+//    debugger;
+    console.log(pregame_var);
     if (pregame_var == true) {
-        $movableArea = $initialRange.add($selected_range);
+        console.log('+ initial range');
+        $movableArea = $initialRange;
     }else{
+        console.log('selected range');
         $movableArea = $selected_range;
     }
 
-    $movableArea = $initialRange.add($selected_range);
     $allHexagons = $('polygon');
 
     $movableArea.off('click');
     $initialRange.off('click');
 
+//    debugger;
     $allHexagons.attr("class", "unSelected");
+//    debugger;
     $movableArea.attr("class", "selectedRange");
+//    debugger;
 
     $movableArea.on('click', function () {
         var $Hexagon = $(this);
