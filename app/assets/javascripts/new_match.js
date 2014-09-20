@@ -77,7 +77,6 @@ function gameRegisterHoverUnit(){
 //            if ($selected_unit != 0){$selected_range.attr('class', 'selectedRange')}
         }
     });
-//    debugger;
     $moveable_units.on('click', function(){
 
 //        $moveable_units.off('click');
@@ -160,22 +159,22 @@ function registerMovableHexs() {
             console.log('--------');
 
             if ($selected_unit.data('strength') >= $(this).data('strength')){
-//                debugger;
+
                 $(this).css('margin-top', 0);
                 $(this).css('margin-left', 0);
-//                debugger;
                 $(this).attr('class', 'newUnit');
-//                debugger;
                 $(this).prependTo(".auxSpace");
-//                debugger;
-                console.log("Die Enemy");
+
+
+                $selected_unit.data('x_pos', $(this).data('x_pos'));
+                $selected_unit.data('y_pos', $(this).data('y_pos'));
+                $selected_unit.data('row_size', $(this).data('row_size'));
                 moveUnit($(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'));
+
                 $enemy_units.off('click');
 
             }
-//            moveUnit($(this).data('x_pos'), $(this).data('y_pos'), $(this).data('x_pos'));
 
-//        $selected_unit.off('click');
         })
     }
     $movableArea.on('click', function () {
