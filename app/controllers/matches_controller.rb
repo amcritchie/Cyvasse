@@ -35,7 +35,10 @@ class MatchesController < ApplicationController
     @range = [@crossbowman, @crossbowman, @catapult, @catapult, @trebuchet]
     @unique = [@dragon, @king, @mountain, @mountain]
 
+    @evilcavalry = [@lighthorse, @heavyhorse]
+
     @units = [@vangaurd] #, @cavalry, @range, @unique]
+    @evil = [@evilcavalry]
 
     @map = [Array.new(6),Array.new(7),Array.new(8),Array.new(9),
             Array.new(10),Array.new(11),Array.new(10),

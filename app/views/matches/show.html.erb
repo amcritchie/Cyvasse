@@ -45,10 +45,19 @@
       <h6 id="selected"></h6>
     </div>
 
+    <div class="graveyard">
+
+    </div>
+
     <div class="auxSpace">
       <% @units.each do |branch|%>
         <% branch.each do |unit| %>
           <%= unit.html_safe%>
+          <% end%>
+      <% end%>
+      <% @evil.each do |branch|%>
+          <% branch.each do |unit| %>
+              <%= unit.html_safe%>
           <% end%>
       <% end%>
 

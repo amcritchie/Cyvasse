@@ -114,16 +114,28 @@ article {
   height: 428px;
   width: 100%;
 }
-#selectedUnitName{
-  height: 50px;
+
+
+.graveyard{
+  background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
+  border: solid #000000 4px;
+  border-top: 0;
+  height: 65px;
+  width: 100%;
 }
+
 .auxSpace {
   background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
   border: solid #000000 4px;
   border-top: 0;
-  height: 165px;
+  height: 100px;
   width: 100%;
 }
+
+#selectedUnitName{
+  height: 50px;
+}
+
 .match .map {
   width: 700px;
   float: left;

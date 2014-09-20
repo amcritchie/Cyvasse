@@ -1,6 +1,6 @@
 
 
-var $turn = 1;
+var $turn;
 //var pregame = 1;
 var $selectedUnit = 0;
 var $player1name = "Alex";
@@ -8,6 +8,7 @@ var $player0name = "Tyrion";
 
 //Units that can be hovered/clicked
 var $moveable_units;
+var $enemy_units;
 //Selected Unit Global Variables
 var $selected_unit;
 var $selected_moves;
@@ -48,7 +49,10 @@ function clearAllUnitMethods(){
 }
 
 function turn(team_id){
+    console.log('team id :' + team_id);
+    $enemy_units.off('click');
     $moveable_units = $('*[data-team=' + team_id + ']');
+    $enemy_units = $('*[data-team=' + Math.abs($turn - 1) + ']');
     gameRegisterHoverUnit()
 }
 
@@ -73,12 +77,13 @@ function gameRegisterHoverUnit(){
 //            if ($selected_unit != 0){$selected_range.attr('class', 'selectedRange')}
         }
     });
+//    debugger;
     $moveable_units.on('click', function(){
 
-        $moveable_units.off('click');
+//        $moveable_units.off('click');
         $selected_range.off('click');
         selectUnit($(this));
-        $selected_unit.off('click');
+//        $selected_unit.off('click');
     })
 }
 function selectUnit(el_unit) {
@@ -107,10 +112,17 @@ function moveUnit(xPos, yPos, hexRowSize){
 //        $movableArea = $selected_range;
     }
 
+    $moveable_units.off('click');
+
     $selected_range.off();
     $selected_unit = 0;
 
-    gameRegisterHoverUnit()
+    if (pregame_var == true) {
+        gameRegisterHoverUnit()
+    }else{
+        $turn = Math.abs($turn - 1);
+        turn($turn);
+    }
 }
 
 function registerMovableHexs() {
@@ -136,6 +148,36 @@ function registerMovableHexs() {
     $movableArea.attr("class", "selectedRange");
 //    debugger;
 
+    if (pregame_var == false) {
+
+        $enemy_units.on('click', function(){
+
+//        $moveable_units.off('click');
+//            $selected_range.off('click');
+//        selectUnit($(this));
+            console.log($(this).data('strength'));
+            console.log($selected_unit.data('strength'));
+            console.log('--------');
+
+            if ($selected_unit.data('strength') >= $(this).data('strength')){
+//                debugger;
+                $(this).css('margin-top', 0);
+                $(this).css('margin-left', 0);
+//                debugger;
+                $(this).attr('class', 'newUnit');
+//                debugger;
+                $(this).prependTo(".auxSpace");
+//                debugger;
+                console.log("Die Enemy");
+                moveUnit($(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'));
+                $enemy_units.off('click');
+
+            }
+//            moveUnit($(this).data('x_pos'), $(this).data('y_pos'), $(this).data('x_pos'));
+
+//        $selected_unit.off('click');
+        })
+    }
     $movableArea.on('click', function () {
         var $Hexagon = $(this);
         var $Hexagon_x = $Hexagon.data('x-pos');
@@ -156,9 +198,12 @@ function registerMovableHexs() {
         $selected_unit.data('y_pos', $Hexagon_y);
         $selected_unit.data('row_size', $Hexagon_size);
 
+        $enemy_units.off('click');
+
 //      Moving the $movingPiece to it's new position
         moveUnit($Hexagon_x, $Hexagon_y, $Hexagon_size);
     });
+
 }
 
 
@@ -336,11 +381,13 @@ $(document).ready(function () {
     $selected_range = $("polygon.selected_range");
     $initialRange = $('.selectedRange');
     $allHexagons = $('polygon');
+    $turn = 1;
 
     pregame_var = true;
 
     $selected_unit = 0;
     $moveable_units = $('*[data-team=' + 1 + '], *[data-team=' + 0 + ']');
+    $enemy_units = $moveable_units;
 
     pregame();
 //    registerHoverUnit();
