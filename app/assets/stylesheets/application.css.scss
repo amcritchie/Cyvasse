@@ -183,6 +183,14 @@ article {
   cursor: pointer;
   display: inline-block;
 }
+.deadUnit{
+  z-index: 6;
+  position: relative;
+  margin-bottom: -6px;
+  margin-right: -5px;
+  width: 40px;
+  height: 40px;
+}
 
 //'*[data-team=' + team_id + ']'
 [data-team*='1']{

@@ -32,7 +32,7 @@ class Hexagon < ActiveRecord::Base
     </linearGradient>
   </defs>
                     <polygon class=#{hex_class} data-x-pos=#{x_pos} data-y-pos=#{y_pos}
-                    data-size=#{size} data-occupided=#{false} data-even=#{true}
+                    data-size=#{size} data-occupied=#{false} data-even=#{true}
                     points='#{width*hex_scale},0 0,#{height*hex_scale}
                     0,#{(height+hypotenuse)*hex_scale}
                     #{width*hex_scale},#{(hypotenuse*2)*hex_scale}
