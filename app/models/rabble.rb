@@ -9,7 +9,7 @@ class Rabble < Unit
         :codename => "rabble",
         :movement => 2,
         :strength => 1,
-        :changeClassOfHexagonInRange => 0,
+        :range => 0,
         :flank => 1,
         :trump => nil
     }

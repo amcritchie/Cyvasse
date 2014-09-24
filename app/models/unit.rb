@@ -1,17 +1,22 @@
 class Unit
 
 
-  def self.imagepng(team = '')
-    x_pos = -5
-    y_pos = -5
-    size = 3
+  def self.image_png(team = 0, index = 1, x_pos = -5, y_pos = -5, row_size = 1)
     # team = 1
+
+    if y_pos < 6
+      row_size = y_pos + 5
+    else
+      row_size = 17 - y_pos
+    end
+
     image = "<img src='../assets/pieces/#{attributes[:codename]}.png'
-      id='#{attributes[:codename]}' class='newUnit' data-team=#{team}
-      data-x_pos=#{x_pos} data-y_pos=#{y_pos} data-row_size=#{size} data-alive='unplaced'
+      id='#{attributes[:codename]}' class='newUnit' data-team=#{team} data-index=#{index}
+      data-inRange=#{false}
+      data-x_pos=#{x_pos} data-y_pos=#{y_pos} data-row_size=#{row_size} data-alive='unplaced'
       data-codename='#{attributes[:codename]}' data-englishname=#{attributes[:name]}
       data-movement=#{attributes[:movement]} data-flank=#{attributes[:flank]}
-      data-changeClassOfHexagonInRange=#{attributes[:changeClassOfHexagonInRange]}
+      data-range=#{attributes[:range]}
       data-strength=#{attributes[:strength]} data-trump=#{attributes[:trump]}
       data-numericalStats=#{[attributes[:codename], attributes[:movement], attributes[:strength], attributes[:changeClassOfHexagonInRange], attributes[:flank]]}>"
   end

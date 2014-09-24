@@ -9,7 +9,7 @@ class King < Unit
         :codename => "king",
         :movement => 1,
         :strength => 1,
-        :changeClassOfHexagonInRange => 0,
+        :range => 0,
         :flank => 0,
         :trump => nil,
     }

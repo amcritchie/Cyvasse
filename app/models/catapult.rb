@@ -9,7 +9,7 @@ class Catapult < Unit
         :codename => "catapult",
         :movement => 2,
         :strength => 3,
-        :changeClassOfHexagonInRange => 3,
+        :range => 3,
         :flank => 0,
         :trump => nil
     }

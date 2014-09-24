@@ -9,7 +9,7 @@ class HeavyHorse < Unit
         :codename => "heavy_horse",
         :movement => 3,
         :strength => 3,
-        :changeClassOfHexagonInRange => 0,
+        :range => 0,
         :flank => 2,
         :trump => nil
     }

@@ -1,4 +1,3 @@
-
 var offense;
 var defense;
 var $player1name = "Alex";
@@ -7,10 +6,11 @@ var $player0name = "Tyrion";
 //Units that can be hovered/clicked
 var $moveable_units;
 var $enemy_units;
+var $enemy_units_in_range;
 //Selected Unit Global Variables
 var $selected_unit;
 var $selected_moves;
-var $selected_range;
+var $selectedMovingRange;
 //Initializing the Hexagon Selectors
 var $allHexagons;
 var $initialRange;
@@ -18,23 +18,29 @@ var $movableArea;
 var pregame_var;
 
 //  Functions.
-function pregame(){
+function pregame() {
     functionsForOffense();
-    $('.startGameButton').on('click', function(){
+    $('.startGameButton').on('click', function () {
         clearAllUnitMethods();
-        startGame()
+        startGame();
+        $('.startGameButton').hide()
     })
 }
 
-function clearAllUnitMethods(){
+function clearAllUnitMethods() {
+    console.log("clearAllUnitMethods ");
+
     var $allUnits = $('*[data-team=' + 1 + '], *[data-team=' + 0 + ']');
     $allUnits.off('mouseenter');
     $allUnits.off('mouseleave');
     $allUnits.off('click')
 }
-function startGame(){
+function startGame() {
+    console.log("startGame ");
+
 //    Player with King closest to te center goes first
 //    but for now player 1 will go first.
+
     pregame_var = false;
     $allHexagons.attr('class', 'unSelected');
     offense = 1;
@@ -42,21 +48,29 @@ function startGame(){
     turn()
 }
 
-function turn(){
-    $enemy_units.off('click');
+function turn() {
+    console.log(" turn");
+
+    $enemy_units_in_range.off('click');
+    $('img').attr('data-inrange', false);
     $moveable_units = $('*[data-team=' + offense + ']');
     $enemy_units = $('*[data-team=' + defense + ']');
+    $enemy_units_in_range = $enemy_units;
     functionsForOffense();
 }
 
-function functionsForOffense(){
+function functionsForOffense() {
+    console.log("functionsForOffense ");
+
     $moveable_units.off('mouseenter');
     $moveable_units.off('mouseleave');
     registerHoverUnit();
     registerClickUnit()
 }
 
-function registerHoverUnit(){
+function registerHoverUnit() {
+    console.log("registerHoverUnit ");
+
     $moveable_units.on({
         mouseenter: function () {
             updateInfoBox($(this));
@@ -65,49 +79,64 @@ function registerHoverUnit(){
         }
     });
 }
-function updateInfoBox(unit){
+function updateInfoBox(unit) {
+    console.log("updateInfoBox ");
+
     $('#selectedUnitName').empty().append(unit.data('englishname'));
     $('#selectedUnitImage').attr('src', "../assets/pieces/" + unit.data('codename') + ".png");
     $('#selectedStrength').empty().append('Strength: ' + unit.data('strength'));
     $('#selectedMovement').empty().append('Movement: ' + unit.data('movement'));
-    $('#selectedRange').empty().append('Range: ' + unit.data('changeClassOfHexagonInRange'));
+    $('#selectedRange').empty().append('Range: ' + unit.data('range'));
     $('#selectedFlank').empty().append('Flank: ' + unit.data('flank'));
     $('#selectedTrump').empty().append('Trump: ' + unit.data('trump'));
 }
 
-function registerClickUnit(){
-    $moveable_units.on('click', function(){
-        $selected_range.off('click');
+function registerClickUnit() {
+//    console.log("registerClickUnit ");
+
+    $moveable_units.on('click', function () {
+        $selectedMovingRange.off('click');
         selectUnit($(this));
     })
 }
 
 function selectUnit(el_unit) {
+//    console.log("selectUnit ");
+    $('img').attr('data-inrange', false);
+    $enemy_units_in_range.off('click');
     $selected_unit = el_unit;
     $selected_moves = $selected_unit.data('movement');
     $allHexagons.attr('class', 'unSelected');
+
     updateSelectedRange($selected_unit.data('x_pos'), $selected_unit.data('y_pos'));
     createMovableArea();
 }
 function updateSelectedRange(xPos, yPos) {
+//    console.log("updateSelectedRange ");
     changeClassOfHexagonInRange($selected_moves, xPos, yPos, 'testRange', false);
-    $selected_range = $('polygon.testRange');
+    $selectedMovingRange = $('polygon.testRange');
     changeClassOfHexagonInRange($selected_moves, xPos, yPos, 'selectedRange', false);
+//    if $selected_unit.data('range')
+    $enemy_units_in_range = $('*[data-inrange=' + true + ']');
 }
 
 function createMovableArea() {
-
+//    console.log("createMovableArea ");
     selectMovableArea();
     $movableArea.off('click');
     $initialRange.off('click');
     resetHexagons();
 
     registerMovableHex();
-    if (pregame_var == false) {registerAttackUnit()}
+    if (pregame_var == false) {
+        registerAttackUnit()
+    }
 
 }
 
-function registerMovableHex(){
+function registerMovableHex() {
+//    console.log("registerMovableHex ");
+
     $movableArea.on('click', function () {
         var $Hexagon = $(this);
 
@@ -116,11 +145,11 @@ function registerMovableHex(){
             $selected_unit.prependTo(".map");
             $selected_unit.attr('class', 'inPlayUnit')
         }
-        if ( $(".auxSpace").children().length == 0) {
+        if ($(".auxSpace").children().length == 0) {
             $('.startGameButton').css('visibility', 'visible');
         }
 
-        $enemy_units.off('click');
+        $enemy_units_in_range.off('click');
 
 //      Moving the $movingPiece to it's new position
         moveSelectedUnitToNewPosition($selected_unit, $Hexagon.data('x-pos'), $Hexagon.data('y-pos'), $Hexagon.data('size'));
@@ -128,137 +157,181 @@ function registerMovableHex(){
     });
 }
 
-function resetHexagons(){
+function resetHexagons() {
+//    console.log("resetHexagons ");
     $allHexagons.attr("class", "unSelected");
     $movableArea.attr("class", "selectedRange");
 }
 
-function selectMovableArea(){
+function selectMovableArea() {
+//    console.log(" selectMovableArea");
     if (pregame_var == true) {
         $movableArea = $initialRange;
-    }else{
-        $movableArea = $selected_range;
+    } else {
+        $movableArea = $selectedMovingRange;
     }
 }
 
-function registerAttackUnit(){
-    $enemy_units.on('click', function(){
+function registerAttackUnit() {
+//    console.log("registerAttackUnit ");
 
-        if ($selected_unit.data('strength') >= $(this).data('strength')){
+    $enemy_units_in_range.on('click', function () {
+
+        if ($selected_unit.data('strength') >= $(this).data('strength')) {
 
             moveUnitToGraveyard($(this));
 
-            moveSelectedUnitToNewPosition($selected_unit, $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'));
+            if ($selected_unit.data('range')  == 0) {
+                moveSelectedUnitToNewPosition($selected_unit, $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'));
+            }else{
+                $allHexagons.attr('class', 'unSelected');
 
-            $enemy_units.off('click');
+                $moveable_units.off('click');
+
+                $selectedMovingRange.off();
+
+                defense = offense;
+                offense = Math.abs(offense - 1);
+                turn();
+            }
+
+            $enemy_units_in_range.off('click');
             $selected_unit = 0;
 
         }
     })
 }
-function moveUnitToGraveyard(deadUnit){
+function moveUnitToGraveyard(deadUnit) {
+    console.log("moveUnitToGraveyard ");
+
     deadUnit.css('margin-top', 0);
     deadUnit.css('margin-left', 0);
     deadUnit.attr('class', 'deadUnit');
     deadUnit.prependTo(".graveyard");
 }
 
-function moveSelectedUnitToNewPosition(movingUnit, xPos, yPos, hexRowSize){
-
-    updateSelectedUnitMetaData(xPos, yPos, hexRowSize);
+function moveSelectedUnitToNewPosition(movingUnit, xPos, yPos, hexRowSize) {
+//    console.log("moveSelectedUnitToNewPosition");
 
     movingUnit.css('margin-top', (yPos * 52) - 52);
     movingUnit.css('margin-left', 17 + ((11 - hexRowSize) * 30) + ((xPos * 60) - 60));
 
+    updateSelectedUnitMetaData(movingUnit, xPos, yPos, hexRowSize);
+
     $allHexagons.attr('class', 'unSelected');
-    if (pregame_var == true) {$initialRange.attr('class', 'selectedRange')}
+    if (pregame_var == true) {
+        $initialRange.attr('class', 'selectedRange')
+    }
+
 
     $moveable_units.off('click');
 
-    $selected_range.off();
+    $selectedMovingRange.off();
     movingUnit = 0;
 
     if (pregame_var == true) {
         functionsForOffense();
-    }else{
+    } else {
         defense = offense;
         offense = Math.abs(offense - 1);
         turn();
     }
 }
-function updateSelectedUnitMetaData (xPos, yPos, hexRowSize){
-    $selected_unit.data('x_pos', xPos);
-    $selected_unit.data('y_pos', yPos);
-    $selected_unit.data('row_size', hexRowSize);
+function updateSelectedUnitMetaData(movingUnit, xPos, yPos, hexRowSize) {
+//    console.log("updateSelectedUnitMetaData");
+
+    movingUnit.attr('data-x_pos', xPos);
+    movingUnit.attr('data-y_pos', yPos);
+    movingUnit.data('y_pos', yPos);
+    movingUnit.data('x_pos', xPos);
+
+    movingUnit.data('row_size', hexRowSize);
 }
 
 function changeClassOfHexagonInRange(unit_moves, unit_x, unit_y, newHexClass, flash) {
-    var initialSizeUp;
-    var initialSizeDown;
-    var finalSizeUp;
-    var finalSizeDown;
-    var constantUp;
-    var constantDown;
+//    console.log("changeClassOfHexagonInRange ");
 
+//    var initialSizeUp;
+//    var initialSizeDown;
+//    var finalSizeUp;
+//    var finalSizeDown;
+//    var constantUp;
+//    var constantDown;
+//    var vertical = 1;
     var horizontal = 1;
-    var vertical = 1;
-
     while (horizontal <= unit_moves) {
-        changeClassOfHexCircumference(unit_x, unit_y, horizontal, finalSizeDown, finalSizeUp, newHexClass, flash);
+        changeClassOfHexCircumference(unit_x, unit_y, horizontal, newHexClass, flash);
         horizontal += 1;
     }
 }
 
-function changeClassOfHexCircumference(unit_x, unit_y, horizontal, finalSizeDown, finalSizeUp, newHexClass, click){
+function changeClassOfHexCircumference(unit_x, unit_y, horizontal, newHexClass, click) {
+//    console.log("changeClassOfHexCircumference ");
+
     var constantUp = 0;
     var constantDown = 0;
-    var vertical = 1;
     var initialSizeDown = findHex(unit_x, unit_y).data('size');
     var initialSizeUp = findHex(unit_x, unit_y).data('size');
 
+    var vertical = 1;
     hexClassChange((unit_x - horizontal), (unit_y), newHexClass, horizontal, click);
     hexClassChange((unit_x + horizontal), (unit_y), newHexClass, horizontal, click);
 
     while (horizontal >= vertical) {
 
-        finalSizeDown = findHex(unit_x, unit_y + vertical).data('size');
-        finalSizeUp = findHex(unit_x, unit_y - vertical).data('size');
+        var finalSizeDown = findHex(unit_x, unit_y + vertical).data('size');
+        var finalSizeUp = findHex(unit_x, unit_y - vertical).data('size');
 
-        if (initialSizeDown < finalSizeDown) {constantDown += 1}
-        if (initialSizeUp < finalSizeUp) {constantUp += 1}
+        if (initialSizeDown < finalSizeDown) {
+            constantDown += 1;
+        }
+        if (initialSizeUp < finalSizeUp) {
+            constantUp += 1;
+        }
 
-        changeVerticalHexagons(unit_x, unit_y, vertical, vertical, horizontal, constantDown, newHexClass, click, finalSizeDown, finalSizeUp);
-        changeVerticalHexagons(unit_x, unit_y, vertical, (vertical*-1), horizontal, constantUp, newHexClass, click, finalSizeDown, finalSizeUp);
+        changeVerticalHexagons(unit_x, unit_y, vertical, vertical, horizontal, constantDown, newHexClass, click);
+        changeVerticalHexagons(unit_x, unit_y, vertical, (vertical * -1), horizontal, constantUp, newHexClass, click);
 
+        initialSizeDown = finalSizeDown;
+        initialSizeUp = finalSizeUp;
         vertical += 1;
     }
 }
 function findHex(x_pos, y_pos) {
+//    console.log("findHex ");
+
     return $("polygon[data-x-pos=" + x_pos + "][data-y-pos=" + y_pos + "]");
 }
 
-function changeVerticalHexagons(unit_x, unit_y, vertical, up, horizontal, constant, newHexClass, click, finalSizeDown, finalSizeUp){
+function changeVerticalHexagons(unit_x, unit_y, vertical, up, horizontal, constant, newHexClass, click) {
+//    console.log(" changeVerticalHexagons");
     if (horizontal <= vertical) {
         verticalHexChange(unit_x, unit_y, horizontal, vertical, constant, up, newHexClass, click)
     } else {
-        diagonalHexChange(unit_x, unit_y, vertical, up, horizontal, constant, newHexClass, click, finalSizeDown, finalSizeUp);
+        diagonalHexChange(unit_x, unit_y, vertical, up, horizontal, constant, newHexClass, click);
     }
 }
-function verticalHexChange(unit_x, unit_y, horizontal, vertical, constant, up, newHexClass, click){
+
+function verticalHexChange(unit_x, unit_y, horizontal, vertical, constant, up, newHexClass, click) {
+//    console.log(" verticalHexChange");
     var row = 0;
     while (row <= horizontal) {
         hexClassChange((unit_x - (horizontal + row - vertical - constant)), (unit_y + up), newHexClass, horizontal, click);
         row += 1;
     }
 }
-function diagonalHexChange(unit_x, unit_y, vertical, up, horizontal, constantDown, newHexClass, click, finalSizeDown, finalSizeUp){
+function diagonalHexChange(unit_x, unit_y, vertical, up, horizontal, constantDown, newHexClass, click) {
+//    console.log("diagonalHexChange ");
+
     hexClassChange((unit_x - (horizontal - constantDown)), (unit_y + up), 'testRange', horizontal, click);
     hexClassChange((unit_x + (horizontal + constantDown - vertical)), (unit_y + up), newHexClass, horizontal, click);
-    var initialSizeDown = finalSizeDown;
-    var initialSizeUp = finalSizeUp;
+
 }
 
 function hexClassChange(xPos, yPos, className, horizontal, click) {
+//    console.log("hexClassChange ");
+
+    $('*[data-x_pos=' + xPos + '][data-y_pos=' + yPos + '][data-team=' + defense + ']').attr('data-inrange', true);
     if (!click) {
         $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").attr('class', className);
     } else {
@@ -268,20 +341,55 @@ function hexClassChange(xPos, yPos, className, horizontal, click) {
     }
 }
 
+function placeEnemies(){
+    var $enemies = $('*[data-team=' + 0 + ']');
+    $enemies.each(function(enemy){
+        if ($(this).hasClass('newUnit')) {
+            $(this).prependTo(".map");
+            $(this).attr('class', 'inPlayUnit')
+        }
+        moveSelectedUnitToNewPosition($(this), $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'));
+        $('.loadEnemies').hide()
+
+    });
+}
+
+function placeUnits(){
+    var $units = $('*[data-team=' + 1 + ']');
+    $units.each(function(enemy){
+        if ($(this).hasClass('newUnit')) {
+            $(this).prependTo(".map");
+            $(this).attr('class', 'inPlayUnit')
+        }
+        moveSelectedUnitToNewPosition($(this), $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'));
+    });
+    $('.startGameButton').css('visibility', 'visible');
+    $('.randomSetUp').hide()
+    }
+
 $(document).ready(function () {
+    console.log("$(document).ready ");
+
 //  Hexagon selectors
-//  $selected_range just need an initial selector
-    $selected_range = $("polygon.selected_range");
+//  $selectedMovingRange just need an initial selector
+    $selectedMovingRange = $("polygon.selected_range");
     $initialRange = $('.selectedRange');
-    $allHexagons =  $('polygon');
+    $allHexagons = $('polygon');
 
     pregame_var = true;
 
     $selected_unit = 0;
     $moveable_units = $('*[data-team=' + 1 + '], *[data-team=' + 0 + ']');
-    $enemy_units = $moveable_units;
+    $enemy_units_in_range = $moveable_units;
 
     pregame();
+
+    $('.loadEnemies').on('click', function(){
+       placeEnemies()
+    });
+    $('.randomSetUp').on('click', function(){
+        placeUnits()
+    });
 
 //  Json
     var pieceAtt;

@@ -8,7 +8,7 @@ class Dragon < Unit
         :codename => "dragon",
         :movement => 6,
         :strength => 5,
-        :changeClassOfHexagonInRange => 0,
+        :range => 0,
         :flank => 0,
         :trump => nil
     }

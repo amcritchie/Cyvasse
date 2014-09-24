@@ -55,18 +55,17 @@
           <%= unit.html_safe%>
           <% end%>
       <% end%>
-      <% @evil.each do |branch|%>
-          <% branch.each do |unit| %>
-              <%= unit.html_safe%>
-          <% end%>
-      <% end%>
 
     </div>
+
   </article>
 
   <article class="map">
 
     <button class="startGameButton">Start Game</button>
+    <button class="loadEnemies">Load Enemies</button>
+    <button class="randomSetUp">Random Setup</button>
+
     <% y_pos = 1 %>
 
     <% @map.each do |row| %>
@@ -80,5 +79,12 @@
 
     <!--<div id="placeUnits"></div>-->
 
+    <div class="enemyBay">
+      <% @enemies.each do |branch|%>
+          <% branch.each do |unit| %>
+              <%= unit.html_safe%>
+          <% end%>
+      <% end%>
+    </div>
   </article>
 </div>

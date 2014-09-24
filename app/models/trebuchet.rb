@@ -9,7 +9,7 @@ class Trebuchet < Unit
         :codename => "trebuchet",
         :movement => 1,
         :strength => 4,
-        :changeClassOfHexagonInRange => 3,
+        :range => 3,
         :flank => 0,
         :trump => ["Dragon"]
     }

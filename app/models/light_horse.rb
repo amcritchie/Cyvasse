@@ -9,7 +9,7 @@ class LightHorse < Unit
         :codename => "light_horse",
         :movement => 4,
         :strength => 2,
-        :changeClassOfHexagonInRange => 0,
+        :range => 0,
         :flank => 2,
         :trump => nil
     }
