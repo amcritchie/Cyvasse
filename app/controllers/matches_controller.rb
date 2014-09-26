@@ -40,20 +40,15 @@ class MatchesController < ApplicationController
     def top_starting_positions
       array = []
       (1..5).each do |row, index|
-        p 'row'
-        p row
         (1..(5 + row)).each do |column, col|
           array.push([column, row])
         end
       end
       array
     end
-
     def bottom_starting_positions
       array = []
       (7..11).each do |row, index|
-        p 'row'
-        p row
         (1..(17 - row)).each do |column, col|
           array.push([column, row])
         end
@@ -67,9 +62,6 @@ class MatchesController < ApplicationController
       else
         array_of_initial_spaces = bottom_starting_positions
       end
-      p '0-0--0--'
-      p array_of_initial_spaces
-      p '-'*80
 
       enemies = [create_vangaurd(team, array_of_initial_spaces.shuffle!.pop(7)),
                  create_cavalry(team, array_of_initial_spaces.shuffle!.pop(4)),
@@ -79,8 +71,6 @@ class MatchesController < ApplicationController
 
     def create_vangaurd(team, positions)
       array = []
-      p '--0'
-      p positions
       array.push(create_unit('Rabble', team, positions[0][0], positions[0][1]))
       array.push(create_unit('Rabble', team, positions[1][0], positions[1][1]))
       array.push(create_unit('Rabble', team, positions[2][0], positions[2][1]))
@@ -119,18 +109,18 @@ class MatchesController < ApplicationController
       array
     end
 
-    light_units = create_unit_set([['Rabble', 3]], 1)
-    more_units = light_units.concat(create_unit_set([['LightHorse', 1], ['HeavyHorse', 1]], 0))
+    # light_units = create_unit_set([['Rabble', 3]], 1)
+    # more_units = light_units.concat(create_unit_set([['LightHorse', 1], ['HeavyHorse', 1]], 0))
 
-    vangaurd = create_unit_set([['Rabble', 3], ['Spearman', 2], ['Elephant', 2]], 1)
-    cavalry = create_unit_set([['LightHorse', 2], ['HeavyHorse', 2]], 1)
-    range = create_unit_set([['Crossbowman', 2], ['Catapult', 2], ['Trebuchet', 1]], 1)
-    unique = create_unit_set([['King', 1], ['Dragon', 1], ['Mountain', 2]], 1)
-
-    xvangaurd = create_unit_set([['Rabble', 3], ['Spearman', 2], ['Elephant', 2]], 0)
-    xcavalry = create_unit_set([['LightHorse', 2], ['HeavyHorse', 2]], 0)
-    xrange = create_unit_set([['Crossbowman', 2], ['Catapult', 2], ['Trebuchet', 1]], 0)
-    xunique = create_unit_set([['King', 1], ['Dragon', 1], ['Mountain', 2]], 0)
+    # vangaurd = create_unit_set([['Rabble', 3], ['Spearman', 2], ['Elephant', 2]], 1)
+    # cavalry = create_unit_set([['LightHorse', 2], ['HeavyHorse', 2]], 1)
+    # range = create_unit_set([['Crossbowman', 2], ['Catapult', 2], ['Trebuchet', 1]], 1)
+    # unique = create_unit_set([['King', 1], ['Dragon', 1], ['Mountain', 2]], 1)
+    #
+    # xvangaurd = create_unit_set([['Rabble', 3], ['Spearman', 2], ['Elephant', 2]], 0)
+    # xcavalry = create_unit_set([['LightHorse', 2], ['HeavyHorse', 2]], 0)
+    # xrange = create_unit_set([['Crossbowman', 2], ['Catapult', 2], ['Trebuchet', 1]], 0)
+    # xunique = create_unit_set([['King', 1], ['Dragon', 1], ['Mountain', 2]], 0)
 
     @enemies = set_of_units(0)
     @units = set_of_units(1, false)

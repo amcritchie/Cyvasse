@@ -154,20 +154,32 @@ article {
 //    transform: perspective(400px) rotateX(20deg);
 }
 
+.loadEnemiesButton{
+  position: absolute;
+  margin-left: 570px;
+}
+.randomSetUpButton{
+  position: absolute;
+  margin-left: 570px;
+  margin-top: 50px;
+}
 .startGameButton{
   position: absolute;
   visibility: hidden;
 }
-
-.loadEnemies{
+.moveUnitButton {
   position: absolute;
-  margin-left: 570px;
+  visibility: hidden;
 }
-
-.randomSetUp{
+.fiveTurnsButton {
   position: absolute;
-  margin-left: 570px;
+  visibility: hidden;
   margin-top: 50px;
+}
+.tenTurnsButton{
+  position: absolute;
+  visibility: hidden;
+  margin-top: 100px;
 }
 
 
