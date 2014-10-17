@@ -1,6 +1,5 @@
-class Game < ActiveController::Base
+class Game < ActiveRecord::Base
   def initialize
 
   end
-
 end
