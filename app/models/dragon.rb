@@ -6,6 +6,7 @@ class Dragon < Unit
     attributes = {
         :name => "Dragon",
         :codename => "dragon",
+        :image => "svgs/dragon.svg",
         :movement => 6,
         :strength => 5,
         :range => 0,

@@ -7,6 +7,7 @@ class Rabble < Unit
     attributes = {
         :name => "Rabble",
         :codename => "rabble",
+        :image => "svgs/rabble.svg",
         :movement => 2,
         :strength => 1,
         :range => 0,

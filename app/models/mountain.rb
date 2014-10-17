@@ -7,6 +7,8 @@ class Mountain < Unit
     attributes = {
         :name => "Mountain",
         :codename => "mountain",
+        :image => "pieces/cavalrytestttt.svg",
+
         :movement => 0,
         :strength => 9,
         :range => 0,

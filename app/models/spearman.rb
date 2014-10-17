@@ -7,6 +7,7 @@ class Spearman < Unit
     attributes = {
         :name => "Spearman",
         :codename => "spearman",
+        :image => "svgs/spearman.svg",
         :movement => 2,
         :strength => 2,
         :range => 0,

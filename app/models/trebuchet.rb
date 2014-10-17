@@ -7,9 +7,10 @@ class Trebuchet < Unit
     attributes = {
         :name => "Trebuchet",
         :codename => "trebuchet",
+        :image => "svgs/trebuchet.svg",
         :movement => 1,
         :strength => 4,
-        :range => 3,
+        :range => 4,
         :flank => 0,
         :trump => ["Dragon"]
     }

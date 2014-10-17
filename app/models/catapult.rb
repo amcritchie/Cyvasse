@@ -7,6 +7,7 @@ class Catapult < Unit
     attributes = {
         :name => "Catapult",
         :codename => "catapult",
+        :image => "svgs/catapult.svg",
         :movement => 2,
         :strength => 3,
         :range => 3,

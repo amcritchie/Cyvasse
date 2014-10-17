@@ -17,6 +17,8 @@ class MatchesController < ApplicationController
 
     @index = 0
 
+    @blahblah = Rabble.image_svg(1,2,3,4,5)
+
     def create_unit_set(unit_instructions_array, team)
       @array = Array.new
       unit_instructions_array.each do |type_of_unit|
@@ -34,7 +36,7 @@ class MatchesController < ApplicationController
     def create_unit(class_name, team, x_pos = -5, y_pos = -5)
       klass = class_name.split.inject(Object) { |o, c| o.const_get c }
       @index += 1
-      klass.image_png(team, @index, x_pos, y_pos)
+      klass.image_svg(team, @index, x_pos, y_pos)
     end
 
     def top_starting_positions

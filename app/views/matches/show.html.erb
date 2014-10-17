@@ -52,8 +52,9 @@
     <div class="auxSpace">
       <% @units.each do |branch|%>
         <% branch.each do |unit| %>
-          <%= unit.html_safe%>
-          <% end%>
+          <%= image_tag unit[:image], :class => unit[:class], :id => unit[:id], :data => unit[:data]%>
+
+    <% end%>
       <% end%>
 
     </div>
@@ -85,9 +86,10 @@
     <div class="enemyBay">
       <% @enemies.each do |branch|%>
           <% branch.each do |unit| %>
-              <%= unit.html_safe%>
+              <%= image_tag unit[:image], :class => unit[:class], :id => unit[:id], :data => unit[:data]%>
           <% end%>
       <% end%>
     </div>
   </article>
 </div>
+

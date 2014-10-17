@@ -212,11 +212,19 @@ function moveUnitToGraveyard(deadUnit) {
 }
 
 function moveUnitToNewPosition(movingUnit, xPos, yPos, hexRowSize, xPosOld, yPosOld) {
-    movingUnit.css('margin-top', (yPos * 52) - 52);
-    movingUnit.css('margin-left', 17 + ((11 - hexRowSize) * 30) + ((xPos * 60) - 60));
 
+    console.log("xPos -> " + xPos);
+    console.log("yPos => " + yPos);
+    console.log("rowSize ~> " + hexRowSize);
+    console.log("movingUnit" + movingUnit);
+//    debugger;
+    movingUnit.css('margin-left', 17 + ((11 - hexRowSize) * 30) + ((xPos * 60) - 65));
+
+    movingUnit.css('margin-top', (yPos * 52) - 60);
+
+    debugger;
     updateMetaData(movingUnit, xPos, yPos, xPosOld, yPosOld, hexRowSize);
-
+//    debugger;
     $allHexagons.attr('class', 'unSelected');
     if (pregame_var == true) {
         $initialRange.attr('class', 'selectedRange')
@@ -244,6 +252,9 @@ function updateUnitMetaData(movingUnit, xPos, yPos, hexRowSize) {
     movingUnit.data('y_pos', yPos);
     movingUnit.data('x_pos', xPos);
     movingUnit.data('row_size', hexRowSize);
+
+    movingUnit.attr('data-rowSize', hexRowSize);
+
 }
 
 //------Range hex------
@@ -285,8 +296,8 @@ function changeClassOfHexCircumference(unit_x, unit_y, horizontal, newHexClass, 
         vertical += 1;
     }
 }
-function findHex(x_pos, y_pos) {
-    return $("polygon[data-x-pos=" + x_pos + "][data-y-pos=" + y_pos + "]");
+function findHex(xPos, yPos) {
+    return $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]");
 }
 function changeVerticalHexagons(unit_x, unit_y, vertical, up, horizontal, constant, newHexClass, click) {
     if (horizontal <= vertical) {
@@ -333,7 +344,8 @@ function placeUnits() {
 function movingGroupToMap(group) {
     group.each(function () {
         moveImageToMap($(this));
-        moveUnitToNewPosition($(this), $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'));
+        console.log("rowSize ~> " + $(this).data('rowSize'));
+        moveUnitToNewPosition($(this), $(this).data('xPos'), $(this).data('yPos'), $(this).data('rowsize'));
     });
 }
 

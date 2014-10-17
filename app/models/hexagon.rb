@@ -40,4 +40,8 @@ class Hexagon < ActiveRecord::Base
                     #{(width*2)*hex_scale},#{(height)*hex_scale}'/></svg>"
   end
 
+  def self.make_unit
+
+  end
+
 end
