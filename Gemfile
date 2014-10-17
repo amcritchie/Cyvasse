@@ -15,6 +15,7 @@ gem 'bourbon'
 gem 'neat'
 gem 'bitters'
 gem 'gschool_database_connection'
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
