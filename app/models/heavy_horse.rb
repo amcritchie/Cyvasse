@@ -5,9 +5,9 @@ class HeavyHorse < Unit
 
   def self.attributes
     attributes = {
-        :name => "Heavy_Horse",
-        :codename => "heavy_horse",
-        :image => "svgs/heavyhorse.svg",
+        :name => "Heavy Horse",
+        :codename => "heavy horse",
+        :image => "svgs/heavy horse.svg",
         :movement => 3,
         :strength => 3,
         :range => 0,

@@ -52,6 +52,7 @@ function turn() {
 function initializeTurn(){
     $allHexagons.attr('class', 'unSelected');
     $('img').attr('data-inRange', false);
+    $moveableUnits.off('click');
     $moveableUnits = $('.inPlayUnit*[data-team=' + offense + ']');
     $enemyUnits = $('*[data-team=' + defense + ']');
 }
@@ -97,7 +98,10 @@ function registerHoverUnit() {
 function updateInfoBox(unit) {
 
     $('#selectedUnitName').empty().append(unit.data('englishname'));
-    $('#selectedUnitImage').attr('src', "../assets/pieces/" + unit.data('codename') + ".png");
+    console.log(unit.data('alive'));
+    console.log(unit.data('codename'));
+
+    $('#selectedUnitImage').attr('src', "../assets/svgs/" + unit.data('codename') + ".svg");
     $('#selectedStrength').empty().append('Strength: ' + unit.data('strength'));
     $('#selectedMovement').empty().append('Movement: ' + unit.data('movement'));
     $('#selectedRange').empty().append('Range: ' + unit.data('range'));
@@ -108,12 +112,14 @@ function updateInfoBox(unit) {
 function registerClickUnit() {
     $moveableUnits.on('click', function () {
         $movingRange.off('click');
+//        $enemyUnitsInRange.off('click');
         selectUnit($(this));
     })
 }
 
 function selectUnit(el_unit) {
     $selectedUnit = el_unit;
+//    $enemyUnitsInRange.off('click');
     updateUnitRanges($selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
 }
 
@@ -213,16 +219,25 @@ function moveUnitToGraveyard(deadUnit) {
 
 function moveUnitToNewPosition(movingUnit, xPos, yPos, hexRowSize, xPosOld, yPosOld) {
 
+    console.log("________________");
     console.log("xPos -> " + xPos);
     console.log("yPos => " + yPos);
     console.log("rowSize ~> " + hexRowSize);
-    console.log("movingUnit" + movingUnit);
+
+//    console.log("movingUnit" + movingUnit);
 //    debugger;
-    movingUnit.css('margin-left', 17 + ((11 - hexRowSize) * 30) + ((xPos * 60) - 65));
+//    xPos = 2;
+//    yPos = 9;
+//    hexRowSize = 8;
+    movingUnit.css('margin-left', 23 + ((11 - hexRowSize) * 30) + ((xPos * 60) - 65));
 
-    movingUnit.css('margin-top', (yPos * 52) - 60);
+    movingUnit.css('margin-top', (yPos * 52) - 52);
 
-    debugger;
+//    movingUnit.css('margin-left', 113 + 55);
+
+//    movingUnit.css('margin-top', 416);
+
+//    debugger;
     updateMetaData(movingUnit, xPos, yPos, xPosOld, yPosOld, hexRowSize);
 //    debugger;
     $allHexagons.attr('class', 'unSelected');
@@ -230,6 +245,7 @@ function moveUnitToNewPosition(movingUnit, xPos, yPos, hexRowSize, xPosOld, yPos
         $initialRange.attr('class', 'selectedRange')
     }
     $moveableUnits.off('click');
+    $movingRange.off('click');
 
     if (pregame_var == true) {
         functionsForOffense();
@@ -252,8 +268,8 @@ function updateUnitMetaData(movingUnit, xPos, yPos, hexRowSize) {
     movingUnit.data('y_pos', yPos);
     movingUnit.data('x_pos', xPos);
     movingUnit.data('row_size', hexRowSize);
-
-    movingUnit.attr('data-rowSize', hexRowSize);
+//    This Screws with the positioning(place dragon on y=9 x=2, and load.
+//    movingUnit.attr('data-rowSize', hexRowSize);
 
 }
 
@@ -344,8 +360,14 @@ function placeUnits() {
 function movingGroupToMap(group) {
     group.each(function () {
         moveImageToMap($(this));
-        console.log("rowSize ~> " + $(this).data('rowSize'));
+//        (if $(this).data)
+        console.log("============");
+        console.log("Name ~> " + $(this).data('codename'));
+        console.log("rdata-xPos ~> " + $(this).data('xPos'));
+        console.log("data-yPos ~> " + $(this).data('yPos'));
+
         moveUnitToNewPosition($(this), $(this).data('xPos'), $(this).data('yPos'), $(this).data('rowsize'));
+//        moveUnitToNewPosition($(this), $(this).attr('data-xPos'), $(this).attr('data-yPos'), $(this).data('rowsize'));
     });
 }
 
@@ -371,8 +393,11 @@ $.fn.random = function () {
 
 $(document).ready(function () {
 
+//    $("#dragon").
+
     $movingRange = $("polygon.selected_range");
     $attackRange = $movingRange;
+    $enemyUnitsInRange = $movingRange;
     $initialRange = $('.selectedRange');
     $allHexagons = $('polygon');
 

@@ -7,7 +7,7 @@ class King < Unit
     attributes = {
         :name => "King",
         :codename => "king",
-        :image => "pieces/cavalrytestttt.svg",
+        :image => "svgs/king.svg",
 
         :movement => 1,
         :strength => 1,

@@ -16,8 +16,8 @@
 			c-2.8-5-5.7-8.5-9.1-8.7c-0.3-3.4-0.9-6.4-4.4-5.8c-1.7,17.2-2.4,33.7-1.5,49.4h-16.6c-3.3-4.3-6.4-5.8-9.5,0H94.9
 			c0.6-14.8-0.7-32.5-2.5-48.9c-2,3.3-7.8,13.4-13,14.1c-0.2-4.1-1.7-5.9-3.1-7.6c5.6-2.3,12.9-16.9,16.8-22.4"/>
 	</g>
-	<g id="Pants">
-		<g id="Stroke_19_" display="none">
+	<g id="Pants" display="none">
+		<g id="Stroke_19_">
 			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M115.2,203.7"/>
 			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M118.1,209.1"/>
 			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M97.1,203.5
@@ -31,20 +31,20 @@
 			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M85,198.5"/>
 		</g>
 		<g id="Armor_2_">
-			<path fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M115.2,203.7"/>
-			<path fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M118.1,209.1"/>
-			<path fill="#6D6E71" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M97.1,203.5c5.4-2.4,8.7-1.8,14.6,0
-				c2.9,2.4,3.1,5.7,2.5,9.7H93.1C91.7,207.6,94.9,205.2,97.1,203.5z"/>
-			<path fill="#6D6E71" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M111.7,203.5l1.5-9.3h7.4l0.8,10h14.6
-				l2.8-34.7l-45.8,0.1l2.3,27.6l1,5.7C101.7,201.6,106.3,201.9,111.7,203.5z"/>
-			<path fill="#6D6E71" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M134.3,203.5c2.4,2.7,3.1,6.2,3.1,9.7h-19.9
-				c-0.7-3.7,1-6.8,3.1-9.5C126.2,201.7,128.9,201.4,134.3,203.5z"/>
-			<path fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M82.9,181.4"/>
-			<path fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M93.5,203.5"/>
-			<path fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M85,198.5"/>
+			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M115.2,203.7"/>
+			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M118.1,209.1"/>
+			<path display="inline" fill="#6D6E71" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M97.1,203.5
+				c5.4-2.4,8.7-1.8,14.6,0c2.9,2.4,3.1,5.7,2.5,9.7H93.1C91.7,207.6,94.9,205.2,97.1,203.5z"/>
+			<path display="inline" fill="#6D6E71" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M111.7,203.5l1.5-9.3h7.4
+				l0.8,10h14.6l2.8-34.7l-45.8,0.1l2.3,27.6l1,5.7C101.7,201.6,106.3,201.9,111.7,203.5z"/>
+			<path display="inline" fill="#6D6E71" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M134.3,203.5
+				c2.4,2.7,3.1,6.2,3.1,9.7h-19.9c-0.7-3.7,1-6.8,3.1-9.5C126.2,201.7,128.9,201.4,134.3,203.5z"/>
+			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M82.9,181.4"/>
+			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M93.5,203.5"/>
+			<path display="inline" fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M85,198.5"/>
 		</g>
-		<g id="brown" display="none">
-			<g id="Stroke_copy_9" display="inline">
+		<g id="brown" display="inline">
+			<g id="Stroke_copy_9">
 				<path fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M115.2,203.7"/>
 				<path fill="#2E3192" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M118.1,209.1"/>
 				<path fill="#603913" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M97.1,203.5c5.4-2.4,8.7-1.8,14.6,0
@@ -59,8 +59,8 @@
 			</g>
 		</g>
 	</g>
-	<g id="Clothes" display="none">
-		<g id="Shirt" display="inline">
+	<g id="Clothes">
+		<g id="Shirt">
 			<g id="Fill">
 				<polygon fill="#BCBEC0" points="94.9,124.5 87.9,131.5 91.4,156.5 91.4,186.2 140,186.2 140,156.2 143.2,131.9 134.7,124.5 				
 					"/>
@@ -76,7 +76,7 @@
 					H140V156l3.1-24.7l-8.7-6.7l-39.7,0C91.3,128,89.2,129.9,87.7,131.3z"/>
 			</g>
 		</g>
-		<g id="Belts" display="inline">
+		<g id="Belts">
 			<g id="fill">
 				<polygon fill="#8B5E3C" points="95.2,161 95.2,151.6 93,146 95.2,138.8 95.2,125.8 106.8,132.2 106.8,138.8 109.4,146 
 					106.8,152.6 106.8,159.6 140,161 140,169.5 93,169.5 91.4,161 				"/>
@@ -96,49 +96,14 @@
 			</g>
 		</g>
 	</g>
-	<g id="Clothes_copy">
-		<g id="Shirt_copy">
-			<g id="Fill_copy_21">
-				<polygon fill="#726658" points="94.9,124.5 87.9,131.5 91.4,156.5 91.4,186.2 140,186.2 140,156.2 143.2,131.9 134.7,124.5 				
-					"/>
-			</g>
-			<g id="Shadow_copy_20_1_">
-				<path fill="#594A42" d="M132.2,185.6c-1-8.6-5.8-12.1-11.4-14.3c-8.3-0.3-16.6-1-25,0c-2.2,1.1-2.9,2.9-3.7,3.8l0-5.5h48v16
-					L132.2,185.6z"/>
-				<path fill="#594A42" d="M140,161h-13.6c2.7-0.6,4.8-2.2,5.7-5.6c1.1-4.6,1-9.4,0-14.4c-1.2-5.5-7.5-11.9-18.7-16.4l21.1,0
-					l7.9,6.9C142,136.9,141,148.6,140,161z"/>
-			</g>
-			<g id="Stroke_copy_23_1_">
-				<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M87.7,131.3c1.3,8.7,2.5,17.3,3.7,25.6l0,29.9
-					H140V156l3.1-24.7l-8.7-6.7l-39.7,0C91.3,128,89.2,129.9,87.7,131.3z"/>
-			</g>
-		</g>
-		<g id="Belts_copy">
-			<g id="fill_copy">
-				<polygon fill="#8B5E3C" points="91.4,151.6 98.5,147.2 104.8,143.2 118.1,136.5 137.5,126 144.8,131.2 121.5,142.8 111,149.1 
-					95.2,160.4 106.8,159.6 140,161 140,169.5 93,169.5 91.4,161 				"/>
-			</g>
-			<g id="Shadow_copy_20" display="none">
-				<path display="inline" fill="#603913" d="M106.8,124.5v13.5H96.7c2.3-0.8,4.7-1.6,7.2-2.4l0.7-11.1H106.8z"/>
-				<path display="inline" fill="#603913" d="M98.9,152.6c4.3,2,9.9,0.5,10.6-6.1c-0.5-1.6-1.3-4-2.6-8.5H96.7
-					c4.7,1.1,9.8,3.7,7.8,8.2C104.2,149.6,102,151.5,98.9,152.6z"/>
-				<polyline display="inline" fill="#603913" points="106.8,162.2 106.8,152.6 104.2,153.8 104.2,161 				"/>
-			</g>
-			<g id="Stroke_copy_23">
-				<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M95.3,139.9"/>
-				<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M143.2,131.3L92,161c-2.2-2.7-2.1-5.9-0.6-9.4
-					l45.1-25.6C140.3,126.8,143.1,128.2,143.2,131.3z"/>
-			</g>
-		</g>
-	</g>
-	<g id="Horse_Back" display="none">
-		<g id="Fill_10_" display="inline">
+	<g id="Horse_Back">
+		<g id="Fill_10_">
 			<polygon fill="#A97C50" points="140.5,189.8 146,189 148.8,194.7 151,202.5 149.7,217.5 155.7,217.5 155.3,207 157.9,200.7 
 				154.4,180.3 158.6,168.3 156.1,156.4 148.7,152.6 141.4,153.3 141.6,160.6 141.4,167.2 132,178.5 136,185.3 138.6,189.8 			"/>
 			<polygon fill="#A97C50" points="136.8,213.9 142.4,213.9 143.2,208 142.1,199.8 144.4,185.6 135,191.6 137.3,199.8 			"/>
 			<path fill="#C49A6C" d="M141.6,223.5"/>
 		</g>
-		<g id="shadow" display="inline">
+		<g id="shadow">
 			<polygon fill="#754C29" points="136.8,213.9 142.4,213.9 143.2,205.9 142.1,199.8 143.7,188.7 139.7,193.2 137.5,196.3 
 				135.9,196.3 137.7,201.5 			"/>
 			<path fill="#754C29" d="M144.1,170"/>
@@ -148,7 +113,7 @@
 			<path fill="#754C29" d="M139.8,171.2"/>
 			<line fill="#754C29" x1="143.2" y1="176.2" x2="143.2" y2="176.2"/>
 		</g>
-		<g id="Stroke_13_" display="inline">
+		<g id="Stroke_13_">
 			<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M140.2,209"/>
 			<line fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" x1="144.2" y1="189.1" x2="136.8" y2="190.4"/>
 			<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M140,156.2c2.4-7.3,12.4-3.3,16.1,0.1
@@ -158,7 +123,7 @@
 				142.4,213.9 136.8,213.9 136.8,210.4 137.8,201.9 135,190.5 			"/>
 			<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M178.4,274.8"/>
 		</g>
-		<g id="Hair_2_" display="inline">
+		<g id="Hair_2_">
 			<g id="Fill_14_">
 				<path fill="#754C29" d="M155.4,155.6l-4.8-1.2l-3.3,1l1.9,2.8l-6-2l-2.4,0.5l0.2-3.2l10.2-7.1l-1.2,3.9l5.4-1.7l3.2,0.6
 					l-0.3,0.8c-0.2,0.2-1.2,0.6-1.1,0.8l1.2,3.9l5,6c0.3,0.4,0,1-0.5,1l0,0c-0.4,0-0.1,1.2-0.1,1.6l0.1,3.7l3.6,8.7l-2.5-1.6
@@ -287,7 +252,7 @@
 				</g>
 			</g>
 		</g>
-		<g id="Armor" display="inline">
+		<g id="Armor">
 			<g id="Fill_15_" display="none">
 				<polygon display="inline" fill="#662D91" points="90.3,124.9 90.9,125.7 107.4,147.8 107,165.1 99.5,165.1 97,150.7 86,144.8 
 					77.8,154.9 76.3,162.8 81.3,175.2 91.4,176.9 97.3,173.3 103.2,176.9 90,186.3 71.5,223.5 57.6,223.5 54.8,210.9 55.8,148.7 
@@ -330,8 +295,8 @@
 		</g>
 	</g>
 	<g id="Armor_1_">
-		<g id="Chest_1_" display="none">
-			<g id="Light_1_">
+		<g id="Chest_1_">
+			<g id="Light_1_" display="none">
 				<g id="Fill_16_" display="inline">
 					<polygon fill="#D1D3D4" points="82.4,122 82.4,131.4 90.2,156.9 90.1,162.4 144,160.8 144,156.5 151.6,131.3 151.4,123.4 
 						123.1,133.2 104.5,132 					"/>
@@ -345,39 +310,23 @@
 						144.4,156.4 144,161.1 					"/>
 				</g>
 			</g>
-			<g id="Dark_1_" display="inline">
+			<g id="Dark_1_">
 				<g id="Fill_copy_13">
-					<polygon fill="#6D6E71" points="92,122 82.4,131.4 90.2,156.9 90.1,162.4 144,160.8 144,156.5 149.6,131.3 140.8,122 
+					<polygon fill="#6D6E71" points="82.4,122 82.4,131.4 90.2,156.9 90.1,162.4 144,160.8 144,156.5 151.6,131.3 151.4,123.4 
 						123.1,133.2 104.5,132 					"/>
 				</g>
 				<g id="Shadow_copy_12">
-					<path fill="#414042" d="M120,132c7.1,5.3,8.3,14.8,3.4,28.8l18.5-0.4l7.6-29.1l-10.5-10.7l-6.9,7.6L120,132z"/>
 				</g>
 				<g id="Stroke_copy_15">
 					<polyline fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" points="90.1,162.4 90.2,156.9 82.4,131.4 
-						92,120.2 					"/>
-					<polyline fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" points="92,121.2 140.8,122 149.6,130.6 
-						144.4,156.4 144,161.1 					"/>
-				</g>
-			</g>
-			<g id="King">
-				<g id="Fill_copy_18" display="inline">
-					<polygon fill="#FBF17A" points="92,122 82.4,131.4 90.2,156.9 90.1,162.4 144,160.8 144,156.5 149.6,131.3 140.8,122 
-						123.1,133.2 104.5,132 					"/>
-				</g>
-				<g id="Shadow_copy_17" display="inline">
-					<path fill="#FFDE17" d="M118.4,132.9c6.8,5.2,6.4,15.5,4.8,26.8l20,0l5.3-26.2l-10.1-9.7L118.4,132.9z"/>
-				</g>
-				<g id="Stroke_copy_20" display="inline">
-					<polyline fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" points="90.1,162.4 90.2,156.9 82.4,131.4 
-						92,120.2 					"/>
-					<polyline fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" points="92,121.2 140.8,122 149.6,130.6 
+						82.4,121.2 					"/>
+					<polyline fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" points="82.4,121.2 151.4,122.7 151.6,131.4 
 						144.4,156.4 144,161.1 					"/>
 				</g>
 			</g>
 		</g>
-		<g id="Waist_1_">
-			<g id="Light" display="none">
+		<g id="Waist_1_" display="none">
+			<g id="Light">
 				<g id="Fill_copy_11" display="inline">
 					<polyline points="93,187.8 94.5,192.7 104.3,182.2 114.2,194.3 118.7,194.3 128.8,181.5 137.2,191.5 139,189.2 133.8,182.7 
 						128.8,173 116.3,191.1 103.5,173 93,187.8 					"/>
@@ -397,8 +346,8 @@
 						c-1.1,4.3-1.2,6.4,0.7,8.4l18.6,0c2.3-1.8,1-8-0.5-10.4L128.8,177z"/>
 				</g>
 			</g>
-			<g id="Dark" display="none">
-				<g id="Fill_copy_12" display="inline">
+			<g id="Dark" display="inline">
+				<g id="Fill_copy_12">
 					<polyline points="93,187.8 94.5,192.7 104.3,182.2 114.2,194.3 118.7,194.3 128.8,181.5 137.2,191.5 139,189.2 133.8,182.7 
 						128.8,173 116.3,191.1 103.5,173 93,187.8 					"/>
 					<polygon fill="#6D6E71" points="90.1,171.4 91.3,189.5 98.2,181.3 103.5,172.3 112.3,186.4 116.3,191.1 122.7,183.4 128.8,173 
@@ -406,9 +355,9 @@
 					<polygon fill="#6D6E71" points="128.8,177 117.9,191.9 118.6,199.6 138.8,199.6 140.7,196.3 136.3,188.3 					"/>
 					<polygon fill="#6D6E71" points="103.5,177 114.6,192.4 115,199.6 93.6,199.6 92,191.7 94.1,186.1 					"/>
 				</g>
-				<g id="Shadow_copy_11" display="inline">
+				<g id="Shadow_copy_11">
 				</g>
-				<g id="Stroke_copy_14" display="inline">
+				<g id="Stroke_copy_14">
 					<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M90.1,171.4l0.6,18.6
 						c5.8-5.4,9.9-11.6,12.3-18.6c3.2,6.9,7.5,13.6,13.2,19.7c5.9-6.1,10-12.7,12.7-19.7c2.3,8.2,6.1,14.9,12.3,19.7v-19.7H90.1z"/>
 					<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M103.5,177l10.1,13.3c1.7,2.8,2.8,7.4,0.7,9.3
@@ -420,45 +369,45 @@
 		</g>
 	</g>
 	<g id="Gloves_1_">
-		<g id="Back_Gloves">
-			<path fill="#754C29" d="M72.9,147.2l0.5-4.2c3.6-0.4,6.5,0.5,8.3,2.9c3.5,3.7,4.9,7.3,4.6,10.8c-1.8,1.9-3.3,3.2-4.3,3.7
-				L72.9,147.2z"/>
-			<path fill="#603913" d="M82,160.9l4.6-3.7l-0.3-4.9l-1-2.2l-1-1.3c0,3.4-1.4,5.8-4,7.1l1.5,4.8"/>
-			<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M81.1,160.7l4.8-3.9c0.8-4.5-0.6-6.8-3.7-11.3
-				c-2.3-2-6.1-2.2-9.2-2.4c-0.5,2.8-0.8,4.1-0.9,4.5"/>
-		</g>
-		<g id="Metal" display="none">
-			<path display="inline" fill="#6D6E71" d="M72.9,147.2l0.5-4.2c3.6-0.4,6.5,0.5,8.3,2.9c3.5,3.7,4.9,7.3,4.6,10.8
+		<g id="Back_Gloves" display="none">
+			<path display="inline" fill="#754C29" d="M72.9,147.2l0.5-4.2c3.6-0.4,6.5,0.5,8.3,2.9c3.5,3.7,4.9,7.3,4.6,10.8
 				c-1.8,1.9-3.3,3.2-4.3,3.7L72.9,147.2z"/>
-			<path display="inline" fill="#414042" d="M82,160.9l4.6-3.7l-0.3-4.9l-1-2.2l-1-1.3c0,3.4-1.4,5.8-4,7.1l1.5,4.8"/>
+			<path display="inline" fill="#603913" d="M82,160.9l4.6-3.7l-0.3-4.9l-1-2.2l-1-1.3c0,3.4-1.4,5.8-4,7.1l1.5,4.8"/>
 			<path display="inline" fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M81.1,160.7l4.8-3.9
 				c0.8-4.5-0.6-6.8-3.7-11.3c-2.3-2-6.1-2.2-9.2-2.4c-0.5,2.8-0.8,4.1-0.9,4.5"/>
 		</g>
+		<g id="Metal">
+			<path fill="#6D6E71" d="M72.9,147.2l0.5-4.2c3.6-0.4,6.5,0.5,8.3,2.9c3.5,3.7,4.9,7.3,4.6,10.8c-1.8,1.9-3.3,3.2-4.3,3.7
+				L72.9,147.2z"/>
+			<path fill="#414042" d="M82,160.9l4.6-3.7l-0.3-4.9l-1-2.2l-1-1.3c0,3.4-1.4,5.8-4,7.1l1.5,4.8"/>
+			<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M81.1,160.7l4.8-3.9c0.8-4.5-0.6-6.8-3.7-11.3
+				c-2.3-2-6.1-2.2-9.2-2.4c-0.5,2.8-0.8,4.1-0.9,4.5"/>
+		</g>
 	</g>
-	<g id="Shoilder" display="none">
-		<g id="customone" display="inline">
-			<g id="Fill_copy_4">
-				<polygon fill="#D1D3D4" points="139.1,120.6 131.3,139.8 158.3,139.2 158.3,135 154.9,135.1 149.8,126.6 143.1,123.1 				"/>
-				<polygon fill="#D1D3D4" points="90.2,118.9 101.3,137.8 72.8,140.9 72.8,136.7 75.5,136.2 82.3,125.2 87.1,122.7 87.7,119.4 
-									"/>
+	<g id="Shoilder">
+		<g id="customone" display="none">
+			<g id="Fill_copy_4" display="inline">
+				<polygon fill="#D1D3D4" points="142,126.9 136.9,140.2 154.3,139.8 154.3,136.9 152.1,137 148.9,131 144.6,128.6 				"/>
+				<polygon fill="#D1D3D4" points="89.5,126.4 96.3,139.3 78.8,141.4 78.8,138.5 80.5,138.2 84.7,130.7 87.6,129 88,126.8 				"/>
 			</g>
-			<g id="Shadow_copy_2">
+			<g id="Shadow_copy_2" display="inline">
 				<path fill="#939598" d="M142,126.9"/>
-				<path fill="#939598" d="M139.1,135.7"/>
-				<path fill="#939598" d="M143.5,135.6"/>
-				<polygon fill="#939598" points="158.7,135.3 158.2,139.8 131.3,139.8 137,127 142.3,129 141,130.7 				"/>
-				<polygon fill="#939598" points="72.8,140.9 71.7,136.3 76.6,136.3 91.2,129.4 89.3,126.1 96,126.1 101.5,138.1 				"/>
+				<path fill="#939598" d="M141.9,137.4"/>
+				<path fill="#939598" d="M144.8,137.3"/>
+				<polygon fill="#939598" points="154.6,137.1 154.3,140.2 136.9,140.2 140.6,131.3 144,132.7 143.2,133.9 				"/>
+				<path fill="#939598" d="M153.4,129.2"/>
+				<polygon fill="#939598" points="78.8,141.4 78.2,138.2 81.2,138.2 90.1,133.6 88.9,131.3 93,131.3 96.4,139.5 				"/>
 			</g>
-			<g id="Stroke_copy_4">
-				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M158.3,139.2l-27,0.7l8.1-19.9
-					c1.6,0.6,3.7,0.8,4.1,1.9l-5.2,13.9l20.4-0.5C158.6,136.3,159.2,137.9,158.3,139.2z"/>
-				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M154.9,135.7c-1-5.7-5.1-9.6-11.4-12.3"/>
-				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M73.2,140.5l28.3-2.3l-11.3-19.2
-					c-1.6,0.8-3.5,1.1-3.8,2.2l8,13.8l-21.7,2C73,138,72,139.3,73.2,140.5z"/>
-				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M76,136.3c0.7-5.8,4.6-10.1,11-13.2"/>
+			<g id="Stroke_copy_4" display="inline">
+				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M154.3,139.8l-17.4,0.5l5.2-13.8
+					c1,0.4,2.4,0.6,2.7,1.3l-3.4,9.7l13.2-0.3C154.5,137.8,154.9,138.9,154.3,139.8z"/>
+				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M152.1,137.4c-0.7-3.9-3.3-6.7-7.4-8.5"/>
+				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M79.1,141.1l17.4-1.6l-6.9-13.1
+					c-1,0.5-2.1,0.7-2.3,1.5l4.9,9.4l-13.3,1.4C78.9,139.5,78.3,140.3,79.1,141.1z"/>
+				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M80.8,138.2c0.4-4,2.8-6.9,6.8-9"/>
 			</g>
 		</g>
-		<g id="Double_Shell">
+		<g id="Double_Shell" display="none">
 			<g id="Fill_6_" display="inline">
 				<polygon fill="#E6E7E8" points="137.8,129.9 137.3,136.4 144.3,141.7 151.7,143.2 161.9,139.4 168.2,132.1 161.4,128.7 
 					165.7,122.4 166,112.7 164.4,110.7 137.4,118.2 134.5,126.3 				"/>
@@ -487,13 +436,13 @@
 			</g>
 		</g>
 		<g id="Dark_Double_Shell_copy">
-			<g id="Fill_copy_16" display="inline">
+			<g id="Fill_copy_16">
 				<polygon fill="#808285" points="137.8,129.9 137.3,136.4 144.3,141.7 151.7,143.2 161.9,139.4 168.2,132.1 161.4,128.7 
 					165.7,122.4 166,112.7 164.4,110.7 137.4,118.2 134.5,126.3 				"/>
 				<polygon fill="#808285" points="96.5,127.7 94.6,136.2 86.6,141.7 75.8,142.4 68,138.3 62.1,133.2 71.2,127 67,119.1 
 					66.1,111.6 78,113.6 87.1,113.8 94.4,123.7 				"/>
 			</g>
-			<g id="Shadow_copy_15" display="inline">
+			<g id="Shadow_copy_15">
 				<path fill="#58595B" d="M164.8,117.4c0.9,5.8-1,10.3-7.3,12.9c-3.2,2.3-7.1,3.2-11.5,3c-4.6-1.4-8.3-3.3-11-5.8l1-6.7
 					c2.4,4,6.2,6.9,14,7.1C157.4,127.6,162.7,124.7,164.8,117.4z"/>
 				<path fill="#58595B" d="M161.1,138.7c-4.2,1-8.1,1.3-11.9-0.4c-2.9-1.2-4.9-3.6-6.5-5.7l-4.9-1.7l-0.4,5.6l8.9,5.8l10.4,0.6
@@ -503,7 +452,7 @@
 				<path fill="#58595B" d="M94.6,136.6l-7.7,5.4l-8.6,1.2l-6.9-3.6c4-0.1,7.7-0.5,10.8-1.5c3.6-1.2,13-7.5,15.3-10.3L94.6,136.6z"
 					/>
 			</g>
-			<g id="Stroke_copy_18" display="inline">
+			<g id="Stroke_copy_18">
 				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M164.9,111.5c2.2,7.8,0,14.1-6.6,19.1
 					c-2.9,1.7-6.5,2.5-10.5,2.9c-3.1,0-5.8-0.9-8.5-2.2l-5-4.2l3-8.7L164.9,111.5z"/>
 				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M137.3,130.3l0,6.2c2.5,2.6,5.1,4.9,8.7,5.7
@@ -523,7 +472,7 @@
 			</linearGradient>
 			<path fill="url(#SVGID_1_)" d="M86.1,165.9"/>
 			<polygon fill="#C49A6C" points="91.4,170.3 140,170.3 140,161 92,161 			"/>
-			<line fill="none" x1="90.8" y1="124.9" x2="90.8" y2="125"/>
+			<line fill="none" x1="89.9" y1="130.5" x2="89.9" y2="130.6"/>
 		</g>
 		<g id="Shadow_copy">
 			<path fill="#603913" d="M112.9,161.6c5.7,1.3,4.3,7.2,0.6,7.6l9.7,0l0.2-8.5l-11.5-0.4L112.9,161.6z"/>
@@ -537,8 +486,8 @@
 	<g id="Head_and_Hair">
 		<g id="Head">
 			<g id="Skin">
-				<path fill="#D8B89A" d="M117.2,54.8c-21.2,2.8-33.5,13.3-33.7,34.6c0.9,11.7,3.5,21.7,8.7,29.1c7.2,8.9,15.3,14.3,24.8,14.1
-					c9.5-0.4,17.6-4.6,24.4-12.1c6.7-9.5,9.5-20.6,9.6-32.9C148.4,66.5,137.2,55.5,117.2,54.8z"/>
+				<path fill="#D8B89A" d="M115.8,54.8c-21.2,2.8-33.5,13.3-33.7,34.6c0.9,11.7,3.5,21.7,8.7,29.1c7.2,8.9,15.3,14.3,24.8,14.1
+					c9.5-0.4,17.6-4.6,24.4-12.1c6.7-9.5,9.5-20.6,9.6-32.9C147,66.5,135.8,55.5,115.8,54.8z"/>
 			</g>
 			<g id="Shadow">
 				<path fill="#A97C50" d="M113.3,132.6c11.7-2.9,20.4-8.6,23.3-19.9c2.8-11.4,3.4-23.7,2.2-36.7c-2.2-10.1-10.1-16.7-22.1-20.6
@@ -580,12 +529,12 @@
 			</g>
 		</g>
 	</g>
-	<g id="Just_Use_This_copy_5">
-		<g id="Fill_copy_17">
+	<g id="Just_Use_This_copy_3">
+		<g id="Fill_copy_5">
 		</g>
-		<g id="Shadow_copy_16">
+		<g id="Shadow_copy_3">
 		</g>
-		<g id="Stroke_copy_19">
+		<g id="Stroke_copy_5">
 		</g>
 	</g>
 	<g id="Helm_1_">
@@ -659,8 +608,8 @@
 				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M144.7,118.1c-16.6,19.4-40.8,18.8-55.8,0.9"/>
 			</g>
 		</g>
-		<g id="Dark_Helm" display="none">
-			<g id="Fill_copy_15" display="inline">
+		<g id="Dark_Helm">
+			<g id="Fill_copy_15">
 				<polygon fill="#808285" points="74.8,82.2 77.2,94.3 77.9,104.3 77.5,110.6 90.4,119.7 116.1,131.9 139.2,121.4 154.7,111.2 
 					153.7,103.2 154.7,93.7 157.4,82.2 153,81.8 150,72.8 142.6,62.6 132.6,56.5 123.1,53.7 122.3,48.7 117.4,46.2 110.6,47.8 
 					108.6,50.7 109.2,53.6 99.5,56.9 91,61.5 83,70.5 79.2,81.4 				"/>
@@ -682,7 +631,7 @@
 				<path fill="#6D6E71" d="M142.6,120.5c-2.8,2.6-8.5,6.6-12.5,8.6c-4.2,3.2-8.6,3.6-12.9,2.4L142.6,120.5z"/>
 				<path fill="#6D6E71" d="M92.8,122c4.1,3.4,7.4,6,9.5,6.9c5.1,3,9.6,3.5,13.8,3L92.8,122z"/>
 			</g>
-			<g id="Shadow_copy_14" display="inline">
+			<g id="Shadow_copy_14">
 				<path fill="#414042" d="M121.6,128.9c7.9-5.7,15.7-11.2,23-17.5c-0.1-0.4,0.3-1.5-0.6-3.5l2.6,0l2.7-2.4l0.6-6.1v-5.4l-2.7-3.1
 					l-2.7-0.5c0.7-2.1,1.2-3.9,1.6-5.4c-8.4-1.6-13.5-4.1-17.9-6.8c9.2,2.8,18.9,4.2,29.1,4c-3.4,10.2-4.7,20-2.7,29
 					C143.1,120.2,132.1,125.5,121.6,128.9z"/>
@@ -705,7 +654,7 @@
 				<path fill="#262262" d="M129.2,54.7v-4.9l-2.9-4.7l-4.8-3.2l-8.9-0.2c3.8,0.8,7.5,1.6,9.6,3.4c1.8,1.4,3,2.2,3.4,4.4
 					c0.3,0.9,0.1,3.2-0.1,4.6L129.2,54.7z"/>
 			</g>
-			<g id="Stroke_copy_17" display="inline">
+			<g id="Stroke_copy_17">
 				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M74.8,82.2c16.7-0.2,30.7-3,41.4-9.4
 					c9.9,5.8,22.1,8.9,36.9,9.4c1.4,0,2.9,0.1,4.4,0.1c-3.8,12-4.6,21.6-2.7,29c-10.7,8.4-24,15.1-38.6,20.7
 					c-15.2-5.5-28.1-12.6-38.6-21.3C78.4,102.2,77.5,92.7,74.8,82.2z"/>
@@ -765,22 +714,6 @@
 				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M110.9,100l-19.5-7.4v10.7l8.3,3.3v20.1l-14-4.4
 					c-4.2-17.7-6.6-34.5-3.7-48.3c6.8-14.8,19-20.7,34.5-21.2c17.6,0,28.9,6.9,33,21.2c3.2,15.3,2,30.5-2.5,45.7l-14.8,6.9
 					l-1.2-19.6l9.1-4.1l-0.5-9.3l-18.6,6.3"/>
-			</g>
-		</g>
-		<g id="Crown" display="none">
-			<g id="Fill_copy_5" display="inline">
-				<polyline fill="#FBF17A" points="80.5,79.8 82.8,82 95.6,85.1 100.3,86.2 103.7,93.4 113.4,87.6 116.4,93.2 119.2,87.2 
-					128.2,94.5 134,87.4 153.3,85.5 151.8,75.3 131.6,77.4 121.9,69.5 125.1,78.2 120.6,77.4 116.1,61.4 111.3,77.7 107,77.4 
-					110.7,69.3 100.6,75.4 81.7,71.3 78.8,81 82.8,82 				"/>
-			</g>
-			<g id="Shadow_copy_3" display="inline">
-				<polygon fill="#FFDE17" points="116.3,89 113.5,83 116,66.1 120,82.9 				"/>
-				<path fill="#FFDE17" d="M126.2,93.3c3.4-5.8,5.3-11.7,4.1-17.5l2.1,1.6l18.8-2.7l2,10.9L134,87.4l-5.9,7.1L126.2,93.3"/>
-			</g>
-			<g id="Stroke_copy_5" display="inline">
-				<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M79,81.5l21.5,5.3l3.3,7.2l9.7-5.8l3,5.6l2.9-6l8.9,7.3l5.6-7.6
-					l19.2-1.9c0.5-3.2-0.7-6.8-2-10.9l-18.8,2.7l-10.5-7.9l3.7,8.5l-4.8-0.1l-4.8-17l-4.2,16.6l-4.8,0l3.7-8.1l-10.2,6.1L82,71.8
-					C80.1,74.7,79.1,78,79,81.5z"/>
 			</g>
 		</g>
 	</g>
@@ -898,65 +831,12 @@
 				<line fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" x1="62.6" y1="146" x2="55.2" y2="151.6"/>
 			</g>
 		</g>
-		<g id="King_1_" display="none">
+		<g id="Spear_Straight" display="none">
 			<g id="Fill_12_" display="inline">
-				<polyline fill="#6D6E71" points="19,66.5 20.3,81.6 52,146.2 54.8,145.7 59.6,143.2 61.8,141.1 61.1,139.7 57.8,132 53.4,124.3 
-					30.4,77.9 				"/>
-				<polygon fill="#A97C50" points="62.9,144.6 78.3,177.8 75.2,177.7 72.9,180.7 54.8,148.8 57.9,147.7 61.8,145.5 				"/>
-				<polygon fill="#BCBEC0" points="75.6,185 78.3,184.8 80.5,183.2 80,179.5 77.2,177.2 74.2,178.1 72.9,180.9 73.9,184 				"/>
-				<polygon fill="#BCBEC0" points="43.9,147.3 44.6,149.5 45.9,150 48.7,150 56,148.7 62.2,145.2 67.9,139.4 69.1,137.3 
-					67.5,135.3 64.8,138.7 59.2,143.6 52.4,146.5 45.2,147.3 				"/>
 			</g>
 			<g id="Shadow_13_" display="inline">
-				<polygon fill="#414042" points="19,67.1 58,144.1 62.2,141.1 52.5,122 30,77.7 				"/>
 			</g>
 			<g id="Stroke_15_" display="inline">
-				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M44,147.2c10.1,0.6,17.5-3.8,23.3-11.9
-					c1,0.5,1.8,1.7,1.5,2.7C63,146.7,54.9,150.4,45,150C44,149,43.7,148.1,44,147.2z"/>
-				<polyline fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="62.2,141.1 30.2,78 19.5,67 19,66.5 
-					20.3,81.6 52.3,146.8 				"/>
-				<polyline fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="54.8,148.8 55.6,150 64.1,146 
-					62.9,144.6 				"/>
-				<ellipse fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="76.7" cy="181.3" rx="3.8" ry="3.9"/>
-				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="71.3" y1="176.9" x2="72.9" y2="180.7"/>
-				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="78.3" y1="177.8" x2="76.7" y2="173.7"/>
-			</g>
-		</g>
-		<g id="Axe">
-			<g id="Fill_copy_20">
-				<polygon fill="#8B5E3C" points="79,182.6 77.1,186.5 72.9,185.6 48.3,131.1 54.7,128.3 				"/>
-				<polygon fill="#8B5E3C" points="41.8,99.7 40.3,97.3 36.9,96.9 34.1,99.4 35.6,102.5 				"/>
-				<polygon fill="#6D6E71" points="56.4,124.9 45.2,99.7 41.8,99.7 34.1,104 34.9,108.4 45.3,130.7 48.3,131.1 55.6,128.3 				"/>
-				<polygon fill="#6D6E71" points="24.9,104.9 10.1,107.8 7.3,117.7 9.4,128.2 18.3,139.7 28,149.5 47.3,162.7 37.1,133.8 
-					32.9,131.1 27.5,124.5 24.8,116.4 				"/>
-				<polygon fill="#A7A9AC" points="33.4,106.5 25.4,106.5 24.8,112.6 26.6,120.8 31.7,129.3 36.3,133.3 42.1,124.5 				"/>
-			</g>
-			<g id="Shadow_copy_19">
-				<polygon fill="#603913" points="76.3,186.7 78.7,185 78.8,182.2 54.2,127.6 52.9,129.3 77,183.5 				"/>
-				<polygon fill="#603913" points="41.6,99.3 39.2,96.6 36.3,97.5 39.2,100.4 				"/>
-				<polygon fill="#414042" points="53.9,128.9 56.5,126.3 53.9,119.1 45.2,99.7 41.6,99.3 40.8,99.7 				"/>
-				<path fill="#A7A9AC" d="M10.1,107.8l-2.4,7l-0.4,8.4l3.8,7.8l7.8,9.4l9,9.1l9,6.6l10.8,8l-2.6-7.9l-15.6-11.7
-					c-16-13.2-20.3-25.1-15.2-37.6L10.1,107.8z"/>
-			</g>
-			<g id="Stroke_copy_22">
-				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M54.9,128.9l23.7,52.8c0.8,1.9,0.1,4-1.5,4.7h0
-					c-1.7,0.8-3.7-0.2-4.6-2l-23.7-52.8"/>
-				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M35.6,102.1l-0.4-0.8c-0.8-1.7,0-3.7,1.7-4.4h0
-					c1.7-0.8,3.7,0,4.4,1.7l0.5,1.2"/>
-				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M54.7,128.3l-6.4,2.8c-1.5,0.7-3.3,0-4-1.5
-					l-10.2-23.1c-0.7-1.5,0-3.3,1.5-4l6.4-2.8c1.5-0.7,3.3,0,4,1.5l10.2,23.1C56.9,125.8,56.2,127.6,54.7,128.3z"/>
-				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M24.9,104.9l-14.8,2.9
-					C2.4,125,10.9,132.6,28,149.5l19.9,14.6l-10.6-29.7C26.7,126.5,23.7,116.3,24.9,104.9z"/>
-				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="34.1" y1="106.5" x2="24.8" y2="106.5"/>
-				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="42.1" y1="124.5" x2="36.3" y2="134"/>
-			</g>
-		</g>
-		<g id="Spear_Straight_copy_2" display="none">
-			<g id="Fill_copy_22" display="inline">
-			</g>
-			<g id="Shadow_copy_21" display="inline">
-			</g>
-			<g id="Stroke_copy_24" display="inline">
 				<polyline fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" points="64.5,92.3 63.5,215.9 59.3,215.9 
 					60.5,92.8 				"/>
 				<polyline fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" points="60.7,82.1 57.3,78.2 61.9,51.6 
@@ -970,15 +850,15 @@
 				<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M64.6,93.1l-4.1,0c-0.3-1.1-0.4-2.5,0.1-3.2"/>
 			</g>
 		</g>
-		<g id="Long_sword" display="none">
-			<g id="Fill_24_" display="inline">
+		<g id="Long_sword">
+			<g id="Fill_24_">
 				<polygon fill="#E6E7E8" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="0.7,51.5 1.2,67.6 46.8,149.9 
 					39.8,152.2 47.8,155.6 55.4,150.4 63.3,145.7 64.2,136 62.1,136.8 59,142.4 55.5,137.7 35.7,103.6 10.9,60.9 				"/>
 			</g>
-			<g id="Shadow_23_" display="inline">
+			<g id="Shadow_23_">
 				<polygon fill="#BCBEC0" points="0.7,52.4 55.5,148.8 58.6,143.2 10.7,60.6 				"/>
 			</g>
-			<g id="Stroke_25_" display="inline">
+			<g id="Stroke_25_">
 				<polygon fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="47.8,155.6 63.3,145.7 64.2,133.7 
 					55.4,148.5 38,152.6 				"/>
 				<polyline fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="47.6,151.3 1.2,67.6 0.2,51 11.2,61.2 
@@ -988,33 +868,33 @@
 		</g>
 	</g>
 	<g id="Glove">
-		<g id="Gloves">
-			<g id="Fill_1_">
+		<g id="Gloves" display="none">
+			<g id="Fill_1_" display="inline">
 				<ellipse fill="#754C29" cx="66.2" cy="162.3" rx="15.6" ry="15.4"/>
 			</g>
-			<g id="Shadow_4_">
+			<g id="Shadow_4_" display="inline">
 				<path fill="#603913" d="M59.3,148.5c-4.1,7.6-1.7,14.8,3.7,18.3c5.4,3.5,14.5,1.4,18.1-5.3l0,3.2l-2.1,5.5
 					c-5.9,6.8-13,8.4-21.1,4.9c-4.3-2.4-6.6-7.5-6.6-15.7C52.1,154.8,55.3,151.5,59.3,148.5z"/>
 			</g>
-			<g id="Stroke_4_">
+			<g id="Stroke_4_" display="inline">
 				<ellipse fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="66.2" cy="162.2" rx="14.9" ry="15.5"/>
 			</g>
 		</g>
-		<g id="Metal_1_" display="none">
-			<g id="Fill_copy_8" display="inline">
+		<g id="Metal_1_">
+			<g id="Fill_copy_8">
 				<ellipse fill="#6D6E71" cx="66.2" cy="162.3" rx="15.6" ry="15.4"/>
 			</g>
-			<g id="Shadow_copy_7" display="inline">
+			<g id="Shadow_copy_7">
 				<path fill="#414042" d="M59.3,148.5c-4.1,7.6-1.7,14.8,3.7,18.3c5.4,3.5,14.5,1.4,18.1-5.3l0,3.2l-2.1,5.5
 					c-5.9,6.8-13,8.4-21.1,4.9c-4.3-2.4-6.6-7.5-6.6-15.7C52.1,154.8,55.3,151.5,59.3,148.5z"/>
 			</g>
-			<g id="Stroke_copy_10" display="inline">
+			<g id="Stroke_copy_10">
 				<ellipse fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="66.2" cy="162.2" rx="14.9" ry="15.5"/>
 			</g>
 		</g>
 	</g>
-	<g id="Cavalry" display="none">
-		<g id="Horse">
+	<g id="Cavalry">
+		<g id="Horse" display="none">
 			<g id="Fill_9_" display="inline">
 				<polygon fill="#A97C50" points="2,151.3 11.1,119.1 21.6,96.6 31.3,83.6 20.2,68.1 49.7,62.9 63.2,68.1 77.8,58 78.3,76.8 
 					95.8,109.4 110.2,148.9 122,187.4 129.1,191.6 117.5,207.1 98.2,200.6 86.7,188 82.2,173.8 78.7,150.7 61.6,171.4 39.7,193.2 
@@ -1112,7 +992,7 @@
 				</g>
 			</g>
 		</g>
-		<g id="Horse_copy" display="inline">
+		<g id="Horse_copy">
 			<g id="Fill_copy">
 				<g id="Fill_17_">
 					<polyline fill="#A97C50" points="101.6,174.9 96.3,191.1 96.3,200.2 94.8,205.9 91.4,221.6 99.4,221.6 101.9,214.4 
@@ -1239,8 +1119,8 @@
 					<line fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" x1="141.4" y1="167.2" x2="116.9" y2="166.5"/>
 				</g>
 			</g>
-			<g id="Armor_copy" display="none">
-				<g id="Fill_18_" display="inline">
+			<g id="Armor_copy">
+				<g id="Fill_18_">
 					<polygon fill="#662D91" points="75.6,188.7 77.1,183.3 81.2,180.9 87.7,181.7 93.6,173 101,165.3 96.7,162.7 91.4,166 85,164 
 						81.3,155.6 82.5,149.1 88.4,142.6 96.7,146.9 98.3,156.9 103.9,156.9 104.2,144.2 91.6,128.6 77.8,129 72.9,134.7 67.6,137.6 
 						64.8,144.7 68.5,152.6 69.9,162.7 68.5,179.3 69,188.5 70.4,192.7 75,194.1 79.4,194.5 83.3,192 81.8,189.9 78,191.6 					"/>
@@ -1254,7 +1134,7 @@
 						</g>
 					</g>
 				</g>
-				<g id="Shadow_16_" display="inline">
+				<g id="Shadow_16_">
 					<polygon fill="#262262" points="98.7,156.6 104.2,156.6 103.7,142.8 96.8,146.9 					"/>
 					<polygon fill="#262262" points="91.4,165.9 96.7,162.2 101,165.3 92.6,174.3 					"/>
 					<path fill="#262262" d="M96.8,146.9c2.5-1.6,3.4-3.9,1.6-6.2l-6.3-8.3c-2.2-0.8-4.7,0.1-8,1.1l5.1-3.2l3.4-1.3l9.8,13.2v1.6
@@ -1272,7 +1152,7 @@
 						C104.3,180.4,104.3,185.1,102.4,189.1z"/>
 					<path fill="#262262" d="M145.8,169"/>
 				</g>
-				<g id="Stroke_copy_6" display="inline">
+				<g id="Stroke_copy_6">
 					<polygon fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" points="75.6,188.7 77.1,183.3 81.2,180.9 
 						87.7,181.7 93.6,173 101,165.3 96.7,162.7 91.4,166 85,164 81.3,155.6 82.5,149.1 88.4,142.6 96.7,146.9 98.3,156.9 
 						103.9,156.9 104.2,144.2 91.6,128.6 77.8,129 72.9,134.7 67.6,137.6 64.8,144.7 68.5,152.6 69.9,162.7 68.5,179.3 69,188.5 
@@ -1451,26 +1331,14 @@
 			<ellipse fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="138.9" cy="163.5" rx="15.5" ry="15.5"/>
 		</g>
 	</g>
-	<g id="Right_Glove_copy" display="none">
-		<g id="Fill_copy_19" display="inline">
-			<ellipse fill="#6D6E71" cx="138.9" cy="164" rx="15.5" ry="15"/>
-		</g>
-		<g id="Shadow_copy_18" display="inline">
-			<path fill="#414042" d="M129.3,151.3c-1.5,7.4,0.4,13.7,7.7,18.2c12.7,1.3,17.1-4.4,12.9-16.9c6.1,6.4,5.4,13.8,0,21.8
-				c-4.5,2.7-9,4.2-13.3,4.4c-7.6-1.8-11.6-5.9-12.7-11.9C122,160.9,124.4,155.8,129.3,151.3z"/>
-		</g>
-		<g id="Stroke_copy_21" display="inline">
-			<ellipse fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="138.9" cy="163.5" rx="15.5" ry="15.5"/>
-		</g>
-	</g>
-	<g id="Shield" display="none">
-		<g id="Fill_3_" display="inline">
+	<g id="Shield">
+		<g id="Fill_3_">
 			<path fill="#D1D3D4" d="M114.9,145.6h49.9c-1.6,20.2-7.6,36.7-24.7,44.1C125.3,184.4,116.8,169.9,114.9,145.6z"/>
 		</g>
-		<g id="Shadow_6_" display="inline">
+		<g id="Shadow_6_">
 			<path fill="#939598" d="M154.4,145.5h10.3c-0.5,24.7-11.6,35.8-24.7,44.3C146.7,182.4,154,177.6,154.4,145.5z"/>
 		</g>
-		<g id="Stroke_6_" display="inline">
+		<g id="Stroke_6_">
 			<path fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" d="M114.9,145.6h49.9c-2.1,26.7-11.7,39-24.9,44.2
 				C123.8,182.2,115,167,114.9,145.6z"/>
 		</g>

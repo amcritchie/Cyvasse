@@ -7,7 +7,7 @@ class Elephant < Unit
     attributes = {
         :name => "Elephant",
         :codename => "elephant",
-        :image => "pieces/cavalrytestttt.svg",
+        :image => "svgs/elephant.svg",
 
         :movement => 3,
         :strength => 4,

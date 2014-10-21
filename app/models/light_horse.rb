@@ -5,9 +5,9 @@ class LightHorse < Unit
 
   def self.attributes
     attributes = {
-        :name => "Light_Horse",
-        :codename => "light_horse",
-        :image => "svgs/lighthorse.svg",
+        :name => "Light Horse",
+        :codename => "light horse",
+        :image => "svgs/light horse.svg",
         :movement => 4,
         :strength => 2,
         :range => 0,

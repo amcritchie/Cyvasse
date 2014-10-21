@@ -215,9 +215,11 @@ article {
   margin-left: 0px;
   margin-bottom: -5px;
   width: 60px;
-  height: 75px;
+  height: 70px;
   cursor: pointer;
   display: inline-block;
+  -webkit-border-radius: 100px;
+
 }
 .deadUnit{
   z-index: 6;
