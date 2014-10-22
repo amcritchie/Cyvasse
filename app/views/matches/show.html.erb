@@ -19,18 +19,6 @@
 
   </p>
 
-  <!--Robot SVG-->
-  <% robot = "<svg class='robot' xmlns='http://www.w3.org/2000/svg'>
-  <rect height='20' width='40' rx='3' ry='3' fill='#B32317' />
-  <circle cx='10' cy='10' r='5' fill='white'></circle>
-  <circle cx='30' cy='10' r='5' fill='white'></circle>
-  <circle cx='10' cy='10' r='2' fill='#B32317'></circle>
-  <circle cx='30' cy='10' r='2' fill='#B32317'></circle>
-</svg>" %>
-<p>
-  <strong>Match <%= robot.html_safe %></strong>
-  <strong class="turnKeeper" data-turn="1">Turn</strong>
-</p>
 </article>
 
 
@@ -64,23 +52,23 @@
 
   <article class="map">
 
-    <button class="startGameButton">Start Game</button>
-    <button class="loadEnemiesButton">Load Enemies</button>
-    <button class="randomSetUpButton">Random Setup</button>
-    <button class="moveUnitButton">1 Turn</button>
-    <button class="fiveTurnsButton">5 Turns</button>
-    <button class="tenTurnsButton">10 Turns</button>
+    <!--<button class="startGameButton">Start Game</button>-->
+    <!--<button class="loadEnemiesButton">Load Enemies</button>-->
+    <!--<button class="randomSetUpButton">Random Setup</button>-->
+    <!--<button class="moveUnitButton">1 Turn</button>-->
+    <!--<button class="fiveTurnsButton">5 Turns</button>-->
+    <!--<button class="tenTurnsButton">10 Turns</button>-->
 
-    <% y_pos = 1 %>
+    <!--<% y_pos = 1 %>-->
 
-    <% @map.each do |row| %>
-        <div class="grid" data-y-pos=<%= y_pos %>>
-          <% row.each do |square| %>
-              <%= square.html_safe %>
-          <% end %>
-        </div>
-        <% y_pos += 1 %>
-    <% end %>
+    <!--<% @map.each do |row| %>-->
+        <!--<div class="grid" data-y-pos=<%= y_pos %>>-->
+          <!--<% row.each do |square| %>-->
+              <!--<%= square.html_safe %>-->
+          <!--<% end %>-->
+        <!--</div>-->
+        <!--<% y_pos += 1 %>-->
+    <!--<% end %>-->
 
     <!--<div id="placeUnits"></div>-->
 

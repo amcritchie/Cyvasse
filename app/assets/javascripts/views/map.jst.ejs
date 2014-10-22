@@ -1,0 +1,22 @@
+<p>Hi there, <%= name %> <%= surname %>!</p>
+
+<button class="startGameButton">Start Game</button>
+<button class="loadEnemiesButton">Load Enemies</button>
+<button class="randomSetUpButton">Random Setup</button>
+<button class="moveUnitButton">1 Turn</button>
+<button class="fiveTurnsButton">5 Turns</button>
+<button class="tenTurnsButton">10 Turns</button>
+
+<% y_pos = 1; %>
+
+<% $.each( thearray , function(index, row){ %>
+
+    <div class="grid" data-y-pos=<%= y_pos %>>
+    <% $.each (row , function(index, col){ %>
+        <%= col %>
+    <% }); %>
+
+    <% y_pos += 1; %>
+    </div>
+
+<% }); %>

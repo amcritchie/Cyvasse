@@ -14,10 +14,107 @@
 //= require jquery_ujs
 //= require_tree .
 
+var row = 1;
+var col = 1;
+var hexCount = 1;
+
+function hex(row,col,hexIndex){
+    var height = 30;
+    var width = 52;
+    var hypotenuse = 60;
+    var hex_scale = 5.36;
+    var size;
+
+    if (row < 7){
+        size = row + 5
+    } else {
+        size = 17 - row
+    }
+
+    if (row > 6){
+        var theClass = "selectedRange";
+    }else{
+        var theClass = "unSelected"
+    }
+
+
+    return "<div class='ssquare' id='hex" + hexIndex + "' " +
+        "data-rangeStatus=" + theClass + " data-xPosss=" + col + " data-yPosss=" + row + " " +
+        "data-size=" + size + " data-occupied='false' data-even='true'>" +
+        "<svg class='brick'>" +
+//        "<linearGradient id='grad1' x1='0%' y1='100%' x2='100%' y2='0%'>" +
+//        "<stop offset='0%' style='stop-color:##1c6124;stop-opacity:1' />" +
+//        "<stop offset='100%' style='stop-color:#1c2124;stop-opacity:1' />" +
+//        "</linearGradient>" +
+//        "<linearGradient id='grad2' x1='0%' y1='100%' x2='100%' y2='0%'>" +
+//        "<stop offset='0%' style='stop-color:#1c6124;stop-opacity:1' />" +
+//        "<stop offset='100%' style='stop-color:#1c2124;stop-opacity:1' />" +
+//        "</linearGradient>" +
+//        "</defs>" +
+        "<polygon class=" + theClass + " data-x-pos=" + col + " data-y-pos=" + row + " " +
+        "data-size=" + size + " data-occupied='false' data-even='true'" +
+        "points='" + (width * hex_scale) + ",0 0," + (height*hex_scale) + "" +
+        " 0," + (height+hypotenuse)*hex_scale + "" +
+        " " + width*hex_scale + "," + (hypotenuse*2)*hex_scale + "" +
+        " " + (width*2)*hex_scale + "," + (height+hypotenuse)*hex_scale+ "" +
+        " " + (width*2)*hex_scale + "," + (height)*hex_scale + "'/>" +
+        "</svg></div>"
+}
+
+
+function create_row(size){
+    var array = [];
+    for (var i = 0; i < size; i++) {
+        array.push(hex(row,col, hexCount));
+        hexCount = hexCount + 1;
+        col = col + 1;
+    }
+    return array;
+}
+
+function create_map(){
+    var array = [];
+    for (var i = 0; i < 11; i++) {
+        if (i < 6){
+            array.push(create_row(6 + i ))
+        }else{
+            array.push(create_row(16 - i))
+        }
+        row = row + 1;
+        col = 1;
+    }
+    return array;
+}
+
 $(document).ready(function () {
     var menu = $('#navigation-menu');
     var menuToggle = $('#js-mobile-menu');
     var signUp = $('.sign-up');
+
+    var map = create_map();
+    var user = { name: 'Jaco', surname: 'Pretorius', thearray: map };
+
+    var templateFunction = JST['views/map'];
+    var result = templateFunction(user);
+
+    $(".map").prepend(result);
+
+
+    $("#some_container").append(result);
+
+    setTimeout(function() {
+//        var newResult = templateFunction(
+//            {
+//                name: "Johnson",
+//                surname: "Smith"
+//            }
+//        );
+//        console.log($("#hex53"));
+//        console.log($("[data-index=5]"));
+
+//        $("[data-index=7]").appendTo($("#hex53"));
+//        $("#some_container").html(newResult);
+    }, 1000);
 
     $(menuToggle).on('click', function (e) {
         e.preventDefault();

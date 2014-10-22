@@ -20,6 +20,9 @@ gem 'bitters'
 gem 'gschool_database_connection'
 gem 'rails_12factor'
 
+gem 'ejs', '~> 1.1.1'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

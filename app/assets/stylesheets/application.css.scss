@@ -238,12 +238,23 @@ article {
   border: solid 1px greenyellow;
 }
 
-//SVG
-svg {
+.ssquare{
   float: left;
   width: 60px;
   height: 68px;
+  border: solid blue 1px;
+  z-index: 5;
+  svg{
+    width: 60px;
+    height: 68px;
+    position: absolute;
+    z-index: 2;
+    polygon{
+      position: absolute;
+    }
+  }
 }
+
 polygon {
   z-index: 1;
   background-color: #1c2324;
