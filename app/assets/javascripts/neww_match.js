@@ -11,6 +11,7 @@ var $enemyUnitsInRange;
 var $selectedUnit;
 var $movingRange;
 var $movingRangeView;
+var $movinfRangeVieww;
 var $attackRange;
 var $allHexagons;
 var $initialRange;
@@ -127,6 +128,7 @@ function selectUnit(el_unit) {
 
 function updateUnitRanges(xPos, yPos) {
     $('img').attr('data-inRange', false);
+    $('.ssquare').attr('data-innRange', false);
     updateMovementRange($selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
     updateEnemyInRange($selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
     refreshHexagonClasses();
@@ -134,8 +136,13 @@ function updateUnitRanges(xPos, yPos) {
 }
 function updateMovementRange(xPos, yPos) {
     $movingRangeView = createRangeSelector($selectedUnit.data('movement'), xPos, yPos);
-//    console.log($movingRangeView);
-    $movingRange = $movingRangeView.filter(function () {
+    $movingRangeVieww = $('[data-innRange = true]');
+//    $movingRangeVieww.off('click');
+    console.log($movingRangeView);
+    console.log("--------===--------");
+    console.log($movingRangeVieww);
+
+    $movingRange = $movingRangeVieww.filter(function () {
         return $(this).data('occupied') == false
     });
 
@@ -143,8 +150,9 @@ function updateMovementRange(xPos, yPos) {
 function updateEnemyInRange(xPos, yPos) {
     $attackRange = createRangeSelector($selectedUnit.data('range'), xPos, yPos);
     var $inRange = $('.inPlayUnit*[data-inRange=' + true + ']');
-    $enemyUnitsInRange = $inRange.filter(function () {
-        return $(this).attr('data-strength') <= $selectedUnit.attr('data-strength')
+    var $inRangee = $('[data-innRange = true]');
+    $enemyUnitsInRange = $inRangee.filter(function () {
+        return $(this).attr('data-off') <= $selectedUnit.attr('data-strength')
     });
 }
 function createRangeSelector(range, xPos, yPos){
@@ -158,6 +166,7 @@ function refreshHexagonClasses() {
     $allHexagons.attr('class', 'unSelected');
     $attackRange.attr('class', 'hoverRange');
     $movingRangeView.attr('class', 'selectedRange');
+//    $movinfRangeVieww.attr('class')
 }
 
 function registerMovableArea() {
@@ -190,7 +199,12 @@ function registerMovableHex() {
 
         $enemyUnitsInRange.off('click');
 
-        moveUnitToNewPosition($selectedUnit, $Hexagon.data('x-pos'), $Hexagon.data('y-pos'), $Hexagon.data('size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
+        console.log($(this));
+//        debugger;
+        console.log( $Hexagon.data('xPosss'));
+//        moveUnitToNewPosition($selectedUnit, $Hexagon.data('x-pos'), $Hexagon.data('y-pos'), $Hexagon.data('size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
+        moveUnitToNewPosition($selectedUnit, $Hexagon.attr('data-xPosss'), $Hexagon.attr('data-yPosss'), $Hexagon.data('size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
+
     });
 }
 function moveImageToMap(unit) {
@@ -202,9 +216,11 @@ function moveImageToMap(unit) {
 
 function registerAttackUnit() {
     $enemyUnitsInRange.on('click', function () {
-        moveUnitToGraveyard($(this));
+        moveUnitToGraveyard($(this).children("img"));
         if ($selectedUnit.data('range') == 0) {
-            moveUnitToNewPosition($selectedUnit, $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
+//            moveUnitToNewPosition($selectedUnit, $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
+            moveUnitToNewPosition($selectedUnit, $(this).attr('data-xPosss'), $(this).attr('data-yPosss'), $(this).data('row_size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
+
         } else {
             $allHexagons.attr('class', 'unSelected');
             $moveableUnits.off('click');
@@ -240,10 +256,15 @@ function moveUnitToNewPosition(movingUnit, xPos, yPos, hexRowSize, xPosOld, yPos
 //
 //    movingUnit.css('margin-top', (yPos * 52) - 52);
 
-    console.log("blbbl" + xPos);
-    console.log("000-" + yPos);
-    console.log("____");
-    movingUnit.prependTo($("[data-xPosss=" + xPos + "][data-yPosss=" + yPos + "]"));
+    var hexMovingTo = $("[data-xPosss=" + xPos + "][data-yPosss=" + yPos + "]");
+
+    movingUnit.prependTo(hexMovingTo);
+    hexMovingTo.attr('data-occupied', true);
+    hexMovingTo.attr('data-team', movingUnit.data('team'));
+    hexMovingTo.attr('data-off', movingUnit.data('strength'));
+
+
+
 //    movingUnit.prependTo($("[data-xposs=5][data-yposs=6]"));
 
 
@@ -354,6 +375,7 @@ function diagonalHexChange(unit_x, unit_y, vertical, up, horizontal, constantDow
 function hexClassChange(xPos, yPos, className, horizontal, click) {
 
     $('*[data-x_pos=' + xPos + '][data-y_pos=' + yPos + '][data-team=' + defense + ']').attr('data-inRange', true);
+    $('*[data-xPosss=' + xPos + '][data-yPosss=' + yPos + ']').attr('data-innRange', true);
     if (!click) {
         $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]").attr('class', className);
     } else {

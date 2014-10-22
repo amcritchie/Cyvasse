@@ -40,7 +40,8 @@ function hex(row,col,hexIndex){
 
     return "<div class='ssquare' id='hex" + hexIndex + "' " +
         "data-rangeStatus=" + theClass + " data-xPosss=" + col + " data-yPosss=" + row + " " +
-        "data-size=" + size + " data-occupied='false' data-even='true'>" +
+        "data-size=" + size + " data-occupied=false data-even=true " +
+        "data-innRange=false data-off=nil data-team=nil>" +
         "<svg class='brick'>" +
 //        "<linearGradient id='grad1' x1='0%' y1='100%' x2='100%' y2='0%'>" +
 //        "<stop offset='0%' style='stop-color:##1c6124;stop-opacity:1' />" +
