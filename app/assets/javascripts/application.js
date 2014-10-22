@@ -37,21 +37,19 @@ function hex(row,col,hexIndex){
         var theClass = "unSelected"
     }
 
+    if (row > 6){
+        var initialRange = true;
+    }else{
+        var initialRange = false
+    }
+
 
     return "<div class='ssquare' id='hex" + hexIndex + "' " +
-        "data-rangeStatus=" + theClass + " data-xPosss=" + col + " data-yPosss=" + row + " " +
-        "data-size=" + size + " data-occupied=false data-even=true " +
-        "data-innRange=false data-off=nil data-team=nil>" +
+        "data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
+        "data-size=" + size + " data-occupied=false data-even=true data-src=nil" +
+        "data-innRange=" + initialRange + " data-off=nil data-movement=nil data-team=nil data-range=nil>" +
         "<svg class='brick'>" +
-//        "<linearGradient id='grad1' x1='0%' y1='100%' x2='100%' y2='0%'>" +
-//        "<stop offset='0%' style='stop-color:##1c6124;stop-opacity:1' />" +
-//        "<stop offset='100%' style='stop-color:#1c2124;stop-opacity:1' />" +
-//        "</linearGradient>" +
-//        "<linearGradient id='grad2' x1='0%' y1='100%' x2='100%' y2='0%'>" +
-//        "<stop offset='0%' style='stop-color:#1c6124;stop-opacity:1' />" +
-//        "<stop offset='100%' style='stop-color:#1c2124;stop-opacity:1' />" +
-//        "</linearGradient>" +
-//        "</defs>" +
+
         "<polygon class=" + theClass + " data-x-pos=" + col + " data-y-pos=" + row + " " +
         "data-size=" + size + " data-occupied='false' data-even='true'" +
         "points='" + (width * hex_scale) + ",0 0," + (height*hex_scale) + "" +
