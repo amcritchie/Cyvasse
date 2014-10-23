@@ -103,13 +103,10 @@ function functionsForPregame(){
     pregameClickUnit();
 }
 function pregameClickUnit(){
-//    debugger;
     $moveableUnits.on('click', function () {
-//        debugger;
 
         $selectedUnit = $(this).children("img");
 
-//        debugger;
         $movingRange.on('click', function () {
 
             var $Hexagon = $(this);
@@ -548,9 +545,8 @@ $(document).ready(function () {
         $movingRange = $("[data-innrange=true]");
         pregame();
 
-//        debugger;
 
-    }, 100000000);
+    }, 100);
 
     pregame_var = true;
 

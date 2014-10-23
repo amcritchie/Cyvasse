@@ -27,11 +27,17 @@
 // expect
 //rabble.parent == fjwepijf
 
+function importantStuff(){
+
+    return create_map()
+}
+
+
 describe("Click Unit", function () {
     beforeEach(function (done) {
 
-
         loadFixtures('game.html');
+//        var map = create_map();
         var map = create_map();
         var user = { name: 'Jaco', surname: 'Pretorius', thearray: map };
 
@@ -43,42 +49,22 @@ describe("Click Unit", function () {
         var createUnits = JST['views/units'];
         var units = createUnits(hash);
 
-
         loadMapAndUnits(units, result);
-//        debugger;
 
-//        setTimeout(function() {
-//            $movingRange = $("polygon.selected_range");
-//            var $initialRange = $('.selectedRange');
-//            $initialRange = $('[data-innRange = true]');
-
-//            $allHexagons = $('polygon');
         $allSquares = $('.ssquare');
 
-//            console.log($('[data-index=25 ]').children('svg'));
-
-//            $('.loadEnemiesButton').on('click', function () {
-//                placeEnemies()
-//            });
-//            $('.randomSetUpButton').on('click', function () {
-//                placeUnits();
-////            $('.randomSetUpButton').off('click')
-//            });
         var $movingRange = $("[data-innrange=true]");
         pregame();
 
-//        }, 100);
-
         done()
     });
+
     it("Then place it", function () {
         expect(true).toBe(true);
 
         expect($(".auxSpace")).toExist();
         console.log($(".auxSpace").children());
-//        debugger;
-//        done();
-//        setTimeout(function() {
+
 
         var rabbleImage = $('[data-index=3]');
         var rabble = $('#aux3');
@@ -86,16 +72,6 @@ describe("Click Unit", function () {
 
         expect(rabbleImage.parent().attr("class")).toEqual("sssquare");
 
-//        pregameClickUnit();
-
-//        debugger;
-//        rabble.click(function(){
-//            hex.click(function(){
-//                expect(rabble.parent().attr("class")).toEqual("ssquare");
-//
-//            });
-//
-//        });
         $movingRange = $("[data-innrange=true]");
         var $initialRange = $movingRange;
 
@@ -103,7 +79,7 @@ describe("Click Unit", function () {
 
         rabble.click();
 
-        debugger;
+//        debugger;
 
         hex.off('click');
 
@@ -118,9 +94,6 @@ describe("Click Unit", function () {
             if ($(".auxSpace").children().length == 0) {
                 $('.startGameButton').css('visibility', 'visible');
             }
-
-//            $enemyUnitsInRange.off('click');
-//            moveUnitToNewPosition($selectedUnit, $(this).attr('data-xPosss'), $(this).attr('data-yPosss'), $Hexagon.data('size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
 
             var hexMovingTo = $("[data-xPosss=" + xPos + "][data-yPosss=" + yPos + "]");
 
@@ -144,27 +117,12 @@ describe("Click Unit", function () {
             $moveableUnits.off('click');
             $movingRange.off('click');
 
-//            debugger;
-
-            if (pregame_var == true) {
-//                functionsForPregame();
-            }
-
         });
 
         hex.click();
 
-//        debugger;
         expect(rabbleImage.parent().attr("class")).toEqual("ssquare");
+        expect(rabbleImage).toExist();
 
-
-//        debugger;
-
-
-//        hex.click();
-
-        expect(rabble).toExist();
-
-//        }, 1000);
     })
 });

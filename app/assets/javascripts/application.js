@@ -60,6 +60,35 @@ function hex(row,col,hexIndex){
         "</svg></div>"
 }
 
+function create_row(size){
+    var array = [];
+    for (var i = 0; i < size; i++) {
+        array.push(hex(row,col, hexCount));
+        hexCount = hexCount + 1;
+        col = col + 1;
+    }
+    return array;
+}
+
+function create_map(){
+    var array = [];
+//    var roww = 1;
+//    var coll = 1;
+    for (var i = 0; i < 11; i++) {
+        if (i < 6){
+            array.push(create_row(6 + i ))
+        }else{
+            array.push(create_row(16 - i))
+        }
+//        roww = roww + 1;
+        row = row + 1;
+        col = 1;
+    }
+    row = 1;
+    hexCount = 1;
+    return array;
+}
+
 function createUnit(index,nameArray,movement,strength,range,flank,team){
 
 
@@ -92,7 +121,6 @@ function createAllUnits(){
     array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
     array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
     array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
-
     array.push(createUnit(array.length,["spearman"],2,2,0,2,1));
     array.push(createUnit(array.length,["spearman"],2,2,0,2,1));
     array.push(createUnit(array.length,["elephant"],3,4,0,1,1));
@@ -117,57 +145,38 @@ function createAllUnits(){
     return array
 }
 
-function create_row(size){
-    var array = [];
-    for (var i = 0; i < size; i++) {
-        array.push(hex(row,col, hexCount));
-        hexCount = hexCount + 1;
-        col = col + 1;
-    }
-    return array;
-}
-
-function create_map(){
-    var array = [];
-    for (var i = 0; i < 11; i++) {
-        if (i < 6){
-            array.push(create_row(6 + i ))
-        }else{
-            array.push(create_row(16 - i))
-        }
-        row = row + 1;
-        col = 1;
-    }
-    row = 1;
-    hexCount = 1;
-    return array;
-}
-
 function loadMapAndUnits(units,map){
 
     $(".auxSpace").prepend(units);
     $(".map").prepend(map);
 }
 
-$(document).ready(function () {
-    var menu = $('#navigation-menu');
-    var menuToggle = $('#js-mobile-menu');
-    var signUp = $('.sign-up');
+function loadEverything(){
 
-    var map = create_map();
-    var user = { name: 'Jaco', surname: 'Pretorius', thearray: map };
+//    var menu = $('#navigation-menu');
+//    var menuToggle = $('#js-mobile-menu');
+//    var signUp = $('.sign-up');
 
-    var templateFunction = JST['views/map'];
-    var result = templateFunction(user);
+//    var map = create_map();
 
-    var allUnits = createAllUnits();
-    var hash = { units: allUnits, name: 'Alex'};
-    var createUnits = JST['views/units'];
-    var units = createUnits(hash);
+    var map = { thearray: create_map() };
+    var templateMap = JST['views/map'];
+    var result = templateMap(map);
 
+    var uunits = createAllUnits();
+    var hash = { units: uunits};
+    var templateUnits = JST['views/units'];
+    var units = templateUnits(hash);
+
+    debugger;
 //    var units = "<div>Units Made by JS.</div>";
 
     loadMapAndUnits(units,result);
+}
+
+$(document).ready(function () {
+    loadEverything();
+
 //    $(".auxSpace").prepend(units);
 //    $(".map").prepend(result);
 
