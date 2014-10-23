@@ -79,7 +79,7 @@
 <div class="about_unit">
   <% @vangaurd.each do |unit_class| %>
 
-      <img class="about_unit_image" src="assets/pieces/<%= unit_class[:name].downcase %>.png">
+      <img class="about_unit_image" src="assets/pieces/<%= unit_class[:codename] %>.png">
       <article class="about_unit_description">
         <h6><%= unit_class[:name] %></h6>
         <p><small>
@@ -112,7 +112,7 @@
 
   <% @cavalry.each do |unit_class| %>
 
-      <img class="about_unit_image cavalry" src="assets/pieces/<%= unit_class[:name].downcase %>.png">
+      <img class="about_unit_image cavalry" src="assets/pieces/<%= unit_class[:codename].downcase %>.png">
       <article class="about_unit_description">
         <h6><%= unit_class[:name] %></h6>
         <p><small>

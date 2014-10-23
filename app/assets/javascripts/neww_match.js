@@ -103,10 +103,13 @@ function functionsForPregame(){
     pregameClickUnit();
 }
 function pregameClickUnit(){
+//    debugger;
     $moveableUnits.on('click', function () {
+//        debugger;
 
         $selectedUnit = $(this).children("img");
 
+//        debugger;
         $movingRange.on('click', function () {
 
             var $Hexagon = $(this);
@@ -143,21 +146,21 @@ function updateInfoBox(unit) {
 
     $('#selectedUnitName').empty().append(unit.children("img").attr('alt'));
 
-    if (pregame_var == true) {
+//    if (pregame_var == true) {
         $('#selectedUnitImage').attr('src', "../assets/svgs/" + unit.children("img").attr('id') + ".svg");
         $('#selectedStrength').empty().append('Strength: ' + unit.children("img").data('strength'));
         $('#selectedMovement').empty().append('Movement: ' + unit.children("img").data('movement'));
         $('#selectedRange').empty().append('Range: ' + unit.children("img").data('range'));
         $('#selectedFlank').empty().append('Flank: ' + unit.children("img").data('flank'));
         $('#selectedTrump').empty().append('Trump: ' + unit.children("img").data('trump'));
-    }else{
-        $('#selectedUnitImage').attr('src', unit.data('src'));
-        $('#selectedStrength').empty().append('Strength: ' + unit.attr('data-off'));
-        $('#selectedMovement').empty().append('Movement: ' + unit.attr('data-movement'));
-        $('#selectedRange').empty().append('Range: ' + unit.attr('data-range'));
-        $('#selectedFlank').empty().append('Flank: ' + unit.attr('data-flank'));
-        $('#selectedTrump').empty().append('Trump: ' + unit.attr('data-trump'));
-    }
+//    }else{
+//        $('#selectedUnitImage').attr('src', unit.data('src'));
+//        $('#selectedStrength').empty().append('Strength: ' + unit.attr('data-off'));
+//        $('#selectedMovement').empty().append('Movement: ' + unit.attr('data-movement'));
+//        $('#selectedRange').empty().append('Range: ' + unit.attr('data-range'));
+//        $('#selectedFlank').empty().append('Flank: ' + unit.attr('data-flank'));
+//        $('#selectedTrump').empty().append('Trump: ' + unit.attr('data-trump'));
+//    }
 
 }
 
@@ -545,7 +548,9 @@ $(document).ready(function () {
         $movingRange = $("[data-innrange=true]");
         pregame();
 
-    }, 100);
+//        debugger;
+
+    }, 100000000);
 
     pregame_var = true;
 

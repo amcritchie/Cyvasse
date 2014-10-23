@@ -92,6 +92,7 @@ function createAllUnits(){
     array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
     array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
     array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
+
     array.push(createUnit(array.length,["spearman"],2,2,0,2,1));
     array.push(createUnit(array.length,["spearman"],2,2,0,2,1));
     array.push(createUnit(array.length,["elephant"],3,4,0,1,1));
@@ -137,7 +138,15 @@ function create_map(){
         row = row + 1;
         col = 1;
     }
+    row = 1;
+    hexCount = 1;
     return array;
+}
+
+function loadMapAndUnits(units,map){
+
+    $(".auxSpace").prepend(units);
+    $(".map").prepend(map);
 }
 
 $(document).ready(function () {
@@ -158,8 +167,9 @@ $(document).ready(function () {
 
 //    var units = "<div>Units Made by JS.</div>";
 
-    $(".auxSpace").prepend(units);
-    $(".map").prepend(result);
+    loadMapAndUnits(units,result);
+//    $(".auxSpace").prepend(units);
+//    $(".map").prepend(result);
 
 
     $("#some_container").append(result);

@@ -39,14 +39,7 @@
 
     <% count = 8 %>
     <div class="auxSpace">
-      <% @units.each do |branch| %>
-          <% branch.each do |unit| %>
-              <div class="sssquare" id="aux<%= count %>" data-team=1>
-                <%= image_tag unit[:image], :class => unit[:class], :id => unit[:id], :data => unit[:data] %>
-              </div>
-              <% count += 1 %>
-          <% end %>
-      <% end %>
+
 
     </div>
 
@@ -54,39 +47,7 @@
 
   <article class="map">
 
-    <!--<button class="startGameButton">Start Game</button>-->
-    <!--<button class="loadEnemiesButton">Load Enemies</button>-->
-    <!--<button class="randomSetUpButton">Random Setup</button>-->
-    <!--<button class="moveUnitButton">1 Turn</button>-->
-    <!--<button class="fiveTurnsButton">5 Turns</button>-->
-    <!--<button class="tenTurnsButton">10 Turns</button>-->
 
-    <!--
-    <% y_pos = 1 %>-->
-
-    <!--
-    <% @map.each do |row| %>-->
-        <!--<div class="grid" data-y-pos=<%= y_pos %>>-->
-        <!--
-        <% row.each do |square| %>-->
-            <!--<%= square.html_safe %>-->
-            <!--
-        <% end %>-->
-        <!--</div>-->
-        <!--
-        <% y_pos += 1 %>-->
-        <!--
-    <% end %>-->
-
-    <!--<div id="placeUnits"></div>-->
-
-    <div class="enemyBay">
-      <% @enemies.each do |branch| %>
-          <% branch.each do |unit| %>
-              <%= image_tag unit[:image], :class => unit[:class], :id => unit[:id], :data => unit[:data] %>
-          <% end %>
-      <% end %>
-    </div>
   </article>
 </div>
 
