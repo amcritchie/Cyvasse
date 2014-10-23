@@ -1,4 +1,3 @@
-
 <p id="notice"><%= notice %></p>
 <article class="matchHeading">
 
@@ -38,13 +37,16 @@
 
     </div>
 
+    <% count = 1 %>
     <div class="auxSpace">
-      <% @units.each do |branch|%>
-        <% branch.each do |unit| %>
-          <%= image_tag unit[:image], :class => unit[:class], :id => unit[:id], :data => unit[:data]%>
-
-    <% end%>
-      <% end%>
+      <% @units.each do |branch| %>
+          <% branch.each do |unit| %>
+              <div class="sssquare" id="aux<%= count %>" data-team=1>
+                <%= image_tag unit[:image], :class => unit[:class], :id => unit[:id], :data => unit[:data] %>
+              </div>
+              <% count += 1 %>
+          <% end %>
+      <% end %>
 
     </div>
 
@@ -59,25 +61,31 @@
     <!--<button class="fiveTurnsButton">5 Turns</button>-->
     <!--<button class="tenTurnsButton">10 Turns</button>-->
 
-    <!--<% y_pos = 1 %>-->
+    <!--
+    <% y_pos = 1 %>-->
 
-    <!--<% @map.each do |row| %>-->
+    <!--
+    <% @map.each do |row| %>-->
         <!--<div class="grid" data-y-pos=<%= y_pos %>>-->
-          <!--<% row.each do |square| %>-->
-              <!--<%= square.html_safe %>-->
-          <!--<% end %>-->
+        <!--
+        <% row.each do |square| %>-->
+            <!--<%= square.html_safe %>-->
+            <!--
+        <% end %>-->
         <!--</div>-->
-        <!--<% y_pos += 1 %>-->
-    <!--<% end %>-->
+        <!--
+        <% y_pos += 1 %>-->
+        <!--
+    <% end %>-->
 
     <!--<div id="placeUnits"></div>-->
 
     <div class="enemyBay">
-      <% @enemies.each do |branch|%>
+      <% @enemies.each do |branch| %>
           <% branch.each do |unit| %>
-              <%= image_tag unit[:image], :class => unit[:class], :id => unit[:id], :data => unit[:data]%>
-          <% end%>
-      <% end%>
+              <%= image_tag unit[:image], :class => unit[:class], :id => unit[:id], :data => unit[:data] %>
+          <% end %>
+      <% end %>
     </div>
   </article>
 </div>

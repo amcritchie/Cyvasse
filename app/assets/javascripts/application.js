@@ -46,7 +46,7 @@ function hex(row,col,hexIndex){
 
     return "<div class='ssquare' id='hex" + hexIndex + "' " +
         "data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
-        "data-size=" + size + " data-occupied=false data-even=true data-src=nil" +
+        "data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
         "data-innRange=" + initialRange + " data-off=nil data-movement=nil data-team=nil data-range=nil>" +
         "<svg class='brick'>" +
 
