@@ -7,7 +7,7 @@ class HeavyHorse < Unit
     attributes = {
         :name => "Heavy Horse",
         :codename => "heavy horse",
-        :image => "svgs/heavy horse.svg",
+        :image => "svgs/heavyhorse.svg",
         :movement => 3,
         :strength => 3,
         :range => 0,

@@ -60,6 +60,61 @@ function hex(row,col,hexIndex){
         "</svg></div>"
 }
 
+function createUnit(index,nameArray,movement,strength,range,flank,team){
+
+
+    var classs = "newUnit";
+    var name = nameArray.join(" ");
+    var codename = nameArray.join("");
+    var svg = '/assets/svgs/' + codename + '.svg';
+
+    return "<img alt='" + name + "' class=" + classs + " " +
+
+
+        "data-movement='" + movement + "' data-strength=" + strength + " " +
+        "data-range=" + range + " data-flank=" + flank + " " +
+        "data-trump=" + name + " data-team=" + team + " " +
+        "id=" + codename + " src=" + svg + " " +
+
+        "data-index=" + parseInt(index + 1) + " data-inrange=" + name + " " +
+
+        "data-alive=" + name + " data-codename=" + name + " data-englishname=" + name + " " +
+
+        "data-x-pos=" + name + " data-xpos=" + name + " " +
+        "data-y-pos=" + name + " data-ypos=" + name + " " +
+        "data-rowsize=" + name +">"
+
+}
+
+function createAllUnits(){
+    var array = [];
+
+    array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
+    array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
+    array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
+    array.push(createUnit(array.length,["spearman"],2,2,0,2,1));
+    array.push(createUnit(array.length,["spearman"],2,2,0,2,1));
+    array.push(createUnit(array.length,["elephant"],3,4,0,1,1));
+    array.push(createUnit(array.length,["elephant"],3,4,0,1,1));
+    array.push(createUnit(array.length,["light","horse"],4,2,0,1,1));
+    array.push(createUnit(array.length,["light","horse"],4,2,0,1,1));
+    array.push(createUnit(array.length,["heavy","horse"],3,3,0,1,1));
+    array.push(createUnit(array.length,["heavy","horse"],3,3,0,1,1));
+    array.push(createUnit(array.length,["crossbowman"],2,1,2,1,1));
+    array.push(createUnit(array.length,["crossbowman"],2,1,2,1,1));
+
+    array.push(createUnit(array.length,["catapult"],2,3,3,1,1));
+    array.push(createUnit(array.length,["catapult"],2,3,3,1,1));
+
+    array.push(createUnit(array.length,["trebuchet"],1,4,4,1,1));
+    array.push(createUnit(array.length,["mountain"],0,9,0,0,1));
+    array.push(createUnit(array.length,["mountain"],0,9,0,0,1));
+
+    array.push(createUnit(array.length,["dragon"],6,5,0,0,1));
+    array.push(createUnit(array.length,["king"],2,1,0,1,1));
+
+    return array
+}
 
 function create_row(size){
     var array = [];
@@ -96,6 +151,14 @@ $(document).ready(function () {
     var templateFunction = JST['views/map'];
     var result = templateFunction(user);
 
+    var allUnits = createAllUnits();
+    var hash = { units: allUnits, name: 'Alex'};
+    var createUnits = JST['views/units'];
+    var units = createUnits(hash);
+
+//    var units = "<div>Units Made by JS.</div>";
+
+    $(".auxSpace").prepend(units);
     $(".map").prepend(result);
 
 

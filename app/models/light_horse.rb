@@ -7,7 +7,7 @@ class LightHorse < Unit
     attributes = {
         :name => "Light Horse",
         :codename => "light horse",
-        :image => "svgs/light horse.svg",
+        :image => "svgs/lighthorse.svg",
         :movement => 4,
         :strength => 2,
         :range => 0,

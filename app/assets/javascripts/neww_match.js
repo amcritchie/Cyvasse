@@ -29,6 +29,7 @@ function pregame() {
 
 function startGame() {
     pregame_var = false;
+    $('.randomSetUpButton').hide();
     addAIButtons();
     whoGoesFirst();
     turn()
@@ -140,10 +141,10 @@ function registerHoverUnit() {
 }
 function updateInfoBox(unit) {
 
-    $('#selectedUnitName').empty().append(unit.data('englishname'));
+    $('#selectedUnitName').empty().append(unit.children("img").attr('alt'));
 
     if (pregame_var == true) {
-        $('#selectedUnitImage').attr('src', "../assets/svgs/" + unit.children("img").data('codename') + ".svg");
+        $('#selectedUnitImage').attr('src', "../assets/svgs/" + unit.children("img").attr('id') + ".svg");
         $('#selectedStrength').empty().append('Strength: ' + unit.children("img").data('strength'));
         $('#selectedMovement').empty().append('Movement: ' + unit.children("img").data('movement'));
         $('#selectedRange').empty().append('Range: ' + unit.children("img").data('range'));
@@ -438,28 +439,62 @@ function hexClassChange(xPos, yPos, className, horizontal, click) {
 //------Range hex------
 
 function placeEnemies() {
-    var $enemies = $('*[data-team=' + 0 + ']');
-    movingGroupToMap($enemies);
+    var array = [
+        [1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],
+        [3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],
+        [4,1],[4,2],[4,3],[4,4],[4,5],[4,6],[4,7],[4,8],[4,9],
+        [5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10]
+    ];
+    var team = 0;
+    movingGroupToMap(team,array);
     $('.loadEnemiesButton').hide()
 }
 function placeUnits() {
-    var $units = $('*[data-team=' + 1 + ']');
-    movingGroupToMap($units);
-    $('.startGameButton').css('visibility', 'visible');
-    $('.randomSetUpButton').hide()
-}
-function movingGroupToMap(group) {
-    group.each(function () {
-        moveImageToMap($(this));
-//        (if $(this).data)
-//        console.log("============");
-//        console.log("Name ~> " + $(this).data('codename'));
-//        console.log("rdata-xPos ~> " + $(this).data('xPos'));
-//        console.log("data-yPos ~> " + $(this).data('yPos'));
+    var array = [
+        [7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],
+        [8,1],[8,2],[8,3],[8,4],[8,5],[8,6],[8,7],[8,8],[8,9],
+        [9,1],[9,2],[9,3],[9,4],[9,5],[9,6],[9,7],[9,8],
+        [10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],
+        [11,1],[11,2],[11,3],[11,4],[11,5],[11,6]
+    ];
 
-        moveUnitToNewPosition($(this), $(this).data('xPos'), $(this).data('yPos'), $(this).data('rowsize'));
-//        moveUnitToNewPosition($(this), $(this).attr('data-xPos'), $(this).attr('data-yPos'), $(this).data('rowsize'));
+    var team = 1;
+
+    movingGroupToMap(team,array);
+    $('.startGameButton').css('visibility', 'visible');
+
+    $('.randomSetUpButton').off('click');
+    $('.randomSetUpButton').on('click', function () {
+        placeUnits();
     });
+}
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex ;
+
+    while (0 !== currentIndex) {
+
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+function movingGroupToMap(team,array) {
+
+    for (var i = 0; i < 20; i++) {
+        var shuffledArray = shuffle(array);
+        var moveLocation = shuffledArray.pop();
+        array = shuffledArray;
+
+        var hello = $("[data-index=" + (parseInt(i) + 1) + "][data-team=" + team + "]");
+        moveImageToMap(hello);
+        moveUnitToNewPosition(hello, moveLocation[1], moveLocation[0], 3);
+    }
 }
 
 function runATurn() {
@@ -504,7 +539,8 @@ $(document).ready(function () {
             placeEnemies()
         });
         $('.randomSetUpButton').on('click', function () {
-            placeUnits()
+            placeUnits();
+//            $('.randomSetUpButton').off('click')
         });
         $movingRange = $("[data-innrange=true]");
         pregame();

@@ -65,10 +65,12 @@ class MatchesController < ApplicationController
         array_of_initial_spaces = bottom_starting_positions
       end
 
-      enemies = [create_vangaurd(team, array_of_initial_spaces.shuffle!.pop(7)),
-                 create_cavalry(team, array_of_initial_spaces.shuffle!.pop(4)),
-                 create_range(team, array_of_initial_spaces.shuffle!.pop(5)),
-                 create_unique(team, array_of_initial_spaces.shuffle!.pop(4))]
+      enemies = [
+          # create_vangaurd(team, array_of_initial_spaces.shuffle!.pop(7)),
+          # create_cavalry(team, array_of_initial_spaces.shuffle!.pop(4)),
+          # create_range(team, array_of_initial_spaces.shuffle!.pop(5)),
+          # create_unique(team, array_of_initial_spaces.shuffle!.pop(4))
+          ]
     end
 
     def create_vangaurd(team, positions)
