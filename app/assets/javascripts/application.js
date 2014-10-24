@@ -153,49 +153,21 @@ function loadMapAndUnits(units,map){
 
 function loadEverything(){
 
-//    var menu = $('#navigation-menu');
-//    var menuToggle = $('#js-mobile-menu');
-//    var signUp = $('.sign-up');
-
-//    var map = create_map();
-
     var map = { thearray: create_map() };
     var templateMap = JST['views/map'];
     var result = templateMap(map);
 
-    var uunits = createAllUnits();
-    var hash = { units: uunits};
+    var hash = { units: createAllUnits()};
     var templateUnits = JST['views/units'];
     var units = templateUnits(hash);
-
-    debugger;
-//    var units = "<div>Units Made by JS.</div>";
 
     loadMapAndUnits(units,result);
 }
 
 $(document).ready(function () {
-    loadEverything();
 
-//    $(".auxSpace").prepend(units);
-//    $(".map").prepend(result);
+//    loadEverything();
 
-
-    $("#some_container").append(result);
-
-    setTimeout(function() {
-//        var newResult = templateFunction(
-//            {
-//                name: "Johnson",
-//                surname: "Smith"
-//            }
-//        );
-//        console.log($("#hex53"));
-//        console.log($("[data-index=5]"));
-
-//        $("[data-index=7]").appendTo($("#hex53"));
-//        $("#some_container").html(newResult);
-    }, 1000);
 
     $(menuToggle).on('click', function (e) {
         e.preventDefault();

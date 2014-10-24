@@ -218,7 +218,10 @@ article {
   height: 70px;
   cursor: pointer;
   display: inline-block;
+
   -webkit-border-radius: 100px;
+      border: solid 1px red;
+
 
 }
 .deadUnit{
@@ -232,7 +235,7 @@ article {
 
 //'*[data-team=' + team_id + ']'
 [data-team*='1']{
-  border: solid 1px red;
+//  border: solid 1px red;
 }
 [data-team*='0']{
   border: solid 1px greenyellow;
