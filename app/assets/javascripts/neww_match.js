@@ -24,9 +24,6 @@ var pregame_var;
 function pregame() {
 //    functionsForOffense();
     functionsForPregame();
-    $('.startGameButton').on('click', function () {
-        startGame()
-    })
 }
 
 function startGame() {
@@ -348,7 +345,11 @@ function moveUnitToNewPosition(movingUnit, xPos, yPos, hexRowSize, xPosOld, yPos
     $movingRange.off('click');
 
     if ($(".sssquare").length == 0){
+        $('.startGameButton').off('click');
         $(".map").prepend("<button class='startGameButton'>Start Game</button>")
+        $('.startGameButton').on('click', function () {
+            startGame()
+        })
     }
 
     if (pregame_var == true) {
