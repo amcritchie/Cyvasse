@@ -51,7 +51,7 @@ function hex(row,col,hexIndex){
         "<svg class='brick'>" +
 
         "<polygon class=" + theClass + " data-x-pos=" + col + " data-y-pos=" + row + " " +
-        "data-size=" + size + " data-occupied='false' data-even='true'" +
+        "data-size=" + size + " data-even='true'" +
         "points='" + (width * hex_scale) + ",0 0," + (height*hex_scale) + "" +
         " 0," + (height+hypotenuse)*hex_scale + "" +
         " " + width*hex_scale + "," + (hypotenuse*2)*hex_scale + "" +
