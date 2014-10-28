@@ -1,6 +1,10 @@
 <article>
-<%= button_to "About Cyvasse", '/about', class: 'btn btn-info' %><br>
-
+  <div class="option">
+<%= link_to "About Cyvasse", '/about', class: 'options' %><br>
+  </div>
+  <div class="option">
+    <%= link_to "Play A Game", '/matches/1', class: 'options' %><br>
+  </div>
 <%= link_to "Matches", "matches" %><br>
 <%= link_to "Users", "users" %><br>
 <%= link_to "Game Statuses", "game_statuses" %><br>

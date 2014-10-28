@@ -47,7 +47,7 @@ function hex(row,col,hexIndex){
     return "<div class='ssquare' id='hex" + hexIndex + "' " +
         "data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
         "data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
-        "data-innRange=" + initialRange + " data-off=nil data-movement=nil data-team=nil data-range=nil>" +
+        "data-innRange=" + initialRange + " data-off=nil data-movement=nil  data-range=nil>" +
         "<svg class='brick'>" +
 
         "<polygon class=" + theClass + " data-x-pos=" + col + " data-y-pos=" + row + " " +
@@ -92,17 +92,17 @@ function create_map(){
 function createUnit(index,nameArray,movement,strength,range,flank,team){
 
 
-    var classs = "newUnit";
+//    var classs = "newUnit";
     var name = nameArray.join(" ");
     var codename = nameArray.join("");
     var svg = '/assets/svgs/' + codename + '.svg';
 
-    return "<img alt='" + name + "' class=" + classs + " " +
+    return "<img alt='" + name + "' " +
 
 
         "data-movement='" + movement + "' data-strength=" + strength + " " +
         "data-range=" + range + " data-flank=" + flank + " " +
-        "data-trump=" + name + " data-team=" + team + " " +
+        "data-trump=" + name + " data-team=" + team + " data-status='unplaced' " +
         "id=" + codename + " src=" + svg + " " +
 
         "data-index=" + parseInt(index + 1) + " data-inrange=" + name + " " +
@@ -169,14 +169,14 @@ $(document).ready(function () {
 //    loadEverything();
 
 
-    $(menuToggle).on('click', function (e) {
-        e.preventDefault();
-        menu.slideToggle(function () {
-            if (menu.is(':hidden')) {
-                menu.removeAttr('style');
-            }
-        });
-    });
+//    $(menuToggle).on('click', function (e) {
+//        e.preventDefault();
+//        menu.slideToggle(function () {
+//            if (menu.is(':hidden')) {
+//                menu.removeAttr('style');
+//            }
+//        });
+//    });
 
     // underline under the active nav item
     $(".nav .nav-link").click(function () {

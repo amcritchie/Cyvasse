@@ -201,7 +201,8 @@ article {
 
 
 //Unit Classes
-.newUnit {
+[data-status='unplaced']{
+
   z-index: 6;
   position: relative;
   margin-bottom: -6px;
@@ -209,7 +210,7 @@ article {
   width: 40px;
   height: 40px;
 }
-.inPlayUnit{
+[data-status='alive']{
   z-index: 6;
   position: absolute;
   margin-left: 0px;
@@ -220,17 +221,72 @@ article {
   display: inline-block;
 
   -webkit-border-radius: 100px;
-      border: solid 1px red;
-
-
+  border: solid 1px red;
 }
-.deadUnit{
+[data-status='dead']{
   z-index: 6;
   position: relative;
   margin-bottom: -6px;
   margin-right: -5px;
   width: 40px;
   height: 40px;
+}
+
+//.newUnit {
+//  z-index: 6;
+//  position: relative;
+//  margin-bottom: -6px;
+//  margin-right: -5px;
+//  width: 40px;
+//  height: 40px;
+//}
+//.inPlayUnit{
+//  z-index: 6;
+//  position: absolute;
+//  margin-left: 0px;
+//  margin-bottom: -5px;
+//  width: 60px;
+//  height: 70px;
+//  cursor: pointer;
+//  display: inline-block;
+//
+//  -webkit-border-radius: 100px;
+//      border: solid 1px red;
+//
+//
+//}
+//.deadUnit{
+//  z-index: 6;
+//  position: relative;
+//  margin-bottom: -6px;
+//  margin-right: -5px;
+//  width: 40px;
+//  height: 40px;
+//}
+
+.options{
+//  text-align: center;
+//  font-size: 50px;
+  font-size: 40px;
+
+//  font-size: 20px;
+//  background-color: yellowgreen;
+}
+
+.option{
+//  font-size: 50px;
+  display: block;
+
+  margin-top: 12px;
+  widht: 300px;
+  height: 100px;
+  text-align: center;
+  vertical-align: center;
+
+  background-color: yellowgreen;
+  border: solid blue 2px;
+  -webkit-border-radius: 10px;
+
 }
 
 //'*[data-team=' + team_id + ']'
@@ -258,7 +314,7 @@ article {
   }
 }
 
-.sssquare{
+.unplacedUnitSpace{
   float: left;
   width: 39.5px;
   height: 40px;

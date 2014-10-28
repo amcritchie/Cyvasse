@@ -52,10 +52,10 @@ describe("Load Units", function () {
         expect($(".auxSpace")).toExist();
     });
     it("All aux spaces load", function () {
-        expect($('.sssquare').length).toEqual(20);
+        expect($('.unplacedUnitSpace').length).toEqual(20);
     });
     it("All units load", function () {
-        expect($('.newUnit').length).toEqual(20);
+        expect($('[data-status="unplaced"]').length).toEqual(20);
     });
     it("Units start in aux spaces", function () {
         expect(parseInt($('#aux14').children("img").attr("data-index"))).toEqual(14);
@@ -154,10 +154,10 @@ describe("Moving Units to Map", function () {
     });
 
     it("When a Unit is moved to Map, its aux space is removed", function () {
-        expect($(".sssquare").length).toEqual(20);
+        expect($(".unplacedUnitSpace").length).toEqual(20);
         rabble.parent().click();
         hex1.click();
-        expect($(".sssquare").length).toEqual(19);
+        expect($(".unplacedUnitSpace").length).toEqual(19);
     });
 
     it("Click Unit, then click other unit to move to Map", function () {
@@ -234,9 +234,9 @@ describe("Moving Units to Map", function () {
     });
 
     it("Click 'Random Setup' Button, and expect all Units to move to Map", function(){
-        expect($(".sssquare").length).toEqual(20);
+        expect($(".unplacedUnitSpace").length).toEqual(20);
         $('.randomSetUpButton').click();
-        expect($(".sssquare").length).toEqual(0);
+        expect($(".unplacedUnitSpace").length).toEqual(0);
         expect($("[data-occupied=true]").length).toEqual(20);
     });
 
@@ -313,4 +313,41 @@ describe("Moving Units to Map", function () {
 
     });
 
+});
+
+describe("A spy", function() {
+    var rabble;
+    var dragon;
+    var lightHorse;
+    var hex1;
+    var hex2;
+    var hex3;
+
+    beforeEach(function () {
+
+        loadFixtures('game.html');
+        loadEverything();
+        initialConditions();
+        rabble = $('[data-index=3]');
+        dragon = $('[data-index=19]');
+        lightHorse = $('[data-index=8]');
+        hex1 = $('#hex55');
+        hex2 = $('#hex67');
+        hex3 = $('#hex72');
+    });
+    var foo, bar = null;
+
+    beforeEach(function () {
+
+        spyOn(window, 'startGame');
+
+//        foo.setBar();
+    });
+
+    it("tracks that the spy was called", function () {
+        //debugger;
+        $('.randomSetUpButton').click();
+        $('.startGameButton').click();
+        expect(window.startGame).toHaveBeenCalled();
+    });
 });

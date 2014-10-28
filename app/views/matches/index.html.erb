@@ -13,7 +13,6 @@
   <tbody>
     <% @matches.each do |match| %>
       <tr>
-        <td><%= match.game_status_id %></td>
         <td><%= match.user_id %></td>
         <td><%= match.challenger_id %></td>
         <td><%= link_to 'Show', match %></td>

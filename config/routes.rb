@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :matches
 
   get '/', to: 'home#index'
-  post '/about', to: 'home#about'
+  get '/about', to: 'home#about'
   get '/piece_attributes', to: 'game#piece_attributes'
 
   resources :game_statuses
