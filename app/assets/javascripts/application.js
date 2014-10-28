@@ -95,7 +95,8 @@ function createUnit(index,nameArray,movement,strength,range,flank,team){
 //    var classs = "newUnit";
     var name = nameArray.join(" ");
     var codename = nameArray.join("");
-    var svg = '/assets/svgs/' + codename + '.svg';
+    var code = "trebuchet-aa9661cf55458eff1d003546e8fcfda9";
+    var svg = '/assets/svgs/' + code + '.svg';
 
     return "<img alt='" + name + "' " +
 
