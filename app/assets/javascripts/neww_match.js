@@ -161,7 +161,7 @@ function updateInfoBox(unit) {
     $('#selectedUnitName').empty().append(unit.children("img").attr('alt'));
 
 //    if (pregame_var == true) {
-    $('#selectedUnitImage').attr('src', "../assets/svgs/" + unit.children("img").attr('id') + ".svg");
+    $('#selectedUnitImage').attr('src', "../images/svgs/" + unit.children("img").attr('id') + ".svg");
     $('#selectedStrength').empty().append('Strength: ' + unit.children("img").data('strength'));
     $('#selectedMovement').empty().append('Movement: ' + unit.children("img").data('movement'));
     $('#selectedRange').empty().append('Range: ' + unit.children("img").data('range'));
