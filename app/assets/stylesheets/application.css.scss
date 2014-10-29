@@ -2,7 +2,6 @@
 @import "neat";
 @import "base/base";
 
-
 $black: #333333;
 $brown: #403939;
 $red: #4A2929;
@@ -165,20 +164,20 @@ article {
 }
 .startGameButton{
   position: absolute;
-  visibility: hidden;
+//  visibility: hidden;
 }
 .moveUnitButton {
   position: absolute;
-  visibility: hidden;
+//  visibility: hidden;
 }
 .fiveTurnsButton {
   position: absolute;
-  visibility: hidden;
+//  visibility: hidden;
   margin-top: 50px;
 }
 .tenTurnsButton{
   position: absolute;
-  visibility: hidden;
+//  visibility: hidden;
   margin-top: 100px;
 }
 
@@ -354,6 +353,10 @@ polygon {
 .testRange {
   stroke: limegreen;
   z-index: 3;
+}
+.yourUnit{
+  stroke: green;
+  z-index: 4;
 }
 
 

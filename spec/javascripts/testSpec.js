@@ -1,3 +1,4 @@
+
 describe("Load Map", function () {
     beforeEach(function (done) {
         loadFixtures('game.html');
@@ -196,8 +197,8 @@ describe("Moving Units to Map", function () {
 
         lightHorse.parent().click();
         rabble.parent().click();
-        hex2.click();
 
+        hex2.click();
         expect(hex1.children("img")).not.toEqual(rabble);
         expect(hex2.children("img")).toEqual(rabble);
 
@@ -265,6 +266,18 @@ describe("Moving Units to Map", function () {
         for (i = 1; i < 7; i++) {
             expect($("[data-occupied=true][data-yPosss=" + i + "]").length).toEqual(0);
         }
+    });
+
+    it("Units can be moved after clicking the Random Button", function(){
+        debugger;
+        $('.randomSetUpButton').click();
+        var moveFrom = rabble.parent();
+        rabble.parent().click();
+        var moveTo = $initialRange.not($('[data-occupied=true]'))[1];
+        moveTo.click();
+        expect($(moveTo).children("img")).toEqual(rabble);
+        expect($(moveFrom).children("img")).not.toEqual(rabble);
+
     });
 
     it("Start game button appears when all Units are placed", function(){
