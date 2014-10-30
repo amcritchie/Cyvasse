@@ -117,40 +117,41 @@ function createUnit(index,nameArray,movement,strength,range,flank,team){
 
 }
 
-function createAllUnits(){
+function createAllUnits(team){
     var array = [];
 
-    array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
-    array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
-    array.push(createUnit(array.length,["rabble"],2,1,0,1,1));
-    array.push(createUnit(array.length,["spearman"],2,2,0,2,1));
-    array.push(createUnit(array.length,["spearman"],2,2,0,2,1));
-    array.push(createUnit(array.length,["elephant"],3,4,0,1,1));
-    array.push(createUnit(array.length,["elephant"],3,4,0,1,1));
-    array.push(createUnit(array.length,["light","horse"],4,2,0,1,1));
-    array.push(createUnit(array.length,["light","horse"],4,2,0,1,1));
-    array.push(createUnit(array.length,["heavy","horse"],3,3,0,1,1));
-    array.push(createUnit(array.length,["heavy","horse"],3,3,0,1,1));
-    array.push(createUnit(array.length,["crossbowman"],2,1,2,1,1));
-    array.push(createUnit(array.length,["crossbowman"],2,1,2,1,1));
+    array.push(createUnit(array.length,["rabble"],2,1,0,1,team));
+    array.push(createUnit(array.length,["rabble"],2,1,0,1,team));
+    array.push(createUnit(array.length,["rabble"],2,1,0,1,team));
+    array.push(createUnit(array.length,["spearman"],2,2,0,2,team));
+    array.push(createUnit(array.length,["spearman"],2,2,0,2,team));
+    array.push(createUnit(array.length,["elephant"],3,4,0,1,team));
+    array.push(createUnit(array.length,["elephant"],3,4,0,1,team));
+    array.push(createUnit(array.length,["light","horse"],4,2,0,1,team));
+    array.push(createUnit(array.length,["light","horse"],4,2,0,1,team));
+    array.push(createUnit(array.length,["heavy","horse"],3,3,0,1,team));
+    array.push(createUnit(array.length,["heavy","horse"],3,3,0,1,team));
+    array.push(createUnit(array.length,["crossbowman"],2,1,2,1,team));
+    array.push(createUnit(array.length,["crossbowman"],2,1,2,1,team));
 
-    array.push(createUnit(array.length,["catapult"],2,3,3,1,1));
-    array.push(createUnit(array.length,["catapult"],2,3,3,1,1));
+    array.push(createUnit(array.length,["catapult"],2,3,3,1,team));
+    array.push(createUnit(array.length,["catapult"],2,3,3,1,team));
 
-    array.push(createUnit(array.length,["trebuchet"],1,4,4,1,1));
-    array.push(createUnit(array.length,["mountain"],0,9,0,0,1));
-    array.push(createUnit(array.length,["mountain"],0,9,0,0,1));
+    array.push(createUnit(array.length,["trebuchet"],1,4,4,1,team));
+    array.push(createUnit(array.length,["mountain"],0,9,0,0,team));
+    array.push(createUnit(array.length,["mountain"],0,9,0,0,team));
 
-    array.push(createUnit(array.length,["dragon"],6,5,0,0,1));
-    array.push(createUnit(array.length,["king"],2,1,0,1,1));
+    array.push(createUnit(array.length,["dragon"],6,5,0,0,team));
+    array.push(createUnit(array.length,["king"],2,1,0,1,team));
 
     return array
 }
 
-function loadMapAndUnits(units,map){
+function loadMapAndUnits(units,map,enemies){
 
     $(".auxSpace").prepend(units);
     $(".map").prepend(map);
+    $(".enemyBay").prepend(enemies)
 }
 
 function loadEverything(){
@@ -159,26 +160,19 @@ function loadEverything(){
     var templateMap = JST['views/map'];
     var result = templateMap(map);
 
-    var hash = { units: createAllUnits()};
+    var hash = { units: createAllUnits(1)};
     var templateUnits = JST['views/units'];
     var units = templateUnits(hash);
 
-    loadMapAndUnits(units,result);
+    var enemyHash = { enemies: createAllUnits(0) };
+    var templateEnemies = JST['views/enemies'];
+    var enemies = templateEnemies(enemyHash);
+
+    loadMapAndUnits(units,result,enemies);
 }
 
 $(document).ready(function () {
 
-//    loadEverything();
-
-
-//    $(menuToggle).on('click', function (e) {
-//        e.preventDefault();
-//        menu.slideToggle(function () {
-//            if (menu.is(':hidden')) {
-//                menu.removeAttr('style');
-//            }
-//        });
-//    });
 
     // underline under the active nav item
     $(".nav .nav-link").click(function () {

@@ -12,13 +12,12 @@ describe("Load Map", function () {
     });
 
     it("All Squares loaded", function () {
-        expect($allSquares).toExist();
         expect($('.ssquare').length).toEqual(91);
     });
 
     it("Squares have correct ID numbers", function () {
 
-        $.each($allSquares, function (index, square) {
+        $.each($allHexagons.parent().parent(), function (index, square) {
             index += 1;
             expect(square.id).toEqual("hex" + parseInt(index) + "");
             if (index > 51) {
