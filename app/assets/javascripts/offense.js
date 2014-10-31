@@ -10,59 +10,52 @@ var Offense = {
     attackRange: null,
     movingRange: $('hex52'),
     movableUnits: $('hex53'),
-    www: null,
-
 
     xregisterClickUnit: function(){
         Offense.movableUnits = $('[data-team=1]').parent();
         Offense.movableUnits.on('click', function () {
             Offense.movingRange.off('click');
-            Offense.selectedUnit = $(this).children("img");
-            Offense.selectedUnitMovingRange = $(this).children('img').attr('data-movement');
-            Offense.selectedUnitAttackRange = $(this).children('img').attr('data-range');
-            Offense.selectedUnitXpos = $(this).attr('data-xPosss');
-            Offense.selectedUnitYpos = $(this).attr('data-yPosss');
-
+            Offense.selectedUnitAttributes();
             Offense.xupdateUnitRanges();
         })
     },
+    selectedUnitAttributes: function(){
+        Offense.selectedUnit = $(this).children("img");
+        Offense.selectedUnitMovingRange = $(this).children('img').attr('data-movement');
+        Offense.selectedUnitAttackRange = $(this).children('img').attr('data-range');
+        Offense.selectedUnitXpos = $(this).attr('data-xPosss');
+        Offense.selectedUnitYpos = $(this).attr('data-yPosss');
+    },
     xupdateUnitRanges: function(){
 
-//        $('img').attr('data-inRange', false);
-//        $('.ssquare').attr('data-innRange', false);
-
-        Offense.xupdateMovingRange();
-        Offense.xregisterMovableArea();
+        $('.ssquare').attr('data-innRange', false);
+        Offense.updateMovingRange();
+        Offense.moveFunctions();
     },
-    xupdateMovingRange: function(){
+    updateMovingRange: function(){
 
-//        debugger;
         Offense.attackRange = HexRange.ycreateRangeSelector(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitAttackRange);
         Offense.movingRange = HexRange.ycreateRangeSelector(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange);
 
-//        debugger;
         Offense.attackRange.attr('class', 'hoverRange');
         Offense.movingRange.attr('class', 'selectedRange');
 
-        Offense.www = Offense.movingRange.parent().parent();
-        debugger;
+//        Offense.www = Offense.movingRange.parent().parent();
+//        debugger;
 //        $movingRangeView = Offense.xcreateRangeSelector(Offense.selectedUnitMovingRange, Offense.selectedUnitXpos, Offense.selectedUnitYpos);
         $movingRangeVieww = $('[data-innRange = true]');
         $movingRange = $movingRangeVieww.filter(function () {
             return $(this).data('occupied') == false
         });
     },
-    xregisterMovableArea: function(){
-        Offense.xregisterMovableHex();
-        if (pregame_var == false) {
-//        registerAttackUnit()
-        }
+    moveFunctions: function(){
+        Offense.registerMovableHex();
+        Offense.registerAttackUnit();
     },
-    xregisterMovableHex: function(){
-//        debugger;
-        Offense.movingRange.parent().parent().on('click', function (e) {
 
-//            e.preventPropagation();
+    registerMovableHex: function(){
+//        debugger;
+        Offense.movingRange.parent().parent().on('click', function () {
 
             Offense.movingRange.off('click');
             $moveableUnits.off('click');
@@ -76,5 +69,28 @@ var Offense = {
 
             turn()
         });
+    },
+
+    registerAttackUnit: function(){
+        $enemyUnitsInRange.on('click', function () {
+            moveUnitToGraveyard($(this).children("img"));
+            var newLocation = $(this);
+            var oldLocation = $selectedUnit.parent();
+            if ($selectedUnit.data('range') == 0) {
+//            moveUnitToNewPosition($selectedUnit, $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
+//            moveUnitToNewPosition($selectedUnit, $(this).attr('data-xPosss'), $(this).attr('data-yPosss'), $selectedUnit.attr('data-xPosss'), $selectedUnit.attr('data-yPosss'));
+                newMoveUnitToNewPosition(newLocation,oldLocation,$selectedUnit)
+
+            } else {
+                $allHexagons.attr('class', 'unSelected');
+                $moveableUnits.off('click');
+                $movingRange.off();
+                defense = offense;
+                offense = Math.abs(offense - 1);
+                turn();
+            }
+            $enemyUnitsInRange.off('click');
+            $selectedUnit = 0;
+        })
     }
 };

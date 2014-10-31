@@ -363,3 +363,34 @@ describe("A spy", function() {
         expect(window.startGame).toHaveBeenCalled();
     });
 });
+
+
+describe("A spy", function() {
+    var rabble;
+    var dragon;
+    var lightHorse;
+    var hex1;
+    var hex2;
+    var hex3;
+
+    beforeEach(function () {
+
+        loadFixtures('game.html');
+        loadEverything();
+        initialConditions();
+        rabble = $('[data-index=3]');
+        dragon = $('[data-index=19]');
+        lightHorse = $('[data-index=8]');
+        hex1 = $('#hex55');
+        hex2 = $('#hex67');
+        hex3 = $('#hex72');
+    });
+
+    it("tracks that the spy was called", function () {
+        //debugger;
+        $('.randomSetUpButton').click();
+        $('.startGameButton').click();
+        rabble.parent().click();
+
+    });
+});

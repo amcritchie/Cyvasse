@@ -60,6 +60,7 @@ function hex(row,col,hexIndex){
         "</svg></div>"
 }
 
+
 function create_row(size){
     var array = [];
     for (var i = 0; i < size; i++) {
