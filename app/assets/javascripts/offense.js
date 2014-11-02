@@ -43,13 +43,27 @@ var Offense = {
     },
     updateMovingRange: function(){
 
-        Offense.attackRange = HexRange.ycreateRangeSelector(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitAttackRange).parent().parent();
-        Offense.movingRange = HexRange.ycreateRangeSelector(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
-        Offense.attackRange.children('svg').children('polygon').attr('class', 'hoverRange');
-        Offense.movingRange.children('svg').children('polygon').attr('class', 'selectedRange');
+        var attackRange = HexRange.ycreateRangeSelector(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitAttackRange).parent().parent();
+        var movingRange = HexRange.ycreateRangeSelector(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
+        attackRange.children('svg').children('polygon').attr('class', 'hoverRange');
+        movingRange.children('svg').children('polygon').attr('class', 'selectedRange');
+
+//        Offense.attackRange = attackRange.not($('[data-occupied=true]'));
+//        Offense.attackRange = attackRange.children('img').not($('[data-team=1]')).parent();
+
+        Offense.attackRange = attackRange.filter(function(){
+           return $(this).children('img').attr('data-strength') >= 3 && $(this).children('img').attr('data-team') == 0
+        });
+
+        Offense.movingRange = movingRange.not($('[data-occupied=true]'));
+
+        debugger;
+
+        Offense.attackRange.children('svg').children('polygon').attr('class', 'blueblue');
+        Offense.movingRange.children('svg').children('polygon').attr('class', 'orange');
 
         Offense.movingRange = Offense.movingRange.not($('[data-occupied=true]'));
-//        var attackableUnits = Offense.attackRange.not($('[data-team=0]'));
+//        var attackableUnits  = Offense.attackRange.not($('[data-team=0]'));
 
         Offense.selectableUnits = $('[data-team=1]').parent();
 
