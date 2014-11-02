@@ -42,8 +42,8 @@ var RandomSetup = {
             RandomSetup.moveImageToMap(movingUnit);
             newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit);
         }
-        addStartButton();
-        Board.loadPreGameFunctions();
+        PreGame.addStartButton();
+        PreGame.loadPreGameFunctions();
     },
     moveImageToMap: function(unit){
         if (unit.attr('data-status') == 'unplaced') {

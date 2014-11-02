@@ -24,41 +24,12 @@ var pregame_var;
 
 var $clickableUnitSpaces;
 
-var Board = {
-
-    loadPregameButton: function() {
-        $(".map").prepend("<button class='loadEnemiesButton'>Load Enemies</button>");
-        $(".map").prepend("<button class='randomSetUpButton'>Random Setup</button>");
-        $('.loadEnemiesButton').on('click', function () { placeEnemies() });
-        $('.randomSetUpButton').on('click', function () { placeUnits() });
-    },
-
-    loadPreGameFunctions: function() {
-        initializeHexagons();
-        resetAndUpdateUnitsAndRange();
-        registerHoverUnit();
-        pregameClickUnit();
-    }
-};
-
 //  Functions.
 function pregame() {
     RandomSetup.loadPregameButton();
-    Board.loadPreGameFunctions();
-
+    PreGame.loadPreGameFunctions();
 }
 
-function initializeHexagons(){
-    $allHexagons.attr('class', 'unSelected');
-    $initialRange.children("svg").children("polygon").attr('class', 'selectedRange');
-    $('[data-occupied=true]').children("svg").children("polygon").attr('class', 'yourUnit');
-}
-function resetAndUpdateUnitsAndRange(){
-    $movingRange.off('click');
-    $moveableUnits.off('click');
-    $movingRange = $initialRange.not('[data-occupied=true]');
-    $moveableUnits = $('img[data-team=' + 1 + ']').parent();
-}
 function registerHoverUnit() {
     var $hoverableRange = $('img[data-team=1]');
     $hoverableRange.on({
@@ -78,23 +49,6 @@ function updateInfoBox(unit) {
     $('#selectedFlank').empty().append('Flank: ' + unit.data('flank'));
     $('#selectedTrump').empty().append('Trump: ' + unit.data('trump'));
 }
-function pregameClickUnit() {
-    $moveableUnits.on('click', function () {
-        $selectedUnit = $(this).children("img");
-        RegisterClickHex($movingRange);
-    })
-}
-
-function RegisterClickHex(movingRange) {
-    movingRange.on('click', function () {
-        var newLocation = $(this);
-        var oldLocation = $selectedUnit.parent();
-        moveImageToMap($selectedUnit);
-        newMoveUnitToNewPosition(newLocation, oldLocation, $selectedUnit);
-        addStartButton();
-        Board.loadPreGameFunctions();
-    });
-}
 
 function moveImageToMap(unit) {
     if (unit.attr('data-status') == 'unplaced') {
@@ -104,30 +58,28 @@ function moveImageToMap(unit) {
     }
 }
 function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
-    debugger;
     var movingTo = $(newLocation);
     var movingFrom = $(oldLocation);
     movingUnit.prependTo(movingTo);
     movingTo.attr('data-occupied', true);
     movingFrom.attr('data-occupied', false);
 }
-function addStartButton() {
-    if ($(".unplacedUnitSpace").length == 0) {
-        $('.startGameButton').off('click').remove();
-        $(".map").prepend("<button class='startGameButton'>Start Game</button>");
-        $('.startGameButton').on('click', function () { startGame() })
-    }
-}
-
-
-
+//function addStartButton(movingRange) {
+//    if ($(".unplacedUnitSpace").length == 0) {
+//        $('.startGameButton').off('click').remove();
+//        $(".map").prepend("<button class='startGameButton'>Start Game</button>");
+//        $('.startGameButton').on('click', function () {
+//            startGame()
+//        })
+//    }
+//}
 
 function startGame() {
     pregame_var = false;
     $('.startGameButton').off('click').remove();
     $('.randomSetUpButton').off('click').remove();
     $('.loadEnemiesButton').off('click').remove();
-
+    $movingRange.off('click');
     addAIButtons();
     whoGoesFirst();
     turn()
@@ -148,7 +100,7 @@ function turn() {
 }
 
 function initializeTurn() {
-    $allHexagons.attr('class','unSelected');
+    $allHexagons.attr('class', 'unSelected');
     $moveableUnits = $('img[data-team=' + offense + ']').parent();
     $enemyUnits = $('img[data-team=' + defense + ']').parent();
 }
@@ -238,11 +190,11 @@ function updateMovingRange(range, xPos, yPos) {
 function createRangeSelector(range, xPos, yPos) {
     $allHexagons.attr('class', 'unSelected');
 
-    newChangeClassOfHexagonsInRange(range,xPos,yPos);
+    newChangeClassOfHexagonsInRange(range, xPos, yPos);
     return $('polygon.testRange');
 }
 
-function newChangeClassOfHexagonsInRange(range, xPos, yPos){
+function newChangeClassOfHexagonsInRange(range, xPos, yPos) {
     var horizontal = 1;
 
     while (horizontal <= range) {
@@ -300,7 +252,7 @@ function newverticalHexChange(unit_x, unit_y, horizontal, vertical, constant, up
         var xx = (unit_x - (horizontal + row - vertical - constant));
         var yy = (unit_y + up);
 
-        newHexClassChange(xx,yy,horizontal);
+        newHexClassChange(xx, yy, horizontal);
         row += 1;
     }
 }
@@ -312,15 +264,13 @@ function newdiagonalHexChange(unit_x, unit_y, vertical, up, horizontal, constant
 }
 
 
+function newHexClassChange(xPos, yPos) {
+    var hex = $('*[data-xPosss=' + xPos + '][data-yPosss=' + yPos + ']');
 
-function newHexClassChange(xPos,yPos){
-    debugger;
-    var hex = $('*[data-xPosss='+xPos+'][data-yPosss='+yPos+']');
-
-    if ((!!(hex.attr('data-occupied')) == true) && ((hex.children('img').attr('data-strength')) <= $selectedUnit.attr('data-strength'))){
-        console.log("Alex is the bomb.")
-    }
-    hex.children('svg').children('polygon').attr('class','testRange');
+//    if ((!!(hex.attr('data-occupied')) == true) && ((hex.children('img').attr('data-strength')) <= $selectedUnit.attr('data-strength'))){
+//        console.log("Alex is the bomb.")
+//    }
+    hex.children('svg').children('polygon').attr('class', 'testRange');
 }
 
 function updateEnemyInRange(xPos, yPos) {
@@ -373,7 +323,6 @@ function registerMovableHex() {
 
         $enemyUnitsInRange.off('click');
 
-        debugger;
 
         var newLocation = $(this);
         var oldLocation = $selectedUnit.parent();
@@ -392,7 +341,7 @@ function registerAttackUnit() {
         if ($selectedUnit.data('range') == 0) {
 //            moveUnitToNewPosition($selectedUnit, $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
 //            moveUnitToNewPosition($selectedUnit, $(this).attr('data-xPosss'), $(this).attr('data-yPosss'), $selectedUnit.attr('data-xPosss'), $selectedUnit.attr('data-yPosss'));
-            newMoveUnitToNewPosition(newLocation,oldLocation,$selectedUnit)
+            newMoveUnitToNewPosition(newLocation, oldLocation, $selectedUnit)
 
         } else {
             $allHexagons.attr('class', 'unSelected');
@@ -527,29 +476,36 @@ function hexClassChange(xPos, yPos, className, horizontal, click) {
 //------Range hex------
 
 
-
 function placeEnemies() {
 
     var possibleSpots = [];
-    for(var i=1;i<=40;i++){ possibleSpots.push('#hex'+i) }
+    for (var i = 1; i <= 40; i++) {
+        possibleSpots.push('#hex' + i)
+    }
     var team = 0;
     newMovingGroupToMap(team, possibleSpots);
 
     $('.loadEnemiesButton').off('click');
-    $('.loadEnemiesButton').on('click', function () { placeEnemies(); });
+    $('.loadEnemiesButton').on('click', function () {
+        placeEnemies();
+    });
 }
 
 function placeUnits() {
 
     var possibleSpots = [];
-    for(var i=52;i<=91;i++){ possibleSpots.push('#hex'+i) }
+    for (var i = 52; i <= 91; i++) {
+        possibleSpots.push('#hex' + i)
+    }
     var team = 1;
     newMovingGroupToMap(team, possibleSpots);
 
     $('.randomSetUpButton').off('click');
-    $('.randomSetUpButton').on('click', function () { placeUnits(); });
+    $('.randomSetUpButton').on('click', function () {
+        placeUnits();
+    });
 }
-function newMovingGroupToMap(team, possibleSpots){
+function newMovingGroupToMap(team, possibleSpots) {
     for (var i = 0; i < 20; i++) {
         var shuffledArray = shuffle(possibleSpots);
         var newLocation = shuffledArray.pop();
@@ -567,7 +523,7 @@ function newMovingGroupToMap(team, possibleSpots){
         newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit);
     }
     addStartButton();
-    Board.loadPreGameFunctions();
+    PreGame.loadPreGameFunctions();
 }
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;

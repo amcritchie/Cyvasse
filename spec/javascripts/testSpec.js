@@ -1,4 +1,6 @@
 
+
+
 describe("Load Map", function () {
     beforeEach(function (done) {
         loadFixtures('game.html');
@@ -268,7 +270,6 @@ describe("Moving Units to Map", function () {
     });
 
     it("Units can be moved after clicking the Random Button", function(){
-        debugger;
         $('.randomSetUpButton').click();
         var moveFrom = rabble.parent();
         rabble.parent().click();
@@ -378,19 +379,46 @@ describe("A spy", function() {
         loadFixtures('game.html');
         loadEverything();
         initialConditions();
-        rabble = $('[data-index=3]');
+
+        rabble = $('[data-index=1]');
         dragon = $('[data-index=19]');
         lightHorse = $('[data-index=8]');
         hex1 = $('#hex55');
         hex2 = $('#hex67');
         hex3 = $('#hex72');
-    });
-
-    it("tracks that the spy was called", function () {
-        //debugger;
-        $('.randomSetUpButton').click();
+        for (i=1; i < 21; i++) {
+            $("#aux" + i + "").click();
+            $("#hex" + (55 + i) + "").click();
+        }
         $('.startGameButton').click();
-        rabble.parent().click();
-
     });
+
+    it("first move, move to availiable spot", function () {
+        expect(rabble.parent().attr("id")).toEqual("hex56");
+        rabble.parent().click();
+        $('#hex54').click();
+        expect(rabble.parent().attr("id")).toEqual("hex54");
+    });
+
+    it("cant move to space out of range", function(){
+        expect(rabble.parent().attr("id")).toEqual("hex56");
+        rabble.parent().click();
+        $('#hex53').click();
+        expect(rabble.parent().attr("id")).toEqual("hex56");
+    });
+
+    it("Click Unit, then click other unit, and last unit is the selected one", function(){
+        rabble.parent().click();
+        lightHorse.parent().click();
+        rabble.parent().click();
+        rabble.parent().click();
+        rabble.parent().click();
+        lightHorse.parent().click();
+        dragon.parent().click();
+        expect(Offense.selectedUnit).toEqual(dragon);
+    });
+
+    it("Attack Enemy", function(){
+
+    })
 });
