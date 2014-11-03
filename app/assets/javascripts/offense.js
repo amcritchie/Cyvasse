@@ -1,41 +1,55 @@
 
 var Offense = {
 
+    offense: null,
+    defense: null,
     selectedUnit: null,
     selectedUnitXpos: null,
     selectedUnitYpos: null,
+    selectedUnitTeam: null,
+    selectedUnitStrength: null,
     selectedUnitMovingRange: null,
     selectedUnitAttackRange: null,
 
 //    attackRange: null,
+    newLocation: null,
+    oldLocation: null,
+
     movingRange: $('hex52'),
     attackRange: $('hex54'),
     selectableUnits: $('hex53'),
 
-    xregisterClickUnit: function(){
-        Offense.selectableUnits = $('[data-team=1]').parent();
+    registerClickUnit: function(offense){
+
+        Offense.offense = offense;
+        Offense.defense = Math.abs(offense - 1);
+
+        Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
 
         Offense.selectableUnits.on('click', function () {
             Offense.movingRange.off('click');
-//            Offense.attackRange.off('click');
+            Offense.attackRange.off('click');
 
             Offense.selectedUnitAttributes($(this));
-            Offense.xupdateUnitRanges();
+            Offense.updateUnitRanges();
         })
     },
     selectedUnitAttributes: function(selectedUnit){
         Offense.selectedUnit = selectedUnit.children("img");
+        Offense.selectedUnitTeam = selectedUnit.children('img').attr('data-team');
+        Offense.selectedUnitStrength = parseInt(selectedUnit.children('img').attr('data-strength'));
         Offense.selectedUnitMovingRange = selectedUnit.children('img').attr('data-movement');
+
         if (selectedUnit.children('img').attr('data-range') == 0 ){
             Offense.selectedUnitAttackRange = selectedUnit.children('img').attr('data-movement');
         }else{
             Offense.selectedUnitAttackRange = selectedUnit.children('img').attr('data-range');
         }
-//        Offense.selectedUnitAttackRange = $(this).children('img').attr('data-range');
+
         Offense.selectedUnitXpos = selectedUnit.attr('data-xPosss');
         Offense.selectedUnitYpos = selectedUnit.attr('data-yPosss');
     },
-    xupdateUnitRanges: function(){
+    updateUnitRanges: function(){
 
         $('.ssquare').attr('data-innRange', false);
         Offense.updateMovingRange();
@@ -50,68 +64,71 @@ var Offense = {
 
 
         Offense.attackRange = attackRange.filter(function(){
-           return $(this).children('img').attr('data-strength') >= 3 && $(this).children('img').attr('data-team') == 0
+           return $(this).children('img').attr('data-strength') <= Offense.selectedUnitStrength && $(this).children('img').attr('data-team') == Offense.defense
         });
         Offense.movingRange = movingRange.not($('[data-occupied=true]'));
 
         Offense.attackRange.children('svg').children('polygon').attr('class', 'blueblue');
         Offense.movingRange.children('svg').children('polygon').attr('class', 'orange');
 
-//        Offense.movingRange = Offense.movingRange.not($('[data-occupied=true]'));
+        Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
 
-        Offense.selectableUnits = $('[data-team=1]').parent();
-
-
-//        Offense.www = Offense.movingRange.parent().parent();
-//        debugger;
-//        $movingRangeView = Offense.xcreateRangeSelector(Offense.selectedUnitMovingRange, Offense.selectedUnitXpos, Offense.selectedUnitYpos);
-//        $movingRangeVieww = $('[data-innRange = true]');
-//        $movingRange = $movingRangeVieww.filter(function () {
-//            return $(this).data('occupied') == false
-//        });
     },
     moveFunctions: function(){
         Offense.registerMovableHex();
-//        Offense.registerAttackUnit();
+        Offense.registerAttackUnit();
     },
 
     registerMovableHex: function(){
         Offense.movingRange.on('click', function () {
 
-//            Offense.movingRange.off('click');
-//            $moveableUnits.off('click');
             Offense.selectableUnits.off('click');
 
-//            debugger;
-            var newLocation = $(this);
-            var oldLocation = Offense.selectedUnit.parent();
+            Offense.newLocation = $(this);
+            Offense.oldLocation = Offense.selectedUnit.parent();
 
-            newMoveUnitToNewPosition(newLocation, oldLocation, Offense.selectedUnit);
+            Offense.moveUnitToNewPosition();
 
-            turn()
+            Offense.finishTurn()
+
         });
     },
 
     registerAttackUnit: function(){
-        $enemyUnitsInRange.on('click', function () {
-            moveUnitToGraveyard($(this).children("img"));
-            var newLocation = $(this);
-            var oldLocation = $selectedUnit.parent();
-            if ($selectedUnit.data('range') == 0) {
-//            moveUnitToNewPosition($selectedUnit, $(this).data('x_pos'), $(this).data('y_pos'), $(this).data('row_size'), $selectedUnit.data('x_pos'), $selectedUnit.data('y_pos'));
-//            moveUnitToNewPosition($selectedUnit, $(this).attr('data-xPosss'), $(this).attr('data-yPosss'), $selectedUnit.attr('data-xPosss'), $selectedUnit.attr('data-yPosss'));
-                newMoveUnitToNewPosition(newLocation,oldLocation,$selectedUnit)
+        Offense.attackRange.on('click', function () {
+//            Offense.moveUnitToGraveyard($(this).children("img"));
+            Death.unitKilled($(this).children("img"));
+            Offense.newLocation = $(this);
+            Offense.oldLocation = Offense.selectedUnit.parent();
+            if (Offense.selectedUnit.attr('data-range') == 0) {
+
+                Offense.moveUnitToNewPosition();
 
             } else {
                 $allHexagons.attr('class', 'unSelected');
                 $moveableUnits.off('click');
                 $movingRange.off();
                 defense = offense;
-                offense = Math.abs(offense - 1);
-                turn();
             }
-            $enemyUnitsInRange.off('click');
-            $selectedUnit = 0;
-        })
+
+            Offense.finishTurn()
+        });
+
+    },
+
+    moveUnitToNewPosition: function(){
+        var movingTo = $(Offense.newLocation);
+        var movingFrom = $(Offense.oldLocation);
+        Offense.selectedUnit.prependTo(movingTo);
+        movingTo.attr('data-occupied', true);
+        movingFrom.attr('data-occupied', false);
+    },
+
+    finishTurn: function(){
+        Offense.attackRange.off('click');
+        Offense.selectableUnits.off('click');
+        Offense.selectedUnit = null;
+        Offense.offense = Math.abs(Offense.offense - 1);
+        Game.runTurn(Offense.offense);
     }
 };

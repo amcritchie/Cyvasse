@@ -76,9 +76,7 @@ describe("Load Units", function () {
 
         expect($moveableUnits[0].children).toEqual($('[data-index=1]'));
         expect($moveableUnits[13].children).toEqual($('[data-index=14]'));
-
     });
-
 });
 
 
@@ -361,7 +359,7 @@ describe("A spy", function() {
     });
 });
 
-describe("A spy", function() {
+describe("First move", function() {
     var rabble;
     var dragon;
     var lightHorse;
@@ -421,4 +419,72 @@ describe("A spy", function() {
         expect($('[data-index=20][data-team=0]').parent().attr("id")).toEqual("hex21");
 
     });
+
+    it("Enemies can be killed by a stronger enemy.", function(){
+        $('[data-index=10][data-team=1]').parent().click();
+        expect(Offense.attackRange.length).toEqual(2);
+        $('#hex33').click();
+//        debugger;
+        expect($('.graveyard').children('.grave').length).toEqual(1);
+        expect($('[data-index=10][data-team=1]').parent().attr("id")).toEqual("hex33");
+        expect($('[data-index=8][data-team=0]').parent().attr("id")).toEqual("gra1");
+    })
+});
+
+describe('Game Play', function(){
+
+    var rabble;
+    var dragon;
+    var elephant;
+    var lightHorse;
+
+    beforeEach(function () {
+
+        loadFixtures('game.html');
+        loadEverything();
+        initialConditions();
+
+        rabble = $('[data-index=1][data-team=1]');
+        dragon = $('[data-index=19][data-team=1]');
+        elephant = $('[data-index=6][data-team=1]');
+        lightHorse = $('[data-index=8][data-team=1]');
+
+        for (i=1; i < 21; i++) {
+            $("#aux" + i + "").click();
+            $("#hex" + (55 + i) + "").click();
+        }
+        $('.enemyLineUpOne').click();
+        $('.startGameButton').click();
+    });
+
+    it("Team 1 cannot select a Unit after moving to a free space", function(){
+        lightHorse.parent().click();
+        expect(Offense.selectedUnit).toEqual(lightHorse);
+        $('#hex45').click();
+        expect(Offense.selectedUnit).toEqual(null);
+
+        rabble.parent().click();
+        expect(Offense.selectedUnit).toEqual(null);
+//        vv Doesn't Work vv ??
+//        lightHorse.parent().click();
+    });
+    it("Team 1 cannot select a Unit after attacking a unit", function(){
+        lightHorse.parent().click();
+        expect(Offense.selectedUnit).toEqual(lightHorse);
+        $('#hex33').click();
+        expect(Offense.selectedUnit).toEqual(null);
+
+        rabble.parent().click();
+        expect(Offense.selectedUnit).toEqual(null);
+//        vv Doesn't Work vv ??
+//        lightHorse.parent().click();
+    });
+    it("Unit cannot attack an Enemy in other units range.", function(){
+        elephant.parent().click();
+        rabble.parent().click();
+        $('#hex38').click();
+        expect($('#hex38').children('img')).not.toEqual(rabble);
+
+    })
+
 });
