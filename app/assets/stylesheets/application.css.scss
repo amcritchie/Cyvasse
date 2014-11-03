@@ -21,14 +21,15 @@ $temp5: #d52822;
   content: " ";
   display: table;
 }
+
 .clearfix:after {
   clear: both;
 }
+
 /* * For IE 6/7 only * Include this rule to trigger hasLayout and contain floats. */
 .clearfix {
   *zoom: 1;
 }
-
 
 //About Page CSS
 .class_title {
@@ -36,12 +37,14 @@ $temp5: #d52822;
   position: relative;
   display: block;
 }
+
 .about_unit {
   height: 100px;
   display: inline-block;
   border-top: solid 1px #666;
 
 }
+
 .about_unit_description {
   padding-top: 0;
   width: 225px;
@@ -52,6 +55,7 @@ $temp5: #d52822;
     line-height: 90%;
   }
 }
+
 .about_unit_image {
   width: 60px;
   display: inline-block;
@@ -60,28 +64,31 @@ $temp5: #d52822;
   max-height: 100%;
 }
 
-
 /* ----- =columns ----- */
 .one_half {
   width: 460px;
 }
+
 .one_third {
   width: 300px;
 }
+
 .two_third {
   width: 620px;
 }
+
 .one_fourth {
   width: 220px;
 }
+
 .three_fourth {
   width: 700px;
 }
+
 .full_column {
   width: 940px;
   float: left;
 }
-
 
 .wrapper {
   margin: auto;
@@ -97,16 +104,18 @@ article {
 }
 
 //Match Page
-.matchHeading{
+.matchHeading {
   width: 920px;
   float: left;
 }
+
 .match .info {
   width: 206px;
   float: left;
 }
+
 .selectedPieceInformation {
-  background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+  background: -webkit-linear-gradient(top, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
   text-align: center;
   border: solid #000000 4px;
   border-bottom: solid #000000 2px;
@@ -114,8 +123,7 @@ article {
   width: 100%;
 }
 
-
-.graveyard{
+.graveyard {
   background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
   border: solid #000000 4px;
   border-top: 0;
@@ -136,62 +144,72 @@ article {
   display: inline-block;
   position: relative;
   float: left;
-    margin-top: 15px;
-    margin-left: -24px;
+  margin-top: 15px;
+  margin-left: -24px;
   height: 47px;
   width: 800px;
   zoom: 0.95;
 }
 
-#selectedUnitName{
+#selectedUnitName {
   height: 50px;
+}
+
+#selectedUnitImage {
+  height: 230px
 }
 
 .match .map {
   width: 700px;
   float: left;
-//    transform: perspective(400px) rotateX(20deg);
+  //    transform: perspective(400px) rotateX(20deg);
 }
 
-.loadEnemiesButton{
+.loadEnemiesButton {
   position: absolute;
   margin-left: 570px;
 }
-.enemyLineUpOne{
+
+.enemyLineUpOne {
   position: absolute;
   margin-left: 600px;
   margin-top: 100px;
 }
-.randomSetUpButton{
+
+.randomSetUpButton {
   position: absolute;
   margin-left: 570px;
   margin-top: 50px;
 }
-.startGameButton{
+
+.startGameButton {
   position: absolute;
-//  visibility: hidden;
-}
-.moveUnitButton {
-  position: absolute;
-//  visibility: hidden;
-}
-.fiveTurnsButton {
-  position: absolute;
-//  visibility: hidden;
-  margin-top: 50px;
-}
-.tenTurnsButton{
-  position: absolute;
-//  visibility: hidden;
-  margin-top: 100px;
+  //  visibility: hidden;
 }
 
+.moveUnitButton {
+  position: absolute;
+  //  visibility: hidden;
+}
+
+.fiveTurnsButton {
+  position: absolute;
+  //  visibility: hidden;
+  margin-top: 50px;
+}
+
+.tenTurnsButton {
+  position: absolute;
+  //  visibility: hidden;
+  margin-top: 100px;
+}
 
 //Unsure What For
 .heading .title {
   width: 700px;
   float: left;
 }
+
 .heading .flash {
   width: 220px;
   float: left;
@@ -203,9 +221,8 @@ article {
   @extend .clearfix;
 }
 
-
 //Unit Classes
-[data-status='unplaced']{
+[data-status='unplaced'] {
 
   z-index: 6;
   position: relative;
@@ -214,7 +231,8 @@ article {
   width: 40px;
   height: 40px;
 }
-[data-status='alive']{
+
+[data-status='alive'] {
   z-index: 6;
   position: absolute;
   margin-left: 0px;
@@ -227,7 +245,8 @@ article {
   -webkit-border-radius: 100px;
   border: solid 1px red;
 }
-[data-status='dead']{
+
+[data-status='dead'] {
   z-index: 6;
   position: relative;
   margin-bottom: -6px;
@@ -268,17 +287,17 @@ article {
 //  height: 40px;
 //}
 
-.options{
-//  text-align: center;
-//  font-size: 50px;
+.options {
+  //  text-align: center;
+  //  font-size: 50px;
   font-size: 40px;
 
-//  font-size: 20px;
-//  background-color: yellowgreen;
+  //  font-size: 20px;
+  //  background-color: yellowgreen;
 }
 
-.option{
-//  font-size: 50px;
+.option {
+  //  font-size: 50px;
   display: block;
 
   margin-top: 12px;
@@ -294,42 +313,49 @@ article {
 }
 
 //'*[data-team=' + team_id + ']'
-[data-team*='1']{
-//  border: solid 1px red;
+[data-team*='1'] {
+  //  border: solid 1px red;
 }
-[data-team*='0']{
+
+[data-team*='0'] {
   border: solid 1px greenyellow;
 }
 
-.ssquare{
+.ssquare {
   float: left;
   width: 60px;
   height: 68px;
   border: solid blue 1px;
   z-index: 5;
-  svg{
+  svg {
     width: 60px;
     height: 68px;
     position: absolute;
     z-index: 2;
-    polygon{
+    polygon {
       position: absolute;
     }
   }
 }
 
-.unplacedUnitSpace{
+.unplacedUnitSpace {
   float: left;
   width: 39.5px;
   height: 40px;
 }
 
-.grave{
+.grave {
   float: left;
   width: 25px;
-  height: 12px;
+  height: 32px;
+  img {
+    float: left;
+    width: 25px;
+    height: 32px;
+  }
 }
-.unplacedEnemySpace{
+
+.unplacedEnemySpace {
   float: left;
   width: 39.5px;
   height: 40px;
@@ -347,45 +373,47 @@ polygon {
     stroke: $white;
   }
 }
+
 .robot {
   width: 42px;
   height: 21px;
 }
-
 
 //Hexagon Classes
 .unSelected {
   stroke: $white;
   z-index: 3;
 }
+
 .hoverRange {
   stroke: darkred;
   z-index: 4;
 }
+
 .selectedRange {
   stroke: blueviolet;
   z-index: 3;
 }
+
 .testRange {
   stroke: limegreen;
   z-index: 3;
 }
-.yourUnit{
+
+.yourUnit {
   stroke: green;
   z-index: 4;
 }
 
-.blueblue{
+.blueblue {
   stroke: royalblue;
   z-index: 4;
 }
 
-.orange{
+.orange {
   stroke: orange;
   z-index: 4;
 }
-
-
 
 //CSS for each row of Hexagons.
 .grid {
@@ -433,7 +461,6 @@ polygon {
     margin-bottom: 0;
   }
 }
-
 
 header.navigation {
   $navigation-padding: 1em;

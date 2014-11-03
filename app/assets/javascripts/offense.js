@@ -68,8 +68,8 @@ var Offense = {
         });
         Offense.movingRange = movingRange.not($('[data-occupied=true]'));
 
-        Offense.attackRange.children('svg').children('polygon').attr('class', 'blueblue');
-        Offense.movingRange.children('svg').children('polygon').attr('class', 'orange');
+//        Offense.attackRange.children('svg').children('polygon').attr('class', 'blueblue');
+//        Offense.movingRange.children('svg').children('polygon').attr('class', 'orange');
 
         Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
 
@@ -131,4 +131,18 @@ var Offense = {
         Offense.offense = Math.abs(Offense.offense - 1);
         Game.runTurn(Offense.offense);
     }
+};
+
+var Death = {
+
+    graveCount: 0,
+
+    unitKilled: function(unit){
+        Death.graveCount += 1;
+        var grave = ('<div class="grave" id="gra'+Death.graveCount+'"></div>');
+
+        $('.graveyard').append(grave);
+        $('#gra'+Death.graveCount+'').prepend(unit);
+    }
+
 };
