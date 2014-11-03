@@ -79,6 +79,8 @@ function startGame() {
     $('.startGameButton').off('click').remove();
     $('.randomSetUpButton').off('click').remove();
     $('.loadEnemiesButton').off('click').remove();
+    $('.enemyLineUpOne').off('click').remove();
+
     $movingRange.off('click');
     addAIButtons();
     whoGoesFirst();
@@ -489,6 +491,15 @@ function placeEnemies() {
     $('.loadEnemiesButton').on('click', function () {
         placeEnemies();
     });
+}
+
+function placeLineOne() {
+    var possibleSpots = [];
+    for (var i = 1; i <= 40; i++) {
+        possibleSpots.push('#hex' + i)
+    }
+    var team = 0;
+    newMovingGroupToMap(team, possibleSpots);
 }
 
 function placeUnits() {

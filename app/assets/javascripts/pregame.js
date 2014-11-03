@@ -1,15 +1,23 @@
 var PreGame = {
 
-    loadPregameButton: function () {
-        $(".map").prepend("<button class='loadEnemiesButton'>Load Enemies</button>");
-        $(".map").prepend("<button class='randomSetUpButton'>Random Setup</button>");
-        $('.loadEnemiesButton').on('click', function () {
-            placeEnemies()
-        });
-        $('.randomSetUpButton').on('click', function () {
-            placeUnits()
-        });
-    },
+//    loadPregameButton: function () {
+//        debugger;
+//        $(".map").prepend("<button class='loadEnemiesButton'>Load Enemies</button>");
+//        $(".map").prepend("<button class='randomSetUpButton'>Random Setup</button>");
+//        $(".map").prepend("<button class='randomSetUpButton'>Random Setup</button>");
+//
+//        $(".map").prepend("<button class='enemyLineUpOne'>Enemy Lineup 1</button>");
+//
+//        $('.loadEnemiesButton').on('click', function () {
+//            placeEnemies()
+//        });
+//        $('.randomSetUpButton').on('click', function () {
+//            placeUnits()
+//        });
+//        $('.enemyLineUpOne').on('click', function () {
+//            placeLineOne()
+//        });
+//    },
 
     loadPreGameFunctions: function () {
         PreGame.initializeHexagons();

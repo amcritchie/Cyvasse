@@ -1,6 +1,4 @@
 
-
-
 describe("Load Map", function () {
     beforeEach(function (done) {
         loadFixtures('game.html');
@@ -57,15 +55,15 @@ describe("Load Units", function () {
         expect($('.unplacedUnitSpace').length).toEqual(20);
     });
     it("All units load", function () {
-        expect($('[data-status="unplaced"]').length).toEqual(20);
+        expect($('[data-status="unplaced"]').length).toEqual(40);
     });
     it("Units start in aux spaces", function () {
         expect(parseInt($('#aux14').children("img").attr("data-index"))).toEqual(14);
     });
     it("Units start in correct Aux space", function () {
-        var rabble = $('[data-index=3]');
-        var dragon = $('[data-index=19]');
-        var lightHorse = $('[data-index=8]');
+        var rabble = $('[data-index=3][data-team=1]');
+        var dragon = $('[data-index=19][data-team=1]');
+        var lightHorse = $('[data-index=8][data-team=1]');
         expect(rabble.parent().attr('id')).toEqual("aux3");
         expect(dragon.parent().attr('id')).toEqual("aux19");
         expect(lightHorse.parent().attr('id')).toEqual("aux8");
@@ -95,9 +93,9 @@ describe("Pregame click Rabble", function () {
         loadFixtures('game.html');
         loadEverything();
         initialConditions();
-        rabble = $('[data-index=3]');
-        dragon = $('[data-index=19]');
-        lightHorse = $('[data-index=8]');
+        rabble = $('[data-index=3][data-team=1]');
+        dragon = $('[data-index=19][data-team=1]');
+        lightHorse = $('[data-index=8][data-team=1]');
         rabble.parent().click();
 
         done();
@@ -147,9 +145,9 @@ describe("Moving Units to Map", function () {
         loadFixtures('game.html');
         loadEverything();
         initialConditions();
-        rabble = $('[data-index=3]');
-        dragon = $('[data-index=19]');
-        lightHorse = $('[data-index=8]');
+        rabble = $('[data-index=3][data-team=1]');
+        dragon = $('[data-index=19][data-team=1]');
+        lightHorse = $('[data-index=8][data-team=1]');
         hex1 = $('#hex55');
         hex2 = $('#hex67');
         hex3 = $('#hex72');
@@ -167,8 +165,6 @@ describe("Moving Units to Map", function () {
         expect($selectedUnit).toEqual(rabble);
         lightHorse.parent().click();
         expect($selectedUnit).toEqual(lightHorse);
-//        debugger;
-//        var lightHorseAuxSpace =
         var lightHorseAuxSpace = "#aux" + lightHorse.data('index');
         expect($(lightHorseAuxSpace)).toExist();
         hex1.click();
@@ -341,9 +337,9 @@ describe("A spy", function() {
         loadFixtures('game.html');
         loadEverything();
         initialConditions();
-        rabble = $('[data-index=3]');
-        dragon = $('[data-index=19]');
-        lightHorse = $('[data-index=8]');
+        rabble = $('[data-index=3][data-team=1]');
+        dragon = $('[data-index=19][data-team=1]');
+        lightHorse = $('[data-index=8][data-team=1]');
         hex1 = $('#hex55');
         hex2 = $('#hex67');
         hex3 = $('#hex72');
@@ -365,7 +361,6 @@ describe("A spy", function() {
     });
 });
 
-
 describe("A spy", function() {
     var rabble;
     var dragon;
@@ -380,9 +375,9 @@ describe("A spy", function() {
         loadEverything();
         initialConditions();
 
-        rabble = $('[data-index=1]');
-        dragon = $('[data-index=19]');
-        lightHorse = $('[data-index=8]');
+        rabble = $('[data-index=1][data-team=1]');
+        dragon = $('[data-index=19][data-team=1]');
+        lightHorse = $('[data-index=8][data-team=1]');
         hex1 = $('#hex55');
         hex2 = $('#hex67');
         hex3 = $('#hex72');
@@ -390,6 +385,7 @@ describe("A spy", function() {
             $("#aux" + i + "").click();
             $("#hex" + (55 + i) + "").click();
         }
+        $('.enemyLineUpOne').click();
         $('.startGameButton').click();
     });
 
@@ -418,7 +414,11 @@ describe("A spy", function() {
         expect(Offense.selectedUnit).toEqual(dragon);
     });
 
-    it("Attack Enemy", function(){
+    it("Enemies Lined up properly in Enemy Line One", function(){
+        expect($('[data-index=5][data-team=0]').parent().attr("id")).toEqual("hex36");
+        expect($('[data-index=14][data-team=0]').parent().attr("id")).toEqual("hex27");
+        expect($('[data-index=1][data-team=0]').parent().attr("id")).toEqual("hex40");
+        expect($('[data-index=20][data-team=0]').parent().attr("id")).toEqual("hex21");
 
-    })
+    });
 });
