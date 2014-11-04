@@ -386,11 +386,13 @@ polygon {
 }
 
 .hoverRange {
+  fill: orange;
   stroke: darkred;
   z-index: 4;
 }
 
 .selectedRange {
+  fill: blue;
   stroke: blueviolet;
   z-index: 3;
 }
@@ -406,11 +408,13 @@ polygon {
 }
 
 .blueblue {
+  fill: red;
   stroke: royalblue;
   z-index: 4;
 }
 
 .orange {
+  fill: green;
   stroke: orange;
   z-index: 4;
 }

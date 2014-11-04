@@ -68,8 +68,8 @@ var Offense = {
         });
         Offense.movingRange = movingRange.not($('[data-occupied=true]'));
 
-//        Offense.attackRange.children('svg').children('polygon').attr('class', 'blueblue');
-//        Offense.movingRange.children('svg').children('polygon').attr('class', 'orange');
+        Offense.attackRange.children('svg').children('polygon').attr('class', 'blueblue');
+        Offense.movingRange.children('svg').children('polygon').attr('class', 'orange');
 
         Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
 

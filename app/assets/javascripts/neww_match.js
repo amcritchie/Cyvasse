@@ -23,7 +23,7 @@ function pregame() {
 }
 
 function registerHoverUnit() {
-    var $hoverableRange = $('img[data-team=1]');
+    var $hoverableRange = $('img[data-team]');
     $hoverableRange.on({
         mouseenter: function () {
             updateInfoBox($(this));
@@ -251,11 +251,34 @@ function initialConditions() {
     pregame();
 }
 
-$(document).ready(function () {
-
+function newGame(){
     loadEverything();
     initialConditions();
     registerHoverUnit();
+}
+
+function oldGame(){
+    loadEverything();
+    Game.oldGame();
+}
+
+$(document).ready(function () {
+
+    $(".map").prepend("<button class='newGame'>New Game</button>");
+    $(".map").prepend("<button class='oldGame'>Old Game</button>");
+
+    $('.newGame').on('click', function () {
+        $('.newGame').off('click').remove();
+        $('.oldGame').off('click').remove();
+        newGame();
+    });
+
+    $('.oldGame').on('click', function () {
+        $('.newGame').off('click').remove();
+        $('.oldGame').off('click').remove();
+        oldGame();
+    });
+
 
 //  Json
     var pieceAtt;
