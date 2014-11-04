@@ -131,6 +131,14 @@ article {
   width: 100%;
 }
 
+.enemyGraveyard {
+  background: -webkit-linear-gradient(bottom left, #9917ca, #7db9e8);
+  border: solid #000000 4px;
+  border-top: 0;
+  height: 85px;
+  width: 100%;
+}
+
 .auxSpace {
   background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
   border: solid #000000 4px;
@@ -140,6 +148,7 @@ article {
 }
 
 .enemyBay {
+  background: -webkit-linear-gradient(bottom left, #9917ca, #7db9e8);
   border: solid #000000 4px;
   display: inline-block;
   position: relative;
