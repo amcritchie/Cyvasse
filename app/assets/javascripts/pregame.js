@@ -1,24 +1,5 @@
 var PreGame = {
 
-//    loadPregameButton: function () {
-//        debugger;
-//        $(".map").prepend("<button class='loadEnemiesButton'>Load Enemies</button>");
-//        $(".map").prepend("<button class='randomSetUpButton'>Random Setup</button>");
-//        $(".map").prepend("<button class='randomSetUpButton'>Random Setup</button>");
-//
-//        $(".map").prepend("<button class='enemyLineUpOne'>Enemy Lineup 1</button>");
-//
-//        $('.loadEnemiesButton').on('click', function () {
-//            placeEnemies()
-//        });
-//        $('.randomSetUpButton').on('click', function () {
-//            placeUnits()
-//        });
-//        $('.enemyLineUpOne').on('click', function () {
-//            placeLineOne()
-//        });
-//    },
-
     loadPreGameFunctions: function () {
         PreGame.initializeHexagons();
         PreGame.resetAndUpdateUnitsAndRange();
@@ -62,7 +43,7 @@ var PreGame = {
     addStartButton: function () {
         if ($(".unplacedUnitSpace").length == 0) {
             $('.startGameButton').off('click').remove();
-            $(".map").prepend("<button class='startGameButton'>Start Game</button>");
+            $(".extraSpace").prepend("<button class='startGameButton'>Start Game</button>");
             $('.startGameButton').on('click', function () {
                 $initialRange.off('click');
                 startGame()

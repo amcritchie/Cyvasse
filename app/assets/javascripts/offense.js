@@ -21,14 +21,13 @@ var Offense = {
 
     registerClickUnit: function(offense){
 
+
         Offense.offense = offense;
         Offense.defense = Math.abs(offense - 1);
-
         Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
 
         Offense.selectableUnits.on('click', function () {
-//            updateSelectBox(unit);
-            updateSelectBox(unit);
+            updateSelectBox($(this).children('img'));
             Offense.movingRange.off('click');
             Offense.attackRange.off('click');
 
@@ -53,7 +52,7 @@ var Offense = {
     },
     updateUnitRanges: function(){
 
-        $('.ssquare').attr('data-innRange', false);
+        $('.hexDiv').attr('data-innRange', false);
         Offense.updateMovingRange();
         Offense.moveFunctions();
     },

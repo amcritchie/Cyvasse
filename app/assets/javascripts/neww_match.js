@@ -23,41 +23,23 @@ function pregame() {
     PreGame.loadPreGameFunctions();
 }
 
-function registerHoverUnit() {
-    $hoverableRange = $('img[data-team]');
-    $hoverableRange.mouseenter(function (e) {
-            updateHoverBox($(this));
-        }
-//        mouseleave: function () {
-//        }
-    );
-}
-function updateHoverBox(unit) {
-    $('#hoverName').empty().append(unit.attr('alt'));
 
-    $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
-//    $('#selectedCompImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
-
-    $('#hoverOffense').empty().append('Offense: ' + unit.data('strength'));
-    $('#hoverDefence').empty().append('Defence: ' + unit.data('strength'));
-
-    $('#hoverMvRange').empty().append('Moves: ' + unit.data('movement'));
-    $('#selectedRange').empty().append('Range: ' + unit.data('range'));
-    $('#selectedFlank').empty().append('Flank: ' + unit.data('flank'));
-    $('#selectedTrump').empty().append('Trump: ' + unit.data('trump'));
-}
 
 function updateSelectBox(unit) {
-    $('#hoverName').empty().append(unit.attr('alt'));
 
-//    $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
-    $('.sss').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
 
-    $('#hoverOffense').empty().append('Offense: ' + unit.data('strength'));
-    $('#hoverMvRange').empty().append('Movement: ' + unit.data('movement'));
-    $('#selectedRange').empty().append('Range: ' + unit.data('range'));
-    $('#selectedFlank').empty().append('Flank: ' + unit.data('flank'));
-    $('#selectedTrump').empty().append('Trump: ' + unit.data('trump'));
+    $('.p1').css('visibility', 'visible');
+
+    $('#selectUnitName').empty().append(capitalizeEachWord(unit.attr('alt')));
+
+    $('.selectedUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
+
+    $('.selectedUnitAttack').empty().append(unit.data('strength'));
+    $('.selectedUnitDefence').empty().append(unit.data('strength'));
+    $('.selectedUnitMovement').empty().append(unit.data('movement'));
+
+    $('.selectedUnitUtility').empty().append(unit.data('range'));
+    $('.selectedUnitTrump').empty().append(unit.data('flank'));
 }
 
 
@@ -85,9 +67,9 @@ function startGame() {
     Game.firstTurn(offense)
 }
 function addAIButtons() {
-    $(".map").prepend("<button class='moveUnitButton'>10 Turns</button>");
-    $(".map").prepend("<button class='fiveTurnsButton'>5 Turns</button>");
-    $(".map").prepend("<button class='tenTurnsButton'>1 Turn</button>");
+    $(".extraSpace").prepend("<button class='moveUnitButton'>10 Turns</button>");
+    $(".extraSpace").prepend("<button class='fiveTurnsButton'>5 Turns</button>");
+    $(".extraSpace").prepend("<button class='tenTurnsButton'>1 Turn</button>");
 }
 function whoGoesFirst() {
     offense = 1;
@@ -251,6 +233,34 @@ function shuffle(array) {
     return array;
 }
 
+function registerHoverUnit() {
+    $hoverableRange = $('img[data-team]');
+    $hoverableRange.mouseenter(function (e) {
+            updateHoverBox($(this));
+        }
+//        mouseleave: function () {
+//        }
+    );
+}
+
+function capitalizeEachWord(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
+
+function updateHoverBox(unit) {
+    $('#hoverName').empty().append(capitalizeEachWord(unit.attr('alt')));
+
+    $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
+
+    $('#hoverOffense').empty().append('Attack: ' + unit.data('strength'));
+    $('#hoverDefence').empty().append('Armor: ' + unit.data('strength'));
+
+    $('#hoverMvRange').empty().append('Moves: ' + unit.data('movement'));
+    $('#hoverUtRange').empty().append('Trump: ' + unit.data('trump'));
+}
+
 
 function initialConditions() {
 
@@ -271,7 +281,7 @@ function initialConditions() {
 function newGame(){
     loadEverything();
     initialConditions();
-//    registerHoverUnit();
+    registerHoverUnit();
 }
 
 function oldGame(){
@@ -291,8 +301,10 @@ $(document).ready(function () {
     });
 
     $('.oldGame').on('click', function () {
+
         $('.newGame').off('click').remove();
         $('.oldGame').off('click').remove();
+
         oldGame();
     });
 

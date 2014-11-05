@@ -1,6 +1,8 @@
 @import "bourbon";
 @import "neat";
 @import "base/base";
+@import "new";
+@import "borbon";
 
 $black: #333333;
 $brown: #403939;
@@ -92,7 +94,7 @@ $temp5: #d52822;
 
 .wrapper {
   margin: auto;
-  width: 980px;
+  width: 960px;
   border: solid green 3px;
   background: #ffffff; /* Old browsers */
   background: -webkit-linear-gradient(right top, $temp2, $temp3);
@@ -114,50 +116,17 @@ article {
   float: left;
 }
 
-.selectedPieceInformation {
-  background: -webkit-linear-gradient(top, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
-  text-align: center;
-  border: solid #000000 4px;
-  border-bottom: solid #000000 2px;
-  height: 381px;
-  width: 100%;
-}
-
-.graveyard {
-  background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
-  border: solid #000000 4px;
-  border-top: 0;
-  height: 85px;
-  width: 100%;
-}
-
-.enemyGraveyard {
-  background: -webkit-linear-gradient(bottom left, #9917ca, #7db9e8);
-  border: solid #000000 4px;
-  border-top: 0;
-  height: 85px;
-  width: 100%;
-}
 
 .auxSpace {
-  background: -webkit-linear-gradient(bottom left, #207cca, #7db9e8);
-  border: solid #000000 4px;
   border-top: 0;
   height: 164px;
   width: 100%;
 }
 
 .enemyBay {
-  background: -webkit-linear-gradient(bottom left, #9917ca, #7db9e8);
   border: solid #000000 4px;
-  display: inline-block;
-  position: relative;
-  float: left;
-  margin-top: 15px;
-  margin-left: -24px;
   height: 47px;
   width: 800px;
-  zoom: 0.95;
 }
 
 #selectedUnitName {
@@ -168,50 +137,7 @@ article {
   height: 230px
 }
 
-.match .map {
-  width: 700px;
-  float: left;
-  //    transform: perspective(400px) rotateX(20deg);
-}
 
-.loadEnemiesButton {
-//  position: absolute;
-//  margin-left: 570px;
-}
-
-.enemyLineUpOne {
-//  position: absolute;
-//  margin-left: 600px;
-//  margin-top: 100px;
-}
-
-.randomSetUpButton {
-//  position: absolute;
-//  margin-left: 570px;
-//  margin-top: 50px;
-}
-
-.startGameButton {
-  position: absolute;
-  //  visibility: hidden;
-}
-
-.moveUnitButton {
-  position: absolute;
-  //  visibility: hidden;
-}
-
-.fiveTurnsButton {
-  position: absolute;
-  //  visibility: hidden;
-  margin-top: 50px;
-}
-
-.tenTurnsButton {
-  position: absolute;
-  //  visibility: hidden;
-  margin-top: 100px;
-}
 
 //Unsure What For
 .heading .title {
@@ -264,37 +190,6 @@ article {
   height: 40px;
 }
 
-//.newUnit {
-//  z-index: 6;
-//  position: relative;
-//  margin-bottom: -6px;
-//  margin-right: -5px;
-//  width: 40px;
-//  height: 40px;
-//}
-//.inPlayUnit{
-//  z-index: 6;
-//  position: absolute;
-//  margin-left: 0px;
-//  margin-bottom: -5px;
-//  width: 60px;
-//  height: 70px;
-//  cursor: pointer;
-//  display: inline-block;
-//
-//  -webkit-border-radius: 100px;
-//      border: solid 1px red;
-//
-//
-//}
-//.deadUnit{
-//  z-index: 6;
-//  position: relative;
-//  margin-bottom: -6px;
-//  margin-right: -5px;
-//  width: 40px;
-//  height: 40px;
-//}
 
 .options {
   //  text-align: center;
@@ -330,7 +225,7 @@ article {
   border: solid 1px greenyellow;
 }
 
-.ssquare {
+.hexDiv {
   float: left;
   width: 60px;
   height: 68px;
@@ -347,11 +242,16 @@ article {
   }
 }
 
+
+
 .unplacedUnitSpace {
   float: left;
+  border: solid red 2px;
   width: 39.5px;
   height: 40px;
 }
+
+
 
 .grave {
   float: left;
@@ -383,10 +283,7 @@ polygon {
   }
 }
 
-.robot {
-  width: 42px;
-  height: 21px;
-}
+
 
 //Hexagon Classes
 .unSelected {
@@ -475,601 +372,7 @@ polygon {
   }
 }
 
-.xxmatch {
-  //  position: relative;
-  //  margin-right: 200px;
-  width: 960px;
-  height: 700px;
-  background-color: yellow;
 
-  .xxinfo {
-    width: 100%;
-    height: 300px;
-    background-color: blue;
-    article {
-      margin-left: 0;
-    }
 
-    .infoSegment{
-      float: left;
-      height: 300px;
-    }
 
-    .xxp1 {
-      background-color: deeppink;
-      width: 300px;
-      box-sizing:border-box;
-      -moz-box-sizing:border-box;
-      -webkit-box-sizing:border-box;
-      border: solid #000000;
-      border-width: 2px 0 2px 2px;
 
-
-      .vselectedUnitName{
-        height: 40px;
-        width: 298px;
-        text-align: center;
-        font-size: 25px;
-        background-color: saddlebrown;
-//        p{
-//          padding-bottom: 10px;
-//        }
-      }
-
-      .xxselectUnitImage {
-        float: left;
-        width: 203px;
-        height: 256px;
-        background-color: gold;
-        #selectedUnitImage{
-          width: 195px;
-          height: 256px;
-          margin-left: 3px;
-          background-color: cyan;
-        }
-      }
-
-
-      .xxselectUnitStats {
-        float: left;
-        width: 95px;
-        height: 256px;
-        background-color: silver;
-        text-align: center;
-        hr{
-          margin: -4px 0 -4px 10px;
-        }
-        div{
-          margin-top: 5px;
-        }
-        .selectedUnitStat{
-          margin: 0 0 0 0;
-          font-size: 16px;
-
-        }
-      }
-
-      .selectedUnitName{
-        width: 300px;
-        height: 30px;
-        background-color: grey;
-      }
-      #selectedUnitImage{
-        width: 300px;
-        height: 230px;
-        background-color: cyan;
-      }
-      .selectedUnitStats{
-        width: 300px;
-        height: 30px;
-        background-color: chartreuse;
-      }
-    }
-
-    .xxp2 {
-      background-color: deeppink;
-      width: 300px;
-      .xxmatchUp {
-        float: left;
-        background-color: greenyellow;
-        width: 300px;
-        height: 178px;
-        box-sizing:border-box;
-        -moz-box-sizing:border-box;
-        -webkit-box-sizing:border-box;
-        border:solid #000000;
-        border-width: 2px 2px 2px 2px;
-
-      }
-      .xxhoveredUnit {
-
-        box-sizing:border-box;
-        -moz-box-sizing:border-box;
-        -webkit-box-sizing:border-box;
-        border: solid #000000;
-        border-width: 0 2px 2px 2px;
-
-
-
-        float: left;
-        background-color: mediumpurple;
-        width: 300px;
-        height: 122px;
-        .hoverImage{
-          float: left;
-          background-color: deepskyblue;
-          height: 120px;
-          width: 110px;
-          #hoverUnitImage{
-            position: relative;
-            margin-top: 3px;
-            margin-left: 3px;
-//            margin-bottom: auto;
-            width: 104px;
-            height: 114px;
-          }
-        }
-        .hoverStats{
-          float: left;
-          background-color: orange;
-          height: 120px;
-          width: 90px;
-          vertical-align: center;
-
-        }
-
-        .selectedComp{
-          float: left;
-          background-color: royalblue;
-          height: 120px;
-          width: 24px;
-          text-align: center;
-          #selectedCompImage{
-            width: 20px;
-            height: 20px;
-          }
-//          vertical-align: center;
-
-        }
-
-
-
-
-        .selectedComppp{
-          float: left;
-          background-color: forestgreen;
-          height: 120px;
-          width: 40px;
-          text-align: center;
-          #selectedCompImage{
-            width: 20px;
-            height: 20px;
-          }
-          //          vertical-align: center;
-
-        }
-
-        .selectedCompp{
-          float: left;
-          background-color: darkred;
-          height: 120px;
-          width: 32px;
-          #selectedCompImage{
-            margin-left: 2px;
-            width: 20px;
-            height: 20px;
-          }
-          //          vertical-align: center;
-
-        }
-
-      }
-    }
-
-    .xxp3 {
-      background-color: tan;
-      width: 360px;
-      box-sizing:border-box;
-      -moz-box-sizing:border-box;
-      -webkit-box-sizing:border-box;
-      border:solid #000000;
-      border-width: 2px 2px 2px 0;
-    }
-
-
-    .xxhoveredUnit {
-      float: left;
-      background-color: mediumpurple;
-      width: 300px;
-      height: 120px;
-      .hoverStats{
-        text-align: center;
-      }
-    }
-    .extraSpace {
-      float: left;
-//      background-color: antiquewhite;
-      width: 360px;
-      height: 300px;
-    }
-  }
-  .xxmap {
-    width: 100%;
-    height: 700px;
-    background-color: green;
-    .xxboard {
-      float: left;
-
-      float: left;
-      display: block;
-      height: 700px;
-      width: 800px;
-      box-sizing: border-box;
-      background-color: magenta;
-    }
-    .graveyard1 {
-      float: left;
-      display: block;
-      height: 600px;
-      width: 32px;
-      margin-top: 45px;
-//      margin-bottom: 45px;
-      background-color: yellow;
-    }
-    .graveyard0 {
-      float: left;
-      display: block;
-      height: 600px;
-      width: 32px;
-      margin-top: 45px;
-      //      margin-bottom: 45px;
-      background-color: orange;
-    }
-  }
-  .buttonBar {
-    width: 100%;
-    height: 80px;
-    background-color: orangered;
-  }
-}
-
-header.navigation {
-  $navigation-padding: 1em;
-  $navigation-background: $dark-gray;
-  $navigation-color: transparentize(white, 0.3);
-  $navigation-color-hover: white;
-  $navigation-height: 60px;
-  $navigation-nav-button-background: $base-accent-color;
-  $navigation-nav-button-background-hover: lighten($navigation-background, 10);
-  $navigation-nav-button-border: 1px solid lighten($navigation-nav-button-background, 20);
-  $navigation-search-background: lighten($navigation-background, 5);
-  $navigation-search-border: 1px solid darken($navigation-background, 5);
-  $navigation-active-link-color: transparentize(white, 0.5);
-  $navigation-submenu-padding: 1em;
-  $navigation-submenu-width: 12em;
-  $horizontal-bar-mode: $large-screen;
-
-  background-color: $navigation-background;
-  border-bottom: 1px solid darken($navigation-background, 10);
-  height: $navigation-height;
-  width: 100%;
-  z-index: 999;
-
-  .navigation-wrapper {
-    @include clearfix;
-    @include outer-container;
-    position: relative;
-    z-index: 9999;
-  }
-
-  .logo {
-    float: left;
-    max-height: $navigation-height;
-    padding-left: $navigation-padding;
-    padding-right: 2em;
-    padding-top: 3px;
-
-    img {
-      max-height: $navigation-height;
-      padding: .8em 0;
-    }
-  }
-
-  // Mobile view
-
-  .navigation-menu-button {
-    color: $navigation-color;
-    display: block;
-    float: right;
-    font-family: $sans-serif;
-    font-weight: 700;
-    line-height: $navigation-height;
-    margin: 0;
-    padding-right: 1em;
-    text-transform: uppercase;
-
-    @include media($horizontal-bar-mode) {
-      display: none;
-    }
-
-    &:hover {
-      color: $navigation-color-hover;
-    }
-  }
-
-  // Nav menu
-
-  .nav {
-    z-index: 9999999;
-    float: none;
-    @include media($horizontal-bar-mode) {
-      float: left;
-    }
-  }
-
-  ul#navigation-menu {
-    -webkit-transform-style: preserve-3d; // stop webkit flicker
-    clear: both;
-    display: none;
-    margin: 0 auto;
-    overflow: visible;
-    padding: 0;
-    width: 100%;
-    z-index: 9999;
-
-    @include media($horizontal-bar-mode) {
-      display: inline;
-      margin: 0;
-      padding: 0;
-    }
-  }
-
-  // The nav items
-
-  ul li.nav-link {
-    background: $navigation-background;
-    display: block;
-    line-height: $navigation-height;
-    overflow: hidden;
-    padding-right: .8em;
-    text-align: right;
-    width: 100%;
-    z-index: 9999;
-
-    @include media($horizontal-bar-mode) {
-      background: transparent;
-      display: inline;
-      line-height: $navigation-height;
-      text-decoration: none;
-      width: auto;
-    }
-
-    a {
-      color: $navigation-color;
-      display: inline-block;
-      font-weight: 400;
-
-      @include media($horizontal-bar-mode) {
-        padding-right: 1em;
-      }
-
-      &:hover {
-        color: $navigation-color-hover;
-      }
-    }
-  }
-
-  .active-nav-item a {
-    border-bottom: 1px solid $navigation-active-link-color;
-    padding-bottom: 3px;
-  }
-
-  // Sub menus
-
-  li.more.nav-link {
-    padding-right: 0;
-
-    @include media($large-screen) {
-      padding-right: $navigation-submenu-padding;
-    }
-
-    > ul > li:first-child a {
-      padding-top: 1em;
-    }
-
-    a {
-      margin-right: $navigation-submenu-padding;
-    }
-
-    > a {
-      padding-right: 0.6em;
-    }
-
-    > a:after {
-      @include position(absolute, auto -.4em auto auto);
-      content: '\25BE';
-      color: $navigation-color;
-    }
-  }
-
-  li.more {
-    overflow: visible;
-    padding-right: 0;
-
-    a {
-      padding-right: .8em;
-    }
-
-    > a {
-      padding-right: 1.6em;
-      position: relative;
-
-      @include media($large-screen) {
-        margin-right: $navigation-submenu-padding;
-      }
-
-      &:after {
-        content: '›';
-        font-size: 1.2em;
-        position: absolute;
-        right: $navigation-submenu-padding / 2;
-      }
-    }
-
-    &:hover > .submenu {
-      display: block;
-    }
-
-    @include media($horizontal-bar-mode) {
-      padding-right: .8em;
-      position: relative;
-    }
-  }
-
-  ul.submenu {
-    display: none;
-    padding-left: 0;
-
-    @include media($horizontal-bar-mode) {
-      left: -$navigation-submenu-padding;
-      position: absolute;
-      top: 1.5em;
-    }
-
-    .submenu {
-      @include media($horizontal-bar-mode) {
-        left: $navigation-submenu-width - .2em;
-        top: 0;
-      }
-    }
-
-    li {
-      display: block;
-      padding-right: 0;
-
-      @include media($horizontal-bar-mode) {
-        line-height: $navigation-height / 1.3;
-
-        &:first-child > a {
-          border-top-left-radius: $base-border-radius;
-          border-top-right-radius: $base-border-radius;
-        }
-
-        &:last-child > a {
-          border-bottom-left-radius: $base-border-radius;
-          border-bottom-right-radius: $base-border-radius;
-          padding-bottom: .7em;
-        }
-      }
-
-      a {
-        background-color: darken($navigation-background, 3);
-        display: inline-block;
-        text-align: right;
-        width: 100%;
-
-        @include media($horizontal-bar-mode) {
-          background-color: $navigation-background;
-          padding-left: $navigation-submenu-padding;
-          text-align: left;
-          width: $navigation-submenu-width;
-        }
-      }
-    }
-  }
-
-  // Elements on the far right
-
-  .navigation-tools {
-    @include clearfix;
-    display: block;
-    padding-right: $navigation-padding;
-    padding-left: $navigation-padding/2;
-    clear: both;
-    background: #505050;
-
-    @include media($large-screen) {
-      background: transparent;
-      float: right;
-      clear: none;
-    }
-  }
-
-  a.sign-up {
-    margin-top: 1.2em;
-    float: right;
-    @include transition(all 0.2s ease-in-out);
-    display: inline;
-    background: $navigation-nav-button-background;
-    border-radius: $base-border-radius;
-    color: white;
-    font-size: .8em;
-    font-weight: 800;
-    text-transform: uppercase;
-    padding: .4em .5em;
-
-    @include media($large-screen) {
-      padding: .5em 1em;
-    }
-
-    &:hover {
-      background: lighten($navigation-nav-button-background, 10);
-    }
-  }
-
-  // Search bar
-
-  .search-bar {
-    $search-bar-border-color: $base-border-color;
-    $search-bar-border: 1px solid $search-bar-border-color;
-    $search-bar-background: lighten($search-bar-border-color, 10);
-
-    padding: .85em .6em;
-    float: left;
-    .search-and-submit {
-      position: relative;
-
-      input[type=search] {
-        background: $navigation-search-background;
-        border: $navigation-search-border;
-        padding: .6em .8em;
-        font-size: .9em;
-        font-style: italic;
-        color: $navigation-color;
-        border-radius: $base-border-radius * 2;
-        margin: 0;
-
-        @include media($large-screen) {
-          width: 100%;
-        }
-      }
-
-      button[type=submit] {
-        @include button(simple, lighten($navigation-search-background, 10));
-        position: absolute;
-        top: 0.3em;
-        right: 0.3em;
-        bottom: 0.3em;
-        left: auto;
-        outline: none;
-        padding: 0 15px;
-
-        img {
-          height: 12px;
-          opacity: .7;
-        }
-      }
-    }
-
-    @include media($horizontal-bar-mode) {
-      width: 16em;
-      position: relative;
-      display: inline-block;
-
-      input {
-        @include box-sizing(border-box);
-        display: block;
-      }
-    }
-  }
-}

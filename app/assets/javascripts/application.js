@@ -18,33 +18,33 @@ var row = 1;
 var col = 1;
 var hexCount = 1;
 
-function hex(row,col,hexIndex){
+function hex(row, col, hexIndex) {
     var height = 30;
     var width = 52;
     var hypotenuse = 60;
     var hex_scale = 5.36;
     var size;
 
-    if (row < 7){
+    if (row < 7) {
         size = row + 5
     } else {
         size = 17 - row
     }
 
-    if (row > 6){
+    if (row > 6) {
         var theClass = "selectedRange";
-    }else{
+    } else {
         var theClass = "unSelected"
     }
 
-    if (row > 6){
+    if (row > 6) {
         var initialRange = true;
-    }else{
+    } else {
         var initialRange = false
     }
 
 
-    return "<div class='ssquare' id='hex" + hexIndex + "' " +
+    return "<div class='hexDiv' id='hex" + hexIndex + "' " +
         "data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
         "data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
         "data-innRange=" + initialRange + " data-off=nil data-movement=nil  data-range=nil>" +
@@ -52,33 +52,33 @@ function hex(row,col,hexIndex){
 
         "<polygon class=" + theClass + " data-x-pos=" + col + " data-y-pos=" + row + " " +
         "data-size=" + size + " data-even='true'" +
-        "points='" + (width * hex_scale) + ",0 0," + (height*hex_scale) + "" +
-        " 0," + (height+hypotenuse)*hex_scale + "" +
-        " " + width*hex_scale + "," + (hypotenuse*2)*hex_scale + "" +
-        " " + (width*2)*hex_scale + "," + (height+hypotenuse)*hex_scale+ "" +
-        " " + (width*2)*hex_scale + "," + (height)*hex_scale + "'/>" +
+        "points='" + (width * hex_scale) + ",0 0," + (height * hex_scale) + "" +
+        " 0," + (height + hypotenuse) * hex_scale + "" +
+        " " + width * hex_scale + "," + (hypotenuse * 2) * hex_scale + "" +
+        " " + (width * 2) * hex_scale + "," + (height + hypotenuse) * hex_scale + "" +
+        " " + (width * 2) * hex_scale + "," + (height) * hex_scale + "'/>" +
         "</svg></div>"
 }
 
 
-function create_row(size){
+function create_row(size) {
     var array = [];
     for (var i = 0; i < size; i++) {
-        array.push(hex(row,col, hexCount));
+        array.push(hex(row, col, hexCount));
         hexCount = hexCount + 1;
         col = col + 1;
     }
     return array;
 }
 
-function create_map(){
+function create_map() {
     var array = [];
 //    var roww = 1;
 //    var coll = 1;
     for (var i = 0; i < 11; i++) {
-        if (i < 6){
-            array.push(create_row(6 + i ))
-        }else{
+        if (i < 6) {
+            array.push(create_row(6 + i))
+        } else {
             array.push(create_row(16 - i))
         }
 //        roww = roww + 1;
@@ -90,7 +90,7 @@ function create_map(){
     return array;
 }
 
-function createUnit(index,nameArray,movement,strength,range,flank,team){
+function createUnit(index, nameArray, movement, strength, range, flank, team) {
 
 
 //    var classs = "newUnit";
@@ -114,50 +114,54 @@ function createUnit(index,nameArray,movement,strength,range,flank,team){
 
         "data-x-pos=" + name + " data-xpos=" + name + " " +
         "data-y-pos=" + name + " data-ypos=" + name + " " +
-        "data-rowsize=" + name +">"
+        "data-rowsize=" + name + ">"
 
 }
 
-function createAllUnits(team){
+function createAllUnits(team) {
     var array = [];
 
-    array.push(createUnit(array.length,["rabble"],2,1,0,1,team));
-    array.push(createUnit(array.length,["rabble"],2,1,0,1,team));
-    array.push(createUnit(array.length,["rabble"],2,1,0,1,team));
-    array.push(createUnit(array.length,["spearman"],2,2,0,2,team));
-    array.push(createUnit(array.length,["spearman"],2,2,0,2,team));
-    array.push(createUnit(array.length,["elephant"],3,4,0,1,team));
-    array.push(createUnit(array.length,["elephant"],3,4,0,1,team));
-    array.push(createUnit(array.length,["light","horse"],4,2,0,1,team));
-    array.push(createUnit(array.length,["light","horse"],4,2,0,1,team));
-    array.push(createUnit(array.length,["heavy","horse"],3,3,0,1,team));
-    array.push(createUnit(array.length,["heavy","horse"],3,3,0,1,team));
-    array.push(createUnit(array.length,["crossbowman"],2,1,2,1,team));
-    array.push(createUnit(array.length,["crossbowman"],2,1,2,1,team));
+    array.push(createUnit(array.length, ["rabble"], 2, 1, 0, 1, team));
+    array.push(createUnit(array.length, ["rabble"], 2, 1, 0, 1, team));
+    array.push(createUnit(array.length, ["rabble"], 2, 1, 0, 1, team));
+    array.push(createUnit(array.length, ["spearman"], 2, 2, 0, 2, team));
+    array.push(createUnit(array.length, ["spearman"], 2, 2, 0, 2, team));
+    array.push(createUnit(array.length, ["elephant"], 3, 4, 0, 1, team));
+    array.push(createUnit(array.length, ["elephant"], 3, 4, 0, 1, team));
+    array.push(createUnit(array.length, ["light", "horse"], 4, 2, 0, 1, team));
+    array.push(createUnit(array.length, ["light", "horse"], 4, 2, 0, 1, team));
+    array.push(createUnit(array.length, ["heavy", "horse"], 3, 3, 0, 1, team));
+    array.push(createUnit(array.length, ["heavy", "horse"], 3, 3, 0, 1, team));
+    array.push(createUnit(array.length, ["crossbowman"], 2, 1, 2, 1, team));
+    array.push(createUnit(array.length, ["crossbowman"], 2, 1, 2, 1, team));
 
-    array.push(createUnit(array.length,["catapult"],2,3,3,1,team));
-    array.push(createUnit(array.length,["catapult"],2,3,3,1,team));
+    array.push(createUnit(array.length, ["catapult"], 2, 3, 3, 1, team));
+    array.push(createUnit(array.length, ["catapult"], 2, 3, 3, 1, team));
 
-    array.push(createUnit(array.length,["trebuchet"],1,4,4,1,team));
-    array.push(createUnit(array.length,["mountain"],0,9,0,0,team));
-    array.push(createUnit(array.length,["mountain"],0,9,0,0,team));
+    array.push(createUnit(array.length, ["trebuchet"], 1, 4, 4, 1, team));
+    array.push(createUnit(array.length, ["mountain"], 0, 9, 0, 0, team));
+    array.push(createUnit(array.length, ["mountain"], 0, 9, 0, 0, team));
 
-    array.push(createUnit(array.length,["dragon"],6,5,0,0,team));
-    array.push(createUnit(array.length,["king"],2,1,0,1,team));
+    array.push(createUnit(array.length, ["dragon"], 6, 5, 0, 0, team));
+    array.push(createUnit(array.length, ["king"], 2, 1, 0, 1, team));
 
     return array
 }
 
-function loadMapAndUnits(units,map,enemies){
+function loadMapAndUnits(units, map, enemies) {
+    $(".board").prepend(map);
+//    $(".board").css('display', 'none');
 
-    $(".auxSpace").prepend(units);
-//    $(".map").prepend(map);
-    $(".xxboard").prepend(map);
+//    $(".toggle").slideToggle("slide");
+//    $(".board").slideToggle('slow', function () {
+        $(".auxSpace").prepend(units);
+        $(".enemyBay").prepend(enemies);
+//    });
 
-    $(".enemyBay").prepend(enemies)
+
 }
 
-function loadEverything(){
+function loadEverything() {
 
     var map = { thearray: create_map() };
     var templateMap = JST['views/map'];
@@ -171,7 +175,7 @@ function loadEverything(){
     var templateEnemies = JST['views/enemies'];
     var enemies = templateEnemies(enemyHash);
 
-    loadMapAndUnits(units,result,enemies);
+    loadMapAndUnits(units, result, enemies);
 }
 
 $(document).ready(function () {

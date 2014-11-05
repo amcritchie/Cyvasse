@@ -2,17 +2,19 @@
 describe("Load Map", function () {
     beforeEach(function (done) {
         loadFixtures('game.html');
-        loadEverything();
-        initialConditions();
+//        loadEverything();
+//        initialConditions();
+
+        newGame();
         done();
     });
 
     it(".map div Loads", function () {
-        expect($(".map")).toExist();
+        expect($(".board")).toExist();
     });
 
     it("All Squares loaded", function () {
-        expect($('.ssquare').length).toEqual(91);
+        expect($('.hexDiv').length).toEqual(91);
     });
 
     it("Squares have correct ID numbers", function () {
@@ -125,7 +127,7 @@ describe("Pregame click Rabble", function () {
     it("Can move Rabble to Map", function () {
         var hex = $('#hex55');
         hex.click();
-        expect(rabble.parent().attr("class")).toEqual("ssquare");
+        expect(rabble.parent().attr("class")).toEqual("hexDiv");
     });
 });
 
@@ -141,17 +143,20 @@ describe("Moving Units to Map", function () {
     beforeEach(function () {
 
         loadFixtures('game.html');
-        loadEverything();
-        initialConditions();
+        newGame();
+//        loadEverything();
+//        initialConditions();
         rabble = $('[data-index=3][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
         lightHorse = $('[data-index=8][data-team=1]');
         hex1 = $('#hex55');
         hex2 = $('#hex67');
         hex3 = $('#hex72');
+
     });
 
     it("When a Unit is moved to Map, its aux space is removed", function () {
+
         expect($(".unplacedUnitSpace").length).toEqual(20);
         rabble.parent().click();
         hex1.click();
@@ -230,8 +235,11 @@ describe("Moving Units to Map", function () {
     });
 
     it("Click 'Random Setup' Button, and expect all Units to move to Map", function(){
+
+//        debugger;
         expect($(".unplacedUnitSpace").length).toEqual(20);
         $('.randomSetUpButton').click();
+//
         expect($(".unplacedUnitSpace").length).toEqual(0);
         expect($("[data-occupied=true]").length).toEqual(20);
     });
@@ -323,6 +331,7 @@ describe("Moving Units to Map", function () {
 });
 
 describe("A spy", function() {
+
     var rabble;
     var dragon;
     var lightHorse;
@@ -333,8 +342,10 @@ describe("A spy", function() {
     beforeEach(function () {
 
         loadFixtures('game.html');
-        loadEverything();
-        initialConditions();
+//        loadEverything();
+//        initialConditions();
+        newGame();
+
         rabble = $('[data-index=3][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
         lightHorse = $('[data-index=8][data-team=1]');
@@ -370,8 +381,10 @@ describe("First move", function() {
     beforeEach(function () {
 
         loadFixtures('game.html');
-        loadEverything();
-        initialConditions();
+//        loadEverything();
+//        initialConditions();
+
+        newGame();
 
         rabble = $('[data-index=1][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
@@ -441,8 +454,10 @@ describe('Game Play', function(){
     beforeEach(function () {
 
         loadFixtures('game.html');
-        loadEverything();
-        initialConditions();
+//        loadEverything();
+//        initialConditions();
+        newGame();
+
 
         rabble = $('[data-index=1][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
