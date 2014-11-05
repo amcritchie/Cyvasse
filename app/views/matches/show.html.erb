@@ -1,23 +1,152 @@
 <p id="notice"><%= notice %></p>
-<article class="matchHeading">
+<!--<article class="matchHeading">-->
 
 
-  <!--Match Header-->
-  <p>
+<!--&lt;!&ndash;Match Header&ndash;&gt;-->
+<!--<p>-->
 
-    <strong>User ID:</strong>
-    <%= @match.user_id %> |
+<!--<strong>User ID:</strong>-->
+<%= @match.user_id %> |
 
-    <strong>Challenger ID:</strong>
-    <%= @match.challenger_id %> |
+<!--<strong>Challenger ID:</strong>-->
+<%= @match.challenger_id %> |
 
-    <%= link_to 'Edit', edit_match_path(@match) %> |
-    <%= link_to 'Back', matches_path %>
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<!--<%= link_to 'Back', matches_path %>-->
 
-  </p>
+<!--</p>-->
 
-</article>
+<!--</article>-->
 
+
+
+
+<div class="xxmatch">
+  <div class="xxinfo">
+    <article class="xxp1 infoSegment">
+
+      <div class="vselectedUnitName">
+        <p id="selectUnitName">Crossbowman</p>
+      </div>
+
+
+      <article class="xxselectUnitImage">
+        <%= image_tag "", :class => "sss", :id => 'selectedUnitImage' %>
+      </article>
+
+
+
+      <article class="xxselectUnitStats">
+
+        <div>
+          <p  class="selectedUnitStat" id="selectUnitName">Offense</p>
+          <hr width="80%">
+          <p  class="selectedUnitStat" id="selectUnitDescription">5</p>
+        </div>
+        <div>
+          <p  class="selectedUnitStat" id="selectUnitName">Defence</p>
+          <hr width="80%">
+          <p  class="selectedUnitStat" id="selectUnitDescription">3</p>
+        </div>
+        <div>
+          <p  class="selectedUnitStat" id="selectUnitName">Movement</p>
+          <hr width="80%">
+          <p  class="selectedUnitStat" id="selectUnitDescription">3</p>
+        </div>
+        <div>
+          <p  class="selectedUnitStat" id="selectUnitName">Range</p>
+          <hr width="80%">
+          <p  class="selectedUnitStat" id="selectUnitDescription">2</p>
+        </div>
+        <div>
+          <p  class="selectedUnitStat" id="selectUnitName">Trump</p>
+          <hr width="80%">
+          <p  class="selectedUnitStat" id="selectUnitDescription">Hhr Lhr</p>
+        </div>
+      </article>
+
+
+    </article>
+
+    <article class="xxp2 infoSegment">
+
+      <div class="xxmatchUp">
+
+      </div>
+
+      <div class="xxhoveredUnit">
+        <article class="hoverImage">
+          <%= image_tag "", :id => 'hoverUnitImage' %>
+        </article>
+        <article class="hoverStats">
+          <div id="hoverName">Name</div>
+          <div id="hoverOffense">Attack: 4</div>
+          <div id="hoverDefence">Shields: 2</div>
+          <div id="hoverMvRange">Moves: 3</div>
+          <div id="hoverUtRange">Range: 3</div>
+
+        </article>
+        <article class="selectedComppp">
+
+          <div id="selectedOffense">.</div>
+          <div id="selectedOffense">=</div>
+          <div id="selectedDefence">=</div>
+          <div id="selectedMvRange"> > </div>
+          <div id="selectedUtRange">=</div>
+        </article>
+
+        <article class="selectedComp">
+          <%= image_tag "", :class => "sss", :id => 'selectedCompImage' %>
+
+          <div id="selectedOffense">4</div>
+          <div id="selectedDefence">2</div>
+          <div id="selectedMvRange">3</div>
+          <div id="selectedUtRange">3</div>
+        </article>
+
+        <article class="selectedCompp">
+
+          <div id="selectedOffense">Trb</div>
+
+          <div id="selectedOffense">:Off</div>
+          <div id="selectedDefence">:Def</div>
+          <div id="selectedMvRange">:Ran</div>
+          <div id="selectedUtRange">:Trm</div>
+        </article>
+      </div>
+
+    </article>
+
+
+    <article class="xxp3 infoSegment">
+      <div class="extraSpace">
+
+      </div>
+    </article>
+
+
+  </div>
+
+  <div class="xxmap">
+
+    <article class="xxboard">
+
+
+    </article>
+    <article class="graveyard1" id="graveyard1">
+
+    </article>
+
+    <article class="graveyard0" id="graveyard0">
+
+    </article>
+
+  </div>
+
+  <div class="buttonBar">
+
+  </div>
+</div>
 
 <div class="match">
   <article class="info">
@@ -56,4 +185,3 @@
 
   </article>
 </div>
-

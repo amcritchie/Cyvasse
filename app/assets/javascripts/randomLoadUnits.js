@@ -6,9 +6,9 @@ var RandomSetup = {
     possibleSpots: null,
 
     loadPregameButton: function() {
-        $(".map").prepend("<button class='loadEnemiesButton'>Load Enemies</button>");
-        $(".map").prepend("<button class='randomSetUpButton'>Random Setup</button>");
-        $(".map").prepend("<button class='enemyLineUpOne'>Lineup 1</button>");
+        $(".extraSpace").prepend("<button class='loadEnemiesButton'>Load Enemies</button>");
+        $(".extraSpace").prepend("<button class='randomSetUpButton'>Random Setup</button>");
+        $(".extraSpace").prepend("<button class='enemyLineUpOne'>Lineup 1</button>");
 
         $('.loadEnemiesButton').on('click', function () { RandomSetup.placeEnemies() });
         $('.randomSetUpButton').on('click', function () { RandomSetup.placeUnits() });

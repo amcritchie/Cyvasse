@@ -15,6 +15,7 @@ var $initialRange;
 var pregame_var;
 
 var $clickableUnitSpaces;
+var $hoverableRange;
 
 //  Functions.
 function pregame() {
@@ -23,24 +24,43 @@ function pregame() {
 }
 
 function registerHoverUnit() {
-    var $hoverableRange = $('img[data-team]');
-    $hoverableRange.on({
-        mouseenter: function () {
-            updateInfoBox($(this));
-        },
-        mouseleave: function () {
+    $hoverableRange = $('img[data-team]');
+    $hoverableRange.mouseenter(function (e) {
+            updateHoverBox($(this));
         }
-    });
+//        mouseleave: function () {
+//        }
+    );
 }
-function updateInfoBox(unit) {
-    $('#selectedUnitName').empty().append(unit.attr('alt'));
-    $('#selectedUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
-    $('#selectedStrength').empty().append('Strength: ' + unit.data('strength'));
-    $('#selectedMovement').empty().append('Movement: ' + unit.data('movement'));
+function updateHoverBox(unit) {
+    $('#hoverName').empty().append(unit.attr('alt'));
+
+    $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
+//    $('#selectedCompImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
+
+    $('#hoverOffense').empty().append('Offense: ' + unit.data('strength'));
+    $('#hoverDefence').empty().append('Defence: ' + unit.data('strength'));
+
+    $('#hoverMvRange').empty().append('Moves: ' + unit.data('movement'));
     $('#selectedRange').empty().append('Range: ' + unit.data('range'));
     $('#selectedFlank').empty().append('Flank: ' + unit.data('flank'));
     $('#selectedTrump').empty().append('Trump: ' + unit.data('trump'));
 }
+
+function updateSelectBox(unit) {
+    $('#hoverName').empty().append(unit.attr('alt'));
+
+//    $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
+    $('.sss').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
+
+    $('#hoverOffense').empty().append('Offense: ' + unit.data('strength'));
+    $('#hoverMvRange').empty().append('Movement: ' + unit.data('movement'));
+    $('#selectedRange').empty().append('Range: ' + unit.data('range'));
+    $('#selectedFlank').empty().append('Flank: ' + unit.data('flank'));
+    $('#selectedTrump').empty().append('Trump: ' + unit.data('trump'));
+}
+
+
 
 
 function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
@@ -128,7 +148,7 @@ $.fn.random = function () {
 
 
 function functionsForOffense() {
-    registerHoverUnit();
+//    registerHoverUnit();
 //    Offense.registerClickUnit()
 }
 
@@ -141,7 +161,6 @@ function newHexClassChange(xPos, yPos) {
 //------Range hex------
 function changeClassOfHexagonInRange(unit_moves, unit_x, unit_y, newHexClass, flash) {
     var horizontal = 1;
-    debugger;
     while (horizontal <= unit_moves) {
         changeClassOfHexCircumference(unit_x, unit_y, horizontal, newHexClass, flash);
         horizontal += 1;
@@ -155,7 +174,6 @@ function changeClassOfHexCircumference(unit_x, unit_y, horizontal, newHexClass, 
     var initialSizeUp = findHex(unit_x, unit_y).data('size');
 
     var vertical = 1;
-    debugger;
 
     hexClassChange((unit_x - horizontal), (unit_y), newHexClass, horizontal, click);
     hexClassChange((unit_x + horizontal), (unit_y), newHexClass, horizontal, click);
@@ -203,7 +221,6 @@ function diagonalHexChange(unit_x, unit_y, vertical, up, horizontal, constantDow
 }
 function hexClassChange(xPos, yPos, className, horizontal, click) {
 
-    debugger;
 
     $('*[data-x_pos=' + xPos + '][data-y_pos=' + yPos + '][data-team=' + defense + ']').attr('data-inRange', true);
 
@@ -254,7 +271,7 @@ function initialConditions() {
 function newGame(){
     loadEverything();
     initialConditions();
-    registerHoverUnit();
+//    registerHoverUnit();
 }
 
 function oldGame(){
@@ -264,8 +281,8 @@ function oldGame(){
 
 $(document).ready(function () {
 
-    $(".map").prepend("<button class='newGame'>New Game</button>");
-    $(".map").prepend("<button class='oldGame'>Old Game</button>");
+    $(".extraSpace").prepend("<button class='newGame'>New Game</button>");
+    $(".extraSpace").prepend("<button class='oldGame'>Old Game</button>");
 
     $('.newGame').on('click', function () {
         $('.newGame').off('click').remove();

@@ -27,6 +27,8 @@ var Offense = {
         Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
 
         Offense.selectableUnits.on('click', function () {
+//            updateSelectBox(unit);
+            updateSelectBox(unit);
             Offense.movingRange.off('click');
             Offense.attackRange.off('click');
 

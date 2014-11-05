@@ -151,7 +151,9 @@ function createAllUnits(team){
 function loadMapAndUnits(units,map,enemies){
 
     $(".auxSpace").prepend(units);
-    $(".map").prepend(map);
+//    $(".map").prepend(map);
+    $(".xxboard").prepend(map);
+
     $(".enemyBay").prepend(enemies)
 }
 

@@ -23,6 +23,7 @@ var PreGame = {
         PreGame.initializeHexagons();
         PreGame.resetAndUpdateUnitsAndRange();
         registerHoverUnit();
+//        debugger;
         PreGame.pregameClickUnit();
     },
 
@@ -42,6 +43,7 @@ var PreGame = {
     pregameClickUnit: function () {
         $moveableUnits.on('click', function () {
             $selectedUnit = $(this).children("img");
+            updateSelectBox($selectedUnit);
             PreGame.registerClickHex($movingRange);
         })
     },

@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'turbolinks'
 gem 'devise'
-gem 'jasmine-jquery-rails'
+
 
 gem 'launchy'
 
@@ -30,5 +30,6 @@ gem 'ejs', '~> 1.1.1'
 group :test, :development do
   gem "rspec-rails", "~> 3.0.2"
   gem "capybara", "~> 2.4.1"
-  gem 'jasmine'
+  # gem 'jasmine'
+  # gem 'jasmine-jquery-rails'
 end

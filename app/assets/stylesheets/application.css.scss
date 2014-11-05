@@ -175,20 +175,20 @@ article {
 }
 
 .loadEnemiesButton {
-  position: absolute;
-  margin-left: 570px;
+//  position: absolute;
+//  margin-left: 570px;
 }
 
 .enemyLineUpOne {
-  position: absolute;
-  margin-left: 600px;
-  margin-top: 100px;
+//  position: absolute;
+//  margin-left: 600px;
+//  margin-top: 100px;
 }
 
 .randomSetUpButton {
-  position: absolute;
-  margin-left: 570px;
-  margin-top: 50px;
+//  position: absolute;
+//  margin-left: 570px;
+//  margin-top: 50px;
 }
 
 .startGameButton {
@@ -472,6 +472,264 @@ polygon {
   &:last-of-type {
 
     margin-bottom: 0;
+  }
+}
+
+.xxmatch {
+  //  position: relative;
+  //  margin-right: 200px;
+  width: 960px;
+  height: 700px;
+  background-color: yellow;
+
+  .xxinfo {
+    width: 100%;
+    height: 300px;
+    background-color: blue;
+    article {
+      margin-left: 0;
+    }
+
+    .infoSegment{
+      float: left;
+      height: 300px;
+    }
+
+    .xxp1 {
+      background-color: deeppink;
+      width: 300px;
+      box-sizing:border-box;
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      border: solid #000000;
+      border-width: 2px 0 2px 2px;
+
+
+      .vselectedUnitName{
+        height: 40px;
+        width: 298px;
+        text-align: center;
+        font-size: 25px;
+        background-color: saddlebrown;
+//        p{
+//          padding-bottom: 10px;
+//        }
+      }
+
+      .xxselectUnitImage {
+        float: left;
+        width: 203px;
+        height: 256px;
+        background-color: gold;
+        #selectedUnitImage{
+          width: 195px;
+          height: 256px;
+          margin-left: 3px;
+          background-color: cyan;
+        }
+      }
+
+
+      .xxselectUnitStats {
+        float: left;
+        width: 95px;
+        height: 256px;
+        background-color: silver;
+        text-align: center;
+        hr{
+          margin: -4px 0 -4px 10px;
+        }
+        div{
+          margin-top: 5px;
+        }
+        .selectedUnitStat{
+          margin: 0 0 0 0;
+          font-size: 16px;
+
+        }
+      }
+
+      .selectedUnitName{
+        width: 300px;
+        height: 30px;
+        background-color: grey;
+      }
+      #selectedUnitImage{
+        width: 300px;
+        height: 230px;
+        background-color: cyan;
+      }
+      .selectedUnitStats{
+        width: 300px;
+        height: 30px;
+        background-color: chartreuse;
+      }
+    }
+
+    .xxp2 {
+      background-color: deeppink;
+      width: 300px;
+      .xxmatchUp {
+        float: left;
+        background-color: greenyellow;
+        width: 300px;
+        height: 178px;
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        border:solid #000000;
+        border-width: 2px 2px 2px 2px;
+
+      }
+      .xxhoveredUnit {
+
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        border: solid #000000;
+        border-width: 0 2px 2px 2px;
+
+
+
+        float: left;
+        background-color: mediumpurple;
+        width: 300px;
+        height: 122px;
+        .hoverImage{
+          float: left;
+          background-color: deepskyblue;
+          height: 120px;
+          width: 110px;
+          #hoverUnitImage{
+            position: relative;
+            margin-top: 3px;
+            margin-left: 3px;
+//            margin-bottom: auto;
+            width: 104px;
+            height: 114px;
+          }
+        }
+        .hoverStats{
+          float: left;
+          background-color: orange;
+          height: 120px;
+          width: 90px;
+          vertical-align: center;
+
+        }
+
+        .selectedComp{
+          float: left;
+          background-color: royalblue;
+          height: 120px;
+          width: 24px;
+          text-align: center;
+          #selectedCompImage{
+            width: 20px;
+            height: 20px;
+          }
+//          vertical-align: center;
+
+        }
+
+
+
+
+        .selectedComppp{
+          float: left;
+          background-color: forestgreen;
+          height: 120px;
+          width: 40px;
+          text-align: center;
+          #selectedCompImage{
+            width: 20px;
+            height: 20px;
+          }
+          //          vertical-align: center;
+
+        }
+
+        .selectedCompp{
+          float: left;
+          background-color: darkred;
+          height: 120px;
+          width: 32px;
+          #selectedCompImage{
+            margin-left: 2px;
+            width: 20px;
+            height: 20px;
+          }
+          //          vertical-align: center;
+
+        }
+
+      }
+    }
+
+    .xxp3 {
+      background-color: tan;
+      width: 360px;
+      box-sizing:border-box;
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      border:solid #000000;
+      border-width: 2px 2px 2px 0;
+    }
+
+
+    .xxhoveredUnit {
+      float: left;
+      background-color: mediumpurple;
+      width: 300px;
+      height: 120px;
+      .hoverStats{
+        text-align: center;
+      }
+    }
+    .extraSpace {
+      float: left;
+//      background-color: antiquewhite;
+      width: 360px;
+      height: 300px;
+    }
+  }
+  .xxmap {
+    width: 100%;
+    height: 700px;
+    background-color: green;
+    .xxboard {
+      float: left;
+
+      float: left;
+      display: block;
+      height: 700px;
+      width: 800px;
+      box-sizing: border-box;
+      background-color: magenta;
+    }
+    .graveyard1 {
+      float: left;
+      display: block;
+      height: 600px;
+      width: 32px;
+      margin-top: 45px;
+//      margin-bottom: 45px;
+      background-color: yellow;
+    }
+    .graveyard0 {
+      float: left;
+      display: block;
+      height: 600px;
+      width: 32px;
+      margin-top: 45px;
+      //      margin-bottom: 45px;
+      background-color: orange;
+    }
+  }
+  .buttonBar {
+    width: 100%;
+    height: 80px;
+    background-color: orangered;
   }
 }
 
