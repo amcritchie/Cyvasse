@@ -49,13 +49,27 @@ var PreGame = {
                     left: "+=700"
                 },
                 {
+                    duration: 'slow',
+                    complete: function () {
+                        $('.auxSpace').remove();
+                    }
+                });
+
+            $('.startGameButton').animate(
+                {
+                    opacity: 1,
+                    left: "+=700"//                left: '0'
+                },
+                {
                     duration: 'slow'
                 });
 
 
+
+
 //            $('.auxSpace').fadeOut(1000);
-            $('.startGameButton').off('click').remove();
-            $(".extraSpace").prepend("<button class='startGameButton'>Start Game</button>");
+//            $('.startGameButton').off('click').remove();
+//            $(".extraSpace").prepend("<button class='startGameButton'>Start Game</button>");
             $('.startGameButton').on('click', function () {
                 $initialRange.off('click');
                 startGame()

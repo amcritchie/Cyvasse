@@ -131,29 +131,28 @@ article {
   float: left;
 }
 
+.rotating{
+  opacity: 0;
+  margin: 100px 0 0 -440px;
+  position: absolute;
+  z-index: 7;
+
+}
+
+
+
 .auxSpace {
   height: 150px;
   width: 320px;
-  z-index: 2;
-  opacity: 0;
 
-
-  //  padding: 0 5px 0 5px;
   background-color: orangered;
   border: solid #000000 3px;
-  position: absolute;
-  margin: 100px 0 0 -440px;
-  //  margin-left: auto;
-  //  margin-right: auto;
+
   text-align: center;
-  //  vertical-align: middle;
 }
 
 .unplacedUnitSpace {
-  //  float: on;
-  //  margin-left: auto;
-  //  margin-right: auto;
-  // display: block;
+
   margin-top: 5px;
   display: inline-block;
   border: solid blue 2px;

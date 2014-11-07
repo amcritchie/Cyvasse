@@ -315,6 +315,8 @@ $(document).ready(function () {
 //        $('.auxSpace').fadeIn(1000);
 //        $('.auxSpace').show();
 //        $('.auxSpace').css('position', 'relative');
+        $(".xxmap").prepend("<button class='startGameButton rotating'>Start Game</button>");
+
         $('.auxSpace').animate(
             {
                 opacity: 1,
@@ -323,6 +325,7 @@ $(document).ready(function () {
             {
                 duration: 'slow'
             });
+
 
 //        $('.auxSpace').animate({top: '+=200'});
 

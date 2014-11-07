@@ -155,7 +155,7 @@ function loadMapAndUnits(units, map, enemies) {
 
     $('.xxmatch').append("<div class=xxmap></div>");
 
-    $(".xxmap").prepend("<article class=auxSpace></article>");
+    $(".xxmap").prepend("<article class='auxSpace rotating'></article>");
     $(".xxmap").prepend("<article class=enemyBay></article>");
     $(".xxmap").prepend("<article class=graveyard id=grav1></article>");
     $(".xxmap").prepend("<article class=graveyard id=grav0></article>");
