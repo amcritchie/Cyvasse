@@ -42,6 +42,18 @@ var PreGame = {
 
     addStartButton: function () {
         if ($(".unplacedUnitSpace").length == 0) {
+
+            $('.auxSpace').animate(
+                {
+                    opacity: 0,
+                    left: "+=700"
+                },
+                {
+                    duration: 'slow'
+                });
+
+
+//            $('.auxSpace').fadeOut(1000);
             $('.startGameButton').off('click').remove();
             $(".extraSpace").prepend("<button class='startGameButton'>Start Game</button>");
             $('.startGameButton').on('click', function () {

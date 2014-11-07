@@ -149,15 +149,32 @@ function createAllUnits(team) {
 }
 
 function loadMapAndUnits(units, map, enemies) {
+
+
+//    $(".board").prepend(map);
+
+    $('.xxmatch').append("<div class=xxmap></div>");
+
+    $(".xxmap").prepend("<article class=auxSpace></article>");
+    $(".xxmap").prepend("<article class=enemyBay></article>");
+    $(".xxmap").prepend("<article class=graveyard id=grav1></article>");
+    $(".xxmap").prepend("<article class=graveyard id=grav0></article>");
+    $(".xxmap").prepend("<article class=board></article>");
+
+
+
     $(".board").prepend(map);
 //    $(".board").css('display', 'none');
 
 //    $(".toggle").slideToggle("slide");
 //    $(".board").slideToggle('slow', function () {
-        $(".auxSpace").prepend(units);
-        $(".enemyBay").prepend(enemies);
-//    });
+//    $(".auxSpace").prepend(units).hide();
+    $(".auxSpace").prepend(units);
 
+    $(".enemyBay").prepend(enemies);
+
+//    $('.xxmap').hide();
+//    });
 
 }
 

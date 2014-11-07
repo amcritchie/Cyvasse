@@ -17,6 +17,21 @@ $temp3: #9cd6a4;
 $temp4: #f6f6ae;
 $temp5: #d52822;
 
+body {
+
+}
+
+.backgroundImage {
+//  background-image: url('http://images6.fanpop.com/image/photos/32600000/asoiaf-a-song-of-ice-and-fire-32690635-1200-583.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vw;
+}
+
 /* clearfix */
 .clearfix:before,
 .clearfix:after {
@@ -95,9 +110,9 @@ $temp5: #d52822;
 .wrapper {
   margin: auto;
   width: 960px;
-  border: solid green 3px;
-  background: #ffffff; /* Old browsers */
-  background: -webkit-linear-gradient(right top, $temp2, $temp3);
+  //  border: solid green 3px;
+  //  background: #ffffff; /* Old browsers */
+  //  background: -webkit-linear-gradient(right top, $temp2, $temp3);
 }
 
 article {
@@ -116,17 +131,41 @@ article {
   float: left;
 }
 
-
 .auxSpace {
-  border-top: 0;
-  height: 164px;
-  width: 100%;
+  height: 150px;
+  width: 320px;
+  z-index: 2;
+  opacity: 0;
+
+
+  //  padding: 0 5px 0 5px;
+  background-color: orangered;
+  border: solid #000000 3px;
+  position: absolute;
+  margin: 100px 0 0 -440px;
+  //  margin-left: auto;
+  //  margin-right: auto;
+  text-align: center;
+  //  vertical-align: middle;
+}
+
+.unplacedUnitSpace {
+  //  float: on;
+  //  margin-left: auto;
+  //  margin-right: auto;
+  // display: block;
+  margin-top: 5px;
+  display: inline-block;
+  border: solid blue 2px;
+  width: 39.5px;
+  height: 40px;
 }
 
 .enemyBay {
   border: solid #000000 4px;
   height: 47px;
-  width: 800px;
+  width: 960px;
+  float: right;
 }
 
 #selectedUnitName {
@@ -136,8 +175,6 @@ article {
 #selectedUnitImage {
   height: 230px
 }
-
-
 
 //Unsure What For
 .heading .title {
@@ -186,10 +223,7 @@ article {
   position: relative;
   margin-bottom: -6px;
   margin-right: -5px;
-  width: 40px;
-  height: 40px;
 }
-
 
 .options {
   //  text-align: center;
@@ -211,7 +245,7 @@ article {
   vertical-align: center;
 
   background-color: yellowgreen;
-  border: solid blue 2px;
+  //  border: solid blue 2px;
   -webkit-border-radius: 10px;
 
 }
@@ -229,7 +263,7 @@ article {
   float: left;
   width: 60px;
   height: 68px;
-  border: solid blue 1px;
+  //  border: solid blue 1px;
   z-index: 5;
   svg {
     width: 60px;
@@ -242,25 +276,14 @@ article {
   }
 }
 
-
-
-.unplacedUnitSpace {
-  float: left;
-  border: solid red 2px;
-  width: 39.5px;
-  height: 40px;
-}
-
-
-
 .grave {
   float: left;
-  width: 25px;
-  height: 32px;
+  width: 32px;
+  height: 26px;
   img {
     float: left;
-    width: 25px;
-    height: 32px;
+    width: 32px;
+    height: 40px;
   }
 }
 
@@ -282,8 +305,6 @@ polygon {
     stroke: $white;
   }
 }
-
-
 
 //Hexagon Classes
 .unSelected {
@@ -330,7 +351,7 @@ polygon {
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: -16px;
+  margin-bottom: -15px;
   @extend .clearfix;
 
   &:nth-of-type(1) {
@@ -371,8 +392,3 @@ polygon {
     margin-bottom: 0;
   }
 }
-
-
-
-
-

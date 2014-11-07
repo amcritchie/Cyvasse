@@ -1,37 +1,42 @@
-
-
-
-
-
 <div class="xxmatch">
   <div class="info">
     <article class="p1 infoSegment hasBorder">
 
-      <div class="nameOfSelectedUnit">
+      <div class="nameOfSelectedUnit hideSelectedUnitInfo">
         <h5 id="selectUnitName">Crossbowman</h5>
       </div>
 
 
-      <article class="selectUnitImage">
+      <article class="selectUnitImage hideSelectedUnitInfo">
         <%= image_tag "", :class => "selectedUnitImage", :id => 'selectedUnitImage' %>
       </article>
 
-      <article class="selectUnitStats">
+      <article class="selectUnitStats hideSelectedUnitInfo">
 
         <div>
-          <p  id="selectedUnitStat">Attack</p><hr><p  class="selectedUnitAttack" id="selectedUnitStat">5</p>
+          <p id="selectedUnitStat">Attack</p>
+          <hr>
+          <p class="selectedUnitAttack" id="selectedUnitStat">5</p>
         </div>
         <div>
-          <p  id="selectedUnitStat">Defence</p><hr><p  class="selectedUnitDefence" id="selectedUnitStat">5</p>
+          <p id="selectedUnitStat">Defence</p>
+          <hr>
+          <p class="selectedUnitDefence" id="selectedUnitStat">5</p>
         </div>
         <div>
-          <p  id="selectedUnitStat">Moves</p><hr><p  class="selectedUnitMovement" id="selectedUnitStat">3</p>
+          <p id="selectedUnitStat">Moves</p>
+          <hr>
+          <p class="selectedUnitMovement" id="selectedUnitStat">3</p>
         </div>
         <div>
-          <p  id="selectedUnitStat">Range</p><hr><p  class="selectedUnitUtility" id="selectedUnitStat">2</p>
+          <p id="selectedUnitStat">Range</p>
+          <hr>
+          <p class="selectedUnitUtility" id="selectedUnitStat">2</p>
         </div>
         <div>
-          <p  id="selectedUnitStat">Trump</p><hr><p  class="selectedUnitTrump" id="selectedUnitStat">Hhr Lhr</p>
+          <p id="selectedUnitStat">Trump</p>
+          <hr>
+          <p class="selectedUnitTrump" id="selectedUnitStat">Hhr Lhr</p>
         </div>
 
       </article>
@@ -45,47 +50,63 @@
 
         <h2>Alex</h2>
         <h5>vs.</h5>
+
         <h2>Tyrion</h2>
 
       </div>
 
       <div class="hoveredUnit hasBorder">
-        <article class="hoverImage">
+        <article class="hoverImage hideHoveredUnitInfo">
           <%= image_tag "", :id => 'hoverUnitImage' %>
         </article>
         <article class="hoverStats">
-          <p id="hoverName" class="hoverStat">Crossbowman</p>
-          <p id="hoverOffense" class="hoverStat">Attack: 4</p>
-          <p id="hoverDefence" class="hoverStat">Armor:  2</p>
-          <p id="hoverMvRange" class="hoverStat">Moves: 3</p>
-          <p id="hoverUtRange" class="hoverStat">Range: 3</p>
+          <p id="hoverName" class="hoverStat hideHoveredUnitInfo">Crossbowman</p>
+
+          <p id="hoverOffense" class="hoverStat hideHoveredUnitInfo">Attack: 4</p>
+
+          <p id="hoverDefence" class="hoverStat hideHoveredUnitInfo">Armor: 2</p>
+
+          <p id="hoverMvRange" class="hoverStat hideHoveredUnitInfo">Moves: 3</p>
+
+          <p id="hoverUtRange" class="hoverStat hideHoveredUnitInfo">Range: 3</p>
 
         </article>
         <article class="comparisonColumn comp">
 
           <p id="hoverName" class="hoverStat">.</p>
+
           <p id="hoverOffense" class="hoverStat">=</p>
+
           <p id="hoverDefence" class="hoverStat"> s4 > a3</p>
+
           <p id="hoverMvRange" class="hoverStat">=</p>
+
           <p id="hoverUtRange" class="hoverStat">=</p>
         </article>
 
-        <article class="selectedUnitCompStats comp">
+        <article class="selectedUnitCompStats comp hideSelectedUnitInfo">
           <%= image_tag "", :class => "selectedUnitImage", :id => 'selectedCompImage' %>
 
 
           <p id="hoverOffense" class="hoverStat selectedUnitAttack">2</p>
+
           <p id="hoverDefence" class="hoverStat selectedUnitDefence">4</p>
+
           <p id="hoverMvRange" class="hoverStat selectedUnitMovement">6</p>
+
           <p id="hoverUtRange" class="hoverStat selectedUnitUtility">3</p>
         </article>
 
-        <article class="selectedUnitCompKey comp">
+        <article class="selectedUnitCompKey comp hideSelectedUnitInfo">
 
           <p id="hoverName" class="hoverStat">trb</p>
+
           <p id="hoverOffense" class="hoverStat">Atk</p>
+
           <p id="hoverDefence" class="hoverStat">Def</p>
+
           <p id="hoverMvRange" class="hoverStat">Mov</p>
+
           <p id="hoverUtRange" class="hoverStat">Rng</p>
         </article>
       </div>
@@ -95,69 +116,46 @@
 
     <article class="p3 infoSegment hasBorder">
       <div class="extraSpace">
-
         <p id="notice"><%= notice %></p>
         <article class="matchHeading">
-
-
-        Match Header
-        <p>
-
-        <strong>User ID:</strong>
-        <%= @match.user_id %> |
-
-        <strong>Challenger ID:</strong>
-        <%= @match.challenger_id %> |
-
-        <%= link_to 'Edit', edit_match_path(@match) %> |
-        <%= link_to 'Back', matches_path %>
-
-            </p>
-            </article>
-
-
-
+          Match Header
+          <p>
+            <strong>User ID:</strong>
+            <%= @match.user_id %> |
+            <strong>Challenger ID:</strong>
+            <%= @match.challenger_id %> |
+            <%= link_to 'Edit', edit_match_path(@match) %> |
+            <%= link_to 'Back', matches_path %>
+          </p>
+        </article>
       </div>
     </article>
-
-
   </div>
 
-  <div class="xxmap">
-
-    <article class="board">
-    </article>
-
-    <article class="graveyard" id="grav1">
-    </article>
-
-    <article class="graveyard" id="grav0">
-    </article>
-
-  </div>
-
-  <div class="buttonBar">
-
-  </div>
+  <!--<div class="xxmap">-->
+    <!--&lt;!&ndash;<article class="board">&ndash;&gt;-->
+    <!--&lt;!&ndash;</article>&ndash;&gt;-->
+    <!--&lt;!&ndash;<article class="graveyard" id="grav1">&ndash;&gt;-->
+    <!--&lt;!&ndash;</article>&ndash;&gt;-->
+    <!--&lt;!&ndash;<article class="graveyard" id="grav0">&ndash;&gt;-->
+    <!--&lt;!&ndash;</article>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="auxSpace">&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--</div>-->
+  <!--<div class="enemyBay">-->
+  <!--</div>-->
+  <!--<div class="buttonBar">-->
+  <!--</div>-->
 </div>
 
-<div class="match">
-  <article class="info">
+<!--<div id="whitebloc">-->
 
-    <div class="auxSpace">
+  <!--<div id="orangediv">-->
+  <!--</div>-->
 
+  <!--<div id="rnd">-->
+    <!--<img src="img/logo.gif" alt="ROUNDSHOT" />-->
+    <!--<a href="" class="button">klik!</a>-->
+  <!--</div>-->
 
-    </div>
-
-    <div class="enemyBay">
-
-    </div>
-
-
-  </article>
-
-  <article class="map">
-
-
-  </article>
-</div>
+<!--</div>-->

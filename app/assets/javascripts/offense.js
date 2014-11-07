@@ -126,6 +126,9 @@ var Offense = {
     },
 
     finishTurn: function(){
+        $('.hideHoveredUnitInfo').css('visibility', 'hidden');
+        $('.hideSelectedUnitInfo').css('visibility', 'hidden');
+
         Offense.attackRange.off('click');
         Offense.selectableUnits.off('click');
         Offense.selectedUnit = null;
@@ -142,7 +145,9 @@ var Death = {
         Death.graveCount += 1;
         var grave = ('<div class="grave" id="gra'+Death.graveCount+'"></div>');
 
-        $('.graveyard').append(grave);
+        unit.attr('data-status', 'dead');
+
+        $('#grav'+Offense.defense).append(grave);
         $('#gra'+Death.graveCount+'').prepend(unit);
     }
 

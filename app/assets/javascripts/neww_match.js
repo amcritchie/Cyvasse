@@ -24,11 +24,10 @@ function pregame() {
 }
 
 
-
 function updateSelectBox(unit) {
 
 
-    $('.p1').css('visibility', 'visible');
+    $('.hideSelectedUnitInfo').css('visibility', 'visible');
 
     $('#selectUnitName').empty().append(capitalizeEachWord(unit.attr('alt')));
 
@@ -41,8 +40,6 @@ function updateSelectBox(unit) {
     $('.selectedUnitUtility').empty().append(unit.data('range'));
     $('.selectedUnitTrump').empty().append(unit.data('flank'));
 }
-
-
 
 
 function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
@@ -235,28 +232,34 @@ function shuffle(array) {
 
 function registerHoverUnit() {
     $hoverableRange = $('img[data-team]');
-    $hoverableRange.mouseenter(function (e) {
+
+
+    $hoverableRange.on({
+        mouseenter: function () {
             updateHoverBox($(this));
+        },
+        mouseleave: function () {
+            $('.hideHoveredUnitInfo').css('visibility', 'hidden');
+
         }
-//        mouseleave: function () {
-//        }
-    );
+    });
 }
 
 function capitalizeEachWord(str) {
-    return str.replace(/\w\S*/g, function(txt) {
+    return str.replace(/\w\S*/g, function (txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }
 
 function updateHoverBox(unit) {
-    $('#hoverName').empty().append(capitalizeEachWord(unit.attr('alt')));
 
+    $('.hideHoveredUnitInfo').css('visibility', 'visible');
+
+    $('#hoverName').empty().append(capitalizeEachWord(unit.attr('alt')));
     $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
 
     $('#hoverOffense').empty().append('Attack: ' + unit.data('strength'));
     $('#hoverDefence').empty().append('Armor: ' + unit.data('strength'));
-
     $('#hoverMvRange').empty().append('Moves: ' + unit.data('movement'));
     $('#hoverUtRange').empty().append('Trump: ' + unit.data('trump'));
 }
@@ -278,18 +281,27 @@ function initialConditions() {
     pregame();
 }
 
-function newGame(){
+function newGame() {
     loadEverything();
     initialConditions();
     registerHoverUnit();
 }
 
-function oldGame(){
+function oldGame() {
     loadEverything();
     Game.oldGame();
 }
 
 $(document).ready(function () {
+
+    $('.button').click(function(e){
+        e.preventDefault();
+        $('#whitebloc').animate({top: '+=200'});
+        return false;
+    });
+
+    newGame();
+
 
     $(".extraSpace").prepend("<button class='newGame'>New Game</button>");
     $(".extraSpace").prepend("<button class='oldGame'>Old Game</button>");
@@ -297,7 +309,27 @@ $(document).ready(function () {
     $('.newGame').on('click', function () {
         $('.newGame').off('click').remove();
         $('.oldGame').off('click').remove();
-        newGame();
+//        newGame();
+        $('.xxmap').show();
+//        $('.auxSpace').slideDown('left');
+//        $('.auxSpace').fadeIn(1000);
+//        $('.auxSpace').show();
+//        $('.auxSpace').css('position', 'relative');
+        $('.auxSpace').animate(
+            {
+                opacity: 1,
+                left: "+=700"//                left: '0'
+            },
+            {
+                duration: 'slow'
+            });
+
+//        $('.auxSpace').animate({top: '+=200'});
+
+//        $('.auxSpace').animate(
+//            {left: "+=500"}, 2000)
+
+
     });
 
     $('.oldGame').on('click', function () {
