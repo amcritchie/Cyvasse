@@ -68,16 +68,16 @@ var Offense = {
 
         var potentialRange = HexRange.ycreateRangeSelector(Offense.selectedUnit,Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
 
-//        var dragonRange = HexRange.ycreateRangeSelector(Offense.selectedUnit,Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
-
         NewHexRangeFinder.createRings(Offense.selectedUnit, potentialRange);
 
 
 //        debugger;
 
         $('[data-ring=11]').children('svg').children('polygon').attr('class', 'ring1');
+        $('[data-ring=21]').children('svg').children('polygon').attr('class', 'blocked');
+        $('[data-ring=31]').children('svg').children('polygon').attr('class', 'attackable');
+        $('[data-ring=41]').children('svg').children('polygon').attr('class', 'ally');
 //        $('[data-ring=12]').children('svg').children('polygon').attr('class', 'blueblue');
-//        $('[data-ring=13]').children('svg').children('polygon').attr('class', 'orange');
 
         setTimeout(function(){
             $('[data-ring=12]').children('svg').children('polygon').attr('class', 'ring2');

@@ -151,7 +151,7 @@ function createAllUnits(team) {
 function loadMapAndUnits(units, map, enemies) {
 
     LoadingFactory.loadPartsOfMatchHTML();
-    LoadingFactory.moveSVGsToPosition(map,units,enemies);
+    LoadingFactory.moveSVGsToPosition(map, units, enemies);
 //    $('.xxmatch').append("<div class=xxmap></div>");
 //
 //    $(".xxmap").prepend("<article class='auxSpace rotating'></article>");
@@ -185,10 +185,13 @@ function loadEverything() {
 
 var NewHexRangeFinder = {
 
-    createRings: function(selectedUnit, potentialRange){
+    selectedUnit: null,
+
+    createRings: function (selectedUnit, potentialRange) {
 
         var ring = 0;
-        while (ring < selectedUnit.attr('data-movement')){
+        NewHexRangeFinder.selectedUnit = selectedUnit;
+        while (ring < selectedUnit.attr('data-movement')) {
             NewHexRangeFinder.nextRingOfHexagons(potentialRange, ring, Offense.selectedUnit);
             potentialRange = potentialRange.not('[data-locked=true]');
             ring += 1;
@@ -197,42 +200,36 @@ var NewHexRangeFinder = {
 
     },
 
-    nextRingOfHexagons: function(hexRange, lastRingNum, selectedUnit){
-        $.each(hexRange, function(i, hex){
+    nextRingOfHexagons: function (hexRange, lastRingNum, selectedUnit) {
+        $.each(hexRange, function (i, hex) {
 
 
+            if (NewHexRangeFinder.searchAdjacentHex($(hex), 'data-ring', lastRingNum + 10) == 'true') {
 
-            if (NewHexRangeFinder.searchAdjacentHex($(hex),'data-ring',lastRingNum + 10) == 'true'){
-
-
-                if ($(hex).children('img').attr('data-team') == 0 ){
-                    if ($(hex).children('img').attr('data-strength') < 3 ){
-                        $(hex).attr('data-ring',(lastRingNum + 21));
+                if ($(hex).children('img').attr('alt') == 'mountain') {
+                    $(hex).attr('data-ring', (lastRingNum + 51));
+                    $(hex).attr('data-locked', true);
+                } else if ($(hex).children('img').attr('data-team') == 0) {
+                    if ($(hex).children('img').attr('data-strength') < 3) {
+                        $(hex).attr('data-ring', (lastRingNum + 21));
                         $(hex).attr('data-locked', true);
                     } else {
-                        $(hex).attr('data-ring',(lastRingNum + 31));
+                        $(hex).attr('data-ring', (lastRingNum + 31));
                         $(hex).attr('data-locked', true);
                     }
 
 
-                } else if ($(hex).children('img').attr('data-team') == 1 ) {
-                    $(hex).attr('data-ring',(lastRingNum + 41));
+                } else if ($(hex).children('img').attr('data-team') == 1) {
+                    $(hex).attr('data-ring', (lastRingNum + 41));
                     $(hex).attr('data-locked', true);
-                }else{
+                } else {
 
 
-                        $(hex).attr('data-ring',(lastRingNum + 11));
-                        $(hex).attr('data-locked', true);
+                    $(hex).attr('data-ring', (lastRingNum + 11));
+                    $(hex).attr('data-locked', true);
 
-                        console.log('foundOne')
-
-                    }
                 }
-
-
-
-
-
+            }
 
 
 ////            debugger;
@@ -286,7 +283,17 @@ var NewHexRangeFinder = {
 
         $.each(neighbors, function (i, e) {
 //            console.log(e);
-            if( (e.attr(attributeName) == attribute) ) {
+            if (
+                (
+                    e.attr(attributeName) == attribute
+                    ) || (
+                (NewHexRangeFinder.selectedUnit.attr('alt') == 'dragon' &&
+                    ((e.attr(attributeName) == attribute) || (e.attr(attributeName) == (attribute + 20)) ||
+                        (e.attr(attributeName) == (attribute + 30)) || (e.attr(attributeName) == (attribute + 10))
+                        )
+                    )
+
+                )) {
                 passing = 'true';
             }
         });

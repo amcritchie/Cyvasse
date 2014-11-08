@@ -128,10 +128,7 @@ var HexRange = {
             }
             var passing = HexRange.searchAdjacentHex(hex);
 
-//            if (passing == 'false') {
-//                HexRange.blockedHexagons.push($(hex));
-//                hex.attr('data-blocked', 'FullBlock');
-//            }
+
             hex.children('svg').children('polygon').attr('class', 'testRange');
         }
 
