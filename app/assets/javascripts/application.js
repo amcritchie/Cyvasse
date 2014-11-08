@@ -121,19 +121,19 @@ function createUnit(index, nameArray, movement, strength, range, flank, team) {
 function createAllUnits(team) {
     var array = [];
 
-    array.push(createUnit(array.length, ["rabble"], 2, 1, 0, 1, team));
-    array.push(createUnit(array.length, ["rabble"], 2, 1, 0, 1, team));
-    array.push(createUnit(array.length, ["rabble"], 2, 1, 0, 1, team));
+    array.push(createUnit(array.length, ["rabble"], 2, 2, 0, 1, team));
+    array.push(createUnit(array.length, ["rabble"], 2, 2, 0, 1, team));
+    array.push(createUnit(array.length, ["rabble"], 2, 2, 0, 1, team));
     array.push(createUnit(array.length, ["spearman"], 2, 2, 0, 2, team));
     array.push(createUnit(array.length, ["spearman"], 2, 2, 0, 2, team));
     array.push(createUnit(array.length, ["elephant"], 3, 4, 0, 1, team));
     array.push(createUnit(array.length, ["elephant"], 3, 4, 0, 1, team));
-    array.push(createUnit(array.length, ["light", "horse"], 4, 2, 0, 1, team));
-    array.push(createUnit(array.length, ["light", "horse"], 4, 2, 0, 1, team));
+    array.push(createUnit(array.length, ["light", "horse"], 5, 2, 0, 1, team));
+    array.push(createUnit(array.length, ["light", "horse"], 5, 2, 0, 1, team));
     array.push(createUnit(array.length, ["heavy", "horse"], 3, 3, 0, 1, team));
     array.push(createUnit(array.length, ["heavy", "horse"], 3, 3, 0, 1, team));
-    array.push(createUnit(array.length, ["crossbowman"], 2, 1, 2, 1, team));
-    array.push(createUnit(array.length, ["crossbowman"], 2, 1, 2, 1, team));
+    array.push(createUnit(array.length, ["crossbowman"], 2, 1, 3, 1, team));
+    array.push(createUnit(array.length, ["crossbowman"], 2, 1, 3, 1, team));
 
     array.push(createUnit(array.length, ["catapult"], 2, 3, 3, 1, team));
     array.push(createUnit(array.length, ["catapult"], 2, 3, 3, 1, team));
@@ -142,8 +142,8 @@ function createAllUnits(team) {
     array.push(createUnit(array.length, ["mountain"], 0, 9, 0, 0, team));
     array.push(createUnit(array.length, ["mountain"], 0, 9, 0, 0, team));
 
-    array.push(createUnit(array.length, ["dragon"], 6, 5, 0, 0, team));
-    array.push(createUnit(array.length, ["king"], 2, 1, 0, 1, team));
+    array.push(createUnit(array.length, ["dragon"], 10, 5, 0, 0, team));
+    array.push(createUnit(array.length, ["king"], 3, 2, 0, 1, team));
 
     return array
 }
