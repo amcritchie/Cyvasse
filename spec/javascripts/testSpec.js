@@ -236,7 +236,7 @@ describe("Moving Units to Map", function () {
 
     it("Click 'Random Setup' Button, and expect all Units to move to Map", function(){
 
-//        debugger;
+        debugger;
         expect($(".unplacedUnitSpace").length).toEqual(20);
         $('.randomSetUpButton').click();
 //

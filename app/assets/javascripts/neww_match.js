@@ -52,8 +52,8 @@ function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
 
 function startGame() {
     pregame_var = false;
-    $('.startGameButton').off('click').remove();
-    $('.randomSetUpButton').off('click').remove();
+//    $('.startGameButton').off('click').remove();
+//    $('.randomSetUpButton').off('click').remove();
     $('.loadEnemiesButton').off('click').remove();
     $('.enemyLineUpOne').off('click').remove();
 
@@ -281,8 +281,47 @@ function initialConditions() {
     pregame();
 }
 
+var LoadingFactory = {
+
+
+    loadMapUnitsAndEnemiesHTML: function () {
+        var map = { thearray: create_map() };
+        var templateMap = JST['views/map'];
+        var result = templateMap(map);
+
+        var hash = { units: createAllUnits(1)};
+        var templateUnits = JST['views/units'];
+        var units = templateUnits(hash);
+
+        var enemyHash = { enemies: createAllUnits(0) };
+        var templateEnemies = JST['views/enemies'];
+        var enemies = templateEnemies(enemyHash);
+
+        LoadingFactory.loadPartsOfMatchHTML();
+        LoadingFactory.moveSVGsToPosition(result, units, enemies);
+
+    },
+
+    loadPartsOfMatchHTML: function () {
+        $('.xxmatch').append("<div class=xxmap></div>");
+
+        $(".xxmap").prepend("<article class='auxSpace rotating'></article>");
+        $(".xxmap").prepend("<article class=enemyBay></article>");
+        $(".xxmap").prepend("<article class=graveyard id=grav1></article>");
+        $(".xxmap").prepend("<article class=graveyard id=grav0></article>");
+        $(".xxmap").prepend("<article class=board></article>");
+    },
+
+    moveSVGsToPosition: function (map, units, enemies) {
+        $(".board").prepend(map);
+        $(".auxSpace").prepend(units);
+        $(".enemyBay").prepend(enemies);
+    }
+};
+
 function newGame() {
-    loadEverything();
+    LoadingFactory.loadMapUnitsAndEnemiesHTML();
+//    loadEverything();
     initialConditions();
     registerHoverUnit();
 }
@@ -294,46 +333,41 @@ function oldGame() {
 
 $(document).ready(function () {
 
-    $('.button').click(function(e){
-        e.preventDefault();
-        $('#whitebloc').animate({top: '+=200'});
-        return false;
-    });
 
     newGame();
 
 
-    $(".extraSpace").prepend("<button class='newGame'>New Game</button>");
-    $(".extraSpace").prepend("<button class='oldGame'>Old Game</button>");
+    setTimeout(function () {
 
-    $('.newGame').on('click', function () {
-        $('.newGame').off('click').remove();
-        $('.oldGame').off('click').remove();
-//        newGame();
-        $('.xxmap').show();
-//        $('.auxSpace').slideDown('left');
-//        $('.auxSpace').fadeIn(1000);
-//        $('.auxSpace').show();
-//        $('.auxSpace').css('position', 'relative');
-        $(".xxmap").prepend("<button class='startGameButton rotating'>Start Game</button>");
+        Rotator.createAndRotateOn('oldGame', 'Old Game');
+        Rotator.createAndRotateOn('newGame', 'New Game');
 
-        $('.auxSpace').animate(
-            {
-                opacity: 1,
-                left: "+=700"//                left: '0'
-            },
-            {
-                duration: 'slow'
+
+        $('.newGame').on('click', function () {
+            $('.newGame').off('click').remove();
+            $('.oldGame').off('click').remove();
+            $('.xxmap').show();
+
+            $(".xxmap").prepend("<button class='startGameButton rotating'>Start Game</button>");
+
+            $('.auxSpace').animate(
+                {
+                    opacity: 1,
+                    left: "+=700"//                left: '0'
+                },
+                {
+                    duration: 'slow'
+                });
+
+
+            Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+            $('.randomSetUpButton').on('click', function () {
+                RandomSetup.placeUnits()
             });
 
+        });
+    }, 2000);
 
-//        $('.auxSpace').animate({top: '+=200'});
-
-//        $('.auxSpace').animate(
-//            {left: "+=500"}, 2000)
-
-
-    });
 
     $('.oldGame').on('click', function () {
 

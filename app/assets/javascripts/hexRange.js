@@ -1,6 +1,6 @@
-
 var HexRange = {
 
+    selectedUnit: null,
     xPosition: null,
     yPosition: null,
     range: null,
@@ -13,18 +13,38 @@ var HexRange = {
     finalSizeDown: null,
     finalSizeUp: null,
 
-    ycreateRangeSelector: function(xPos,yPos,range){
+
+    blockedHexagons: $('#hex43'),
+
+
+    ycreateRangeSelector: function (selectedUnit, xPos, yPos, range) {
+        HexRange.selectedUnit = selectedUnit;
         HexRange.xPosition = parseInt(xPos);
         HexRange.yPosition = parseInt(yPos);
         HexRange.range = parseInt(range);
-        $allHexagons.attr('class','unSelected');
-        HexRange.ynewChangeClassOfHexagonsInRange(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange);
+        $allHexagons.attr('class', 'unSelected');
+
+
+        $('.hexDiv').attr('data-blocked', 'true');
+        HexRange.blockedHexagons = [];
+
+//          THIS ONE
+//        HexRange.ynewChangeClassOfHexagonsInRange(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange);
+//          THIS ONE
+
+        HexRange.dragonChangeClassOfHexagonsInRange(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange);
+
         return $('polygon.testRange');
     },
 
-    ynewChangeClassOfHexagonsInRange: function(){
+
+    dragonChangeClassOfHexagonsInRange: function () {
 
         HexRange.horizontal = 1;
+
+
+        HexRange.selectedUnit.parent().attr('data-blocked', 'false');
+
 
         while (HexRange.horizontal <= HexRange.range) {
             HexRange.ynewChangeClassOfHexCircumference();
@@ -32,7 +52,21 @@ var HexRange = {
         }
     },
 
-    ynewChangeClassOfHexCircumference: function(){
+    ynewChangeClassOfHexagonsInRange: function () {
+
+        HexRange.horizontal = 1;
+
+
+        HexRange.selectedUnit.parent().attr('data-blocked', 'false');
+
+
+        while (HexRange.horizontal <= HexRange.range) {
+            HexRange.ynewChangeClassOfHexCircumference();
+            HexRange.horizontal += 1;
+        }
+    },
+
+    ynewChangeClassOfHexCircumference: function () {
 
         HexRange.constantUp = 0;
         HexRange.constantDown = 0;
@@ -40,8 +74,8 @@ var HexRange = {
         HexRange.initialSizeDown = findHex(HexRange.xPosition, HexRange.yPosition).data('size');
         HexRange.initialSizeUp = findHex(HexRange.xPosition, HexRange.yPosition).data('size');
 
-        newHexClassChange((HexRange.xPosition - HexRange.horizontal), (HexRange.yPosition), HexRange.horizontal);
-        newHexClassChange((HexRange.xPosition + HexRange.horizontal), (HexRange.yPosition), HexRange.horizontal);
+        HexRange.hexChangeClass((HexRange.xPosition - HexRange.horizontal), (HexRange.yPosition), HexRange.horizontal);
+        HexRange.hexChangeClass((HexRange.xPosition + HexRange.horizontal), (HexRange.yPosition), HexRange.horizontal);
 
         while (HexRange.horizontal >= HexRange.vertical) {
 
@@ -63,24 +97,99 @@ var HexRange = {
             HexRange.vertical += 1;
         }
     },
-    ynewchangeVerticalHexagons: function(constant,up){
+    ynewchangeVerticalHexagons: function (constant, up) {
         if (HexRange.horizontal <= HexRange.vertical) {
-            HexRange.ynewverticalHexChange(constant,up);
+            HexRange.ynewverticalHexChange(constant, up);
         } else {
-            HexRange.ynewdiagonalHexChange(constant,up);
+            HexRange.ynewdiagonalHexChange(constant, up);
         }
     },
-    ynewverticalHexChange: function(constant,up){
+    ynewverticalHexChange: function (constant, up) {
         var row = 0;
         while (row <= HexRange.horizontal) {
             var xx = (HexRange.xPosition - (HexRange.horizontal + row - HexRange.vertical - constant));
             var yy = (HexRange.yPosition + up);
-            newHexClassChange(xx,yy,HexRange.horizontal);
+            HexRange.hexChangeClass(xx, yy, HexRange.horizontal);
             row += 1;
         }
     },
-    ynewdiagonalHexChange: function(constant,up){
-        newHexClassChange((HexRange.xPosition - (HexRange.horizontal - constant)), (HexRange.yPosition + up), HexRange.horizontal);
-        newHexClassChange((HexRange.xPosition + (HexRange.horizontal + constant - HexRange.vertical)), (HexRange.yPosition + up), HexRange.horizontal)
+    ynewdiagonalHexChange: function (constant, up) {
+        HexRange.hexChangeClass((HexRange.xPosition - (HexRange.horizontal - constant)), (HexRange.yPosition + up), HexRange.horizontal);
+        HexRange.hexChangeClass((HexRange.xPosition + (HexRange.horizontal + constant - HexRange.vertical)), (HexRange.yPosition + up), HexRange.horizontal)
+    },
+
+    hexChangeClass: function (xPos, yPos) {
+        var hex = $('*[data-xPosss=' + xPos + '][data-yPosss=' + yPos + ']');
+
+
+        if (hex.length != 0){
+
+            if ((hex.children('img').attr('data-team')) != 0) {
+                hex.attr('data-blocked', 'false');
+            }
+            var passing = HexRange.searchAdjacentHex(hex);
+
+            if (passing == 'false'){
+                HexRange.blockedHexagons.push($(hex));
+                hex.attr('data-blocked', 'FullBlock');
+            }
+            hex.children('svg').children('polygon').attr('class', 'testRange');
+        }
+
+    },
+
+    searchAdjacentHex: function (hex) {
+        var id = hex.attr('id').slice(3);
+        var xxx = parseInt(hex.attr('data-xPosss'));
+        var yyy = parseInt(hex.attr('data-yPosss'));
+
+        var passing = 'false';
+
+        var neighbors = [
+            $('#hex' + 44),
+            $('#hex' + 34),
+            $('#hex' + 24),
+            $('#hex' + 41),
+            $('#hex' + 42),
+            $('#hex' + 43),
+        ];
+
+        if (id < 41) {
+            neighbors = [
+                $('*[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + (yyy - 1) + ']'),
+                $('*[data-xPosss=' + xxx + '][data-yPosss=' + (yyy - 1) + ']'),
+                $('*[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + yyy + ']'),
+                $('*[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + yyy + ']'),
+                $('*[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + (yyy + 1) + ']'),
+                $('*[data-xPosss=' + xxx + '][data-yPosss=' + (yyy + 1) + ']'),
+            ];
+        } else if (id < 52) {
+            neighbors = [
+                $('*[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + (yyy - 1) + ']'),
+                $('*[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + yyy + ']'),
+                $('*[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + yyy + ']'),
+                $('*[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + (yyy + 1) + ']'),
+                $('*[data-xPosss=' + xxx + '][data-yPosss=' + (yyy - 1) + ']'),
+                $('*[data-xPosss=' + xxx + '][data-yPosss=' + (yyy + 1) + ']'),
+            ];
+        } else {
+            neighbors = [
+                $('*[data-xPosss=' + xxx + '][data-yPosss=' + (yyy - 1) + ']'),
+                $('*[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + (yyy - 1) + ']'),
+                $('*[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + yyy + ']'),
+                $('*[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + yyy + ']'),
+                $('*[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + (yyy + 1) + ']'),
+                $('*[data-xPosss=' + xxx + '][data-yPosss=' + (yyy + 1) + ']'),
+            ];
+        }
+
+        $.each(neighbors, function (i, e) {
+//            console.log(e);
+            if (e.attr('data-blocked') == 'false') {
+                passing = 'true';
+            }
+        });
+//        debugger;
+        return passing
     }
 };

@@ -7,11 +7,11 @@ var RandomSetup = {
 
     loadPregameButton: function() {
         $(".extraSpace").prepend("<button class='loadEnemiesButton'>Load Enemies</button>");
-        $(".extraSpace").prepend("<button class='randomSetUpButton'>Random Setup</button>");
+//        $(".extraSpace").prepend("<button class='randomSetUpButton'>Random Setup</button>");
         $(".extraSpace").prepend("<button class='enemyLineUpOne'>Lineup 1</button>");
 
-        $('.loadEnemiesButton').on('click', function () { RandomSetup.placeEnemies() });
-        $('.randomSetUpButton').on('click', function () { RandomSetup.placeUnits() });
+//        $('.loadEnemiesButton').on('click', function () { RandomSetup.placeEnemies() });
+//        $('.randomSetUpButton').on('click', function () { RandomSetup.placeUnits() });
 
         $('.enemyLineUpOne').on('click', function () {
             RandomSetup.placeLineOne()

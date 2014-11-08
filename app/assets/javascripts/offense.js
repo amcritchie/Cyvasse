@@ -58,10 +58,68 @@ var Offense = {
     },
     updateMovingRange: function(){
 
-        var attackRange = HexRange.ycreateRangeSelector(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitAttackRange).parent().parent();
-        var movingRange = HexRange.ycreateRangeSelector(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
-        attackRange.children('svg').children('polygon').attr('class', 'hoverRange');
-        movingRange.children('svg').children('polygon').attr('class', 'selectedRange');
+        var attackRange = HexRange.ycreateRangeSelector(Offense.selectedUnit,Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitAttackRange).parent().parent();
+        var movingRange = HexRange.ycreateRangeSelector(Offense.selectedUnit,Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
+
+        $('.hexDiv').attr('data-ring',9);
+        $('.hexDiv').attr('data-locked', false);
+
+        Offense.selectedUnit.parent().attr('data-ring',10);
+
+        var potentialRange = HexRange.ycreateRangeSelector(Offense.selectedUnit,Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
+
+        var dragonRange = HexRange.ycreateRangeSelector(Offense.selectedUnit,Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
+
+        NewHexRangeFinder.createRings(Offense.selectedUnit, potentialRange);
+
+
+//        debugger;
+
+        $('[data-ring=11]').children('svg').children('polygon').attr('class', 'ring1');
+//        $('[data-ring=12]').children('svg').children('polygon').attr('class', 'blueblue');
+//        $('[data-ring=13]').children('svg').children('polygon').attr('class', 'orange');
+
+        setTimeout(function(){
+            $('[data-ring=12]').children('svg').children('polygon').attr('class', 'ring2');
+            $('[data-ring=22]').children('svg').children('polygon').attr('class', 'blocked');
+            $('[data-ring=32]').children('svg').children('polygon').attr('class', 'attackable');
+            $('[data-ring=42]').children('svg').children('polygon').attr('class', 'ally');
+
+        }, 400);
+
+        setTimeout(function(){
+            $('[data-ring=13]').children('svg').children('polygon').attr('class', 'ring3');
+            $('[data-ring=23]').children('svg').children('polygon').attr('class', 'blocked');
+            $('[data-ring=33]').children('svg').children('polygon').attr('class', 'attackable');
+            $('[data-ring=43]').children('svg').children('polygon').attr('class', 'ally');
+
+
+        }, 800);
+
+        setTimeout(function(){
+            $('[data-ring=14]').children('svg').children('polygon').attr('class', 'ring4');
+            $('[data-ring=24]').children('svg').children('polygon').attr('class', 'blocked');
+            $('[data-ring=34]').children('svg').children('polygon').attr('class', 'attackable');
+            $('[data-ring=44]').children('svg').children('polygon').attr('class', 'ally');
+
+
+        }, 1200);
+
+        setTimeout(function(){
+            $('[data-ring=15]').children('svg').children('polygon').attr('class', 'ring5');
+            $('[data-ring=25]').children('svg').children('polygon').attr('class', 'blocked');
+            $('[data-ring=35]').children('svg').children('polygon').attr('class', 'attackable');
+            $('[data-ring=45]').children('svg').children('polygon').attr('class', 'ally');
+
+
+        }, 1400);
+
+//        debugger;
+        attackRange = attackRange.not($('[data-blocked="FullBlock"]'));
+        movingRange = movingRange.not($('[data-blocked="FullBlock"]'));
+
+//        attackRange.children('svg').children('polygon').attr('class', 'hoverRange');
+//        movingRange.children('svg').children('polygon').attr('class', 'selectedRange');
 
 
         Offense.attackRange = attackRange.filter(function(){
@@ -69,8 +127,8 @@ var Offense = {
         });
         Offense.movingRange = movingRange.not($('[data-occupied=true]'));
 
-        Offense.attackRange.children('svg').children('polygon').attr('class', 'blueblue');
-        Offense.movingRange.children('svg').children('polygon').attr('class', 'orange');
+//        Offense.movingRange.children('svg').children('polygon').attr('class', 'orange');
+//        Offense.attackRange.children('svg').children('polygon').attr('class', 'blueblue');
 
         Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
 

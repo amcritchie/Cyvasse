@@ -40,38 +40,26 @@ var PreGame = {
         });
     },
 
+
+
+    startAnimationExecuted: false,
     addStartButton: function () {
         if ($(".unplacedUnitSpace").length == 0) {
 
-            $('.auxSpace').animate(
-                {
-                    opacity: 0,
-                    left: "+=700"
-                },
-                {
-                    duration: 'slow',
-                    complete: function () {
-                        $('.auxSpace').remove();
-                    }
-                });
+            if (PreGame.startAnimationExecuted == false) {
+                Rotator.rotateOff($('.auxSpace'));
+                Rotator.rotateOn($('.startGameButton'));
+                PreGame.startAnimationExecuted = true;
+            } else {
+                $('.startGameButton').off('click');
+            }
 
-            $('.startGameButton').animate(
-                {
-                    opacity: 1,
-                    left: "+=700"//                left: '0'
-                },
-                {
-                    duration: 'slow'
-                });
-
-
-
-
-//            $('.auxSpace').fadeOut(1000);
-//            $('.startGameButton').off('click').remove();
-//            $(".extraSpace").prepend("<button class='startGameButton'>Start Game</button>");
             $('.startGameButton').on('click', function () {
+                RandomSetup.placeLineOne();
                 $initialRange.off('click');
+                Rotator.rotateOff($('.startGameButton'));
+                Rotator.rotateOff($('.randomSetUpButton'));
+
                 startGame()
             })
         }
@@ -91,6 +79,38 @@ var PreGame = {
         movingUnit.prependTo(movingTo);
         movingTo.attr('data-occupied', true);
         movingFrom.attr('data-occupied', false);
+    }
+
+};
+
+var Rotator = {
+    createAndRotateOn: function(button,text){
+        $(".xxmap").prepend("<button class='" + button +" rotating'>" + text + "</button>");
+        Rotator.rotateOn($('.'+button))
+    },
+
+    rotateOn: function(button){
+        $(button).animate(
+            {
+                opacity: 1,
+                left: "+=700"
+            },
+            {
+                duration: 'slow'
+            });
+    },
+    rotateOff: function(button){
+        $(button).animate(
+            {
+                opacity: 0,
+                left: "+=700"
+            },
+            {
+                duration: 'slow',
+                complete: function () {
+                    $(button).remove();
+                }
+            });
     }
 
 };
