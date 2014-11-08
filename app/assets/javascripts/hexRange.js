@@ -28,34 +28,24 @@ var HexRange = {
         $('.hexDiv').attr('data-blocked', 'true');
         HexRange.blockedHexagons = [];
 
-//          THIS ONE
-//        HexRange.ynewChangeClassOfHexagonsInRange(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange);
-//          THIS ONE
-
-        HexRange.dragonChangeClassOfHexagonsInRange(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange);
+        HexRange.ynewChangeClassOfHexagonsInRange(Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange);
 
         return $('polygon.testRange');
     },
 
-
-    dragonChangeClassOfHexagonsInRange: function () {
-
-        HexRange.horizontal = 1;
-
-
-        HexRange.selectedUnit.parent().attr('data-blocked', 'false');
-
-
-        while (HexRange.horizontal <= HexRange.range) {
-            HexRange.ynewChangeClassOfHexCircumference();
-            HexRange.horizontal += 1;
+    dragonChangeVerticalHexagons: function (constant, up) {
+        if (HexRange.horizontal <= HexRange.vertical) {
+            var xx = (HexRange.xPosition - (HexRange.horizontal - HexRange.vertical - constant));
+            var yy = (HexRange.yPosition + up);
+            HexRange.hexChangeClass(xx, yy, HexRange.horizontal);
+            HexRange.hexChangeClass(xx - HexRange.horizontal, yy, HexRange.horizontal);
         }
     },
+
 
     ynewChangeClassOfHexagonsInRange: function () {
 
         HexRange.horizontal = 1;
-
 
         HexRange.selectedUnit.parent().attr('data-blocked', 'false');
 
@@ -89,8 +79,17 @@ var HexRange = {
                 HexRange.constantUp += 1;
             }
 
-            HexRange.ynewchangeVerticalHexagons(HexRange.constantDown, HexRange.vertical);
-            HexRange.ynewchangeVerticalHexagons(HexRange.constantUp, (HexRange.vertical * -1));
+
+            if (HexRange.selectedUnit.attr('alt') == 'dragon') {
+                HexRange.dragonChangeVerticalHexagons(HexRange.constantDown, HexRange.vertical);
+                HexRange.dragonChangeVerticalHexagons(HexRange.constantUp, (HexRange.vertical * -1));
+
+            } else {
+                HexRange.ynewchangeVerticalHexagons(HexRange.constantDown, HexRange.vertical);
+                HexRange.ynewchangeVerticalHexagons(HexRange.constantUp, (HexRange.vertical * -1));
+            }
+//            HexRange.ynewchangeVerticalHexagons(HexRange.constantDown, HexRange.vertical);
+//            HexRange.ynewchangeVerticalHexagons(HexRange.constantUp, (HexRange.vertical * -1));
 
             HexRange.initialSizeDown = HexRange.finalSizeDown;
             HexRange.initialSizeUp = HexRange.finalSizeUp;
@@ -122,17 +121,17 @@ var HexRange = {
         var hex = $('*[data-xPosss=' + xPos + '][data-yPosss=' + yPos + ']');
 
 
-        if (hex.length != 0){
+        if (hex.length != 0) {
 
             if ((hex.children('img').attr('data-team')) != 0) {
                 hex.attr('data-blocked', 'false');
             }
             var passing = HexRange.searchAdjacentHex(hex);
 
-            if (passing == 'false'){
-                HexRange.blockedHexagons.push($(hex));
-                hex.attr('data-blocked', 'FullBlock');
-            }
+//            if (passing == 'false') {
+//                HexRange.blockedHexagons.push($(hex));
+//                hex.attr('data-blocked', 'FullBlock');
+//            }
             hex.children('svg').children('polygon').attr('class', 'testRange');
         }
 
