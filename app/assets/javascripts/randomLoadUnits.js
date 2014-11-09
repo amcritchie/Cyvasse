@@ -60,7 +60,7 @@ var RandomSetup = {
             newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit);
         }
         PreGame.addStartButton();
-        PreGame.loadPreGameFunctions();
+        PreGame.loadPreGameTurn();
     },
     moveTeamToOrderSpots: function(){
         for (var i = 0; i < 20; i++) {
@@ -74,7 +74,7 @@ var RandomSetup = {
             newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit);
         }
         PreGame.addStartButton();
-        PreGame.loadPreGameFunctions();
+        PreGame.loadPreGameTurn();
     },
     moveImageToMap: function(unit){
         if (unit.attr('data-status') == 'unplaced') {

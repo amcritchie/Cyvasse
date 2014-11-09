@@ -20,7 +20,7 @@ var $hoverableRange;
 //  Functions.
 function pregame() {
     RandomSetup.loadPregameButton();
-    PreGame.loadPreGameFunctions();
+    PreGame.loadPreGameTurn();
 }
 
 
@@ -50,6 +50,7 @@ function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
     movingFrom.attr('data-occupied', false);
 }
 
+
 function startGame() {
     pregame_var = false;
 //    $('.startGameButton').off('click').remove();
@@ -63,6 +64,8 @@ function startGame() {
 //    turn();
     Game.firstTurn(offense)
 }
+
+
 function addAIButtons() {
     $(".extraSpace").prepend("<button class='moveUnitButton'>10 Turns</button>");
     $(".extraSpace").prepend("<button class='fiveTurnsButton'>5 Turns</button>");
@@ -281,6 +284,19 @@ function initialConditions() {
     pregame();
 }
 
+
+function newGame() {
+    LoadingFactory.loadMapUnitsAndEnemiesHTML();
+//    loadEverything();
+    initialConditions();
+    registerHoverUnit();
+}
+
+function oldGame() {
+    loadEverything();
+    Game.oldGame();
+}
+
 var LoadingFactory = {
 
 
@@ -319,22 +335,26 @@ var LoadingFactory = {
     }
 };
 
-function newGame() {
-    LoadingFactory.loadMapUnitsAndEnemiesHTML();
-//    loadEverything();
-    initialConditions();
-    registerHoverUnit();
-}
 
-function oldGame() {
-    loadEverything();
-    Game.oldGame();
-}
+var InitialMatchConditions = {
+
+    onPageLoad: function () {
+        LoadingFactory.loadMapUnitsAndEnemiesHTML();
+        registerHoverUnit();
+        PreGame.initialize();
+        PreGame.loadPreGameTurn();
+
+        pregame_var = true;
+        RandomSetup.loadPregameButton();
+
+    }
+};
 
 $(document).ready(function () {
 
+    InitialMatchConditions.onPageLoad();
 
-    newGame();
+    $allHexagons = $('polygon');
 
 
     setTimeout(function () {
@@ -347,20 +367,11 @@ $(document).ready(function () {
             $('.newGame').off('click').remove();
             $('.oldGame').off('click').remove();
             $('.xxmap').show();
-
             $(".xxmap").prepend("<button class='startGameButton rotating'>Start Game</button>");
 
-            $('.auxSpace').animate(
-                {
-                    opacity: 1,
-                    left: "+=700"//                left: '0'
-                },
-                {
-                    duration: 'slow'
-                });
-
-
+            Rotator.rotateOn('.auxSpace');
             Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+
             $('.randomSetUpButton').on('click', function () {
                 RandomSetup.placeUnits()
             });
