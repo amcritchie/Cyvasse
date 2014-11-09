@@ -31,26 +31,12 @@ var Offense = {
             updateSelectBox($(this).children('img'));
             Offense.movingRange.off('click');
             Offense.attackRange.off('click');
-
-            Offense.selectedUnitAttributes($(this));
+//            ----------
+            SelectedUnit.updateSelectedUnit($(this).children("img"));
             Offense.updateUnitRanges();
         })
     },
-    selectedUnitAttributes: function (selectedUnit) {
-        Offense.selectedUnit = selectedUnit.children("img");
-        Offense.selectedUnitTeam = selectedUnit.children('img').attr('data-team');
-        Offense.selectedUnitStrength = parseInt(selectedUnit.children('img').attr('data-strength'));
-        Offense.selectedUnitMovingRange = selectedUnit.children('img').attr('data-movement');
 
-        if (selectedUnit.children('img').attr('data-range') == 0) {
-            Offense.selectedUnitAttackRange = selectedUnit.children('img').attr('data-movement');
-        } else {
-            Offense.selectedUnitAttackRange = selectedUnit.children('img').attr('data-range');
-        }
-
-        Offense.selectedUnitXpos = selectedUnit.attr('data-xPosss');
-        Offense.selectedUnitYpos = selectedUnit.attr('data-yPosss');
-    },
     updateUnitRanges: function () {
 
         $('.hexDiv').attr('data-innRange', false);
@@ -59,22 +45,42 @@ var Offense = {
     },
     updateMovingRange: function () {
 
-        var attackRange = HexRange.ycreateRangeSelector(Offense.selectedUnit, Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitAttackRange).parent().parent();
-        var movingRange = HexRange.ycreateRangeSelector(Offense.selectedUnit, Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
+        var attackRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.attackRange).parent().parent();
+        var movingRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
 
         $('.hexDiv').attr('data-ring', 9);
         $('.hexDiv').attr('data-locked', false);
 
-        Offense.selectedUnit.parent().attr('data-ring', 10);
+        SelectedUnit.unit.parent().attr('data-ring', 10);
 
-        var potentialRange = HexRange.ycreateRangeSelector(Offense.selectedUnit, Offense.selectedUnitXpos, Offense.selectedUnitYpos, Offense.selectedUnitMovingRange).parent().parent();
+        var potentialRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
 
-        NewHexRangeFinder.createRings(Offense.selectedUnit, potentialRange);
+        NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
 
-        for (var i = 1; i < 6; i++) {
-            $('[data-ring=1' + i + ']').children('svg').children('polygon').attr('class', 'ring' + i + '');
-            $('[data-ring=2' + i + ']').children('svg').children('polygon').attr('class', 'blocked');
-            $('[data-ring=3' + i + ']').children('svg').children('polygon').attr('class', 'attackable');
+
+        Gradient.setRange();
+        for (var i = 1; i <= SelectedUnit.moveRange; i++) {
+            debugger;
+
+//            var color = "hsl(240, " + (40+(i*10))+ "%, "+(20+(i*10))+"%)";
+            var color = "hsl(240, " + Gradient.movement[(i-1)] +")";
+            var attackColor = "hsl(10, " + Gradient.movement[(i-1)] +")";
+            var blockColor = "hsl(140, " + Gradient.movement[(i-1)] +")";
+
+
+//            var color = "hsl(240, " + (40+(i*3))+ "%, "+(20+((i*10)*((1.1)-(i/10))))+"%)";
+
+            var color2 = "hsl(240, " + (100-(i*10))+ "%, "+(30+(i*5))+"%)";
+
+
+            $('[data-ring=1' + i + ']').children('svg').children('polygon').css('fill', color);
+            $('[data-ring=2' + i + ']').children('svg').children('polygon').css('fill', blockColor);
+            $('[data-ring=3' + i + ']').children('svg').children('polygon').css('fill', attackColor);
+
+//            $('[data-ring=1' + i + ']').children('svg').children('polygon').attr('class', 'ring' + i + '');
+
+//            $('[data-ring=2' + i + ']').children('svg').children('polygon').attr('class', 'blocked');
+//            $('[data-ring=3' + i + ']').children('svg').children('polygon').attr('class', 'attackable');
             $('[data-ring=4' + i + ']').children('svg').children('polygon').attr('class', 'ally');
             $('[data-ring=1' + (5 + i) + ']').children('svg').children('polygon').attr('class', 'ring' + i + '');
             $('[data-ring=2' + (5 + i) + ']').children('svg').children('polygon').attr('class', 'blocked');
@@ -85,10 +91,12 @@ var Offense = {
         Offense.movingRange = potentialRange.filter(function () {
             return ($(this).attr('data-ring') <= 20) && ($(this).attr('data-ring') > 9)
         });
+        debugger;
         Offense.attackRange = potentialRange.filter(function () {
             return ($(this).attr('data-ring') <= 40) && ($(this).attr('data-ring') > 30)
         });
 
+        debugger;
         Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
 
     },
@@ -103,7 +111,7 @@ var Offense = {
             Offense.selectableUnits.off('click');
 
             Offense.newLocation = $(this);
-            Offense.oldLocation = Offense.selectedUnit.parent();
+            Offense.oldLocation = SelectedUnit.unit.parent();
 
             Offense.moveUnitToNewPosition();
 
@@ -114,11 +122,11 @@ var Offense = {
 
     registerAttackUnit: function () {
         Offense.attackRange.on('click', function () {
-//            Offense.moveUnitToGraveyard($(this).children("img"));
+
             Death.unitKilled($(this).children("img"));
             Offense.newLocation = $(this);
-            Offense.oldLocation = Offense.selectedUnit.parent();
-            if (Offense.selectedUnit.attr('data-range') == 0) {
+            Offense.oldLocation = SelectedUnit.unit.parent();
+            if (SelectedUnit.unit.attr('data-range') == 0) {
 
                 Offense.moveUnitToNewPosition();
 
@@ -137,7 +145,7 @@ var Offense = {
     moveUnitToNewPosition: function () {
         var movingTo = $(Offense.newLocation);
         var movingFrom = $(Offense.oldLocation);
-        Offense.selectedUnit.prependTo(movingTo);
+        SelectedUnit.unit.prependTo(movingTo);
         movingTo.attr('data-occupied', true);
         movingFrom.attr('data-occupied', false);
     },
@@ -148,7 +156,7 @@ var Offense = {
 
         Offense.attackRange.off('click');
         Offense.selectableUnits.off('click');
-        Offense.selectedUnit = null;
+        SelectedUnit.unit = null;
         Offense.offense = Math.abs(Offense.offense - 1);
         Game.runTurn(Offense.offense);
     }
@@ -168,4 +176,70 @@ var Death = {
         $('#gra' + Death.graveCount + '').prepend(unit);
     }
 
+};
+
+var Gradient = {
+    movement: [],
+
+
+    setRange: function(){
+        Gradient.movement = [
+            '40%, 30%',
+            '42%, 39%',
+            '44%, 47%',
+            '46%, 50%',
+            '48%, 55%',
+            '50%, 60%',
+        ];
+
+//        for (var i = 1; i <= SelectedUnit.moveRange; i++) {
+//            debugger;
+//
+////            var color = "hsl(240, " + (40+(i*10))+ "%, "+(20+(i*10))+"%)";
+//            var color = "hsl(240, " + (40+(i*3))+ "%, "+(20+((i*10)*((1.1)-(i/10))))+"%)";
+//
+//            var color2 = "hsl(240, " + (100-(i*10))+ "%, "+(30+(i*5))+"%)";
+//
+//
+//            $('[data-ring=1' + i + ']').children('svg').children('polygon').css('fill', color);
+//
+//            Range.movement.push(color)
+//        }
+    }
+};
+
+var SelectedUnit = {
+
+    unit: null,
+    team: null,
+
+    xPos: null,
+    yPos: null,
+
+    movement: null,
+    range: null,
+
+
+    strength: null,
+    moveRange: null,
+    attackRange: null,
+
+
+    updateSelectedUnit: function(newUnit){
+
+        SelectedUnit.unit = newUnit;
+        SelectedUnit.team = parseInt(newUnit.attr('data-team'));
+
+        SelectedUnit.xPos = parseInt(newUnit.parent().attr('data-xPosss'));
+        SelectedUnit.yPos = parseInt(newUnit.parent().attr('data-yPosss'));
+
+        SelectedUnit.strength = parseInt(newUnit.attr('data-strength'));
+        SelectedUnit.movement = parseInt(newUnit.attr('data-movement'));
+        SelectedUnit.range = parseInt(newUnit.attr('data-range'));
+
+        SelectedUnit.moveRange = parseInt(newUnit.attr('data-movement'));
+        SelectedUnit.attackRange = parseInt(newUnit.attr('data-range'));
+
+
+    }
 };

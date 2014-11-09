@@ -43,7 +43,7 @@ var NewHexRangeFinder = {
                     $(hex).attr('data-ring', (lastRingNum + 51));
                     $(hex).attr('data-locked', true);
                 } else if ($(hex).children('img').attr('data-team') == Offense.defense) {
-                    if ($(hex).children('img').attr('data-strength') > Offense.selectedUnitStrength) {
+                    if ($(hex).children('img').attr('data-strength') > SelectedUnit.strength) {
                         $(hex).attr('data-ring', (lastRingNum + 21));
                         $(hex).attr('data-locked', true);
                     } else {
