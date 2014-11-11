@@ -33,13 +33,15 @@ function updateSelectBox(unit) {
 
     $('.selectedUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
 
-    $('.selectedUnitAttack').empty().append(unit.data('strength'));
-    $('.selectedUnitDefence').empty().append(unit.data('strength'));
-    $('.selectedUnitMovement').empty().append(unit.data('movement'));
+    $('.selectedUnitAttack').empty().append(unit.data('attack'));
+    $('.selectedUnitDefence').empty().append(unit.data('defence'));
+    $('.selectedUnitMovement').empty().append(unit.data('moverange'));
 
     $('.selectedUnitUtility').empty().append(unit.data('range'));
     $('.selectedUnitTrump').empty().append(unit.data('flank'));
 }
+
+
 
 
 function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
@@ -235,8 +237,6 @@ function shuffle(array) {
 
 function registerHoverUnit() {
     $hoverableRange = $('img[data-team]');
-
-
     $hoverableRange.on({
         mouseenter: function () {
             updateHoverBox($(this));
@@ -261,9 +261,9 @@ function updateHoverBox(unit) {
     $('#hoverName').empty().append(capitalizeEachWord(unit.attr('alt')));
     $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
 
-    $('#hoverOffense').empty().append('Attack: ' + unit.data('strength'));
-    $('#hoverDefence').empty().append('Armor: ' + unit.data('strength'));
-    $('#hoverMvRange').empty().append('Moves: ' + unit.data('movement'));
+    $('#hoverOffense').empty().append('Attack: ' + unit.data('attack'));
+    $('#hoverDefence').empty().append('Armor: ' + unit.data('defence'));
+    $('#hoverMvRange').empty().append('Moves: ' + unit.data('moverange'));
     $('#hoverUtRange').empty().append('Trump: ' + unit.data('trump'));
 }
 

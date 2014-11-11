@@ -2,144 +2,90 @@ var Offense = {
 
     offense: null,
     defense: null,
+    selectableUnits: $('hex53'),
 
-//    slected Unit
-    selectedUnit: null,
-    selectedUnitXpos: null,
-    selectedUnitYpos: null,
-    selectedUnitTeam: null,
-    selectedUnitStrength: null,
-    selectedUnitMovingRange: null,
-    selectedUnitAttackRange: null,
-//    ------------------
-
-//    attackRange: null,
     newLocation: null,
     oldLocation: null,
 
-    movingRange: $('hex52'),
+    moveRange: $('hex52'),
     attackRange: $('hex54'),
-    selectableUnits: $('hex53'),
 
-    registerClickUnit: function (offense) {
-
+    runOffense: function (offense) {
         Offense.offense = offense;
         Offense.defense = Math.abs(offense - 1);
-        Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
+        Offense.selectableUnits = $('[data-team=' + offense + ']').parent();
+        Offense.registerClickUnit()
+    },
 
+    registerClickUnit: function () {
         Offense.selectableUnits.on('click', function () {
-            updateSelectBox($(this).children('img'));
-            Offense.movingRange.off('click');
-            Offense.attackRange.off('click');
-//            ----------
-            SelectedUnit.updateSelectedUnit($(this).children("img"));
-            Offense.updateUnitRanges();
+            clearInterval(Animation.function);
+            SelectedUnit.update($(this).children('img'));
+            SelectBox.update($(this).children('img'));
+            Offense.registerMoveOrAttack();
         })
     },
-
-    updateUnitRanges: function () {
-
-        $('.hexDiv').attr('data-innRange', false);
-        Offense.updateMovingRange();
-        Offense.moveFunctions();
-    },
-    updateMovingRange: function () {
-
-        var attackRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.attackRange).parent().parent();
-        var movingRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
-
-        $('.hexDiv').attr('data-ring', 9);
-        $('.hexDiv').attr('data-locked', false);
-
-        SelectedUnit.unit.parent().attr('data-ring', 10);
-
-        var potentialRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
-
-        NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
-
-
-        Gradient.setRange();
-        for (var i = 1; i <= SelectedUnit.moveRange; i++) {
-            debugger;
-
-//            var color = "hsl(240, " + (40+(i*10))+ "%, "+(20+(i*10))+"%)";
-            var color = "hsl(240, " + Gradient.movement[(i-1)] +")";
-            var attackColor = "hsl(10, " + Gradient.movement[(i-1)] +")";
-            var blockColor = "hsl(140, " + Gradient.movement[(i-1)] +")";
-
-
-//            var color = "hsl(240, " + (40+(i*3))+ "%, "+(20+((i*10)*((1.1)-(i/10))))+"%)";
-
-            var color2 = "hsl(240, " + (100-(i*10))+ "%, "+(30+(i*5))+"%)";
-
-
-            $('[data-ring=1' + i + ']').children('svg').children('polygon').css('fill', color);
-            $('[data-ring=2' + i + ']').children('svg').children('polygon').css('fill', blockColor);
-            $('[data-ring=3' + i + ']').children('svg').children('polygon').css('fill', attackColor);
-
-//            $('[data-ring=1' + i + ']').children('svg').children('polygon').attr('class', 'ring' + i + '');
-
-//            $('[data-ring=2' + i + ']').children('svg').children('polygon').attr('class', 'blocked');
-//            $('[data-ring=3' + i + ']').children('svg').children('polygon').attr('class', 'attackable');
-            $('[data-ring=4' + i + ']').children('svg').children('polygon').attr('class', 'ally');
-            $('[data-ring=1' + (5 + i) + ']').children('svg').children('polygon').attr('class', 'ring' + i + '');
-            $('[data-ring=2' + (5 + i) + ']').children('svg').children('polygon').attr('class', 'blocked');
-            $('[data-ring=3' + (5 + i) + ']').children('svg').children('polygon').attr('class', 'attackable');
-            $('[data-ring=4' + (5 + i) + ']').children('svg').children('polygon').attr('class', 'ally');
-        }
-
-        Offense.movingRange = potentialRange.filter(function () {
-            return ($(this).attr('data-ring') <= 20) && ($(this).attr('data-ring') > 9)
-        });
-        debugger;
-        Offense.attackRange = potentialRange.filter(function () {
-            return ($(this).attr('data-ring') <= 40) && ($(this).attr('data-ring') > 30)
-        });
-
-        debugger;
-        Offense.selectableUnits = $('[data-team=' + Offense.offense + ']').parent();
-
-    },
-    moveFunctions: function () {
+    registerMoveOrAttack: function () {
+        Offense.updateUnitRanges();
         Offense.registerMovableHex();
         Offense.registerAttackUnit();
     },
+    updateUnitRanges: function () {
+        $('.hexDiv').attr('data-ring', 9);
+        $('.hexDiv').attr('data-locked', false);
+        SelectedUnit.unit.parent().attr('data-ring', 10);
+        Offense.updateMoveRange();
+        Offense.updateAttackRange();
+        Animation.runAnimation();
+    },
+
+    updateMoveRange: function (unit, range) {
+        var potentialRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
+        NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
+        Offense.moveRange.off('click');
+        Offense.moveRange = potentialRange.filter(function () {
+            return ($(this).attr('data-ring') <= 20) && ($(this).attr('data-ring') > 9)
+        });
+    },
+    updateAttackRange: function (unit, range) {
+        var potentialRange = Offense.potentialRange();
+        NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
+        Offense.attackRange.off('click');
+        Offense.attackRange = potentialRange.filter(function () {
+            return ($(this).attr('data-ring') <= 40) && ($(this).attr('data-ring') > 30)
+        });
+    },
+
+    potentialRange: function () {
+        var range = null;
+        if (SelectedUnit.unit.data('rank') == 'range') {
+            range = SelectedUnit.attackRange
+        } else {
+            range = SelectedUnit.moveRange
+        }
+        return HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, range).parent().parent();
+    },
 
     registerMovableHex: function () {
-        Offense.movingRange.on('click', function () {
-
+        Offense.moveRange.on('click', function () {
             Offense.selectableUnits.off('click');
-
             Offense.newLocation = $(this);
             Offense.oldLocation = SelectedUnit.unit.parent();
-
             Offense.moveUnitToNewPosition();
-
             Offense.finishTurn()
-
         });
     },
 
     registerAttackUnit: function () {
         Offense.attackRange.on('click', function () {
-
             Death.unitKilled($(this).children("img"));
             Offense.newLocation = $(this);
             Offense.oldLocation = SelectedUnit.unit.parent();
-            if (SelectedUnit.unit.attr('data-range') == 0) {
-
+            if (SelectedUnit.unit.attr('data-attackRange') == 0) {
                 Offense.moveUnitToNewPosition();
-
-            } else {
-                $allHexagons.attr('class', 'unSelected');
-                $moveableUnits.off('click');
-                $movingRange.off();
-                defense = offense;
             }
-
             Offense.finishTurn()
         });
-
     },
 
     moveUnitToNewPosition: function () {
@@ -154,11 +100,13 @@ var Offense = {
         $('.hideHoveredUnitInfo').css('visibility', 'hidden');
         $('.hideSelectedUnitInfo').css('visibility', 'hidden');
 
+        $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
+
         Offense.attackRange.off('click');
         Offense.selectableUnits.off('click');
         SelectedUnit.unit = null;
-        Offense.offense = Math.abs(Offense.offense - 1);
-        Game.runTurn(Offense.offense);
+
+        Game.runTurn();
     }
 };
 
@@ -176,70 +124,4 @@ var Death = {
         $('#gra' + Death.graveCount + '').prepend(unit);
     }
 
-};
-
-var Gradient = {
-    movement: [],
-
-
-    setRange: function(){
-        Gradient.movement = [
-            '40%, 30%',
-            '42%, 39%',
-            '44%, 47%',
-            '46%, 50%',
-            '48%, 55%',
-            '50%, 60%',
-        ];
-
-//        for (var i = 1; i <= SelectedUnit.moveRange; i++) {
-//            debugger;
-//
-////            var color = "hsl(240, " + (40+(i*10))+ "%, "+(20+(i*10))+"%)";
-//            var color = "hsl(240, " + (40+(i*3))+ "%, "+(20+((i*10)*((1.1)-(i/10))))+"%)";
-//
-//            var color2 = "hsl(240, " + (100-(i*10))+ "%, "+(30+(i*5))+"%)";
-//
-//
-//            $('[data-ring=1' + i + ']').children('svg').children('polygon').css('fill', color);
-//
-//            Range.movement.push(color)
-//        }
-    }
-};
-
-var SelectedUnit = {
-
-    unit: null,
-    team: null,
-
-    xPos: null,
-    yPos: null,
-
-    movement: null,
-    range: null,
-
-
-    strength: null,
-    moveRange: null,
-    attackRange: null,
-
-
-    updateSelectedUnit: function(newUnit){
-
-        SelectedUnit.unit = newUnit;
-        SelectedUnit.team = parseInt(newUnit.attr('data-team'));
-
-        SelectedUnit.xPos = parseInt(newUnit.parent().attr('data-xPosss'));
-        SelectedUnit.yPos = parseInt(newUnit.parent().attr('data-yPosss'));
-
-        SelectedUnit.strength = parseInt(newUnit.attr('data-strength'));
-        SelectedUnit.movement = parseInt(newUnit.attr('data-movement'));
-        SelectedUnit.range = parseInt(newUnit.attr('data-range'));
-
-        SelectedUnit.moveRange = parseInt(newUnit.attr('data-movement'));
-        SelectedUnit.attackRange = parseInt(newUnit.attr('data-range'));
-
-
-    }
 };

@@ -44,7 +44,7 @@ function hex(row, col, hexIndex) {
     }
 
 
-    return "<div class='hexDiv' id='hex" + hexIndex + "' " + "data-blocked='true' data-ring=0 data-locked=false " +
+    return "<div class='hexDiv' id='hex" + hexIndex + "' " + " data-ring=0 data-locked=false " +
         "data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
         "data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
         "data-innRange=" + initialRange + " data-off=nil data-movement=nil  data-range=nil>" +
@@ -90,60 +90,11 @@ function create_map() {
     return array;
 }
 
-function createUnit(index, nameArray, movement, strength, range, flank, team) {
-
-
-//    var classs = "newUnit";
-    var name = nameArray.join(" ");
-    var codename = nameArray.join("");
-    var code = "trebuchet-aa9661cf55458eff1d003546e8fcfda9";
-
-    var svg = '/images/svgs/' + codename + '.svg';
-
-    return "<img alt='" + name + "' " +
-
-
-        "data-movement='" + movement + "' data-strength=" + strength + " " +
-        "data-range=" + range + " data-flank=" + flank + " " +
-        "data-trump=" + name + " data-team=" + team + " data-status='unplaced' " +
-        "id=" + codename + " src=" + svg + " " +
-
-        "data-index=" + parseInt(index + 1) + " data-inrange=" + name + " " +
-
-        "data-alive=" + name + " data-codename=" + name + " data-englishname=" + name + " " +
-
-        "data-x-pos=" + name + " data-xpos=" + name + " " +
-        "data-y-pos=" + name + " data-ypos=" + name + " " +
-        "data-rowsize=" + name + ">"
-
-}
 
 function createAllUnits(team) {
     var array = [];
 
-    array.push(createUnit(array.length, ["rabble"], 3, 2, 0, 1, team));
-    array.push(createUnit(array.length, ["rabble"], 3, 2, 0, 1, team));
-    array.push(createUnit(array.length, ["rabble"], 3, 2, 0, 1, team));
-    array.push(createUnit(array.length, ["spearman"], 1, 2, 0, 2, team));
-    array.push(createUnit(array.length, ["spearman"], 1, 2, 0, 2, team));
-    array.push(createUnit(array.length, ["elephant"], 3, 4, 0, 1, team));
-    array.push(createUnit(array.length, ["elephant"], 3, 4, 0, 1, team));
-    array.push(createUnit(array.length, ["light", "horse"], 5, 2, 0, 1, team));
-    array.push(createUnit(array.length, ["light", "horse"], 5, 2, 0, 1, team));
-    array.push(createUnit(array.length, ["heavy", "horse"], 4, 3, 0, 1, team));
-    array.push(createUnit(array.length, ["heavy", "horse"], 4, 3, 0, 1, team));
-
-    array.push(createUnit(array.length, ["crossbowman"], 1, 2, 3, 1, team));
-    array.push(createUnit(array.length, ["crossbowman"], 1, 2, 3, 1, team));
-    array.push(createUnit(array.length, ["catapult"], 2, 4, 3, 1, team));
-//    array.push(createUnit(array.length, ["catapult"], 2, 1, 3, 1, team));
-    array.push(createUnit(array.length, ["trebuchet"], 1, 3, 4, 1, team));
-
-    array.push(createUnit(array.length, ["mountain"], 0, 9, 0, 0, team));
-    array.push(createUnit(array.length, ["mountain"], 0, 9, 0, 0, team));
-
-    array.push(createUnit(array.length, ["dragon"], 10, 5, 0, 0, team));
-    array.push(createUnit(array.length, ["king"], 2, 3, 0, 1, team));
+    array = array.concat(CreateUnits.run(team, array));
 
     return array
 }

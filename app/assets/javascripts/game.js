@@ -31,16 +31,18 @@ var Game = {
         Game.turn = 1;
         $('polygon').attr('class','unSelected');
         Game.whoStarted = offense;
-        Offense.registerClickUnit(offense)
+        Offense.runOffense(offense)
+
     },
 
 
     runTurn: function(offense){
         Game.turn += 1;
+        Game.defense = Game.offense;
+        Game.offense = Math.abs(Offense.offense - 1);
         $('polygon').attr('class','unSelected');
-
         GameStatus.saveGameStatus();
-        Offense.registerClickUnit(Game.offense)
+        Offense.runOffense(Game.offense)
     },
 
 

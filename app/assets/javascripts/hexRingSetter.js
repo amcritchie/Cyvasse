@@ -6,8 +6,8 @@ var NewHexRangeFinder = {
 
         var ring = 0;
         NewHexRangeFinder.selectedUnit = selectedUnit;
-        while (ring < selectedUnit.attr('data-movement')) {
-            NewHexRangeFinder.nextRingOfHexagons(potentialRange, ring, Offense.selectedUnit);
+        while (ring < selectedUnit.attr('data-moverange')) {
+            NewHexRangeFinder.nextRingOfHexagons(potentialRange, ring, SelectedUnit.unit);
             potentialRange = potentialRange.not('[data-locked=true]');
             ring += 1;
         }
@@ -21,29 +21,13 @@ var NewHexRangeFinder = {
 
         $.each(hexRange, function (i, hex) {
 
-
-//            if (NewHexRangeFinder.searchAdjacentHex($(hex), 'data-ring', lastRingNum + 10) == 'true') {
-//
-//                if ($(hex).children('img').attr('alt') == 'mountain') {
-//                    $(hex).attr('data-ring', (lastRingNum + 51));
-//                    $(hex).attr('data-locked', true);
-//
-//                } else {
-//
-//                    $(hex).attr('data-ring', (lastRingNum + 11));
-//                    $(hex).attr('data-locked', true);
-//
-//                }
-//            }
-//
-
             if (NewHexRangeFinder.searchAdjacentHex($(hex), 'data-ring', lastRingNum + 10) == 'true') {
 
                 if ($(hex).children('img').attr('alt') == 'mountain') {
                     $(hex).attr('data-ring', (lastRingNum + 51));
                     $(hex).attr('data-locked', true);
                 } else if ($(hex).children('img').attr('data-team') == Offense.defense) {
-                    if ($(hex).children('img').attr('data-strength') > SelectedUnit.strength) {
+                    if ($(hex).children('img').attr('data-attack') > SelectedUnit.strength) {
                         $(hex).attr('data-ring', (lastRingNum + 21));
                         $(hex).attr('data-locked', true);
                     } else {
@@ -63,15 +47,6 @@ var NewHexRangeFinder = {
 
                 }
             }
-
-
-////            debugger;
-//            if (NewHexRangeFinder.searchAdjacentHex($(hex),'data-ring',lastRingNum) == 'true'){
-//                $(hex).attr('data-ring',(lastRingNum + 1));
-//                $(hex).attr('data-locked', true);
-//
-//                console.log('foundOne')
-//            }
         })
     },
     searchAdjacentHex: function (hhex, attributeName, attribute) {
@@ -115,7 +90,6 @@ var NewHexRangeFinder = {
         }
 
         $.each(neighbors, function (i, e) {
-//            console.log(e);
             if (
                 (
                     e.attr(attributeName) == attribute
@@ -130,7 +104,6 @@ var NewHexRangeFinder = {
                 passing = 'true';
             }
         });
-//        debugger;
         return passing
     }
 };
