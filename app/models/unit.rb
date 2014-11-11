@@ -28,7 +28,7 @@ class Unit
       data-movement=#{attributes[:movement]} data-flank=#{attributes[:flank]}
       data-range=#{attributes[:range]}
       data-strength=#{attributes[:strength]} data-trump=#{attributes[:trump]}
-      data-numericalStats=#{[attributes[:codename], attributes[:movement], attributes[:strength], attributes[:changeClassOfHexagonInRange], attributes[:flank]]}>"
+      data-numericalStats=#{[attributes[:codename], attributes[:movement], attributes[:strength], attributes[:strength], attributes[:flank]]}>"
   end
 
   def self.image_svg(team = 0, index = 1, x_pos = -5, y_pos = -5, row_size = 1)
