@@ -1,7 +1,7 @@
 var offense;
 var defense;
-var $player1name = "Alex";
-var $player0name = "Tyrion";
+var player1name = "Alex";
+var player0name = "Tyrion";
 
 var $moveableUnits;
 var $enemyUnits;
@@ -23,27 +23,6 @@ function pregame() {
     PreGame.loadPreGameTurn();
 }
 
-
-function updateSelectBox(unit) {
-
-
-    $('.hideSelectedUnitInfo').css('visibility', 'visible');
-
-    $('#selectUnitName').empty().append(capitalizeEachWord(unit.attr('alt')));
-
-    $('.selectedUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
-
-    $('.selectedUnitAttack').empty().append(unit.data('attack'));
-    $('.selectedUnitDefence').empty().append(unit.data('defence'));
-    $('.selectedUnitMovement').empty().append(unit.data('moverange'));
-
-    $('.selectedUnitUtility').empty().append(unit.data('range'));
-    $('.selectedUnitTrump').empty().append(unit.data('flank'));
-}
-
-
-
-
 function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
     var movingTo = $(newLocation);
     var movingFrom = $(oldLocation);
@@ -51,7 +30,6 @@ function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
     movingTo.attr('data-occupied', true);
     movingFrom.attr('data-occupied', false);
 }
-
 
 function startGame() {
     pregame_var = false;
@@ -81,7 +59,6 @@ function whoGoesFirst() {
 function turn() {
     initializeTurn();
     refreshAIButtons();
-    functionsForOffense();
 }
 
 function initializeTurn() {
@@ -119,6 +96,7 @@ function runATurn() {
         moveUnitAI($hexBeingMovedTo, $enemyBeingAttacked);
     }, 500);
 }
+
 function moveUnitAI(movableHexagons, attackableEnemies) {
     if ($enemyUnitsInRange.length == 0) {
         movableHexagons.click();
@@ -150,61 +128,28 @@ function shuffle(array) {
     return array;
 }
 
-function registerHoverUnit() {
-    $hoverableRange = $('img[data-team]');
-    $hoverableRange.on({
-        mouseenter: function () {
-            updateHoverBox($(this));
-        },
-        mouseleave: function () {
-            $('.hideHoveredUnitInfo').css('visibility', 'hidden');
-
-        }
-    });
-}
-
 function capitalizeEachWord(str) {
     return str.replace(/\w\S*/g, function (txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }
 
-function updateHoverBox(unit) {
-
-    $('.hideHoveredUnitInfo').css('visibility', 'visible');
-
-    $('#hoverName').empty().append(capitalizeEachWord(unit.attr('alt')));
-    $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
-
-    $('#hoverOffense').empty().append('Attack: ' + unit.data('attack'));
-    $('#hoverDefence').empty().append('Armor: ' + unit.data('defence'));
-    $('#hoverMvRange').empty().append('Moves: ' + unit.data('moverange'));
-    $('#hoverUtRange').empty().append('Trump: ' + unit.data('trump'));
-}
-
-
 function initialConditions() {
 
     pregame_var = true;
-
     $moveableUnits = $('img[data-team=' + 1 + ']').parent();
     $clickableUnitSpaces = $('img[data-team=' + 1 + ']').parent();
-
     $initialRange = $("[data-innrange=true]");
     $movingRange = $initialRange;
-
     $allHexagons = $('polygon');
-//    $allSquares = $('.ssquare');
-
     pregame();
 }
 
 
 function newGame() {
     LoadingFactory.loadMapUnitsAndEnemiesHTML();
-//    loadEverything();
     initialConditions();
-    registerHoverUnit();
+    InfoBoxes.registerHoverUnit();
 }
 
 function oldGame() {
@@ -212,97 +157,11 @@ function oldGame() {
     Game.oldGame();
 }
 
-var LoadingFactory = {
-
-
-    loadMapUnitsAndEnemiesHTML: function () {
-        var map = { thearray: create_map() };
-        var templateMap = JST['views/map'];
-        var result = templateMap(map);
-
-        var hash = { units: createAllUnits(1)};
-        var templateUnits = JST['views/units'];
-        var units = templateUnits(hash);
-
-        var enemyHash = { enemies: createAllUnits(0) };
-        var templateEnemies = JST['views/enemies'];
-        var enemies = templateEnemies(enemyHash);
-
-        LoadingFactory.loadPartsOfMatchHTML();
-        LoadingFactory.moveSVGsToPosition(result, units, enemies);
-
-    },
-
-    loadPartsOfMatchHTML: function () {
-        $('.xxmatch').append("<div class=xxmap></div>");
-
-        $(".xxmap").prepend("<article class='auxSpace rotating'></article>");
-        $(".xxmap").prepend("<article class=enemyBay></article>");
-        $(".xxmap").prepend("<article class=graveyard id=grav1></article>");
-        $(".xxmap").prepend("<article class=graveyard id=grav0></article>");
-        $(".xxmap").prepend("<article class=board></article>");
-    },
-
-    moveSVGsToPosition: function (map, units, enemies) {
-        $(".board").prepend(map);
-        $(".auxSpace").prepend(units);
-        $(".enemyBay").prepend(enemies);
-    }
-};
-
-
-var InitialMatchConditions = {
-
-    onPageLoad: function () {
-        LoadingFactory.loadMapUnitsAndEnemiesHTML();
-        registerHoverUnit();
-        PreGame.initialize();
-        PreGame.loadPreGameTurn();
-
-        pregame_var = true;
-        RandomSetup.loadPregameButton();
-
-    }
-};
 
 $(document).ready(function () {
 
-    InitialMatchConditions.onPageLoad();
-
     $allHexagons = $('polygon');
-
-
-    setTimeout(function () {
-
-        Rotator.createAndRotateOn('oldGame', 'Old Game');
-        Rotator.createAndRotateOn('newGame', 'New Game');
-
-
-        $('.newGame').on('click', function () {
-            $('.newGame').off('click').remove();
-            $('.oldGame').off('click').remove();
-            $('.xxmap').show();
-            $(".xxmap").prepend("<button class='startGameButton rotating'>Start Game</button>");
-
-            Rotator.rotateOn('.auxSpace');
-            Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
-
-            $('.randomSetUpButton').on('click', function () {
-                RandomSetup.placeUnits()
-            });
-
-        });
-    }, 2000);
-
-
-    $('.oldGame').on('click', function () {
-
-        $('.newGame').off('click').remove();
-        $('.oldGame').off('click').remove();
-
-        oldGame();
-    });
-
+    InitialMatchLoad.onPageLoad();
 
 //  Json
     var pieceAtt;

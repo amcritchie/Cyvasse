@@ -14,7 +14,11 @@ var PreGame = {
     loadPreGameTurn: function () {
         PreGame.hexVisualUpdate();
         PreGame.resetAndUpdateUnitsAndRange();
-        registerHoverUnit();
+
+
+//        registerHoverUnit();
+        InfoBoxes.registerHoverUnit();
+
         PreGame.pregameClickUnit();
     },
 
@@ -32,7 +36,8 @@ var PreGame = {
     pregameClickUnit: function () {
         PreGame.moveableUnits.on('click', function () {
             PreGame.selectedUnit = $(this).children("img");
-            updateSelectBox(PreGame.selectedUnit);
+//            updateSelectBox(PreGame.selectedUnit);
+            InfoBoxes.updateSelectBox(PreGame.selectedUnit);
             PreGame.registerClickHex();
         })
     },

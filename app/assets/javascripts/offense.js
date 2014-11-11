@@ -21,7 +21,9 @@ var Offense = {
         Offense.selectableUnits.on('click', function () {
             clearInterval(Animation.function);
             SelectedUnit.update($(this).children('img'));
-            SelectBox.update($(this).children('img'));
+//            SelectBox.update($(this).children('img'));
+            InfoBoxes.updateSelectBox($(this).children('img'));
+
             Offense.registerMoveOrAttack();
         })
     },

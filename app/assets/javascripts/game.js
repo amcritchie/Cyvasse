@@ -7,6 +7,9 @@ var Game = {
     offense: null,
     defense: null,
 
+    player1name: null,
+    player0name: null,
+
     startGame: function(){
 
         Game.turn = 0;
