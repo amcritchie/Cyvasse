@@ -50,7 +50,7 @@ var NewHexRangeFinder = {
 
 
     searchAdjacentHex: function (examinedHex, attributeName, attribute) {
-        var id = examinedHex.getAttribute('id').slice(3);
+        var id = examinedHex.getAttribute('data-hexIndex');
         var xxx = parseInt(examinedHex.getAttribute('data-xPosss'));
         var yyy = parseInt(examinedHex.getAttribute('data-yPosss'));
 
@@ -59,30 +59,31 @@ var NewHexRangeFinder = {
 
         if (id < 41) {
             neighbors = [
-                    '[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + (yyy - 1) + ']',
-                    '[data-xPosss=' + xxx + '][data-yPosss=' + (yyy - 1) + ']',
-                    '[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + yyy + ']',
-                    '[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + yyy + ']',
-                    '[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + (yyy + 1) + ']',
-                    '[data-xPosss=' + xxx + '][data-yPosss=' + (yyy + 1) + ']',
+                
+                    '#hex_' + (xxx - 1) + '_' + (yyy - 1),
+                    '#hex_' + xxx + '_' + (yyy - 1),
+                    '#hex_' + (xxx + 1) + '_' + yyy,
+                    '#hex_' + (xxx - 1) + '_' + yyy,
+                    '#hex_' + (xxx + 1) + '_' + (yyy + 1),
+                    '#hex_' + xxx + '_' + (yyy + 1),
             ];
         } else if (id < 52) {
             neighbors = [
-                    '[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + (yyy - 1) + ']',
-                    '[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + yyy + ']',
-                    '[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + yyy + ']',
-                    '[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + (yyy + 1) + ']',
-                    '[data-xPosss=' + xxx + '][data-yPosss=' + (yyy - 1) + ']',
-                    '[data-xPosss=' + xxx + '][data-yPosss=' + (yyy + 1) + ']',
+                    '#hex_' + (xxx - 1) + '_' + (yyy - 1),
+                    '#hex_' + (xxx + 1) + '_' + yyy,
+                    '#hex_' + (xxx - 1) + '_' + yyy,
+                    '#hex_' + (xxx - 1) + '_' + (yyy + 1),
+                    '#hex_' + xxx + '_' + (yyy - 1),
+                    '#hex_' + xxx + '_' + (yyy + 1),
             ];
         } else {
             neighbors = [
-                    '[data-xPosss=' + xxx + '][data-yPosss=' + (yyy - 1) + ']',
-                    '[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + (yyy - 1) + ']',
-                    '[data-xPosss=' + (xxx + 1) + '][data-yPosss=' + yyy + ']',
-                    '[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + yyy + ']',
-                    '[data-xPosss=' + (xxx - 1) + '][data-yPosss=' + (yyy + 1) + ']',
-                    '[data-xPosss=' + xxx + '][data-yPosss=' + (yyy + 1) + ']',
+                    '#hex_' + xxx + '_' + (yyy - 1),
+                    '#hex_' + (xxx + 1) + '_' + (yyy - 1),
+                    '#hex_' + (xxx + 1) + '_' + yyy,
+                    '#hex_' + (xxx - 1) + '_' + yyy,
+                    '#hex_' + (xxx - 1) + '_' + (yyy + 1),
+                    '#hex_' + xxx + '_' + (yyy + 1),
             ];
         }
 

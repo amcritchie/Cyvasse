@@ -13,7 +13,7 @@ var HexRange = {
     finalSizeDown: null,
     finalSizeUp: null,
 
-    blockedHexagons: $('#hex43'),
+    blockedHexagons: $('[data-hexIndex = 53]'),
 
     ycreateRangeSelector: function (selectedUnit, xPos, yPos, range) {
         HexRange.selectedUnit = selectedUnit;

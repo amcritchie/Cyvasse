@@ -125,7 +125,7 @@ describe("Pregame click Rabble", function () {
     });
 
     it("Can move Rabble to Map", function () {
-        var hex = $('#hex55');
+        var hex = $('[data-hexIndex=55]');
         hex.click();
         expect(rabble.parent().attr("class")).toEqual("hexDiv");
     });
@@ -149,9 +149,9 @@ describe("Moving Units to Map", function () {
         rabble = $('[data-index=3][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
         lightHorse = $('[data-index=8][data-team=1]');
-        hex1 = $('#hex55');
-        hex2 = $('#hex67');
-        hex3 = $('#hex72');
+        hex1 = $('[data-hexIndex=55]');
+        hex2 = $('[data-hexIndex=67]');
+        hex3 = $('[data-hexIndex=72]');
 
     });
 
@@ -349,9 +349,9 @@ describe("A spy", function() {
         rabble = $('[data-index=3][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
         lightHorse = $('[data-index=8][data-team=1]');
-        hex1 = $('#hex55');
-        hex2 = $('#hex67');
-        hex3 = $('#hex72');
+        hex1 = $('[data-hexIndex=55]');
+        hex2 = $('[data-hexIndex=67]');
+        hex3 = $('[data-hexIndex=72]');
     });
     var foo, bar = null;
 
@@ -389,9 +389,9 @@ describe("First move", function() {
         rabble = $('[data-index=1][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
         lightHorse = $('[data-index=8][data-team=1]');
-        hex1 = $('#hex55');
-        hex2 = $('#hex67');
-        hex3 = $('#hex72');
+        hex1 = $('[data-hexIndex=55]');
+        hex2 = $('[data-hexIndex=67]');
+        hex3 = $('[data-hexIndex=72]');
         for (i=1; i < 21; i++) {
             $("#aux" + i + "").click();
             $("#hex" + (55 + i) + "").click();
@@ -403,14 +403,14 @@ describe("First move", function() {
     it("first move, move to availiable spot", function () {
         expect(rabble.parent().attr("id")).toEqual("hex56");
         rabble.parent().click();
-        $('#hex54').click();
+        $('[data-hexIndex=54]').click();
         expect(rabble.parent().attr("id")).toEqual("hex54");
     });
 
     it("cant move to space out of range", function(){
         expect(rabble.parent().attr("id")).toEqual("hex56");
         rabble.parent().click();
-        $('#hex53').click();
+        $('[data-hexIndex=53]').click();
         expect(rabble.parent().attr("id")).toEqual("hex56");
     });
 
@@ -436,7 +436,7 @@ describe("First move", function() {
     it("Enemies can be killed by a stronger enemy.", function(){
         $('[data-index=10][data-team=1]').parent().click();
         expect(Offense.attackRange.length).toEqual(2);
-        $('#hex33').click();
+        $('[data-hexIndex=33]').click();
 //        debugger;
         expect($('.graveyard').children('.grave').length).toEqual(1);
         expect($('[data-index=10][data-team=1]').parent().attr("id")).toEqual("hex33");
@@ -475,7 +475,7 @@ describe('Game Play', function(){
     it("Team 1 cannot select a Unit after moving to a free space", function(){
         lightHorse.parent().click();
         expect(Offense.selectedUnit).toEqual(lightHorse);
-        $('#hex45').click();
+        $('[data-hexIndex=45]').click();
         expect(Offense.selectedUnit).toEqual(null);
 
         rabble.parent().click();
@@ -486,7 +486,7 @@ describe('Game Play', function(){
     it("Team 1 cannot select a Unit after attacking a unit", function(){
         lightHorse.parent().click();
         expect(Offense.selectedUnit).toEqual(lightHorse);
-        $('#hex33').click();
+        $('[data-hexIndex=33]').click();
         expect(Offense.selectedUnit).toEqual(null);
 
         rabble.parent().click();
@@ -497,9 +497,8 @@ describe('Game Play', function(){
     it("Unit cannot attack an Enemy in other units range.", function(){
         elephant.parent().click();
         rabble.parent().click();
-        $('#hex38').click();
-        expect($('#hex38').children('img')).not.toEqual(rabble);
-
+        $('[data-hexIndex=38]').click();
+        expect($('[data-hexIndex=38]').children('img')).not.toEqual(rabble);
     })
 
 });

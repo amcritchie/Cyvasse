@@ -17,7 +17,7 @@ var RandomSetup = {
     placeEnemies: function(){
         RandomSetup.dockType = 'enemy';
         var possibleSpots = [];
-        for(var i=1;i<=40;i++){ possibleSpots.push('#hex'+i) }
+        for(var i=1;i<=40;i++){ possibleSpots.push('[data-hexIndex='+i+']') }
         RandomSetup.team = 0;
         RandomSetup.teamSize = $("[data-team=" + RandomSetup.team + "]").length;
         RandomSetup.possibleSpots = possibleSpots;
@@ -28,7 +28,7 @@ var RandomSetup = {
     placeUnits: function(){
         RandomSetup.dockType = 'aux';
         var possibleSpots = [];
-        for(var i=52;i<=91;i++){ possibleSpots.push('#hex'+i) }
+        for(var i=52;i<=91;i++){ possibleSpots.push('[data-hexIndex='+i+']') }
         RandomSetup.team = 1;
         RandomSetup.teamSize = $("[data-team=" + RandomSetup.team + "]").length;
         RandomSetup.possibleSpots = possibleSpots;
@@ -39,7 +39,7 @@ var RandomSetup = {
     placeLineOne: function(){
         RandomSetup.dockType = 'enemy';
         var possibleSpots = [];
-        for(var i=21;i<=40;i++){ possibleSpots.push('#hex'+i) }
+        for(var i=21;i<=40;i++){ possibleSpots.push('[data-hexIndex='+i+']') }
         RandomSetup.team = 0;
         RandomSetup.teamSize = $("[data-team=" + RandomSetup.team + "]").length;
         RandomSetup.possibleSpots = possibleSpots;
@@ -75,7 +75,6 @@ var RandomSetup = {
         PreGame.loadPreGameTurn();
     },
     moveUnitToNewPosition: function (newLocation, oldLocation, movingUnit) {
-//        debugger;
         var movingTo = $(newLocation);
         var movingFrom = $(oldLocation);
         movingUnit.prependTo(movingTo);

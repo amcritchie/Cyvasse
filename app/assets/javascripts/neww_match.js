@@ -157,7 +157,6 @@ function oldGame() {
     Game.oldGame();
 }
 
-
 $(document).ready(function () {
 
     InitialMatchLoad.onPageLoad();

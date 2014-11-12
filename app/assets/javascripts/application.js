@@ -44,7 +44,8 @@ function hex(row, col, hexIndex) {
     }
 
 
-    return "<div class='hexDiv' id='hex" + hexIndex + "' " +
+    return "<div class='hexDiv' id='hex_" + parseInt(col) + "_" + parseInt(row) + "' " +
+        " data-hexIndex='" + hexIndex + "' " +
         " data-ring=0 data-locked=false " +
         " data-rangeRing=0 data-rangeLocked=false " +
         " data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
