@@ -11,7 +11,7 @@ var Animation = {
             if (SelectedUnit.movement < distanceFromUnit) {
                 clearInterval(Animation.function)
             }
-        }, 250);
+        }, 50);
     },
     updateRing: function (distanceFromUnit) {
         Animation.updateColor(240, 1, distanceFromUnit);

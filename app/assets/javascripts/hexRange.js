@@ -16,7 +16,6 @@ var HexRange = {
     blockedHexagons: $('#hex43'),
 
     ycreateRangeSelector: function (selectedUnit, xPos, yPos, range) {
-        debugger;
         HexRange.selectedUnit = selectedUnit;
         HexRange.xPosition = parseInt(xPos);
         HexRange.yPosition = parseInt(yPos);

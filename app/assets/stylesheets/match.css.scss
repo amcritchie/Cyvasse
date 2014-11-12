@@ -1,8 +1,6 @@
-.xxmatch {
+.match {
   width: 960px;
   height: 700px;
-//  background-color: yellow;
-//  border: soild red 5px;
 
   .info {
     width: 100%;
@@ -21,7 +19,6 @@
     .infoSegment{
       float: left;
       height: 300px;
-
     }
 
     .hideSelectedUnitInfo{
@@ -191,7 +188,7 @@
     }
   }
 
-  .xxmap {
+  .map {
     //    float: left;
     position: absolute;
     width: 100%;

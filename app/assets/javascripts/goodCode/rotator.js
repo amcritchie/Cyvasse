@@ -1,6 +1,6 @@
 var Rotator = {
     createAndRotateOn: function (button, text) {
-        $(".xxmap").prepend("<button class='" + button + " rotating'>" + text + "</button>");
+        $(".map").prepend("<button class='" + button + " rotating'>" + text + "</button>");
         Rotator.rotateOn($('.' + button))
     },
 

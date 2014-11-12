@@ -44,10 +44,12 @@ function hex(row, col, hexIndex) {
     }
 
 
-    return "<div class='hexDiv' id='hex" + hexIndex + "' " + " data-ring=0 data-locked=false " +
-        "data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
-        "data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
-        "data-innRange=" + initialRange + " data-off=nil data-movement=nil  data-range=nil>" +
+    return "<div class='hexDiv' id='hex" + hexIndex + "' " +
+        " data-ring=0 data-locked=false " +
+        " data-rangeRing=0 data-rangeLocked=false " +
+        " data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
+        " data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
+        " data-innRange=" + initialRange + " data-off=nil data-movement=nil  data-range=nil>" +
         "<svg class='brick'>" +
 
         "<polygon class=" + theClass + " data-x-pos=" + col + " data-y-pos=" + row + " " +

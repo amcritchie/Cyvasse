@@ -43,12 +43,10 @@ var Game = {
         Game.turn += 1;
         Game.defense = Game.offense;
         Game.offense = Math.abs(Offense.offense - 1);
-        $('polygon').attr('class','unSelected');
+        $('polygon').css('fill','black');
         GameStatus.saveGameStatus();
         Offense.runOffense(Game.offense)
     },
-
-
 
     oldGame: function(){
         var teamOneString = '2:grav1|20:grav1|9:hex19|8:hex21|19:hex22|10:hex37|11:hex52|6:hex55|16:hex57|13:hex59|7:hex61|17:hex63|14:hex70|15:hex75|1:hex76|5:hex78|18:hex82|4:hex83|12:hex87|3:hex91|';

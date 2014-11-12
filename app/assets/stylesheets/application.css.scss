@@ -1,7 +1,7 @@
 @import "bourbon";
 @import "neat";
 @import "base/base";
-@import "new";
+@import "match";
 @import "borbon";
 
 $black: #333333;
@@ -125,11 +125,11 @@ article {
   width: 920px;
   float: left;
 }
-
-.match .info {
-  width: 206px;
-  float: left;
-}
+//
+//.match .info {
+//  width: 206px;
+//  float: left;
+//}
 
 .rotating {
   opacity: 0;

@@ -1,5 +1,4 @@
 var PreGame = {
-
     moveableUnits: null,
     moveableRange: null,
     initialRange: null,
@@ -14,17 +13,12 @@ var PreGame = {
     loadPreGameTurn: function () {
         PreGame.hexVisualUpdate();
         PreGame.resetAndUpdateUnitsAndRange();
-
-
-//        registerHoverUnit();
         InfoBoxes.registerHoverUnit();
-
         PreGame.pregameClickUnit();
     },
-
     hexVisualUpdate: function () {
-        PreGame.initialRange.children("svg").children("polygon").attr('class', 'selectedRange');
-        $('[data-occupied=true]').children("svg").children("polygon").attr('class', 'yourUnit');
+        PreGame.initialRange.children("svg").children("polygon").css('fill', 'royalblue');
+        $('[data-occupied=true]').children("svg").children("polygon").css('fill', 'yellow');
     },
     resetAndUpdateUnitsAndRange: function () {
         PreGame.moveableUnits.off('click');
@@ -36,7 +30,6 @@ var PreGame = {
     pregameClickUnit: function () {
         PreGame.moveableUnits.on('click', function () {
             PreGame.selectedUnit = $(this).children("img");
-//            updateSelectBox(PreGame.selectedUnit);
             InfoBoxes.updateSelectBox(PreGame.selectedUnit);
             PreGame.registerClickHex();
         })
@@ -50,19 +43,13 @@ var PreGame = {
             PreGame.finishMove();
         });
     },
-
-    finishMove: function(){
-        PreGame.addStartButton();
-        PreGame.loadPreGameTurn();
-    },
     moveImageToMap: function (unit) {
         if (unit.attr('data-status') == 'unplaced') {
-            $("#aux" + unit.attr('data-index') + " ").remove();
+            $("#aux" + unit.attr('data-index')).remove();
             unit.prependTo(".map");
             unit.attr('data-status', 'alive');
         }
     },
-
     moveUnitToNewPosition: function (newLocation, oldLocation, movingUnit) {
         var movingTo = $(newLocation);
         var movingFrom = $(oldLocation);
@@ -70,26 +57,25 @@ var PreGame = {
         movingTo.attr('data-occupied', true);
         movingFrom.attr('data-occupied', false);
     },
-
+    finishMove: function(){
+        PreGame.addStartButton();
+        PreGame.loadPreGameTurn();
+    },
     addStartButton: function () {
         if ($(".unplacedUnitSpace").length == 0) {
 
             if (PreGame.startAnimationExecuted == false) {
                 Rotator.rotateOff($('.auxSpace'));
                 Rotator.rotateOn($('.startGameButton'));
+                $('.startGameButton').on('click', function () {
+                    RandomSetup.placeLineOne();
+                    PreGame.initialRange.off('click');
+                    Rotator.rotateOff($('.startGameButton'));
+                    Rotator.rotateOff($('.randomSetUpButton'));
+                    Game.startGame()
+                });
                 PreGame.startAnimationExecuted = true;
-            } else {
-                $('.startGameButton').off('click');
             }
-
-            $('.startGameButton').on('click', function () {
-                RandomSetup.placeLineOne();
-                PreGame.initialRange.off('click');
-                Rotator.rotateOff($('.startGameButton'));
-                Rotator.rotateOff($('.randomSetUpButton'));
-
-                Game.startGame()
-            })
         }
     }
 };

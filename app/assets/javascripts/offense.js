@@ -19,12 +19,13 @@ var Offense = {
 
     registerClickUnit: function () {
         Offense.selectableUnits.on('click', function () {
+            var start = new Date();
             clearInterval(Animation.function);
             SelectedUnit.update($(this).children('img'));
-//            SelectBox.update($(this).children('img'));
             InfoBoxes.updateSelectBox($(this).children('img'));
-
             Offense.registerMoveOrAttack();
+            var stop = new Date();
+            console.log("elapsed registerClickUnit", stop - start);
         })
     },
     registerMoveOrAttack: function () {
@@ -36,21 +37,44 @@ var Offense = {
         $('.hexDiv').attr('data-ring', 9);
         $('.hexDiv').attr('data-locked', false);
         SelectedUnit.unit.parent().attr('data-ring', 10);
-        Offense.updateMoveRange();
-        Offense.updateAttackRange();
+        console.log('Offense.updateMoveRange() starts');
+        console.log('Offense.updateMoveRange() end');
+        console.log('ccc');
+
+        console.log('ddd');
+        var start = new Date();
+
+        console.log('run updateMoveRange');
+        Offense.updateMoveRange(); // <---- Slow!!!!!!
+        console.log('run updateAttackRange');
+
+        Offense.updateAttackRange(); // <---- slow!!!!!!
+        console.log('run animation');
+
         Animation.runAnimation();
+        var stop = new Date();
+        console.log("*****elapsed registerClickUnit", stop - start);
+
     },
 
     updateMoveRange: function (unit, range) {
         var potentialRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
+
+        console.log('createRings() starts');
         NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
+        console.log('createRings() ends');
+
+
         Offense.moveRange.off('click');
         Offense.moveRange = potentialRange.filter(function () {
             return ($(this).attr('data-ring') <= 20) && ($(this).attr('data-ring') > 9)
         });
     },
+
+
     updateAttackRange: function (unit, range) {
         var potentialRange = Offense.potentialRange();
+
         NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
         Offense.attackRange.off('click');
         Offense.attackRange = potentialRange.filter(function () {
@@ -110,20 +134,4 @@ var Offense = {
 
         Game.runTurn();
     }
-};
-
-var Death = {
-
-    graveCount: 0,
-
-    unitKilled: function (unit) {
-        Death.graveCount += 1;
-        var grave = ('<div class="grave" id="gra' + Death.graveCount + '"></div>');
-
-        unit.attr('data-status', 'dead');
-
-        $('#grav' + Offense.defense).append(grave);
-        $('#gra' + Death.graveCount + '').prepend(unit);
-    }
-
 };

@@ -160,8 +160,8 @@ function oldGame() {
 
 $(document).ready(function () {
 
-    $allHexagons = $('polygon');
     InitialMatchLoad.onPageLoad();
+    $allHexagons = $('polygon');
 
 //  Json
     var pieceAtt;
