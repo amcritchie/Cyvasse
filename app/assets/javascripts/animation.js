@@ -5,14 +5,30 @@ var Animation = {
         Animation.setRange();
         $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
         var distanceFromUnit = 1;
+
+
+        var startA = new Date();
+
         Animation.function = setInterval(function () {
+
+            var ringStart = new Date();
+
             Animation.updateRing(distanceFromUnit);
             distanceFromUnit += 1;
             if (SelectedUnit.movement < distanceFromUnit) {
                 clearInterval(Animation.function)
             }
-        }, 50);
+
+            var ringStop = new Date();
+            console.log("Update Ring #" + distanceFromUnit + "  total run time - >", ringStop - ringStart);
+
+        }, 120);
+
+        var stopA = new Date();
+        console.log("Total Animation run time - >", stopA - startA);
     },
+
+
     updateRing: function (distanceFromUnit) {
         Animation.updateColor(240, 1, distanceFromUnit);
         Animation.updateColor(115, 4, distanceFromUnit);

@@ -103,7 +103,7 @@ var HexRange = {
     },
 
     hexChangeClass: function (xPos, yPos) {
-        var hex = $('*[data-xPosss=' + xPos + '][data-yPosss=' + yPos + ']');
+        var hex = $('#hex_' + xPos + '_' + yPos);
         if (hex.length != 0) {
             hex.children('svg').children('polygon').attr('class', 'testRange');
         }

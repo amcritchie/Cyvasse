@@ -4,6 +4,9 @@ var Offense = {
     defense: null,
     selectableUnits: $('hex53'),
 
+    start: null,
+    end: null,
+
     newLocation: null,
     oldLocation: null,
 
@@ -19,13 +22,13 @@ var Offense = {
 
     registerClickUnit: function () {
         Offense.selectableUnits.on('click', function () {
-            var start = new Date();
+
+            Offense.start = new Date();
+
             clearInterval(Animation.function);
             SelectedUnit.update($(this).children('img'));
             InfoBoxes.updateSelectBox($(this).children('img'));
             Offense.registerMoveOrAttack();
-            var stop = new Date();
-            console.log("elapsed registerClickUnit", stop - start);
         })
     },
     registerMoveOrAttack: function () {
@@ -37,36 +40,45 @@ var Offense = {
         $('.hexDiv').attr('data-ring', 9);
         $('.hexDiv').attr('data-locked', false);
         SelectedUnit.unit.parent().attr('data-ring', 10);
-        console.log('Offense.updateMoveRange() starts');
-        console.log('Offense.updateMoveRange() end');
-        console.log('ccc');
 
-        console.log('ddd');
         var start = new Date();
 
-        console.log('run updateMoveRange');
-        Offense.updateMoveRange(); // <---- Slow!!!!!!
-        console.log('run updateAttackRange');
+        var ss = new Date();
+        var potentialRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
+        var sss = new Date();
+        var dd = new Date();
+        NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
+        var ddd = new Date();
 
-        Offense.updateAttackRange(); // <---- slow!!!!!!
-        console.log('run animation');
+        var stop = new Date();
+        Offense.end = new Date();
+
+        console.log("time from click to animation - >", Offense.end - Offense.start);
+        console.log("create rings run time - >", stop - start);
+        console.log("111time from click to animation - >", sss - ss);
+        console.log("222create rings run time - >", ddd - dd);
+
+        console.log('-----------');
 
         Animation.runAnimation();
-        var stop = new Date();
-        console.log("*****elapsed registerClickUnit", stop - start);
+
+
+//        Offense.updateMoveRange(potentialRange); // <---- Slow!!!!!!
+//
+//        Offense.updateAttackRange(); // <---- slow!!!!!!
+//        console.log('run animation');
+//        var stop = new Date();
+//        console.log("*****elapsed registerClickUnit", stop - start);
 
     },
 
-    updateMoveRange: function (unit, range) {
-        var potentialRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
+    updateMoveRange: function (range) {
 
-        console.log('createRings() starts');
-        NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
         console.log('createRings() ends');
 
 
         Offense.moveRange.off('click');
-        Offense.moveRange = potentialRange.filter(function () {
+        Offense.moveRange = range.filter(function () {
             return ($(this).attr('data-ring') <= 20) && ($(this).attr('data-ring') > 9)
         });
     },

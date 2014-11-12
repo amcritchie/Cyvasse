@@ -8,11 +8,9 @@ var NewHexRangeFinder = {
         NewHexRangeFinder.selectedUnit = selectedUnit;
 
         while (ring < selectedUnit.attr('data-moveRange')) {
-            console.log('start ring #' + ring);
             potentialRange = potentialRange.not('[data-locked=true]');
             NewHexRangeFinder.nextRingOfHexagons(potentialRange, ring, SelectedUnit.unit);
             ring += 1;
-            console.log('ring #' + ring + ' complete');
         }
     },
 
@@ -89,8 +87,6 @@ var NewHexRangeFinder = {
 
         neighbors.forEach(function (e) {
             var neighbor = $('.board').find(e);
-//            var neighbor = document.getElementById('')
-
             if (
                 (
                     neighbor.attr(attributeName) == attribute
