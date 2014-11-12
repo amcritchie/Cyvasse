@@ -37,9 +37,9 @@ var Offense = {
         Offense.registerAttackUnit();
     },
     updateUnitRanges: function () {
-        $('.hexDiv').attr('data-ring', 9);
+        $('.hexDiv').attr('data-ring', 8);
         $('.hexDiv').attr('data-locked', false);
-        SelectedUnit.unit.parent().attr('data-ring', 10);
+        SelectedUnit.unit.parent().attr('data-ring', 9);
 
         var start = new Date();
 
@@ -61,6 +61,7 @@ var Offense = {
         console.log('-----------');
 
         Animation.runAnimation();
+        $allHexagons.attr('class', 'unSelected');
 
 
 //        Offense.updateMoveRange(potentialRange); // <---- Slow!!!!!!
@@ -75,7 +76,6 @@ var Offense = {
     updateMoveRange: function (range) {
 
         console.log('createRings() ends');
-
 
         Offense.moveRange.off('click');
         Offense.moveRange = range.filter(function () {

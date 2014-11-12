@@ -31,22 +31,24 @@ function hex(row, col, hexIndex) {
         size = 17 - row
     }
 
-    if (row > 6) {
-        var theClass = "selectedRange";
-    } else {
-        var theClass = "unSelected"
-    }
+//    if (row > 6) {
+//        var theClass = "selectedRange";
+//    } else {
+        var theClass = "unSelected";
+//    }
 
     if (row > 6) {
+        var ring = 1;
         var initialRange = true;
     } else {
+        var ring = 0;
         var initialRange = false
     }
 
 
     return "<div class='hexDiv' id='hex_" + parseInt(col) + "_" + parseInt(row) + "' " +
         " data-hexIndex='" + hexIndex + "' " +
-        " data-ring=0 data-locked=false " +
+        " data-ring="+ring+" data-locked=false " +
         " data-rangeRing=0 data-rangeLocked=false " +
         " data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(col) + " data-yPosss=" + parseInt(row) + " " +
         " data-size=" + size + " data-occupied=false data-even=true data-src=nil " +

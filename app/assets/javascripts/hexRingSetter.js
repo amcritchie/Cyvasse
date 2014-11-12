@@ -17,7 +17,7 @@ var NewHexRangeFinder = {
     nextRingOfHexagons: function (hexRange, lastRingNum) {
 
         Array.prototype.slice.call(hexRange).forEach(function (hex) {
-            if (NewHexRangeFinder.searchAdjacentHex(hex, 'data-ring', lastRingNum + 10) == 'true') {
+            if (NewHexRangeFinder.searchAdjacentHex(hex, 'data-ring', lastRingNum + 9) == 'true') {
                 var image;
 
                 Array.prototype.slice.call(hex.children).forEach(function (child) {
@@ -29,17 +29,17 @@ var NewHexRangeFinder = {
 
 
                 if (image && image.getAttribute('alt') == 'mountain') {
-                    hex.setAttribute('data-ring', (lastRingNum + 51));
+                    hex.setAttribute('data-ring', (lastRingNum + 50));
                 } else if (image && image.getAttribute('data-team') == Offense.defense) {
                     if (image.getAttribute('data-attack') > SelectedUnit.strength) {
-                        hex.setAttribute('data-ring', (lastRingNum + 21));
+                        hex.setAttribute('data-ring', (lastRingNum + 20));
                     } else {
-                        hex.setAttribute('data-ring', (lastRingNum + 31));
+                        hex.setAttribute('data-ring', (lastRingNum + 30));
                     }
                 } else if (image && image.getAttribute('data-team') == Offense.offense) {
-                    hex.setAttribute('data-ring', (lastRingNum + 41));
+                    hex.setAttribute('data-ring', (lastRingNum + 40));
                 } else {
-                    hex.setAttribute('data-ring', (lastRingNum + 11));
+                    hex.setAttribute('data-ring', (lastRingNum + 10));
                 }
                 hex.setAttribute('data-locked', true);
             }

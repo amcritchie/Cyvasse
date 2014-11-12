@@ -7,8 +7,8 @@ var PreGame = {
 
     initialize: function () {
         PreGame.moveableUnits = $('img[data-team=' + 1 + ']').parent();
-        PreGame.moveableRange = $("[data-innrange=true]");
-        PreGame.initialRange = PreGame.moveableRange;
+        PreGame.initialRange = $("[data-ring=1]");
+        PreGame.moveableRange = PreGame.initialRange;
     },
     loadPreGameTurn: function () {
         PreGame.hexVisualUpdate();
@@ -17,20 +17,30 @@ var PreGame = {
         PreGame.pregameClickUnit();
     },
     hexVisualUpdate: function () {
+//        debugger;
         PreGame.initialRange.children("svg").children("polygon").css('fill', 'royalblue');
         $('[data-occupied=true]').children("svg").children("polygon").css('fill', 'yellow');
     },
     resetAndUpdateUnitsAndRange: function () {
+//        debugger;
         PreGame.moveableUnits.off('click');
         PreGame.moveableRange.off('click');
         PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
         PreGame.moveableUnits = $('img[data-team=' + 1 + ']').parent();
+
     },
 
     pregameClickUnit: function () {
+//        debugger;
         PreGame.moveableUnits.on('click', function () {
+            PreGame.moveableRange.off('click');
+            PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
+
+//            debugger;
             PreGame.selectedUnit = $(this).children("img");
+
             InfoBoxes.updateSelectBox(PreGame.selectedUnit);
+
             PreGame.registerClickHex();
         })
     },

@@ -4,6 +4,7 @@ var Animation = {
     runAnimation: function () {
         Animation.setRange();
         $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
+        $('[data-ring=9]').children('svg').children('polygon').css('fill', 'orange');
         var distanceFromUnit = 1;
 
 
@@ -37,7 +38,7 @@ var Animation = {
     },
     updateColor: function (hslColor, code, distanceFromUnit) {
         var color = "hsl(" + hslColor + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
-        $('[data-ring=' + code + '' + distanceFromUnit + ']').children('svg').children('polygon').css('fill', color);
+        $('[data-ring=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color);
     },
     setRange: function () {
         if (SelectedUnit.moveRange > 5) {
