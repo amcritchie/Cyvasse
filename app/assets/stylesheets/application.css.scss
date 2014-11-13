@@ -168,18 +168,14 @@ article {
 .auxSpace {
   height: 150px;
   width: 320px;
-
   background-color: orangered;
   border: solid #000000 3px;
-
   text-align: center;
 }
 
 .unplacedUnitSpace {
-
   margin-top: 5px;
   display: inline-block;
-  border: solid blue 2px;
   width: 39.5px;
   height: 40px;
 }
@@ -238,7 +234,6 @@ article {
   display: inline-block;
 
   -webkit-border-radius: 100px;
-  border: solid 1px red;
 }
 
 [data-status='dead'] {
@@ -274,19 +269,18 @@ article {
 }
 
 //'*[data-team=' + team_id + ']'
-[data-team*='1'] {
-  //  border: solid 1px red;
-}
+//[data-team='1'] {
+//    border: solid 3px red;
+//}
+//[data-team='0'] {
+//  border: solid 3px greenyellow;
+//}
 
-[data-team*='0'] {
-  border: solid 1px greenyellow;
-}
 
 .hexDiv {
   float: left;
   width: 60px;
   height: 68px;
-  //  border: solid blue 1px;
   z-index: 5;
   svg {
     width: 60px;

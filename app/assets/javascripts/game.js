@@ -44,6 +44,10 @@ var Game = {
         Game.defense = Game.offense;
         Game.offense = Math.abs(Offense.offense - 1);
         $('polygon').css('fill','black');
+        $('polygon').css('stroke','white');
+        $('[data-team=1]').parent().children('svg').children('polygon').css('stroke','blue');
+        $('[data-team=0]').parent().children('svg').children('polygon').css('stroke','red');
+
         GameStatus.saveGameStatus();
         Rotator.createAndRotateOn('turn','Turn '+Game.turn);
         setTimeout(function(){
