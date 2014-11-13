@@ -1,15 +1,9 @@
-
-
 <% var yPos = 1; %>
-
-<% $.each( thearray , function(index, row){ %>
-
+<% $.each(map,function(index, row){ %>
     <div class="grid" data-y-pos=<%= yPos %>>
     <% $.each (row , function(index, col){ %>
         <%= col %>
     <% }); %>
-
     <% yPos += 1; %>
     </div>
-
 <% }); %>

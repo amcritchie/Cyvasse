@@ -14,27 +14,8 @@ var $initialRange;
 
 var pregame_var;
 
-var $clickableUnitSpaces;
-var $hoverableRange;
-
-//  Functions.
-function pregame() {
-    RandomSetup.loadPregameButton();
-    PreGame.loadPreGameTurn();
-}
-
-function newMoveUnitToNewPosition(newLocation, oldLocation, movingUnit) {
-    var movingTo = $(newLocation);
-    var movingFrom = $(oldLocation);
-    movingUnit.prependTo(movingTo);
-    movingTo.attr('data-occupied', true);
-    movingFrom.attr('data-occupied', false);
-}
-
 function startGame() {
     pregame_var = false;
-//    $('.startGameButton').off('click').remove();
-//    $('.randomSetUpButton').off('click').remove();
     $('.loadEnemiesButton').off('click').remove();
     $('.enemyLineUpOne').off('click').remove();
 
@@ -108,9 +89,9 @@ $.fn.random = function () {
     return this.eq(Math.floor(Math.random() * this.length));
 };
 
-function findHex(xPos, yPos) {
-    return $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]");
-}
+//function findHex(xPos, yPos) {
+//    return $("polygon[data-x-pos=" + xPos + "][data-y-pos=" + yPos + "]");
+//}
 
 
 function shuffle(array) {
@@ -134,23 +115,6 @@ function capitalizeEachWord(str) {
     });
 }
 
-function initialConditions() {
-
-    pregame_var = true;
-    $moveableUnits = $('img[data-team=' + 1 + ']').parent();
-    $clickableUnitSpaces = $('img[data-team=' + 1 + ']').parent();
-    $initialRange = $("[data-innrange=true]");
-    $movingRange = $initialRange;
-    $allHexagons = $('polygon');
-    pregame();
-}
-
-
-function newGame() {
-    LoadingFactory.loadMapUnitsAndEnemiesHTML();
-    initialConditions();
-    InfoBoxes.registerHoverUnit();
-}
 
 function oldGame() {
     loadEverything();

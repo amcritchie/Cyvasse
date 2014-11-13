@@ -24,7 +24,7 @@ var GameStatus = {
     saveTeam: function(team){
         var array = [];
         $.each($('[data-team='+team+']'), function(index,unit){
-            array.push([$(unit).attr('data-index'), $(unit).parent().attr('id')]);
+            array.push([$(unit).attr('data-index'), $(unit).parent().attr('data-hexIndex')]);
         });
         return array;
     },

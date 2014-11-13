@@ -17,12 +17,10 @@ var PreGame = {
         PreGame.pregameClickUnit();
     },
     hexVisualUpdate: function () {
-//        debugger;
         PreGame.initialRange.children("svg").children("polygon").css('fill', 'royalblue');
-        $('[data-occupied=true]').children("svg").children("polygon").css('fill', 'yellow');
+        $('[data-occupied=true]').children("svg").children("polygon").css('fill', 'purple');
     },
     resetAndUpdateUnitsAndRange: function () {
-//        debugger;
         PreGame.moveableUnits.off('click');
         PreGame.moveableRange.off('click');
         PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
@@ -31,15 +29,13 @@ var PreGame = {
     },
 
     pregameClickUnit: function () {
-//        debugger;
         PreGame.moveableUnits.on('click', function () {
             PreGame.moveableRange.off('click');
             PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
 
-//            debugger;
-            PreGame.selectedUnit = $(this).children("img");
+            PreGame.unit = $(this).children("img");
 
-            InfoBoxes.updateSelectBox(PreGame.selectedUnit);
+            InfoBoxes.updateSelectBox(PreGame.unit);
 
             PreGame.registerClickHex();
         })
@@ -47,9 +43,9 @@ var PreGame = {
     registerClickHex: function () {
         PreGame.moveableRange.on('click', function () {
             var newLocation = $(this);
-            var oldLocation = PreGame.selectedUnit.parent();
-            PreGame.moveImageToMap(PreGame.selectedUnit);
-            PreGame.moveUnitToNewPosition(newLocation, oldLocation, PreGame.selectedUnit);
+            var oldLocation = PreGame.unit.parent();
+            PreGame.moveImageToMap(PreGame.unit);
+            PreGame.moveUnitToNewPosition(newLocation, oldLocation, PreGame.unit);
             PreGame.finishMove();
         });
     },

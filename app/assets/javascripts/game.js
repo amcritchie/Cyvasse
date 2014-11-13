@@ -45,12 +45,17 @@ var Game = {
         Game.offense = Math.abs(Offense.offense - 1);
         $('polygon').css('fill','black');
         GameStatus.saveGameStatus();
+        Rotator.createAndRotateOn('turn','Turn '+Game.turn);
+        setTimeout(function(){
+            Rotator.rotateOff('.turn');
+        },1300);
         Offense.runOffense(Game.offense)
     },
 
     oldGame: function(){
-        var teamOneString = '2:grav1|20:grav1|9:hex19|8:hex21|19:hex22|10:hex37|11:hex52|6:hex55|16:hex57|13:hex59|7:hex61|17:hex63|14:hex70|15:hex75|1:hex76|5:hex78|18:hex82|4:hex83|12:hex87|3:hex91|';
-        var teamTwoString = '2:grav0|20:hex21|19:hex22|18:hex23|17:hex24|16:hex25|15:hex26|14:hex27|13:hex28|12:hex29|11:hex30|10:hex31|9:hex32|8:hex33|7:hex34|6:hex35|5:hex36|4:hex37|3:hex38|1:hex40|';
+
+        var teamOneString = '2:grav1|20:grav1|9:19|8:21|19:22|10:37|11:52|6:55|16:57|13:59|7:61|17:63|14:70|15:75|1:76|5:78|18:82|4:83|12:87|3:91|';
+        var teamTwoString = '2:grav0|20:21|19:22|18:23|17:24|16:25|15:26|14:27|13:28|12:29|11:30|10:31|9:32|8:33|7:34|6:35|5:36|4:37|3:38|1:40|';
 
         var teamOneArray = GameStatus.convertStringToArray(teamOneString);
         var teamTwoArray = GameStatus.convertStringToArray(teamTwoString);
@@ -58,20 +63,23 @@ var Game = {
         $.each(teamOneArray,function(i,e){
             Game.moveUnits(e, 1);
         });
-
         $.each(teamTwoArray, function(i,e){
             Game.moveUnits(e, 0);
         });
+
+        Game.turn = 5;
+        Game.runTurn(1);
 
         console.log(teamOneArray);
     },
     moveUnits: function(positionArray, team){
         var unit = $('[data-team='+team+'][data-index=' + positionArray[0] + ']');
-        unit.prependTo($('#'+positionArray[1]));
         if (positionArray[1] == 'grav'+team){
-            unit.attr('data-status', 'dead')
+            unit.attr('data-status', 'dead');
+            unit.prependTo($('#'+positionArray[1]));
         }else{
-            unit.attr('data-status', 'alive')
+            unit.attr('data-status', 'alive');
+            unit.prependTo($('[data-hexIndex='+positionArray[1]+']'));
         }
     }
 };

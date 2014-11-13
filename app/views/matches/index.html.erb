@@ -1,21 +1,28 @@
 <h1>Listing matches</h1>
 
 <table>
+
   <thead>
     <tr>
-      <th>Game status</th>
-      <th>User</th>
-      <th>Challenger</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th>Turn</th>
+      <th>Link</th>
+      <th>Team 1</th>
+      <th>Team 0</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
 
   <tbody>
+
     <% @matches.each do |match| %>
       <tr>
+        <td><%= match.id %></td>
+        <td>1</td>
+        <td><%= link_to 'Show', match_path(match) %></td>
         <td><%= match.user_id %></td>
         <td><%= match.challenger_id %></td>
-        <td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>
         <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -25,6 +32,8 @@
 
 <br>
 
-<%= image_tag "old/firstsvg.svg" %>
-
 <%= link_to 'New Match', new_match_path %>
+<div>
+  <%= link_to "Matches", matches_path, class: 'options' %><br>
+</div>
+

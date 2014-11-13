@@ -1,15 +1,15 @@
 var LoadingFactory = {
 
     loadMapUnitsAndEnemiesHTML: function () {
-        var map = { thearray: create_map() };
+        var map = { map: Map.createMap() };
         var templateMap = JST['views/map'];
         var result = templateMap(map);
 
-        var hash = { units: createAllUnits(1)};
+        var hash = { units: CreateUnits.createAllUnits(1)};
         var templateUnits = JST['views/units'];
         var units = templateUnits(hash);
 
-        var enemyHash = { enemies: createAllUnits(0) };
+        var enemyHash = { enemies: CreateUnits.createAllUnits(0) };
         var templateEnemies = JST['views/enemies'];
         var enemies = templateEnemies(enemyHash);
 
@@ -17,11 +17,12 @@ var LoadingFactory = {
         LoadingFactory.moveSVGsToPosition(result, units, enemies);
 
     },
+
     loadPartsOfMatchHTML: function () {
         $('.match').append('<div class="map"></div>');
         LoadingFactory.prependThingToMap($(".map"));
     },
-    prependThingToMap:  function(map){
+    prependThingToMap: function (map) {
         map.prepend("<article class='auxSpace rotating'></article>");
         map.prepend("<article class=enemyBay></article>");
         map.prepend("<article class=graveyard id=grav1></article>");

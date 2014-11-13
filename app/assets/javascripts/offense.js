@@ -41,32 +41,45 @@ var Offense = {
         $('.hexDiv').attr('data-locked', false);
         SelectedUnit.unit.parent().attr('data-ring', 9);
 
-        var start = new Date();
+        $('.hexDiv').attr('data-rangeRing', 8);
+        $('.hexDiv').attr('data-rangeLocked', false);
+        SelectedUnit.unit.parent().attr('data-rangeRing', 9);
+//        var start = new Date();
+//
+//        var ss = new Date();
+        var potentialRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.moveRange).parent().parent();
+//        var sss = new Date();
+//        var dd = new Date();
+        Rings.createRings(SelectedUnit.unit, potentialRange);
+//        var ddd = new Date();
+//        var stop = new Date();
+//        Offense.end = new Date();
 
-        var ss = new Date();
-        var potentialRange = HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, SelectedUnit.moveRange).parent().parent();
-        var sss = new Date();
-        var dd = new Date();
-        NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
-        var ddd = new Date();
 
-        var stop = new Date();
-        Offense.end = new Date();
-
-        console.log("time from click to animation - >", Offense.end - Offense.start);
-        console.log("create rings run time - >", stop - start);
-        console.log("111time from click to animation - >", sss - ss);
-        console.log("222create rings run time - >", ddd - dd);
-
-        console.log('-----------');
+//        console.log("time from click to animation - >", Offense.end - Offense.start);
+//        console.log("create rings run time - >", stop - start);
+//        console.log("111time from click to animation - >", sss - ss);
+//        console.log("222create rings run time - >", ddd - dd);
+//
+//        console.log('-----------');
 
         Animation.runAnimation();
+        Offense.updateMoveRange(potentialRange);
+
+//
+        if (SelectedUnit.unit.attr('data-rank') == 'range'){
+
+            var attackRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.attackRange).parent().parent();
+            RangeRings.createRings(SelectedUnit.unit,attackRange); // <------ Not working.
+
+            Offense.updateAttackRange();
+        } else {
+
+            Offense.updateMeleeRange(); // <---- slow!!!!!
+        }
+
         $allHexagons.attr('class', 'unSelected');
 
-
-//        Offense.updateMoveRange(potentialRange); // <---- Slow!!!!!!
-//
-//        Offense.updateAttackRange(); // <---- slow!!!!!!
 //        console.log('run animation');
 //        var stop = new Date();
 //        console.log("*****elapsed registerClickUnit", stop - start);
@@ -79,18 +92,27 @@ var Offense = {
 
         Offense.moveRange.off('click');
         Offense.moveRange = range.filter(function () {
-            return ($(this).attr('data-ring') <= 20) && ($(this).attr('data-ring') > 9)
+            return ($(this).attr('data-ring') <= 19) && ($(this).attr('data-ring') >= 10)
         });
     },
-
 
     updateAttackRange: function (unit, range) {
         var potentialRange = Offense.potentialRange();
 
-        NewHexRangeFinder.createRings(SelectedUnit.unit, potentialRange);
+        Rings.createRings(SelectedUnit.unit, potentialRange);
         Offense.attackRange.off('click');
         Offense.attackRange = potentialRange.filter(function () {
-            return ($(this).attr('data-ring') <= 40) && ($(this).attr('data-ring') > 30)
+            return ($(this).attr('data-rangeRing') <= 39) && ($(this).attr('data-rangeRing') >= 30)
+        });
+    },
+
+    updateMeleeRange: function (unit, range) {
+        var potentialRange = Offense.potentialRange();
+
+        Rings.createRings(SelectedUnit.unit, potentialRange);
+        Offense.attackRange.off('click');
+        Offense.attackRange = potentialRange.filter(function () {
+            return ($(this).attr('data-ring') <= 39) && ($(this).attr('data-ring') >= 30)
         });
     },
 
@@ -101,7 +123,7 @@ var Offense = {
         } else {
             range = SelectedUnit.moveRange
         }
-        return HexRange.ycreateRangeSelector(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, range).parent().parent();
+        return PotentialRange.create(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, range).parent().parent();
     },
 
     registerMovableHex: function () {

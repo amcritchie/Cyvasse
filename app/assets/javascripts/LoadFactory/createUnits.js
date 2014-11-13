@@ -27,7 +27,6 @@ var CreateUnits = {
         array = array.concat(CreateUnits.createCavalry());
         array = array.concat(CreateUnits.createRange());
         array = array.concat(CreateUnits.createUniqueAndMountains());
-
         return array;
     },
 
@@ -64,7 +63,6 @@ var CreateUnits = {
 
     createSet: function (quantity, unitAttributes) {
         var htmlString = [];
-
         for (var i = 0; i < quantity; i++) {
             htmlString.push(CreateUnits.createUnit(unitAttributes));
         }
@@ -79,7 +77,7 @@ var CreateUnits = {
         var svg = '/images/svgs/' + codename + '.svg';
 
         CreateUnits.index += 1;
-        return "<img alt=" + name + " data-rank=" + attributes.rank + "" +
+        return "<img alt='" + name + "' data-rank=" + attributes.rank + "" +
             " data-attack=" + attributes.attack + " " + " data-defence=" + attributes.defence +
             " data-moveRange=" + attributes.moveRange + " data-attackRange=" + attributes.attackRange +
             " data-flank=" + attributes.flank + " " + "data-trump=" + name + " data-team=" + CreateUnits.team +
@@ -88,5 +86,11 @@ var CreateUnits = {
             "data-index=" + CreateUnits.index + " data-inrange=" + name + " " +
 
             "data-alive=" + name + " data-codename=" + name + " data-englishname=" + name + " >";
+    },
+
+    createAllUnits: function(team){
+        var array = [];
+        array = array.concat(CreateUnits.run(team, array));
+        return array
     }
 };

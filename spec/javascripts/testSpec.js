@@ -5,7 +5,7 @@ describe("Load Map", function () {
 //        loadEverything();
 //        initialConditions();
 
-        newGame();
+        InitialMatchLoad.onPageLoad();
         done();
     });
 
@@ -45,8 +45,7 @@ describe("Load Units", function () {
 
     beforeEach(function (done) {
         loadFixtures('game.html');
-        loadEverything();
-        initialConditions();
+        InitialMatchLoad.onPageLoad();
         done();
     });
 
@@ -91,8 +90,8 @@ describe("Pregame click Rabble", function () {
     beforeEach(function (done) {
 
         loadFixtures('game.html');
-        loadEverything();
-        initialConditions();
+        InitialMatchLoad.onPageLoad();
+
         rabble = $('[data-index=3][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
         lightHorse = $('[data-index=8][data-team=1]');
@@ -143,9 +142,9 @@ describe("Moving Units to Map", function () {
     beforeEach(function () {
 
         loadFixtures('game.html');
-        newGame();
-//        loadEverything();
-//        initialConditions();
+        InitialMatchLoad.onPageLoad();
+
+
         rabble = $('[data-index=3][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
         lightHorse = $('[data-index=8][data-team=1]');
@@ -236,7 +235,6 @@ describe("Moving Units to Map", function () {
 
     it("Click 'Random Setup' Button, and expect all Units to move to Map", function(){
 
-        debugger;
         expect($(".unplacedUnitSpace").length).toEqual(20);
         $('.randomSetUpButton').click();
 //
@@ -303,28 +301,8 @@ describe("Moving Units to Map", function () {
 
     it("Start Game button, runs the start game function", function(){
 
-//        var foo;
-//        spyOn(pregame_var, 'startGame');
-//        var Klass = function () {
-//            startGame();
-//        };
-//
-//        Klass.staticMethod = function (arg) {
-//            return arg;
-//        };
-
         $('.randomSetUpButton').click();
         $('.startGameButton').click();
-
-
-//        var spy;
-//        spyOn(spy, 'startGame');
-//        expect(spy.startGame).toHaveBeenCalled()
-
-//        spyOn(Klass, 'staticMethod');
-//        Klass.staticMethod('foo argument');
-
-//        expect(startGame()).toHaveBeenCalled();
 
     });
 
@@ -342,9 +320,7 @@ describe("A spy", function() {
     beforeEach(function () {
 
         loadFixtures('game.html');
-//        loadEverything();
-//        initialConditions();
-        newGame();
+        InitialMatchLoad.onPageLoad();
 
         rabble = $('[data-index=3][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
@@ -381,10 +357,7 @@ describe("First move", function() {
     beforeEach(function () {
 
         loadFixtures('game.html');
-//        loadEverything();
-//        initialConditions();
-
-        newGame();
+        InitialMatchLoad.onPageLoad();
 
         rabble = $('[data-index=1][data-team=1]');
         dragon = $('[data-index=19][data-team=1]');
@@ -422,7 +395,7 @@ describe("First move", function() {
         rabble.parent().click();
         lightHorse.parent().click();
         dragon.parent().click();
-        expect(Offense.selectedUnit).toEqual(dragon);
+        expect(Offense.unit).toEqual(dragon);
     });
 
     it("Enemies Lined up properly in Enemy Line One", function(){
@@ -454,9 +427,7 @@ describe('Game Play', function(){
     beforeEach(function () {
 
         loadFixtures('game.html');
-//        loadEverything();
-//        initialConditions();
-        newGame();
+        InitialMatchLoad.onPageLoad();
 
 
         rabble = $('[data-index=1][data-team=1]');
@@ -474,23 +445,23 @@ describe('Game Play', function(){
 
     it("Team 1 cannot select a Unit after moving to a free space", function(){
         lightHorse.parent().click();
-        expect(Offense.selectedUnit).toEqual(lightHorse);
+        expect(Offense.unit).toEqual(lightHorse);
         $('[data-hexIndex=45]').click();
-        expect(Offense.selectedUnit).toEqual(null);
+        expect(Offense.unit).toEqual(null);
 
         rabble.parent().click();
-        expect(Offense.selectedUnit).toEqual(null);
+        expect(Offense.unit).toEqual(null);
 //        vv Doesn't Work vv ??
 //        lightHorse.parent().click();
     });
     it("Team 1 cannot select a Unit after attacking a unit", function(){
         lightHorse.parent().click();
-        expect(Offense.selectedUnit).toEqual(lightHorse);
+        expect(Offense.unit).toEqual(lightHorse);
         $('[data-hexIndex=33]').click();
-        expect(Offense.selectedUnit).toEqual(null);
+        expect(Offense.unit).toEqual(null);
 
         rabble.parent().click();
-        expect(Offense.selectedUnit).toEqual(null);
+        expect(Offense.unit).toEqual(null);
 //        vv Doesn't Work vv ??
 //        lightHorse.parent().click();
     });

@@ -35,7 +35,7 @@ var InitialMatchLoad = {
 
         $('.oldGame').on('click', function () {
             InitialMatchLoad.buttonClicked();
-            oldGame();
+            Game.oldGame();
         });
     },
 

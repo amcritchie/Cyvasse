@@ -17,6 +17,7 @@ var InfoBoxes = {
         $('.hideHoveredUnitInfo').css('visibility', 'visible');
 
         $('#hoverName').empty().append(capitalizeEachWord(unit.attr('alt')));
+
         $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
 
         $('#hoverOffense').empty().append('Attack: ' + unit.data('attack'));

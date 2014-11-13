@@ -32,9 +32,10 @@ var Animation = {
 
     updateRing: function (distanceFromUnit) {
         Animation.updateColor(240, 1, distanceFromUnit);
-        Animation.updateColor(115, 4, distanceFromUnit);
-        Animation.updateColor(10, 3, distanceFromUnit);
         Animation.updateColor(290, 2, distanceFromUnit);
+        Animation.updateColor(10, 3, distanceFromUnit);
+        Animation.updateColor(115, 4, distanceFromUnit);
+        Animation.updateColor(280, 5, distanceFromUnit);
     },
     updateColor: function (hslColor, code, distanceFromUnit) {
         var color = "hsl(" + hslColor + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
