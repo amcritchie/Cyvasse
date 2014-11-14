@@ -15,6 +15,7 @@ var InitialMatchLoad = {
         setTimeout(function(){
             InitialMatchLoad.loadButtons()
         }, 1000);
+
     },
 
     loadButtons: function(){

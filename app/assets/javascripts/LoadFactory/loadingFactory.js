@@ -15,7 +15,6 @@ var LoadingFactory = {
 
         LoadingFactory.loadPartsOfMatchHTML();
         LoadingFactory.moveSVGsToPosition(result, units, enemies);
-
     },
 
     loadPartsOfMatchHTML: function () {

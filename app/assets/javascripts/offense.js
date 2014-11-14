@@ -80,10 +80,6 @@ var Offense = {
 
         $allHexagons.attr('class', 'unSelected');
 
-//        console.log('run animation');
-//        var stop = new Date();
-//        console.log("*****elapsed registerClickUnit", stop - start);
-
     },
 
     updateMoveRange: function (range) {
@@ -102,7 +98,7 @@ var Offense = {
         Rings.createRings(SelectedUnit.unit, potentialRange);
         Offense.attackRange.off('click');
         Offense.attackRange = potentialRange.filter(function () {
-            return ($(this).attr('data-rangeRing') <= 39) && ($(this).attr('data-rangeRing') >= 30)
+            return ($(this).attr('data-rangeRing') <= 89) && ($(this).attr('data-rangeRing') >= 80)
         });
     },
 

@@ -124,6 +124,7 @@ var RangeRings = {
 
         Array.prototype.slice.call(hexRange).forEach(function (hex) {
             if (RangeRings.searchAdjacentHex(hex, 'data-rangeRing', lastRingNum + 9) == 'true') {
+//                debugger;
                 var image;
                 Array.prototype.slice.call(hex.children).forEach(function (child) {
                     if (child.tagName == 'IMG') {
@@ -136,14 +137,14 @@ var RangeRings = {
                     hex.setAttribute('data-rangeRing', (lastRingNum + 50));
                 } else if (image && image.getAttribute('data-team') == Offense.defense) {
                     if (image.getAttribute('data-attack') > SelectedUnit.strength) {
-                        hex.setAttribute('data-rangeRing', (lastRingNum + 20));
+                        hex.setAttribute('data-rangeRing', (lastRingNum + 90));
                     } else {
-                        hex.setAttribute('data-rangeRing', (lastRingNum + 30));
+                        hex.setAttribute('data-rangeRing', (lastRingNum + 80));
                     }
                 } else if (image && image.getAttribute('data-team') == Offense.offense) {
-                    hex.setAttribute('data-rangeRing', (lastRingNum + 40));
+                    hex.setAttribute('data-rangeRing', (lastRingNum + 70));
                 } else {
-                    hex.setAttribute('data-rangeRing', (lastRingNum + 10));
+                    hex.setAttribute('data-rangeRing', (lastRingNum + 60));
                 }
                 hex.setAttribute('data-rangeLocked', true);
             }
@@ -191,7 +192,9 @@ var RangeRings = {
 
         neighbors.forEach(function (e) {
             var neighbor = $('.board').find(e);
-            if (neighbor.attr(attributeName) == attribute) {
+            if (((neighbor.attr(attributeName) == attribute) || (neighbor.attr(attributeName) == (attribute + 80)) ||
+                (neighbor.attr(attributeName) == (attribute + 70)) || (neighbor.attr(attributeName) == (attribute + 50))
+                )) {
                 passing = 'true';
             }
         });

@@ -16,7 +16,10 @@ var Animation = {
 
             Animation.updateRing(distanceFromUnit);
             distanceFromUnit += 1;
-            if (SelectedUnit.movement < distanceFromUnit) {
+            debugger;
+            if ((SelectedUnit.unit.attr('data-rank') == 'range')&&(SelectedUnit.range < distanceFromUnit)) {
+                clearInterval(Animation.function)
+            } else if ((SelectedUnit.unit.attr('data-rank') != 'range')&&(SelectedUnit.movement < distanceFromUnit)){
                 clearInterval(Animation.function)
             }
 
