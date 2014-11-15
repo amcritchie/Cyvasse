@@ -18,7 +18,7 @@ var PotentialRange = {
         PotentialRange.range = parseInt(range);
         PotentialRange.xPos = parseInt(unit.parent().attr('data-xPosss'));
         PotentialRange.yPos = parseInt(unit.parent().attr('data-yPosss'));
-        $allHexagons.attr('class', 'unSelected');
+//        $allHexagons.attr('class', 'unSelected');
     },
     initializeCircumference: function(){
         PotentialRange.constantUp = 0;

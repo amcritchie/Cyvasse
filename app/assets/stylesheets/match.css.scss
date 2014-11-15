@@ -117,6 +117,12 @@
           vertical-align: center;
           border-right: 2px solid black;
 
+          .trumpImage{
+            width: 20px;
+            height: 20px;
+            float: right;
+          }
+
           #hoverName{ margin-left: -28px; }
           .hoverStat{ margin-left: 10px; }
         }
@@ -178,12 +184,10 @@
   }
 
   .map {
-    //    float: left;
     position: absolute;
     width: 960px;
     height: 600px;
     margin-top: 15px;
-//    background-color: green;
 
     .board {
       float: left;

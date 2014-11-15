@@ -20,10 +20,14 @@ var InfoBoxes = {
 
         $('#hoverUnitImage').attr('src', "../images/svgs/" + unit.attr('id') + ".svg");
 
+        arrayOfTrumps = unit.data('trump').split(',');
+        
+
+        debugger;
         $('#hoverOffense').empty().append('Attack: ' + unit.data('attack'));
         $('#hoverDefence').empty().append('Armor: ' + unit.data('defence'));
         $('#hoverMvRange').empty().append('Moves: ' + unit.data('moverange'));
-        $('#hoverUtRange').empty().append('Trump: ' + unit.data('trump'));
+        $('#hoverUtRange').empty().append('Trump: ' + '<img class="trumpImage" src="../images/svgs/' + unit.attr('id') + '.svg" >');
     },
 
     updateSelectBox: function(unit){
@@ -37,7 +41,7 @@ var InfoBoxes = {
         $('.selectedUnitDefence').empty().append(unit.data('defence'));
         $('.selectedUnitMovement').empty().append(unit.data('moverange'));
 
-        $('.selectedUnitUtility').empty().append(unit.data('range'));
+        $('.selectedUnitUtility').empty().append(unit.data('attackrange'));
         $('.selectedUnitTrump').empty().append(unit.data('flank'));
     }
 };

@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require_tree .
 
+var $allHexDivs;
+var $allHexSVGs;
+var $allHexPoly;
+
 
 $(document).ready(function () {
 

@@ -4,6 +4,8 @@ var Animation = {
     runAnimation: function () {
         Animation.setRange();
         $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
+        $('.hexDiv').children('svg').children('polygon').css('stroke', 'white');
+
         $('[data-ring=9]').children('svg').children('polygon').css('fill', 'orange');
         var distanceFromUnit = 1;
 
@@ -14,9 +16,14 @@ var Animation = {
 
             var ringStart = new Date();
 
+
+            if ((SelectedUnit.unit.attr('data-rank') == 'range')) {
+                Animation.updateRangeRing(distanceFromUnit);
+            }
             Animation.updateRing(distanceFromUnit);
+
+
             distanceFromUnit += 1;
-            debugger;
             if ((SelectedUnit.unit.attr('data-rank') == 'range')&&(SelectedUnit.range < distanceFromUnit)) {
                 clearInterval(Animation.function)
             } else if ((SelectedUnit.unit.attr('data-rank') != 'range')&&(SelectedUnit.movement < distanceFromUnit)){
@@ -32,15 +39,41 @@ var Animation = {
         console.log("Total Animation run time - >", stopA - startA);
     },
 
+    updateRangeRing: function(distanceFromUnit){
+
+        Animation.updateRangeFill(10, 8, distanceFromUnit);
+
+        Animation.updateStroke('blue', 9, distanceFromUnit,7);
+        Animation.updateStroke('blue', 5, distanceFromUnit,7);
+
+        Animation.updateStroke('red', 6, distanceFromUnit,8);
+        Animation.updateStroke('red', 7, distanceFromUnit,8);
+        Animation.updateStroke('red', 8, distanceFromUnit,8);
+
+
+
+
+    },
+
+    updateStroke: function(color, code, distanceFromUnit,zIndex){
+//        debugger;
+        $('[data-rangeRing=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', color);
+        $('[data-rangeRing=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').css('overflow','overlay');
+        $('[data-rangeRing=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').css('z-index',zIndex);
+    },
 
     updateRing: function (distanceFromUnit) {
-        Animation.updateColor(240, 1, distanceFromUnit);
-        Animation.updateColor(290, 2, distanceFromUnit);
-        Animation.updateColor(10, 3, distanceFromUnit);
-        Animation.updateColor(115, 4, distanceFromUnit);
-        Animation.updateColor(280, 5, distanceFromUnit);
+        Animation.updateFill(240, 1, distanceFromUnit);
+        Animation.updateFill(290, 2, distanceFromUnit);
+        Animation.updateFill(10, 3, distanceFromUnit);
+        Animation.updateFill(115, 4, distanceFromUnit);
+        Animation.updateFill(280, 5, distanceFromUnit);
     },
-    updateColor: function (hslColor, code, distanceFromUnit) {
+    updateRangeFill: function (hslColor, code, distanceFromUnit) {
+        var color = "hsl(" + hslColor + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
+        $('[data-rangeRing=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color);
+    },
+    updateFill: function (hslColor, code, distanceFromUnit) {
         var color = "hsl(" + hslColor + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
         $('[data-ring=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color);
     },

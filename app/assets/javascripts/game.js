@@ -10,6 +10,8 @@ var Game = {
     player1name: null,
     player0name: null,
 
+    playingAI: false,
+
     startGame: function(){
 
         Game.turn = 0;
@@ -32,7 +34,7 @@ var Game = {
 
     firstTurn: function(offense){
         Game.turn = 1;
-        $('polygon').attr('class','unSelected');
+//        $('polygon').attr('class','unSelected');
         Game.whoStarted = offense;
         Offense.runOffense(offense)
 
@@ -43,17 +45,47 @@ var Game = {
         Game.turn += 1;
         Game.defense = Game.offense;
         Game.offense = Math.abs(Offense.offense - 1);
-        $('polygon').css('fill','black');
-        $('polygon').css('stroke','white');
+
+        $('.hexPolygon').css('fill','black');
+        $('.hexPolygon').css('stroke','white');
+        $('.hexSVG').css('overflow','hidden');
+        $('.hexSVG').css('z-index','2');
+
         $('[data-team=1]').parent().children('svg').children('polygon').css('stroke','blue');
+
+        $('[data-team=1]').parent().children('svg').css('overflow','overlay');
+        $('[data-team=1]').parent().children('svg').css('z-index','3');
+        $('[data-team=0]').parent().children('svg').css('overflow','overlay');
+        $('[data-team=0]').parent().children('svg').css('z-index','3');
+
         $('[data-team=0]').parent().children('svg').children('polygon').css('stroke','red');
 
         GameStatus.saveGameStatus();
         Rotator.createAndRotateOn('turn','Turn '+Game.turn);
+
         setTimeout(function(){
             Rotator.rotateOff('.turn');
         },1300);
-        Offense.runOffense(Game.offense)
+
+        Offense.runOffense(Game.offense);
+
+        if ((Game.offense == 0)&&(Game.playingAI == true)){
+
+            setTimeout(function(){
+                var $unitBeingMoved = Offense.selectableUnits.random();
+                $unitBeingMoved.click();
+            },1500);
+
+            setTimeout(function(){
+                var $hexBeingMovedTo = Offense.moveRange.random();
+                if (Offense.attackRange.length != 0){
+
+                    $hexBeingMovedTo = Offense.attackRange.random();
+                }
+                $hexBeingMovedTo.click();
+            },2500);
+
+        }
     },
 
     oldGame: function(){

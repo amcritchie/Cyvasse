@@ -146,7 +146,16 @@ var RangeRings = {
                 } else {
                     hex.setAttribute('data-rangeRing', (lastRingNum + 60));
                 }
+                if (RangeRings.searchAdjacentHex(hex, 'data-rangeRing', lastRingNum + 49) == 'true'){
+                    hex.setAttribute('data-rangeRing', (lastRingNum + 50));
+                    hex.setAttribute('data-rangeLocked', true);
+
+                }
                 hex.setAttribute('data-rangeLocked', true);
+            } else if (RangeRings.searchAdjacentHex(hex, 'data-rangeRing', lastRingNum + 49) == 'true'){
+                hex.setAttribute('data-rangeRing', (lastRingNum + 50));
+                hex.setAttribute('data-rangeLocked', true);
+
             }
         });
     },
@@ -192,7 +201,7 @@ var RangeRings = {
 
         neighbors.forEach(function (e) {
             var neighbor = $('.board').find(e);
-            if (((neighbor.attr(attributeName) == attribute) || (neighbor.attr(attributeName) == (attribute + 80)) ||
+            if (((neighbor.attr(attributeName) == attribute) || (neighbor.attr(attributeName) == (attribute + 80)) || (neighbor.attr(attributeName) == (attribute + 60)) ||
                 (neighbor.attr(attributeName) == (attribute + 70)) || (neighbor.attr(attributeName) == (attribute + 50))
                 )) {
                 passing = 'true';

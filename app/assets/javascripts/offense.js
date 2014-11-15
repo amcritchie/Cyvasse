@@ -25,6 +25,11 @@ var Offense = {
 
             Offense.start = new Date();
 
+            $('.hexPolygon').css('fill','black');
+            $('.hexPolygon').css('stroke','white');
+            $('.hexSVG').css('overflow','hidden');
+            $('.hexSVG').css('z-index','2');
+
             clearInterval(Animation.function);
             SelectedUnit.update($(this).children('img'));
             InfoBoxes.updateSelectBox($(this).children('img'));
@@ -78,7 +83,7 @@ var Offense = {
             Offense.updateMeleeRange(); // <---- slow!!!!!
         }
 
-        $allHexagons.attr('class', 'unSelected');
+        $allHexagons.attr('class', 'hexPolygon');
 
     },
 

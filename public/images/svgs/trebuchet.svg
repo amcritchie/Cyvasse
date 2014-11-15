@@ -5,31 +5,7 @@
 	 viewBox="0 0 200 265" enable-background="new 0 0 200 265" xml:space="preserve">
 
 <g id="Trebuchet">
-  <g id="Back">
-    <polygon display="inline" fill="#C49A6C" points="73.1,155.6 36.8,231.2 42.3,233.5 52.7,230.6 79.1,173.7 79.1,155.6 		"/>
-    <polygon display="inline" fill="#8B5E3C" points="87.9,153.5 87.9,174.3 112.6,211.4 121.2,212.2 128.4,209.9 		"/>
-    <polygon display="inline" fill="#C49A6C" points="36.8,231.2 36.8,238 42.3,240.5 128.3,217.2 128.4,209.9 121.2,212.2
-			112.6,211.4 54.2,227.2 52.7,230.6 42.3,233.5 		"/>
-    <polygon display="inline" fill="#8B5E3C" points="79.1,155.6 42.3,233.5 52.7,230.6 79.1,173.7 		"/>
-    <polygon display="inline" fill="#8B5E3C" points="52.7,230.6 42.3,233.5 42.3,240.5 128.3,217.2 128.4,210.3 		"/>
-    <path display="inline" fill="#8B5E3C" d="M92.3,237.8"/>
-    <path display="inline" fill="#8B5E3C" d="M93.7,210.5"/>
-    <polygon display="inline" fill="#603913" points="113.1,211.4 121.2,212.2 87.8,164.2 87.9,174.3 		"/>
-    <path display="inline" fill="#603913" d="M95.6,194.5"/>
-    <polyline display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" points="87.7,152.8 87.9,174.3 113.1,211.4
-			121.2,212.2 128,210 87.7,152.8 		"/>
-    <polyline display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" points="73.1,155.6 36.8,231.2 42.3,233.5
-			52.7,230.6 78.7,173 79.1,155.6 77.8,220.9 82,222.6 87.9,220.9 87.8,155.6 		"/>
-    <path display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" d="M69.8,240.5"/>
-    <polyline display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" points="128.4,209.9 128.3,217.2 42.3,240.5
-			36.8,238 36.8,231.2 		"/>
-    <line display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" x1="54.3" y1="227.3" x2="112.6" y2="211.4"/>
-    <path display="inline" fill="#C49A6C" d="M78.6,175.8"/>
-    <path display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" d="M87.9,220.9"/>
-    <path display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" d="M82,229.7"/>
-    <path display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" d="M82,222.6"/>
-    <path display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" d="M92.5,201.5"/>
-  </g>
+
   <g id="Backk" display="inline">
     <polygon fill="#C49A6C" points="56.6,151.2 24.2,206.5 29.1,208.2 38.4,206 62,164.4 62,151.2 		"/>
     <polygon fill="#8B5E3C" points="69.9,149.6 69.9,164.9 92,192 99.7,192.6 106.1,190.9 		"/>

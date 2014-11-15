@@ -39,7 +39,7 @@ var Map = {
             size = 17 - Map.row
         }
 
-        var theClass = "unSelected";
+//        var theClass = "hexPolygon";
 
         var ring;
         if (Map.row > 6) {
@@ -51,12 +51,12 @@ var Map = {
             " data-hexIndex='" + Map.index + "' " +
             " data-ring=" + ring + " data-locked=false " +
             " data-rangeRing=0 data-rangeLocked=false " +
-            " data-rangeStatus=" + theClass + " data-xPosss=" + parseInt(Map.col) + " data-yPosss=" + parseInt(Map.row) + " " +
+            " data-xPosss=" + parseInt(Map.col) + " data-yPosss=" + parseInt(Map.row) + " " +
             " data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
             " data-off=nil data-movement=nil  data-range=nil>" +
-            "<svg class='brick'>" +
+            "<svg class='hexSVG'>" +
 
-            "<polygon class=" + theClass +
+            "<polygon class='hexPolygon'" +
             " data-size=" + size + " data-even='true'" +
             " points='" + (width * hex_scale) + ",0 0," + (height * hex_scale) + "" +
             " 0," + (height + hypotenuse) * hex_scale + "" +

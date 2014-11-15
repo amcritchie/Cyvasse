@@ -43,7 +43,7 @@ function turn() {
 }
 
 function initializeTurn() {
-    $allHexagons.attr('class', 'unSelected');
+//    $allHexagons.attr('class', 'unSelected');
     $moveableUnits = $('img[data-team=' + offense + ']').parent();
     $enemyUnits = $('img[data-team=' + defense + ']').parent();
 }

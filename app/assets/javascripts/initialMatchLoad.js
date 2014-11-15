@@ -4,6 +4,10 @@ var InitialMatchLoad = {
     onPageLoad: function () {
         LoadingFactory.loadMapUnitsAndEnemiesHTML();
 
+        $allHexDivs = $('.hexDiv');
+        $allHexSVGs = $allHexDivs.children('svg');
+        $allHexPoly = $allHexSVGs.children('polygon');
+
         InfoBoxes.registerHoverUnit();
 
         PreGame.initialize();
@@ -14,13 +18,15 @@ var InitialMatchLoad = {
 
         setTimeout(function(){
             InitialMatchLoad.loadButtons()
-        }, 1000);
+        }, 200);
 
     },
 
     loadButtons: function(){
         Rotator.createAndRotateOn('oldGame', 'Old Game');
         Rotator.createAndRotateOn('newGame', 'New Game');
+        Rotator.createAndRotateOn('playComputer', 'Play Computer');
+
 
         $('.newGame').on('click', function () {
             InitialMatchLoad.buttonClicked();
@@ -38,11 +44,26 @@ var InitialMatchLoad = {
             InitialMatchLoad.buttonClicked();
             Game.oldGame();
         });
+
+        $('.playComputer').on('click', function () {
+            InitialMatchLoad.buttonClicked();
+            Game.playingAI = true;
+
+            $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
+            Rotator.rotateOn('.auxSpace');
+            Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+
+            $('.randomSetUpButton').on('click', function () {
+                RandomSetup.placeUnits()
+            });
+        });
     },
 
     buttonClicked: function(){
         $('.newGame').off('click').remove();
         $('.oldGame').off('click').remove();
+        $('.playComputer').off('click').remove();
+
         $('.xxmap').show();
     }
 };

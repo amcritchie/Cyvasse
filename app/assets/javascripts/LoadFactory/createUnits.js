@@ -3,21 +3,21 @@ var CreateUnits = {
 
     index: null,
     team: null,
-    rabble: {rank: 'vangaurd', name: ['rabble'], attack: 1, defence: 1, moveRange: 3, attackRange: 0, flank: 1},
-    spearman: {rank: 'vangaurd', name: ['spearman'], attack: 2, defence: 2, moveRange: 2, attackRange: 0, flank: 2},
-    elephant: {rank: 'vangaurd', name: ['elephant'], attack: 4, defence: 4, moveRange: 3, attackRange: 0, flank: 1},
+    rabble: {rank: 'vangaurd', name: ['rabble'], attack: 1, defence: 1, moveRange: 3, attackRange: 0, flank: 1, trump:['none']},
+    spearman: {rank: 'vangaurd', name: ['spearman'], attack: 2, defence: 2, moveRange: 2, attackRange: 0, flank: 2, trump:['lighthorse','heavyhorse']},
+    elephant: {rank: 'vangaurd', name: ['elephant'], attack: 4, defence: 4, moveRange: 3, attackRange: 0, flank: 1, trump:['none']},
 
-    lightHorse: {rank: 'cavalry', name: ["light", "horse"], attack: 2, defence: 2, moveRange: 5, attackRange: 0, flank: 1},
-    heavyHorse: {rank: 'cavalry', name: ["heavy", "horse"], attack: 3, defence: 2, moveRange: 4, attackRange: 0, flank: 1},
+    lightHorse: {rank: 'cavalry', name: ["light", "horse"], attack: 2, defence: 2, moveRange: 5, attackRange: 0, flank: 1, trump:['none']},
+    heavyHorse: {rank: 'cavalry', name: ["heavy", "horse"], attack: 3, defence: 2, moveRange: 4, attackRange: 0, flank: 1, trump:['none']},
 
-    crossbowman: {rank: 'range', name: ['crossbowman'], attack: 1, defence: 1, moveRange: 1, attackRange: 3, flank: 1},
-    trebuchet: {rank: 'range', name: ['trebuchet'], attack: 3, defence: 1, moveRange: 1, attackRange: 4, flank: 1},
-    catapult: {rank: 'range', name: ['catapult'], attack: 4, defence: 1, moveRange: 2, attackRange: 3, flank: 1},
+    crossbowman: {rank: 'range', name: ['crossbowman'], attack: 1, defence: 1, moveRange: 1, attackRange: 3, flank: 1, trump:['none']},
+    trebuchet: {rank: 'range', name: ['trebuchet'], attack: 3, defence: 1, moveRange: 1, attackRange: 4, flank: 1, trump:['dragon']},
+    catapult: {rank: 'range', name: ['catapult'], attack: 4, defence: 1, moveRange: 2, attackRange: 3, flank: 1, trump:['none']},
 
-    dragon: {rank: 'unique', name: ['dragon'], attack: 5, defence: 5, moveRange: 10, attackRange: 0, flank: 1},
-    king: {rank: 'unique', name: ['king'], attack: 2, defence: 2, moveRange: 2, attackRange: 0, flank: 1},
+    dragon: {rank: 'unique', name: ['dragon'], attack: 5, defence: 5, moveRange: 10, attackRange: 0, flank: 1, trump:['none']},
+    king: {rank: 'unique', name: ['king'], attack: 2, defence: 2, moveRange: 2, attackRange: 0, flank: 1, trump:['none']},
 
-    mountain: {rank: 'mountain', name: ['mountain'], attack: 9, defence: 9, moveRange: 0, attackRange: 0, flank: 0},
+    mountain: {rank: 'mountain', name: ['mountain'], attack: 9, defence: 9, moveRange: 0, attackRange: 0, flank: 0, trump:['none']},
 
     run: function (team, array) {
         CreateUnits.index = 0;
@@ -84,12 +84,12 @@ var CreateUnits = {
         return "<img alt='" + name + "' data-rank=" + attributes.rank + "" +
             " data-attack=" + attributes.attack + " " + " data-defence=" + attributes.defence +
             " data-moveRange=" + attributes.moveRange + " data-attackRange=" + attributes.attackRange +
-            " data-flank=" + attributes.flank + " " + "data-trump=" + name + " data-team=" + CreateUnits.team +
+            " data-flank=" + attributes.flank + " " + "data-trump=" + attributes.trump + " data-team=" + CreateUnits.team +
             " data-status='unplaced' " + "id=" + codename + " src=" + svg + " " +
 
             "data-index=" + CreateUnits.index + " data-inrange=" + name + " " +
 
-            "data-alive=" + name + " data-codename=" + name + " data-englishname=" + name + " >";
+            "data-alive=" + name + " data-codename=" + codename + " data-englishname=" + name + " >";
     },
 
     createAllUnits: function(team){

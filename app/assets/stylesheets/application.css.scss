@@ -2,6 +2,7 @@
 @import "neat";
 @import "base/base";
 @import "match";
+@import "buttons";
 @import "borbon";
 
 $black: #333333;
@@ -22,7 +23,7 @@ body {
 }
 
 .backgroundImage {
-  //  background-image: url('http://images6.fanpop.com/image/photos/32600000/asoiaf-a-song-of-ice-and-fire-32690635-1200-583.jpg');
+  background-image: url('http://images6.fanpop.com/image/photos/32600000/asoiaf-a-song-of-ice-and-fire-32690635-1200-583.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
@@ -125,23 +126,29 @@ article {
   width: 920px;
   float: left;
 }
+
 //
 //.match .info {
 //  width: 206px;
 //  float: left;
 //}
 
-.rotating {
-  opacity: 0;
-  margin: 100px 0 0 -440px;
-  position: absolute;
-  z-index: 7;
+//.rotating {
+//  opacity: 0;
+//  margin: 100px 0 0 -440px;
+//  position: absolute;
+//  z-index: 7;
+//
+//}
+//
+//.newGame {
+//  margin-top: 170px;
+//}
+//
+//.playComputer {
+//  margin-top: 170px;
+//}
 
-}
-
-.newGame {
-  margin-top: 170px;
-}
 
 .startGameButton {
   height: 80px;
@@ -153,16 +160,6 @@ article {
 .randomSetUpButton {
   margin: 260px 0 0 -350px;
   opacity: 0;
-}
-
-[data-ring = '1' ] {
-
-  svg {
-    polygon {
-      stroke: pink;
-      z-index: 3;
-    }
-  }
 }
 
 .auxSpace {
@@ -224,7 +221,7 @@ article {
 }
 
 [data-status='alive'] {
-  z-index: 6;
+  z-index: 10;
   position: absolute;
   margin-left: 0px;
   margin-bottom: -5px;
@@ -276,12 +273,10 @@ article {
 //  border: solid 3px greenyellow;
 //}
 
-
-
 .hexDiv {
   float: left;
   width: 60px;
-  height: 68px;
+  height: 66px;
   z-index: 5;
   svg {
     width: 60px;
@@ -290,6 +285,8 @@ article {
     z-index: 2;
     polygon {
       position: absolute;
+      stroke: white;
+      stroke-width: 20px;
     }
   }
 }
@@ -318,106 +315,111 @@ polygon {
   fill: url(#grad1);
   stroke-width: 25;
   transform: scale(.108);
-  &:hover {
-    fill: $devil-gray;
-    stroke: $white;
-  }
+  //  &:hover {
+  //    fill: $devil-gray;
+  //    stroke: $white;
+  //  }
+}
+
+.hexDiv:hover {
+  fill: $devil-gray;
+  stroke: $white;
 }
 
 //Hexagon Classes
-.unSelected {
-  stroke: $white;
-  z-index: 3;
-}
-
-.hoverRange {
-  fill: orange;
-  stroke: darkred;
-  z-index: 4;
-}
-
-.selectedRange {
-  fill: blue;
-  stroke: blueviolet;
-  z-index: 3;
-}
+//.unSelected {
+//  stroke: $white;
+//  z-index: 3;
+//}
+//
+//.hoverRange {
+//  fill: orange;
+//  stroke: darkred;
+//  z-index: 4;
+//}
+//
+//.selectedRange {
+//  fill: blue;
+//  stroke: blueviolet;
+//  z-index: 3;
+//}
 
 .testRange {
   stroke: limegreen;
-  z-index: 3;
+  z-index: 11;
 }
 
-.killableEnemies {
-
-  fill: darkred;
-  stroke: blueviolet;
-  z-index: 3;
-}
-
-.yourUnit {
-  stroke: green;
-  z-index: 4;
-}
-
-.blueblue {
-  fill: red;
-  stroke: royalblue;
-  z-index: 4;
-}
-
-.orange {
-  fill: green;
-  stroke: orange;
-  z-index: 4;
-}
-
-.ally {
-  fill: green;
-  stroke: orange;
-  z-index: 4;
-}
-
-.ring1 {
-  fill: #1d1150;
-  stroke: #265126;
-  z-index: 3;
-}
-
-.ring2 {
-  fill: #1c1182;
-  stroke: #278327;
-  z-index: 3;
-}
-
-.ring3 {
-  fill: #1d11b4;
-  stroke: #29b429;
-  z-index: 3;
-}
-
-.ring4 {
-  fill: #1c11e6;
-  stroke: #32e732;
-  z-index: 3;
-}
-
-.ring5 {
-  fill: #1e13ff;
-  stroke: #37ff37;
-  z-index: 3;
-}
-
-.blocked {
-  fill: #296769;
-  stroke: #37ff37;
-  z-index: 3;
-}
-
-.attackable {
-  fill: #9b0400;
-  stroke: #9b953c;
-  z-index: 3;
-}
+//.killableEnemies {
+//
+//  fill: darkred;
+//  stroke: blueviolet;
+//  z-index: 3;
+//}
+//
+//.yourUnit {
+//  stroke: green;
+//  z-index: 4;
+//}
+//
+//.blueblue {
+//  fill: red;
+//  stroke: royalblue;
+//  z-index: 4;
+//}
+//
+//.orange {
+//  fill: green;
+//  stroke: orange;
+//  z-index: 4;
+//}
+//
+//.ally {
+//  fill: green;
+//  stroke: orange;
+//  z-index: 4;
+//}
+//
+//.ring1 {
+//  fill: #1d1150;
+//  stroke: #265126;
+//  z-index: 3;
+//}
+//
+//.ring2 {
+//  fill: #1c1182;
+//  stroke: #278327;
+//  z-index: 3;
+//}
+//
+//.ring3 {
+//  fill: #1d11b4;
+//  stroke: #29b429;
+//  z-index: 3;
+//}
+//
+//.ring4 {
+//  fill: #1c11e6;
+//  stroke: #32e732;
+//  z-index: 3;
+//}
+//
+//.ring5 {
+//  fill: #1e13ff;
+//  stroke: #37ff37;
+//  z-index: 3;
+//}
+//
+//.blocked {
+//  fill: #296769;
+//  stroke: #37ff37;
+//  z-index: 3;
+//}
+//
+//.attackable {
+//  fill: #9b0400;
+//  stroke: #9b953c;
+//  z-index: 3;
+//}
 
 //CSS for each row of Hexagons.
 .grid {
