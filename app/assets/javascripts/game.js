@@ -23,12 +23,27 @@ var Game = {
 
         addAIButtons();
         Game.whoGoesFirst();
+        debugger;
         Game.runTurn(Game.offense)
     },
 
     whoGoesFirst: function(){
-        Game.offense = 1;
-        Game.defense = Math.abs(offense - 1);
+
+        var $team0King = $('[alt=king][data-team=0]');
+        var $team1King = $('[alt=king][data-team=1]');
+
+        var team0distance = (Math.abs(6 - $team0King.parent().data('xpos')) + Math.abs(6 - $team0King.parent().data('ypos')));
+        var team1distance = (Math.abs(6 - $team1King.parent().data('xpos')) + Math.abs(6 - $team1King.parent().data('ypos')));
+
+
+        if (team0distance < team1distance){
+            Game.offense = 0;
+            Game.defense = Math.abs(offense - 1);
+        }else{
+            Game.offense = 1;
+            Game.defense = Math.abs(offense - 1);
+        }
+
     },
 
 
@@ -42,9 +57,10 @@ var Game = {
 
 
     runTurn: function(offense){
+        debugger;
         Game.turn += 1;
         Game.defense = Game.offense;
-        Game.offense = Math.abs(Offense.offense - 1);
+        Game.offense = Math.abs(Game.offense - 1);
 
         $('.hexPolygon').css('fill','black');
         $('.hexPolygon').css('stroke','white');

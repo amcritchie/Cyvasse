@@ -19,9 +19,11 @@ var Rings = {
         Array.prototype.slice.call(hexRange).forEach(function (hex) {
             if (Rings.searchAdjacentHex(hex, 'data-ring', lastRingNum + 9) == 'true') {
                 var image;
+                var imageTrumpArray;
                 Array.prototype.slice.call(hex.children).forEach(function (child) {
                     if (child.tagName == 'IMG') {
                         image = child;
+                        imageTrumpArray = image.getAttribute('data-trump').split(',');
                         return;
                     }
                 });
@@ -30,11 +32,34 @@ var Rings = {
                 if (image && image.getAttribute('alt') == 'mountain') {
                     hex.setAttribute('data-ring', (lastRingNum + 50));
                 } else if (image && image.getAttribute('data-team') == Offense.defense) {
-                    if (image.getAttribute('data-attack') > SelectedUnit.strength) {
+
+                    if (image.getAttribute('data-attack') > SelectedUnit.strength){
                         hex.setAttribute('data-ring', (lastRingNum + 20));
+
                     } else {
                         hex.setAttribute('data-ring', (lastRingNum + 30));
+
                     }
+
+                    if (SelectedUnit.trump[0] != 'none'){
+
+                        SelectedUnit.trump.forEach(function (e) {
+                            if ( e == image.getAttribute('data-codename')){
+                                hex.setAttribute('data-ring', (lastRingNum + 30));
+                            }
+                        });
+                    }
+
+
+                    if (imageTrumpArray[0] != 'none'){
+                        imageTrumpArray.forEach(function (e) {
+                            if ( e == SelectedUnit.unit.attr('data-codename')){
+                                hex.setAttribute('data-ring', (lastRingNum + 20));
+                            }
+                        });
+                    }
+
+
                 } else if (image && image.getAttribute('data-team') == Offense.offense) {
                     hex.setAttribute('data-ring', (lastRingNum + 40));
                 } else {
@@ -48,8 +73,8 @@ var Rings = {
 
     searchAdjacentHex: function (examinedHex, attributeName, attribute) {
         var id = examinedHex.getAttribute('data-hexIndex');
-        var xxx = parseInt(examinedHex.getAttribute('data-xPosss'));
-        var yyy = parseInt(examinedHex.getAttribute('data-yPosss'));
+        var xPos = parseInt(examinedHex.getAttribute('data-xPos'));
+        var yPos = parseInt(examinedHex.getAttribute('data-yPos'));
 
         var passing = 'false';
         var neighbors = [];
@@ -57,30 +82,30 @@ var Rings = {
         if (id < 41) {
             neighbors = [
                 
-                    '#hex_' + (xxx - 1) + '_' + (yyy - 1),
-                    '#hex_' + xxx + '_' + (yyy - 1),
-                    '#hex_' + (xxx + 1) + '_' + yyy,
-                    '#hex_' + (xxx - 1) + '_' + yyy,
-                    '#hex_' + (xxx + 1) + '_' + (yyy + 1),
-                    '#hex_' + xxx + '_' + (yyy + 1),
+                    '#hex_' + (xPos - 1) + '_' + (yPos - 1),
+                    '#hex_' + xPos + '_' + (yPos - 1),
+                    '#hex_' + (xPos + 1) + '_' + yPos,
+                    '#hex_' + (xPos - 1) + '_' + yPos,
+                    '#hex_' + (xPos + 1) + '_' + (yPos + 1),
+                    '#hex_' + xPos + '_' + (yPos + 1),
             ];
         } else if (id < 52) {
             neighbors = [
-                    '#hex_' + (xxx - 1) + '_' + (yyy - 1),
-                    '#hex_' + (xxx + 1) + '_' + yyy,
-                    '#hex_' + (xxx - 1) + '_' + yyy,
-                    '#hex_' + (xxx - 1) + '_' + (yyy + 1),
-                    '#hex_' + xxx + '_' + (yyy - 1),
-                    '#hex_' + xxx + '_' + (yyy + 1),
+                    '#hex_' + (xPos - 1) + '_' + (yPos - 1),
+                    '#hex_' + (xPos + 1) + '_' + yPos,
+                    '#hex_' + (xPos - 1) + '_' + yPos,
+                    '#hex_' + (xPos - 1) + '_' + (yPos + 1),
+                    '#hex_' + xPos + '_' + (yPos - 1),
+                    '#hex_' + xPos + '_' + (yPos + 1),
             ];
         } else {
             neighbors = [
-                    '#hex_' + xxx + '_' + (yyy - 1),
-                    '#hex_' + (xxx + 1) + '_' + (yyy - 1),
-                    '#hex_' + (xxx + 1) + '_' + yyy,
-                    '#hex_' + (xxx - 1) + '_' + yyy,
-                    '#hex_' + (xxx - 1) + '_' + (yyy + 1),
-                    '#hex_' + xxx + '_' + (yyy + 1),
+                    '#hex_' + xPos + '_' + (yPos - 1),
+                    '#hex_' + (xPos + 1) + '_' + (yPos - 1),
+                    '#hex_' + (xPos + 1) + '_' + yPos,
+                    '#hex_' + (xPos - 1) + '_' + yPos,
+                    '#hex_' + (xPos - 1) + '_' + (yPos + 1),
+                    '#hex_' + xPos + '_' + (yPos + 1),
             ];
         }
 
@@ -126,9 +151,12 @@ var RangeRings = {
             if (RangeRings.searchAdjacentHex(hex, 'data-rangeRing', lastRingNum + 9) == 'true') {
 //                debugger;
                 var image;
+                var imageTrumpArray;
                 Array.prototype.slice.call(hex.children).forEach(function (child) {
                     if (child.tagName == 'IMG') {
                         image = child;
+                        imageTrumpArray = image.getAttribute('data-trump').split(',');
+
                         return;
                     }
                 });
@@ -141,6 +169,24 @@ var RangeRings = {
                     } else {
                         hex.setAttribute('data-rangeRing', (lastRingNum + 80));
                     }
+                    if (SelectedUnit.trump[0] != 'none'){
+
+                        SelectedUnit.trump.forEach(function (e) {
+                            if ( e == image.getAttribute('data-codename')){
+                                hex.setAttribute('data-rangeRing', (lastRingNum + 80));
+                            }
+                        });
+                    }
+
+
+                    if (imageTrumpArray[0] != 'none'){
+                        imageTrumpArray.forEach(function (e) {
+                            if ( e == SelectedUnit.unit.attr('data-codename')){
+                                hex.setAttribute('data-rangeRing', (lastRingNum + 90));
+                            }
+                        });
+                    }
+
                 } else if (image && image.getAttribute('data-team') == Offense.offense) {
                     hex.setAttribute('data-rangeRing', (lastRingNum + 70));
                 } else {
@@ -163,8 +209,8 @@ var RangeRings = {
 
     searchAdjacentHex: function (examinedHex, attributeName, attribute) {
         var id = examinedHex.getAttribute('data-hexIndex');
-        var xxx = parseInt(examinedHex.getAttribute('data-xPosss'));
-        var yyy = parseInt(examinedHex.getAttribute('data-yPosss'));
+        var xxx = parseInt(examinedHex.getAttribute('data-xPos'));
+        var yyy = parseInt(examinedHex.getAttribute('data-yPos'));
 
         var passing = 'false';
         var neighbors = [];

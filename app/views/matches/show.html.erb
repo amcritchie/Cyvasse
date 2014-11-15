@@ -13,31 +13,44 @@
 
       <article class="selectUnitStats hideSelectedUnitInfo">
 
-        <div>
-          <p id="selectedUnitStat">Attack</p>
-          <hr>
-          <p class="selectedUnitAttack" id="selectedUnitStat">5</p>
+        <div id="selectUnitClass" class="selectUnitStat" >
+        <h5 class="key">Class</h5>
+        <hr>
+        <h6 class="value">5</h6>
         </div>
-        <div>
-          <p id="selectedUnitStat">Defence</p>
+
+        <div id="selectUnitStrength" class="selectUnitStat" >
+          <p class="key">Strength</p>
           <hr>
-          <p class="selectedUnitDefence" id="selectedUnitStat">5</p>
+          <h6 class="value">5</h6>
         </div>
-        <div>
-          <p id="selectedUnitStat">Moves</p>
+
+        <!--<div id="selectUnitStrength">-->
+          <!--<p id="selectedUnitStat">Strength</p>-->
+          <!--<hr>-->
+          <!--<p class="selectedUnitAttack" id="selectedUnitStat">5</p>-->
+        <!--</div>-->
+
+        <div id="selectUnitMoveRange" class="selectUnitStat">
+
+          <p class="key">Movement</p>
           <hr>
-          <p class="selectedUnitMovement" id="selectedUnitStat">3</p>
+          <h6 class="value">5</h6>
         </div>
-        <div>
-          <p id="selectedUnitStat">Range</p>
+
+        <div id="selectUnitUtility" class="selectUnitStat">
+          <p class="key">Flank</p>
           <hr>
-          <p class="selectedUnitUtility" id="selectedUnitStat">2</p>
+          <h6 class="value">5</h6>
         </div>
-        <div>
-          <p id="selectedUnitStat">Trump</p>
+
+        <div id="selectUnitTrump" class="selectUnitStat">
+          <p class="key">Trump</p>
           <hr>
-          <p class="selectedUnitTrump" id="selectedUnitStat">Hhr Lhr</p>
+          <article class="value"></article>
         </div>
+
+
 
       </article>
 
@@ -60,15 +73,16 @@
           <%= image_tag "", :id => 'hoverUnitImage' %>
         </article>
         <article class="hoverStats">
-          <p id="hoverName" class="hoverStat hideHoveredUnitInfo">Crossbowman</p>
+          <div id="hoverName" class="hoverStat hideHoveredUnitInfo"><p>Crossbowman</p></div>
 
-          <p id="hoverOffense" class="hoverStat hideHoveredUnitInfo">Attack: 4</p>
+          <div id="hoverOffense" class="hoverStat hideHoveredUnitInfo"><p>Attack: 4</p></div>
 
-          <p id="hoverDefence" class="hoverStat hideHoveredUnitInfo">Armor: 2</p>
+          <div id="hoverUtility" class="hoverStat hideHoveredUnitInfo"><p>Flank: 2</p></div>
+          <div id="hoverTrump" class="hoverStat hideHoveredUnitInfo"><p></p></div>
 
-          <p id="hoverMvRange" class="hoverStat hideHoveredUnitInfo">Moves: 3</p>
+          <div id="hoverMvRange" class="hoverStat hideHoveredUnitInfo"><p>Moves: ∞</p></div>
 
-          <p id="hoverUtRange" class="hoverStat hideHoveredUnitInfo">Range: 3</p>
+
 
         </article>
         <article class="comparisonColumn comp">

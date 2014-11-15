@@ -8,16 +8,19 @@ var SelectedUnit = {
     movement: null,
     range: null,
 
+    trump: null,
+
     strength: null,
     moveRange: null,
     attackRange: null,
 
     update: function (newUnit) {
+        debugger;
         SelectedUnit.unit = newUnit;
         SelectedUnit.team = parseInt(newUnit.attr('data-team'));
 
-        SelectedUnit.xPos = parseInt(newUnit.parent().attr('data-xPosss'));
-        SelectedUnit.yPos = parseInt(newUnit.parent().attr('data-yPosss'));
+        SelectedUnit.xPos = parseInt(newUnit.parent().attr('data-xPos'));
+        SelectedUnit.yPos = parseInt(newUnit.parent().attr('data-yPos'));
 
         SelectedUnit.strength = parseInt(newUnit.attr('data-attack'));
         SelectedUnit.movement = parseInt(newUnit.attr('data-moverange'));
@@ -25,5 +28,9 @@ var SelectedUnit = {
 
         SelectedUnit.moveRange = parseInt(newUnit.attr('data-moverange'));
         SelectedUnit.attackRange = parseInt(newUnit.attr('data-attackrange'));
+
+        debugger;
+
+        SelectedUnit.trump = newUnit.attr('data-trump').split(',')
     }
 };

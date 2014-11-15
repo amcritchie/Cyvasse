@@ -16,7 +16,7 @@ var Offense = {
     runOffense: function (offense) {
         Offense.offense = offense;
         Offense.defense = Math.abs(offense - 1);
-        Offense.selectableUnits = $('[data-team=' + offense + ']').parent();
+        Offense.selectableUnits = $('[data-status=alive][data-team=' + offense + ']').parent();
         Offense.registerClickUnit()
     },
 

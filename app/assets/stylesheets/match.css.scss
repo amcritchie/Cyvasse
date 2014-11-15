@@ -59,13 +59,38 @@
           width: 80%;
         }
         div{
-          margin-top: 6px;
+//          margin-top: 6px;
           margin-left: -18px;
         }
         #selectedUnitStat{
           margin: 0 0 0 0;
           font-size: 1rem;
 
+        }
+      }
+
+
+
+      .selectUnitStat{
+        .key{
+          margin-bottom: 0;
+        }
+        .value{
+          margin-top: 4px;
+
+        }
+      }
+      #selectUnitClass{
+        margin-bottom: 15px;
+        margin-top: 10px;
+        .key{
+          margin-bottom: 4px;
+        }
+      }
+      #selectUnitTrump{
+        img{
+          width: 40px;
+          height: 40px;
         }
       }
 
@@ -90,7 +115,6 @@
       }
 
       .hoveredUnit {
-
         border-width: 0 2px 2px 2px;
         float: left;
         background-color: mediumpurple;
@@ -100,7 +124,7 @@
         .hoverImage{
           float: left;
           height: 120px;
-          width: 110px;
+          width: 100px;
           #hoverUnitImage{
             position: relative;
             margin-top: 3px;
@@ -112,19 +136,29 @@
         .hoverStats{
           float: left;
           height: 120px;
-          width: 80px;
+          width: 90px;
           text-align: left;
           vertical-align: center;
           border-right: 2px solid black;
-
-          .trumpImage{
-            width: 20px;
-            height: 20px;
-            float: right;
+          p{
+            margin: 0;
           }
 
-          #hoverName{ margin-left: -28px; }
-          .hoverStat{ margin-left: 10px; }
+
+
+          #hoverTrump{
+            p {
+              float: left;
+            }
+
+            .trumpImage{
+              width: 20px;
+              height: 20px;
+              float: left;
+            }
+          }
+
+          #hoverName{ margin-left: -18px; }
         }
 
         #hoverName{

@@ -265,7 +265,7 @@ describe("Moving Units to Map", function () {
     it("Random Setup button doesn't place units outside the $initialRange", function(){
         $('.randomSetUpButton').click();
         for (i = 1; i < 7; i++) {
-            expect($("[data-occupied=true][data-yPosss=" + i + "]").length).toEqual(0);
+            expect($("[data-occupied=true][data-yPos=" + i + "]").length).toEqual(0);
         }
     });
 

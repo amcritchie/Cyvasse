@@ -51,7 +51,7 @@ var Map = {
             " data-hexIndex='" + Map.index + "' " +
             " data-ring=" + ring + " data-locked=false " +
             " data-rangeRing=0 data-rangeLocked=false " +
-            " data-xPosss=" + parseInt(Map.col) + " data-yPosss=" + parseInt(Map.row) + " " +
+            " data-xPos=" + parseInt(Map.col) + " data-yPos=" + parseInt(Map.row) + " " +
             " data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
             " data-off=nil data-movement=nil  data-range=nil>" +
             "<svg class='hexSVG'>" +
