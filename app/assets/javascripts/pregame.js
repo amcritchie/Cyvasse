@@ -18,8 +18,8 @@ var PreGame = {
         PreGame.pregameClickUnit();
     },
     hexVisualUpdate: function () {
-        PreGame.initialRange.children("svg").children("polygon").css('fill', 'royalblue');
-        $('[data-occupied=true]').children("svg").children("polygon").css('fill', 'purple');
+        PreGame.initialRange.children("svg").children("polygon").css('fill', 'blue');
+        $('[data-occupied=true]').children("svg").children("polygon").css('fill', 'darkblue');
     },
     resetAndUpdateUnitsAndRange: function () {
         PreGame.moveableUnits.off('click');

@@ -75,10 +75,7 @@ var CreateUnits = {
         var code = "trebuchet-aa9661cf55458eff1d003546e8fcfda9";
 
         var svg = '/images/svgs/' + codename + '.svg';
-//        debugger;
-//        var svg = JST['views/elephant'];
 
-//        debugger;
 
         CreateUnits.index += 1;
         return "<img alt='" + name + "' data-rank=" + attributes.rank + "" +

@@ -23,8 +23,6 @@ var Offense = {
     registerClickUnit: function () {
         Offense.selectableUnits.on('click', function () {
 
-            Offense.start = new Date();
-
             $('.hexPolygon').css('fill','black');
             $('.hexPolygon').css('stroke','white');
             $('.hexSVG').css('overflow','hidden');
@@ -49,24 +47,11 @@ var Offense = {
         $('.hexDiv').attr('data-rangeRing', 8);
         $('.hexDiv').attr('data-rangeLocked', false);
         SelectedUnit.unit.parent().attr('data-rangeRing', 9);
-//        var start = new Date();
-//
-//        var ss = new Date();
+
         var potentialRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.moveRange).parent().parent();
-//        var sss = new Date();
-//        var dd = new Date();
+
         Rings.createRings(SelectedUnit.unit, potentialRange);
-//        var ddd = new Date();
-//        var stop = new Date();
-//        Offense.end = new Date();
 
-
-//        console.log("time from click to animation - >", Offense.end - Offense.start);
-//        console.log("create rings run time - >", stop - start);
-//        console.log("111time from click to animation - >", sss - ss);
-//        console.log("222create rings run time - >", ddd - dd);
-//
-//        console.log('-----------');
 
         Animation.runAnimation();
         Offense.updateMoveRange(potentialRange);
@@ -84,7 +69,6 @@ var Offense = {
         }
 
         $allHexagons.attr('class', 'hexPolygon');
-
     },
 
     updateMoveRange: function (range) {
@@ -167,6 +151,10 @@ var Offense = {
         Offense.selectableUnits.off('click');
         SelectedUnit.unit = null;
 
-        Game.runTurn();
+        if ($('[alt=king][data-status=dead]').length == 1){
+            Game.over();
+        } else {
+            Game.runTurn();
+        }
     }
 };

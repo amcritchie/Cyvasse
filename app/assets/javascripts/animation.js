@@ -56,7 +56,6 @@ var Animation = {
     },
 
     updateStroke: function(color, code, distanceFromUnit,zIndex){
-//        debugger;
         $('[data-rangeRing=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', color);
         $('[data-rangeRing=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').css('overflow','overlay');
         $('[data-rangeRing=' + code + '' + (distanceFromUnit - 1) + ']').children('svg').css('z-index',zIndex);

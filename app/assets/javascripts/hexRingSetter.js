@@ -1,11 +1,14 @@
 var Rings = {
 
+//    selectedUnit: null,
     selectedUnit: null,
+    selectedTrump: null,
 
     createRings: function (selectedUnit, potentialRange) {
 
         var ring = 0;
-        Rings.unit = selectedUnit;
+        Rings.selectedUnit = selectedUnit;
+        Rings.selectedTrump = selectedUnit.attr('data-trump').split(',');
 
         while (ring < selectedUnit.attr('data-moveRange')) {
             potentialRange = potentialRange.not('[data-locked=true]');
@@ -33,7 +36,7 @@ var Rings = {
                     hex.setAttribute('data-ring', (lastRingNum + 50));
                 } else if (image && image.getAttribute('data-team') == Offense.defense) {
 
-                    if (image.getAttribute('data-attack') > SelectedUnit.strength){
+                    if (image.getAttribute('data-attack') > Rings.selectedUnit.attr('data-attack')){
                         hex.setAttribute('data-ring', (lastRingNum + 20));
 
                     } else {
@@ -41,9 +44,9 @@ var Rings = {
 
                     }
 
-                    if (SelectedUnit.trump[0] != 'none'){
+                    if (Rings.selectedTrump[0] != 'none'){
 
-                        SelectedUnit.trump.forEach(function (e) {
+                        Rings.selectedTrump.forEach(function (e) {
                             if ( e == image.getAttribute('data-codename')){
                                 hex.setAttribute('data-ring', (lastRingNum + 30));
                             }
@@ -53,7 +56,7 @@ var Rings = {
 
                     if (imageTrumpArray[0] != 'none'){
                         imageTrumpArray.forEach(function (e) {
-                            if ( e == SelectedUnit.unit.attr('data-codename')){
+                            if ( e == Rings.selectedUnit.attr('data-codename')){
                                 hex.setAttribute('data-ring', (lastRingNum + 20));
                             }
                         });
@@ -115,7 +118,7 @@ var Rings = {
                 (
                     neighbor.attr(attributeName) == attribute
                     ) || (
-                (Rings.unit.attr('alt') == 'dragon' &&
+                (Rings.selectedUnit.attr('alt') == 'dragon' &&
                     ((neighbor.attr(attributeName) == attribute) || (neighbor.attr(attributeName) == (attribute + 20)) ||
                         (neighbor.attr(attributeName) == (attribute + 30)) || (neighbor.attr(attributeName) == (attribute + 10))
                         )
@@ -133,10 +136,16 @@ var RangeRings = {
 
     selectedUnit: null,
 
+//    selectedUnit: null,
+    selectedTrump: null,
+
     createRings: function (selectedUnit, potentialRange) {
 
         var ring = 0;
         RangeRings.unit = selectedUnit;
+
+        RangeRings.selectedUnit = selectedUnit;
+        RangeRings.selectedTrump = selectedUnit.attr('data-trump').split(',');
 
         while (ring < selectedUnit.attr('data-attackRange')) {
             potentialRange = potentialRange.not('[data-rangeLocked=true]');
@@ -149,7 +158,6 @@ var RangeRings = {
 
         Array.prototype.slice.call(hexRange).forEach(function (hex) {
             if (RangeRings.searchAdjacentHex(hex, 'data-rangeRing', lastRingNum + 9) == 'true') {
-//                debugger;
                 var image;
                 var imageTrumpArray;
                 Array.prototype.slice.call(hex.children).forEach(function (child) {
@@ -164,14 +172,14 @@ var RangeRings = {
                 if (image && image.getAttribute('alt') == 'mountain') {
                     hex.setAttribute('data-rangeRing', (lastRingNum + 50));
                 } else if (image && image.getAttribute('data-team') == Offense.defense) {
-                    if (image.getAttribute('data-attack') > SelectedUnit.strength) {
+                    if (image.getAttribute('data-attack') > RangeRings.selectedUnit.attr('data-attack')) {
                         hex.setAttribute('data-rangeRing', (lastRingNum + 90));
                     } else {
                         hex.setAttribute('data-rangeRing', (lastRingNum + 80));
                     }
-                    if (SelectedUnit.trump[0] != 'none'){
+                    if (Rings.selectedTrump[0] != 'none'){
 
-                        SelectedUnit.trump.forEach(function (e) {
+                        Rings.selectedTrump.forEach(function (e) {
                             if ( e == image.getAttribute('data-codename')){
                                 hex.setAttribute('data-rangeRing', (lastRingNum + 80));
                             }
@@ -181,7 +189,7 @@ var RangeRings = {
 
                     if (imageTrumpArray[0] != 'none'){
                         imageTrumpArray.forEach(function (e) {
-                            if ( e == SelectedUnit.unit.attr('data-codename')){
+                            if ( e == Rings.selectedUnit.attr('data-codename')){
                                 hex.setAttribute('data-rangeRing', (lastRingNum + 90));
                             }
                         });

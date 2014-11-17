@@ -3,14 +3,22 @@
   opacity: 0;
   margin: 100px 0 0 -440px;
   position: absolute;
-  z-index: 7;
+  z-index: 17;
 
 }
+
+.oldGame {
+  margin-top: 40px;
+}
+
 .newGame {
-  margin-top: 170px;
+  margin-top: 110px;
 }
 
 .playComputer {
-  margin-top: 240px;
+  margin-top: 180px;
 }
 
+.simulation {
+  margin-top: 250px;
+}

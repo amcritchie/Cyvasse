@@ -26,7 +26,7 @@ var InitialMatchLoad = {
         Rotator.createAndRotateOn('oldGame', 'Old Game');
         Rotator.createAndRotateOn('newGame', 'New Game');
         Rotator.createAndRotateOn('playComputer', 'Play Computer');
-
+        Rotator.createAndRotateOn('simulation', 'Computer vs. Computer');
 
         $('.newGame').on('click', function () {
             InitialMatchLoad.buttonClicked();
@@ -57,12 +57,25 @@ var InitialMatchLoad = {
                 RandomSetup.placeUnits()
             });
         });
+
+        $('.simulation').on('click', function () {
+            InitialMatchLoad.buttonClicked();
+            Game.playingAI = true;
+            Game.playingAsAI = true;
+
+            RandomSetup.placeUnits();
+            RandomSetup.placeLineOne();
+            PreGame.initialRange.off('click');
+
+            Game.startGame()
+        });
     },
 
     buttonClicked: function(){
         $('.newGame').off('click').remove();
         $('.oldGame').off('click').remove();
         $('.playComputer').off('click').remove();
+        $('.simulation').off('click').remove();
 
         $('.xxmap').show();
     }

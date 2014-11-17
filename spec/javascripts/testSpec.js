@@ -339,7 +339,6 @@ describe("A spy", function() {
     });
 
     it("tracks that the spy was called", function () {
-        //debugger;
         $('.randomSetUpButton').click();
         $('.startGameButton').click();
         expect(window.startGame).toHaveBeenCalled();
@@ -410,7 +409,6 @@ describe("First move", function() {
         $('[data-index=10][data-team=1]').parent().click();
         expect(Offense.attackRange.length).toEqual(2);
         $('[data-hexIndex=33]').click();
-//        debugger;
         expect($('.graveyard').children('.grave').length).toEqual(1);
         expect($('[data-index=10][data-team=1]').parent().attr("id")).toEqual("hex33");
         expect($('[data-index=8][data-team=0]').parent().attr("id")).toEqual("gra1");
