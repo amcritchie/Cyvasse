@@ -24,6 +24,12 @@ var Game = {
 
         addAIButtons();
         Game.whoGoesFirst();
+
+        Rotator.createAndRotateOn('whoGoesFirst', 'Team ' + Game.offense + ' moves first.');
+        setTimeout(function () {
+            Rotator.rotateOff('.whoGoesFirst');
+        }, 1300);
+
         Game.startTime = new Date();
         Game.runTurn(Game.offense)
     },
@@ -33,8 +39,8 @@ var Game = {
         var $team0King = $('[alt=king][data-team=0]');
         var $team1King = $('[alt=king][data-team=1]');
 
-        var team0distance = (Math.abs(6 - $team0King.parent().data('xpos')) + Math.abs(6 - $team0King.parent().data('ypos')));
-        var team1distance = (Math.abs(6 - $team1King.parent().data('xpos')) + Math.abs(6 - $team1King.parent().data('ypos')));
+        var team0distance = (Math.abs(6 - $team0King.parent().data('ypos')));
+        var team1distance = (Math.abs(6 - $team1King.parent().data('ypos')));
 
 
         if (team0distance > team1distance) {
@@ -93,6 +99,13 @@ var Game = {
         }
     },
 
+    placeTeam: function(team, string){
+        var teamArray = GameStatus.convertStringToArray(string);
+        $.each(teamArray, function (i, e) {
+            Game.moveUnits(e, team);
+        });
+    },
+
     oldGame: function () {
 
         var teamOneString = '2:grav1|20:grav1|9:19|8:21|19:22|10:37|11:52|6:55|16:57|13:59|7:61|17:63|14:70|15:75|1:76|5:78|18:82|4:83|12:87|3:91|';
@@ -111,8 +124,9 @@ var Game = {
         Game.turn = 5;
         Game.runTurn(1);
 
-        console.log(teamOneArray);
     },
+
+
     moveUnits: function (positionArray, team) {
         var unit = $('[data-team=' + team + '][data-index=' + positionArray[0] + ']');
         if (positionArray[1] == 'grav' + team) {

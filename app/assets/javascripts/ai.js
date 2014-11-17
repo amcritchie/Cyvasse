@@ -16,14 +16,21 @@ var AI = {
         });
 
         AI.killableEnemies.forEach(function(e){
-            console.log(e[0]);
+            if (e[0] == 'elephant'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
+            if (e[0] == 'dragon'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
             if (e[0] == 'king'){
-
-                debugger;
-
-                console.log('Kill the King!!');
-                console.log('With the ' + e[2]);
-
                 $unitBeingMoved = $('#'+e[3]);
                 $hexBeingMovedTo = $('#'+e[1]);
             }
@@ -44,7 +51,7 @@ var AI = {
                 }
             }
 
-            
+
             setTimeout(function () {
                 $hexBeingMovedTo.click();
             }, 1000);
@@ -91,9 +98,6 @@ var AI = {
 
             AI.killableEnemies.push([e.children[0].getAttribute('alt'),e.getAttribute('id'),$(unit).attr('alt'),$(unit).parent().attr('id')]);
         });
-
-        console.log(AI.killableEnemies);
-        console.log('------');
 
         $allHexagons.attr('class', 'hexPolygon');
 
