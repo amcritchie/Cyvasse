@@ -16,7 +16,56 @@ var AI = {
         });
 
         AI.killableEnemies.forEach(function(e){
+            if (e[0] == 'rabble'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
+            if (e[0] == 'light horse'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
+            if (e[0] == 'spearman'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
+            if (e[0] == 'crossbowman'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
+            if (e[0] == 'heavy horse'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
             if (e[0] == 'elephant'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
+            if (e[0] == 'trebuchet'){
+                $unitBeingMoved = $('#'+e[3]);
+                $hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+
+        AI.killableEnemies.forEach(function(e){
+            if (e[0] == 'catapult'){
                 $unitBeingMoved = $('#'+e[3]);
                 $hexBeingMovedTo = $('#'+e[1]);
             }
