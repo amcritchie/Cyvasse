@@ -1,31 +1,46 @@
-<h1>New match</h1>
+<article class="one_fourth">
 
-<%= form_for(@match) do |f| %>
-    <% if @match.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+  <% @challengers.each do |challenger| %>
+      <%= challenger.username %>
+      <br>
+  <% end %>
 
-          <ul>
-            <% @match.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+</article>
 
-    <div class="field">
-      <%= f.label :user_id %><br>
-      <%= f.number_field :user_id %>
-    </div>
-    <div class="field">
-      <%= f.label :challenger_id %><br>
-      <%= f.number_field :challenger_id %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-<% end %>
+<article class="one_half">
+  <h1>New match</h1>
+
+  <%= form_for(@match) do |f| %>
+      <% if @match.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+            <ul>
+              <% @match.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="radio">
+        <article>
+          <%= f.radio_button(:match_against, 'computer') %>
+          <%= f.label(:match_against, 'Play Computer') %>
+        </article>
+        <article>
+          <%= f.radio_button(:match_against, 'human') %>
+          <%= f.label(:match_against, 'Play Human') %>
+        </article>
+      </div>
+
+      <div class="submit">
+        <%= f.submit %>
+      </div>
+  <% end %>
 
 
-<%= link_to 'Back', matches_path %>
+  <%= link_to 'Back', matches_path %>
 
+</article>
+<article class="one_fourth"></article>

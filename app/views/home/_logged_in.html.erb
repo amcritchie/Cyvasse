@@ -1,0 +1,63 @@
+<article class="one_fourth">
+  Welcome back <%= current_user.username %>
+</article>
+<article class="three_fourth">
+
+  <%= link_to "New Game Vs Computer", create_computer_match_path, method: :post %>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Index</th>
+      <th>ID</th>
+      <th>Turn</th>
+      <th>Link</th>
+      <th>Match Status</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @matches_vs_computer.each_with_index do |match,index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= match.id %></td>
+          <td><%= match.turn %></td>
+          <td><%= link_to 'Show', match_path(match) %></td>
+          <td><%= match.match_status %></td>
+          <td><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br><hr><hr><br>
+
+  <%= link_to "New Game Vs Player", new_match_path %>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Index</th>
+      <th>ID</th>
+      <th>Turn</th>
+      <th>Link</th>
+      <th>Computer</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @matches_vs_player.each_with_index do |match,index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= match.id %></td>
+          <td><%= match.turn %></td>
+          <td><%= link_to 'Show', match_path(match) %></td>
+          <td><%= match.away_user_id %></td>
+          <td><%= link_to 'Resign', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+</article>

@@ -134,10 +134,13 @@
         <article class="matchHeading">
           Match Header
           <p>
-            <strong>User ID:</strong>
-            <%= @match.user_id %> |
-            <strong>Challenger ID:</strong>
-            <%= @match.challenger_id %> |
+            <strong>Match ID:</strong>
+            <p id="matchID"><%= @match.id %></p> |
+            <strong>Home User ID:</strong>
+            <%= @match.home_user_id %> |
+            <strong>Away User ID:</strong>
+            <%= @match.away_user_id %> |
+
             <%= link_to 'Edit', edit_match_path(@match) %> |
             <%= link_to 'Back', matches_path %>
           </p>

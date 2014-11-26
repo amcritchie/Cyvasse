@@ -50,7 +50,7 @@ var Offense = {
 
         var potentialRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.moveRange).parent().parent();
 
-        Rings.createRings(SelectedUnit.unit, potentialRange);
+        MoveRings.createRings(SelectedUnit.unit, potentialRange);
 
 
         Animation.runAnimation();
@@ -84,7 +84,7 @@ var Offense = {
     updateAttackRange: function (unit, range) {
         var potentialRange = Offense.potentialRange();
 
-        Rings.createRings(SelectedUnit.unit, potentialRange);
+        MoveRings.createRings(SelectedUnit.unit, potentialRange);
         Offense.attackRange.off('click');
         Offense.attackRange = potentialRange.filter(function () {
             return ($(this).attr('data-rangeRing') <= 89) && ($(this).attr('data-rangeRing') >= 80)
@@ -94,7 +94,7 @@ var Offense = {
     updateMeleeRange: function (unit, range) {
         var potentialRange = Offense.potentialRange();
 
-        Rings.createRings(SelectedUnit.unit, potentialRange);
+        MoveRings.createRings(SelectedUnit.unit, potentialRange);
         Offense.attackRange.off('click');
         Offense.attackRange = potentialRange.filter(function () {
             return ($(this).attr('data-ring') <= 39) && ($(this).attr('data-ring') >= 30)

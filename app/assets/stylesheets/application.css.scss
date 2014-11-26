@@ -4,6 +4,7 @@
 @import "match";
 @import "buttons";
 @import "borbon";
+@import "navBar";
 
 $black: #333333;
 $brown: #403939;
@@ -23,7 +24,7 @@ body {
 }
 
 .backgroundImage {
-  background-image: url('http://images6.fanpop.com/image/photos/32600000/asoiaf-a-song-of-ice-and-fire-32690635-1200-583.jpg');
+//  background-image: url('http://images6.fanpop.com/image/photos/32600000/asoiaf-a-song-of-ice-and-fire-32690635-1200-583.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
@@ -84,6 +85,8 @@ body {
 
 /* ----- =columns ----- */
 .one_half {
+  border: greenyellow solid 3px;
+
   width: 460px;
 }
 
@@ -97,10 +100,12 @@ body {
 
 .one_fourth {
   width: 220px;
+  border: red solid 3px;
 }
 
 .three_fourth {
   width: 700px;
+  border: greenyellow solid 3px;
 }
 
 .full_column {
@@ -111,14 +116,30 @@ body {
 .wrapper {
   margin: auto;
   width: 960px;
-  //  border: solid green 3px;
-  //  background: #ffffff; /* Old browsers */
+//    border: solid green 1px;
+//    background: #0000ff; /* Old browsers */
   //  background: -webkit-linear-gradient(right top, $temp2, $temp3);
 }
 
+.radio{
+  display: block;
+  width: 100%;
+//  height: 50px;
+  text-align: center;
+//  position: static;
+  float: left;
+}
+
+.submit{
+  display: block;
+  float: left;
+}
+
 article {
-  position: relative;
-  margin-left: 20px;
+  display: block;
+  margin-right: 10px;
+  margin-left: 10px;
+  float: left;
 }
 
 //Match Page
@@ -349,77 +370,7 @@ polygon {
   z-index: 11;
 }
 
-//.killableEnemies {
-//
-//  fill: darkred;
-//  stroke: blueviolet;
-//  z-index: 3;
-//}
-//
-//.yourUnit {
-//  stroke: green;
-//  z-index: 4;
-//}
-//
-//.blueblue {
-//  fill: red;
-//  stroke: royalblue;
-//  z-index: 4;
-//}
-//
-//.orange {
-//  fill: green;
-//  stroke: orange;
-//  z-index: 4;
-//}
-//
-//.ally {
-//  fill: green;
-//  stroke: orange;
-//  z-index: 4;
-//}
-//
-//.ring1 {
-//  fill: #1d1150;
-//  stroke: #265126;
-//  z-index: 3;
-//}
-//
-//.ring2 {
-//  fill: #1c1182;
-//  stroke: #278327;
-//  z-index: 3;
-//}
-//
-//.ring3 {
-//  fill: #1d11b4;
-//  stroke: #29b429;
-//  z-index: 3;
-//}
-//
-//.ring4 {
-//  fill: #1c11e6;
-//  stroke: #32e732;
-//  z-index: 3;
-//}
-//
-//.ring5 {
-//  fill: #1e13ff;
-//  stroke: #37ff37;
-//  z-index: 3;
-//}
-//
-//.blocked {
-//  fill: #296769;
-//  stroke: #37ff37;
-//  z-index: 3;
-//}
-//
-//.attackable {
-//  fill: #9b0400;
-//  stroke: #9b953c;
-//  z-index: 3;
-//}
+
 
 //CSS for each row of Hexagons.
 .grid {

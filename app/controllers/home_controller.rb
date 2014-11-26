@@ -4,6 +4,11 @@ class HomeController < ApplicationController
   def index
   end
 
+  def root
+    @matches_vs_computer = Match.where(home_user_id: session[:user_id], away_user_id: 2)
+    @matches_vs_player = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id]) - @matches_vs_computer
+  end
+
   def about
     # @rabble = Rabble.attributes
     # @spearman = Spearman.attributes

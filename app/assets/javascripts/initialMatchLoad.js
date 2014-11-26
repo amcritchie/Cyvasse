@@ -8,6 +8,8 @@ var InitialMatchLoad = {
         $allHexSVGs = $allHexDivs.children('svg');
         $allHexPoly = $allHexSVGs.children('polygon');
 
+        Game.matchID = parseInt(document.getElementById('matchID').innerHTML);
+
         InfoBoxes.registerHoverUnit();
 
         PreGame.initialize();

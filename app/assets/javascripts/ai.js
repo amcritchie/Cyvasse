@@ -3,111 +3,52 @@ var AI = {
 
     killableEnemies: null,
 
+    unitBingMoved: null,
+    hexBeingMovedTo: null,
+
     makeAMove: function () {
 
         AI.killableEnemies = [];
         var moveableUnits = Offense.selectableUnits.not($('[alt=mountain]').parent());
 
-        var $unitBeingMoved = 'empty';
-        var $hexBeingMovedTo = 'empty';
+        AI.unitBeingMoved = 'empty';
+        AI.hexBeingMovedTo = 'empty';
 
         Array.prototype.slice.call(moveableUnits).forEach(function (e) {
             AI.checkKillableEnemies(e.children[0]);
         });
 
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'rabble'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
+        AI.SearchKillableEnemiesFor('rabble');
+        AI.SearchKillableEnemiesFor('light horse');
+        AI.SearchKillableEnemiesFor('spearman');
+        AI.SearchKillableEnemiesFor('crossbowman');
+        AI.SearchKillableEnemiesFor('heavy horse');
+        AI.SearchKillableEnemiesFor('elephant');
+        AI.SearchKillableEnemiesFor('trebuchet');
+        AI.SearchKillableEnemiesFor('catapult');
+        AI.SearchKillableEnemiesFor('dragon');
+        AI.SearchKillableEnemiesFor('king');
 
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'light horse'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'spearman'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'crossbowman'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'heavy horse'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'elephant'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'trebuchet'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'catapult'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'dragon'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == 'king'){
-                $unitBeingMoved = $('#'+e[3]);
-                $hexBeingMovedTo = $('#'+e[1]);
-            }
-        });
-
-        if ($unitBeingMoved == 'empty'){
-            $unitBeingMoved = Offense.selectableUnits.not($('[alt=mountain]').parent()).random();
+        if (AI.unitBeingMoved == 'empty'){
+            AI.unitBeingMoved = Offense.selectableUnits.not($('[alt=mountain]').parent()).random();
         }
 
         setTimeout(function () {
-            $unitBeingMoved.click();
+            AI.unitBeingMoved.click();
 
-            if ($hexBeingMovedTo == 'empty'){
-                $hexBeingMovedTo = Offense.moveRange.random();
+            if (AI.hexBeingMovedTo == 'empty'){
+                AI.hexBeingMovedTo = Offense.moveRange.random();
 
                 if (Offense.attackRange.length != 0) {
-                    $hexBeingMovedTo = Offense.attackRange.random();
+                    AI.hexBeingMovedTo = Offense.attackRange.random();
                 }
             }
 
-
             setTimeout(function () {
-                $hexBeingMovedTo.click();
+                AI.hexBeingMovedTo.click();
             }, 1000);
 
-
         }, 1500);
-
     },
 
     checkKillableEnemies: function(unit){
@@ -121,7 +62,7 @@ var AI = {
         $(unit).parent().attr('data-rangeRing', 9);
 
         var potentialRange = PotentialRange.create($(unit), $(unit).attr('data-moverange')).parent().parent();
-        Rings.createRings($(unit), potentialRange);
+        MoveRings.createRings($(unit), potentialRange);
 
         if ($(unit).attr('data-rank') == 'range'){
 
@@ -171,4 +112,13 @@ var AI = {
         }
         return PotentialRange.create(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, range).parent().parent();
     },
+
+    SearchKillableEnemiesFor: function (unitName){
+        AI.killableEnemies.forEach(function(e){
+            if (e[0] == unitName){
+                AI.unitBeingMoved = $('#'+e[3]);
+                AI.hexBeingMovedTo = $('#'+e[1]);
+            }
+        });
+    }
 };

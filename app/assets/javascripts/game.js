@@ -13,6 +13,8 @@ var Game = {
     playingAI: false,
     playingAsAI: false,
 
+    matchID: null,
+
     startGame: function () {
 
         Game.turn = 0;
@@ -24,6 +26,13 @@ var Game = {
 
         addAIButtons();
         Game.whoGoesFirst();
+
+        $.ajax({
+            type: 'put',
+            url: '/start_game',
+            data: {match_id: Game.matchID, who_started: Game.whoStarted},
+            dataType: 'json'
+        });
 
         Rotator.createAndRotateOn('whoGoesFirst', 'Team ' + Game.offense + ' moves first.');
         setTimeout(function () {
@@ -66,6 +75,7 @@ var Game = {
         Game.turn += 1;
         Game.defense = Game.offense;
         Game.offense = Math.abs(Game.offense - 1);
+
 
         $('.hexPolygon').css('fill', 'black');
         $('.hexPolygon').css('stroke', 'white');

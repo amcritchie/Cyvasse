@@ -8,6 +8,17 @@ var GameStatus = {
         var teamOneString = GameStatus.convertArrayToString(teamOne);
         var teamZeroString = GameStatus.convertArrayToString(teamZero);
 
+        $.ajax({
+            type: 'put',
+            url: '/update_match_info',
+            data: {
+                match_id: Game.matchID,
+                home_units: teamOneString,
+                away_units: teamZeroString
+            },
+            dataType: 'json'
+        });
+
         console.log('===================================');
         console.log('Turn : '+ Game.turn - 1);
         console.log('-----------------------------------');

@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      flash[:success] = "Welcome, #{@user.first_name}!"
-      redirect_to "/"
+      flash[:success] = "Welcome, #{@user.username}!"
+      redirect_to root_path
     else
       @user = User.new(email: params[:user][:email])
       @user.errors[:base] << "Username / password is invalid."
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to "/"
+    redirect_to root_path
   end
 
 end

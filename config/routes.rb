@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
 
-  resources :matches
+  root to: 'home#root'
 
-  get '/', to: 'home#index'
+  resources :users
+  resources :matches
+  resources :world_statuses
+
+  get "login" => "sessions#new", as: :login
+  post "login" => "sessions#create"
+  delete "logout" => "sessions#destroy", as: :logout
+
+  put 'start_game' => 'matches#start_game'
+  put 'update_match_info' => 'matches#update_match_info'
+
+  post "create_computer_match" => "matches#create_match_vs_computer"
+
+  resource :session, only: [:new, :create, :destroy]
+
   get '/about', to: 'home#about'
-  get '/piece_attributes', to: 'game#piece_attributes'
 
   resources :game_statuses
-  resources :users
-
-  get "signin" => "sessions#new", as: :signin
-  post "signin" => "sessions#create"
-  delete "signout" => "sessions#destroy", as: :signout
 
   # get '/users', to: 'users#index'
 

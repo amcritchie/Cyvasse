@@ -76,7 +76,6 @@ var CreateUnits = {
 
         var svg = '/images/svgs/' + codename + '.svg';
 
-
         CreateUnits.index += 1;
         return "<img alt='" + name + "' data-rank=" + attributes.rank + "" +
             " data-attack=" + attributes.attack + " " + " data-defence=" + attributes.defence +
