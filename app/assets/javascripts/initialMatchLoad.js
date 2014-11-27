@@ -3,61 +3,94 @@ var InitialMatchLoad = {
 
     onPageLoad: function () {
         LoadingFactory.loadMapUnitsAndEnemiesHTML();
+        Game.grabMatchData();
+
+        if (Game.matchAgainst == 'computer'){
+            Game.playingAI = true
+        }
 
         $allHexDivs = $('.hexDiv');
         $allHexSVGs = $allHexDivs.children('svg');
         $allHexPoly = $allHexSVGs.children('polygon');
 
-        Game.matchID = parseInt(document.getElementById('matchID').innerHTML);
+        if (Game.matchStatus == 'new'){
+            InitialMatchLoad.loadNewGameComputer();
+        } else if (Game.matchStatus == 'in progress') {
+            Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
+            Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
+            InitialMatchLoad.loadOldGame();
+        } else if (Game.matchStatus == 'pending'){
+            InitialMatchLoad.loadNewGamePending();
+        }
+    },
 
-        InfoBoxes.registerHoverUnit();
+    loadNewGameComputer: function(){
 
         PreGame.initialize();
         PreGame.loadPreGameTurn();
-
         pregame_var = true;
-        RandomSetup.loadPregameButton();
+        Game.playingAI = true;
 
-        setTimeout(function(){
-            InitialMatchLoad.loadButtons()
-        }, 200);
+        $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
+        Rotator.rotateOn('.auxSpace');
+        Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+
+        $('.randomSetUpButton').on('click', function () {
+            RandomSetup.placeUnits()
+        });
 
     },
 
+    loadNewGamePending: function(){
+        InitialMatchLoad.buttonClicked();
+
+        $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
+        Rotator.rotateOn('.auxSpace');
+        Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+
+        $('.randomSetUpButton').on('click', function () {
+            RandomSetup.placeUnits()
+        });
+    },
+
+    loadOldGame: function(){
+        Game.oldGame();
+    },
+
     loadButtons: function(){
-        Rotator.createAndRotateOn('oldGame', 'Old Game');
-        Rotator.createAndRotateOn('newGame', 'New Game');
-        Rotator.createAndRotateOn('playComputer', 'Play Computer');
-        Rotator.createAndRotateOn('simulation', 'Computer vs. Computer');
+//        Rotator.createAndRotateOn('oldGame', 'Old Game');
+//        Rotator.createAndRotateOn('newGame', 'New Game');
+//        Rotator.createAndRotateOn('playComputer', 'Play Computer');
+//        Rotator.createAndRotateOn('simulation', 'Computer vs. Computer');
 
         $('.newGame').on('click', function () {
-            InitialMatchLoad.buttonClicked();
-
-            $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
-            Rotator.rotateOn('.auxSpace');
-            Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
-
-            $('.randomSetUpButton').on('click', function () {
-                RandomSetup.placeUnits()
-            });
+//            InitialMatchLoad.buttonClicked();
+//
+//            $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
+//            Rotator.rotateOn('.auxSpace');
+//            Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+//
+//            $('.randomSetUpButton').on('click', function () {
+//                RandomSetup.placeUnits()
+//            });
         });
 
         $('.oldGame').on('click', function () {
-            InitialMatchLoad.buttonClicked();
-            Game.oldGame();
+//            InitialMatchLoad.buttonClicked();
+//            Game.oldGame();
         });
 
         $('.playComputer').on('click', function () {
-            InitialMatchLoad.buttonClicked();
-            Game.playingAI = true;
-
-            $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
-            Rotator.rotateOn('.auxSpace');
-            Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
-
-            $('.randomSetUpButton').on('click', function () {
-                RandomSetup.placeUnits()
-            });
+//            InitialMatchLoad.buttonClicked();
+//            Game.playingAI = true;
+//
+//            $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
+//            Rotator.rotateOn('.auxSpace');
+//            Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+//
+//            $('.randomSetUpButton').on('click', function () {
+//                RandomSetup.placeUnits()
+//            });
         });
 
         $('.simulation').on('click', function () {

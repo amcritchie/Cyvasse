@@ -26,7 +26,6 @@ var PreGame = {
         PreGame.moveableRange.off('click');
         PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
         PreGame.moveableUnits = $('img[data-team=' + 1 + ']').parent();
-
     },
 
     pregameClickUnit: function () {

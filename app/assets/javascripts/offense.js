@@ -154,7 +154,7 @@ var Offense = {
         if ($('[alt=king][data-status=dead]').length == 1){
             Game.over();
         } else {
-            Game.runTurn();
+            Game.finishTurn();
         }
     }
 };

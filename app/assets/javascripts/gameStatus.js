@@ -12,6 +12,7 @@ var GameStatus = {
             type: 'put',
             url: '/update_match_info',
             data: {
+                turn: Game.turn,
                 match_id: Game.matchID,
                 home_units: teamOneString,
                 away_units: teamZeroString
@@ -35,7 +36,11 @@ var GameStatus = {
     saveTeam: function(team){
         var array = [];
         $.each($('[data-team='+team+']'), function(index,unit){
-            array.push([$(unit).attr('data-index'), $(unit).parent().attr('data-hexIndex')]);
+            if ($(unit).attr('data-status') == 'alive'){
+                array.push([$(unit).attr('data-index'), $(unit).parent().attr('data-hexIndex')]);
+            } else {
+                array.push([$(unit).attr('data-index'),'g'+team])
+            }
         });
         return array;
     },

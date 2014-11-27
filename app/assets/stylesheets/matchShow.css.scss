@@ -1,0 +1,76 @@
+#matchShow {
+  background-color: darkred;
+  position: relative;
+  width: 960px;
+  //  height: 800px;
+  article {
+  }
+
+  .hideSelectedUnitInfo {
+    visibility: hidden;
+  }
+  .matchUp {
+    background-color: yellow;
+  }
+  .unitStats {
+    text-align: center;
+    height: 220px;
+    //    width: 60px;
+    background-color: blueviolet;
+    .selectUnitImage {
+      //      background-color: red;
+      display: inline-block;
+      width: 120px;
+      img {
+        height: 160px;
+      }
+    }
+    .selectUnitStats {
+      text-align: center;
+      //      background-color: cyan;
+      margin-left: 2px;
+      width: 62px;
+      display: inline-block;
+      .selectUnitStat {
+        .key {
+          font-size: 13px;
+          margin: 0;
+        }
+        .value {
+          font-size: 12px;
+        }
+        hr {
+          margin: 0;
+          width: 100%;
+        }
+      }
+
+    }
+  }
+  .toggleOptions {
+    background-color: greenyellow;
+    text-align: center;
+    button {
+      width: 100px;
+      height: 40px;
+      display: inline-block;
+    }
+  }
+  .graveyard {
+    margin-top: 5px;
+    width: 40%;
+    height: 20px;
+    background-color: peru;
+    img {
+      height: 16px;
+      margin: 0;
+    }
+  }
+}
+
+#metaInfo {
+  article {
+    visibility: hidden;
+    margin: 0;
+  }
+}

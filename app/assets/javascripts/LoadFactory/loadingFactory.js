@@ -1,31 +1,26 @@
 var LoadingFactory = {
-
     loadMapUnitsAndEnemiesHTML: function () {
-        var map = { map: Map.createMap() };
-        var templateMap = JST['views/map'];
-        var result = templateMap(map);
+        var templateMap = JST['LoadFactory/views/map'];
+        var templateUnits = JST['LoadFactory/views/units'];
+        var templateEnemies = JST['LoadFactory/views/enemies'];
 
-        var hash = { units: CreateUnits.createAllUnits(1)};
-        var templateUnits = JST['views/units'];
-        var units = templateUnits(hash);
-
-        var enemyHash = { enemies: CreateUnits.createAllUnits(0) };
-        var templateEnemies = JST['views/enemies'];
-        var enemies = templateEnemies(enemyHash);
+        var mapHTML = templateMap({map: Map.createMap()});
+        var unitsHTML = templateUnits({units: CreateUnits.createAllUnits(1)});
+        var enemiesHTML = templateEnemies({enemies: CreateUnits.createAllUnits(0)});
 
         LoadingFactory.loadPartsOfMatchHTML();
-        LoadingFactory.moveSVGsToPosition(result, units, enemies);
+        LoadingFactory.moveSVGsToPosition(mapHTML, unitsHTML, enemiesHTML);
     },
 
     loadPartsOfMatchHTML: function () {
-        $('.match').append('<div class="map"></div>');
+        $('#match').append('<div class="map"></div>');
         LoadingFactory.prependThingToMap($(".map"));
     },
     prependThingToMap: function (map) {
         map.prepend("<article class='auxSpace rotating'></article>");
-        map.prepend("<article class=enemyBay></article>");
-        map.prepend("<article class=graveyard id=grav1></article>");
-        map.prepend("<article class=graveyard id=grav0></article>");
+        $('#metaInfo').prepend("<article class=enemyBay></article>");
+        map.prepend("<article class=graveyard id=g1 data-hexIndex=g1><a>Team 1 Graveyard</a></article>");
+        map.prepend("<article class=graveyard id=g0 data-hexIndex=g0><a>Team 0 Graveyard</a></article>");
         map.prepend("<article class=board></article>");
     },
     moveSVGsToPosition: function (map, units, enemies) {

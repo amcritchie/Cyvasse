@@ -1,35 +1,36 @@
-<div class="match">
-  <div class="info">
-    <article class="p1 infoSegment hasBorder">
+
+<div id="matchShow">
+  <article class="three_fourth">
+    <div id="match"></div>
+  </article>
+  <article class="one_fourth">
+    <div class="matchUp">
+      <%= current_user.username %> <br> vs <br> Tyrion <br>
+    </div>
+    <div class="unitStats">
 
       <div class="nameOfSelectedUnit hideSelectedUnitInfo">
-        <h5 id="selectUnitName">Crossbowman</h5>
+        <h3 id="selectUnitName">Crossbowman</h3>
       </div>
 
 
       <article class="selectUnitImage hideSelectedUnitInfo">
-        <%= image_tag "", :class => "selectedUnitImage", :id => 'selectedUnitImage' %>
+        <%= image_tag "elephant.svg", :class => "selectedUnitImage", :id => 'selectedUnitImage' %>
       </article>
 
       <article class="selectUnitStats hideSelectedUnitInfo">
 
-        <div id="selectUnitClass" class="selectUnitStat" >
-        <h5 class="key">Class</h5>
-        <hr>
-        <h6 class="value">5</h6>
-        </div>
-
-        <div id="selectUnitStrength" class="selectUnitStat" >
-          <p class="key">Strength</p>
+        <div id="selectUnitClass" class="selectUnitStat">
+          <h5 class="key">Class</h5>
           <hr>
           <h6 class="value">5</h6>
         </div>
 
-        <!--<div id="selectUnitStrength">-->
-          <!--<p id="selectedUnitStat">Strength</p>-->
-          <!--<hr>-->
-          <!--<p class="selectedUnitAttack" id="selectedUnitStat">5</p>-->
-        <!--</div>-->
+        <div id="selectUnitStrength" class="selectUnitStat">
+          <p class="key">Strength</p>
+          <hr>
+          <h6 class="value">5</h6>
+        </div>
 
         <div id="selectUnitMoveRange" class="selectUnitStat">
 
@@ -51,103 +52,30 @@
         </div>
 
 
-
       </article>
 
 
-    </article>
+    </div>
+    <div class="toggleOptions">
+      <h4>Toggle</h4>
+      <button>button 1</button>
+      <button>button 2</button>
+    </div>
 
-    <article class="p2 infoSegment">
-
-      <div class="matchUp hasBorder">
-
-        <h2>Alex</h2>
-        <h5>vs.</h5>
-
-        <h2>Tyrion</h2>
-
-      </div>
-
-      <div class="hoveredUnit hasBorder">
-        <article class="hoverImage hideHoveredUnitInfo">
-          <%= image_tag "", :id => 'hoverUnitImage' %>
-        </article>
-        <article class="hoverStats">
-          <div id="hoverName" class="hoverStat hideHoveredUnitInfo"><p>Crossbowman</p></div>
-
-          <div id="hoverOffense" class="hoverStat hideHoveredUnitInfo"><p>Attack: 4</p></div>
-
-          <div id="hoverUtility" class="hoverStat hideHoveredUnitInfo"><p>Flank: 2</p></div>
-          <div id="hoverTrump" class="hoverStat hideHoveredUnitInfo"><p></p></div>
-
-          <div id="hoverMvRange" class="hoverStat hideHoveredUnitInfo"><p>Moves: ∞</p></div>
-
-
-
-        </article>
-        <article class="comparisonColumn comp">
-
-          <p id="hoverName" class="hoverStat">.</p>
-
-          <p id="hoverOffense" class="hoverStat">=</p>
-
-          <p id="hoverDefence" class="hoverStat"> s4 > a3</p>
-
-          <p id="hoverMvRange" class="hoverStat">=</p>
-
-          <p id="hoverUtRange" class="hoverStat">=</p>
-        </article>
-
-        <article class="selectedUnitCompStats comp hideSelectedUnitInfo">
-          <%= image_tag "", :class => "selectedUnitImage", :id => 'selectedCompImage' %>
-
-
-          <p id="hoverOffense" class="hoverStat selectedUnitAttack">2</p>
-
-          <p id="hoverDefence" class="hoverStat selectedUnitDefence">4</p>
-
-          <p id="hoverMvRange" class="hoverStat selectedUnitMovement">6</p>
-
-          <p id="hoverUtRange" class="hoverStat selectedUnitUtility">3</p>
-        </article>
-
-        <article class="selectedUnitCompKey comp hideSelectedUnitInfo">
-
-          <p id="hoverName" class="hoverStat">trb</p>
-
-          <p id="hoverOffense" class="hoverStat">Atk</p>
-
-          <p id="hoverDefence" class="hoverStat">Def</p>
-
-          <p id="hoverMvRange" class="hoverStat">Mov</p>
-
-          <p id="hoverUtRange" class="hoverStat">Rng</p>
-        </article>
-      </div>
-
-    </article>
-
-
-    <article class="p3 infoSegment hasBorder">
-      <div class="extraSpace">
-        <p id="notice"><%= notice %></p>
-        <article class="matchHeading">
-          Match Header
-          <p>
-            <strong>Match ID:</strong>
-            <p id="matchID"><%= @match.id %></p> |
-            <strong>Home User ID:</strong>
-            <%= @match.home_user_id %> |
-            <strong>Away User ID:</strong>
-            <%= @match.away_user_id %> |
-
-            <%= link_to 'Edit', edit_match_path(@match) %> |
-            <%= link_to 'Back', matches_path %>
-          </p>
-        </article>
-      </div>
-    </article>
-  </div>
-
+  </article>
 </div>
+<div id=metaInfo>
+  <article class="one_fourth">
+    <a id="matchID"><%=@match.id %></a>
+    <a id="matchTurn"><%=@match.turn %></a>
+    <a id="matchAgainst"><%=@match.match_against %></a>
+    <a id="matchWhoStarted"><%=@match.who_started %></a>
+    <a id="matchStatus"><%= @match.match_status %></a>
+  </article>
+  <article class="full_column">
+    <a id="homeUnitsPos"><%= @match.home_units_position %></a>
+    <a id="awayUnitsPos"><%= @match.away_units_position %></a>
+  </article>
+</div>
+
 

@@ -14,9 +14,11 @@ var AI = {
         AI.unitBeingMoved = 'empty';
         AI.hexBeingMovedTo = 'empty';
 
+
         Array.prototype.slice.call(moveableUnits).forEach(function (e) {
             AI.checkKillableEnemies(e.children[0]);
         });
+
 
         AI.SearchKillableEnemiesFor('rabble');
         AI.SearchKillableEnemiesFor('light horse');
@@ -52,6 +54,7 @@ var AI = {
     },
 
     checkKillableEnemies: function(unit){
+
 
         $('.hexDiv').attr('data-ring', 8);
         $('.hexDiv').attr('data-locked', false);
@@ -89,7 +92,7 @@ var AI = {
             AI.killableEnemies.push([e.children[0].getAttribute('alt'),e.getAttribute('id'),$(unit).attr('alt'),$(unit).parent().attr('id')]);
         });
 
-        $allHexagons.attr('class', 'hexPolygon');
+        $allHexPoly.attr('class', 'hexPolygon');
 
         var moveRange = potentialRange.filter(function () {
             return ($(this).attr('data-ring') <= 19) && ($(this).attr('data-ring') >= 10)

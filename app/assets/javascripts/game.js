@@ -14,12 +14,22 @@ var Game = {
     playingAsAI: false,
 
     matchID: null,
+    matchStatus: null,
+    matchAgainst: null,
+    homeUnitsString: null,
+    awayUnitsString: null,
+
+    grabMatchData: function(){
+        Game.matchID = parseInt(document.getElementById('matchID').innerHTML);
+        Game.matchStatus = document.getElementById('matchStatus').innerHTML;
+        Game.matchAgainst = document.getElementById('matchAgainst').innerHTML;
+        Game.homeUnitsString = document.getElementById('homeUnitsPos').innerHTML;
+        Game.awayUnitsString = document.getElementById('awayUnitsPos').innerHTML;
+    },
 
     startGame: function () {
 
-        Game.turn = 0;
-        Game.offense = 1;
-        Game.defense = Math.abs(Game.offense - 1);
+        Game.turn = 1;
 
         $('.loadEnemiesButton').off('click').remove();
         $('.enemyLineUpOne').off('click').remove();
@@ -27,6 +37,7 @@ var Game = {
         addAIButtons();
         Game.whoGoesFirst();
 
+        GameStatus.saveGameStatus();
         $.ajax({
             type: 'put',
             url: '/start_game',
@@ -53,13 +64,12 @@ var Game = {
 
 
         if (team0distance > team1distance) {
-            Game.offense = 0;
-            Game.defense = Math.abs(offense - 1);
-        } else {
             Game.offense = 1;
-            Game.defense = Math.abs(offense - 1);
+            Game.defense = 0;
+        } else {
+            Game.offense = 0;
+            Game.defense = 1;
         }
-
     },
 
 
@@ -72,10 +82,12 @@ var Game = {
 
 
     runTurn: function (offense) {
-        Game.turn += 1;
-        Game.defense = Game.offense;
-        Game.offense = Math.abs(Game.offense - 1);
 
+        Rotator.createAndRotateOn('turn', 'Turn ' + Game.turn);
+
+        setTimeout(function () {
+            Rotator.rotateOff('.turn');
+        }, 1300);
 
         $('.hexPolygon').css('fill', 'black');
         $('.hexPolygon').css('stroke', 'white');
@@ -90,13 +102,6 @@ var Game = {
         $('[data-team=0]').parent().children('svg').css('z-index', '3');
 
         $('[data-team=0]').parent().children('svg').children('polygon').css('stroke', 'red');
-
-        GameStatus.saveGameStatus();
-        Rotator.createAndRotateOn('turn', 'Turn ' + Game.turn);
-
-        setTimeout(function () {
-            Rotator.rotateOff('.turn');
-        }, 1300);
 
         Offense.runOffense(Game.offense);
 
@@ -118,11 +123,8 @@ var Game = {
 
     oldGame: function () {
 
-        var teamOneString = '2:grav1|20:grav1|9:19|8:21|19:22|10:37|11:52|6:55|16:57|13:59|7:61|17:63|14:70|15:75|1:76|5:78|18:82|4:83|12:87|3:91|';
-        var teamTwoString = '2:grav0|20:21|19:22|18:23|17:24|16:25|15:26|14:27|13:28|12:29|11:30|10:31|9:32|8:33|7:34|6:35|5:36|4:37|3:38|1:40|';
-
-        var teamOneArray = GameStatus.convertStringToArray(teamOneString);
-        var teamTwoArray = GameStatus.convertStringToArray(teamTwoString);
+        var teamOneArray = GameStatus.convertStringToArray(Game.homeUnitsString);
+        var teamTwoArray = GameStatus.convertStringToArray(Game.awayUnitsString);
 
         $.each(teamOneArray, function (i, e) {
             Game.moveUnits(e, 1);
@@ -131,15 +133,19 @@ var Game = {
             Game.moveUnits(e, 0);
         });
 
-        Game.turn = 5;
-        Game.runTurn(1);
+        if (Game.whoStarted == 1){
+            debugger;
+            Game.offense = Math.abs((Game.turn%2) - 1)
+        } else {
+            Game.offense = Game.turn%2
+        }
 
+        Game.runTurn();
     },
-
 
     moveUnits: function (positionArray, team) {
         var unit = $('[data-team=' + team + '][data-index=' + positionArray[0] + ']');
-        if (positionArray[1] == 'grav' + team) {
+        if (positionArray[1] == 'g' + team) {
             unit.attr('data-status', 'dead');
             unit.prependTo($('#' + positionArray[1]));
         } else {
@@ -147,6 +153,15 @@ var Game = {
             unit.prependTo($('[data-hexIndex=' + positionArray[1] + ']'));
         }
     },
+
+    finishTurn: function(){
+        Game.turn += 1;
+        Game.defense = Game.offense;
+        Game.offense = Math.abs(Game.offense - 1);
+
+        Game.runTurn();
+    },
+
     over: function(){
         var stop = new Date();
         var teamNum = Game.offense;

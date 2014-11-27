@@ -50,6 +50,7 @@ class MatchesController < ApplicationController
         home_user_id: current_user.id,
         away_user_id: 2,
         match_status: 'new',
+        match_against: 'computer',
         turn: 0
     )
 
@@ -62,6 +63,7 @@ class MatchesController < ApplicationController
         home_user_id: current_user.id,
         away_user_id: 1,
         match_status: 'pending',
+        match_against: 'human',
         turn: 0
     )
 
@@ -80,7 +82,7 @@ class MatchesController < ApplicationController
   def update_match_info
     @match = Match.find(params[:match_id])
     @match.update(
-        turn: @match.turn + 1,
+        turn: params[:turn],
         home_units_position: params[:home_units],
         away_units_position: params[:away_units]
     )
