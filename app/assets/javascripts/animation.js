@@ -16,7 +16,6 @@ var Animation = {
 
             var ringStart = new Date();
 
-
             if ((SelectedUnit.unit.attr('data-rank') == 'range')) {
                 Animation.updateRangeRing(distanceFromUnit);
             }
@@ -24,6 +23,7 @@ var Animation = {
 
 
             distanceFromUnit += 1;
+
             if ((SelectedUnit.unit.attr('data-rank') == 'range')&&(SelectedUnit.range < distanceFromUnit)) {
                 clearInterval(Animation.function)
             } else if ((SelectedUnit.unit.attr('data-rank') != 'range')&&(SelectedUnit.movement < distanceFromUnit)){

@@ -41,7 +41,7 @@ var Game = {
         $.ajax({
             type: 'put',
             url: '/start_game',
-            data: {match_id: Game.matchID, who_started: Game.whoStarted},
+            data: {match_id: Game.matchID, who_started: Game.offense},
             dataType: 'json'
         });
 
@@ -83,6 +83,7 @@ var Game = {
 
     runTurn: function (offense) {
 
+        clearInterval(Animation.function);
         Rotator.createAndRotateOn('turn', 'Turn ' + Game.turn);
 
         setTimeout(function () {
@@ -133,11 +134,11 @@ var Game = {
             Game.moveUnits(e, 0);
         });
 
+
         if (Game.whoStarted == 1){
-            debugger;
-            Game.offense = Math.abs((Game.turn%2) - 1)
-        } else {
             Game.offense = Game.turn%2
+        } else {
+            Game.offense = Math.abs((Game.turn%2) - 1)
         }
 
         Game.runTurn();
@@ -158,6 +159,8 @@ var Game = {
         Game.turn += 1;
         Game.defense = Game.offense;
         Game.offense = Math.abs(Game.offense - 1);
+
+        GameStatus.saveGameStatus();
 
         Game.runTurn();
     },

@@ -74,7 +74,7 @@ class MatchesController < ApplicationController
   def start_game
     @match = Match.find(params[:match_id])
     @match.update(
-        who_started: 1,
+        who_started: params[:who_started],
         match_status: 'in progress'
     )
   end
