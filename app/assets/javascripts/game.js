@@ -65,10 +65,8 @@ var Game = {
 
         if (team0distance > team1distance) {
             Game.offense = 1;
-            Game.defense = 0;
         } else {
             Game.offense = 0;
-            Game.defense = 1;
         }
     },
 
