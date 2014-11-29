@@ -49,6 +49,8 @@ class MatchesController < ApplicationController
     @match = Match.new(
         home_user_id: current_user.id,
         away_user_id: 2,
+        home_ready: false,
+        away_ready: true,
         match_status: 'new',
         match_against: 'computer',
         turn: 0
@@ -62,6 +64,8 @@ class MatchesController < ApplicationController
     @match = Match.new(
         home_user_id: current_user.id,
         away_user_id: 1,
+        home_ready: false,
+        away_ready: false,
         match_status: 'pending',
         match_against: 'human',
         turn: 0
@@ -75,6 +79,7 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:match_id])
     @match.update(
         who_started: params[:who_started],
+        whos_turn: params[:who_started],
         match_status: 'in progress'
     )
   end
@@ -83,8 +88,23 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:match_id])
     @match.update(
         turn: params[:turn],
+        whos_turn: params[:whos_turn],
         home_units_position: params[:home_units],
         away_units_position: params[:away_units]
+    )
+  end
+
+  def home_user_ready
+    @match = Match.find(params[:match_id])
+    @match.update(
+        home_ready: true
+    )
+  end
+
+  def away_user_ready
+    @match = Match.find(params[:match_id])
+    @match.update(
+        away_ready: true
     )
   end
 

@@ -1,4 +1,5 @@
 
+
 var InitialMatchLoad = {
 
     onPageLoad: function () {
@@ -13,15 +14,86 @@ var InitialMatchLoad = {
         $allHexSVGs = $allHexDivs.children('svg');
         $allHexPoly = $allHexSVGs.children('polygon');
 
-        if (Game.matchStatus == 'new'){
-            InitialMatchLoad.loadNewGameComputer();
-        } else if (Game.matchStatus == 'in progress') {
-            Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
-            Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
-            InitialMatchLoad.loadOldGame();
-        } else if (Game.matchStatus == 'pending'){
-            InitialMatchLoad.loadNewGamePending();
+        if (You.ready == 'true'){
+            if (Opponent.ready == 'true'){
+                debugger;
+                Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
+                Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
+                InitialMatchLoad.loadOldGame();
+            } else {
+                Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');
+            }
+        } else {
+            if (You.unitsPos == ''){
+                InitialMatchLoad.freshLoad()
+            } else {
+                InitialMatchLoad.continuePregame()
+            }
         }
+
+//        if (Game.matchStatus == 'new'){
+//            InitialMatchLoad.loadNewGameComputer();
+//        } else if (Game.matchStatus == 'in progress') {
+//            Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
+//            Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
+//            InitialMatchLoad.loadOldGame();
+//        } else if (Game.matchStatus == 'pending'){
+//            InitialMatchLoad.loadNewGamePending();
+//        }
+    },
+
+    freshLoad: function(){
+        PreGame.initialize();
+        PreGame.loadPreGameTurn();
+        pregame_var = true;
+
+        $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
+        Rotator.rotateOn('.auxSpace');
+        Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+
+        $('.randomSetUpButton').on('click', function () {
+            RandomSetup.placeUnits();
+            GameStatus.saveGameStatus();
+
+        });
+    },
+
+    continuePregame: function(){
+
+        PreGame.initialize();
+        PreGame.continueSetup();
+//        PreGame.loadPreGameTurn();
+        pregame_var = true;
+
+
+        if ($(".auxSpace").children().length == 0) {
+
+            Rotator.rotateOff($('.auxSpace'));
+
+                Rotator.createAndRotateOn('startGameButton','Start Game');
+
+                $('.startGameButton').on('click', function () {
+
+                    RandomSetup.placeLineOne();
+                    PreGame.initialRange.off('click');
+                    Rotator.rotateOff($('.startGameButton'));
+                    Rotator.rotateOff($('.randomSetUpButton'));
+                    Game.startGame()
+                });
+                PreGame.startAnimationExecuted = true;
+
+        } else {
+            $(".map").prepend("<button class='startGameButton rotating'>Start Game</button>");
+            Rotator.rotateOn('.auxSpace');
+        }
+
+        Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
+
+        $('.randomSetUpButton').on('click', function () {
+            RandomSetup.placeUnits();
+            GameStatus.saveGameStatus();
+
+        });
     },
 
     loadNewGameComputer: function(){

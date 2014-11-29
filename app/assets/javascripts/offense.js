@@ -17,22 +17,27 @@ var Offense = {
         Offense.offense = offense;
         Offense.defense = Math.abs(offense - 1);
         Offense.selectableUnits = $('[data-status=alive][data-team=' + offense + ']').parent();
-        Offense.registerClickUnit()
+        Offense.registerSelectUnit()
     },
 
-    registerClickUnit: function () {
-        Offense.selectableUnits.on('click', function () {
+    registerSelectUnit: function () {
+        if (Game.offense == 1){
+            Offense.selectableUnits.on('click', function () {
+                Offense.selectUnit($(this))
+            })
+        }
+    },
 
-            $('.hexPolygon').css('fill','black');
-            $('.hexPolygon').css('stroke','white');
-            $('.hexSVG').css('overflow','hidden');
-            $('.hexSVG').css('z-index','2');
+    selectUnit: function (unit) {
+        $('.hexPolygon').css('fill','black');
+        $('.hexPolygon').css('stroke','white');
+        $('.hexSVG').css('overflow','hidden');
+        $('.hexSVG').css('z-index','2');
 
-            clearInterval(Animation.function);
-            SelectedUnit.update($(this).children('img'));
-            InfoBoxes.updateSelectBox($(this).children('img'));
-            Offense.registerMoveOrAttack();
-        })
+        clearInterval(Animation.function);
+        SelectedUnit.update(unit.children('img'));
+        InfoBoxes.updateSelectBox(unit.children('img'));
+        Offense.registerMoveOrAttack();
     },
     registerMoveOrAttack: function () {
         Offense.updateUnitRanges();
@@ -70,7 +75,6 @@ var Offense = {
 
         $allHexagons.attr('class', 'hexPolygon');
     },
-
     updateMoveRange: function (range) {
 
         console.log('createRings() ends');
@@ -80,7 +84,6 @@ var Offense = {
             return ($(this).attr('data-ring') <= 19) && ($(this).attr('data-ring') >= 10)
         });
     },
-
     updateAttackRange: function (unit, range) {
         var potentialRange = Offense.potentialRange();
 
@@ -90,7 +93,6 @@ var Offense = {
             return ($(this).attr('data-rangeRing') <= 89) && ($(this).attr('data-rangeRing') >= 80)
         });
     },
-
     updateMeleeRange: function (unit, range) {
         var potentialRange = Offense.potentialRange();
 
@@ -100,7 +102,6 @@ var Offense = {
             return ($(this).attr('data-ring') <= 39) && ($(this).attr('data-ring') >= 30)
         });
     },
-
     potentialRange: function () {
         var range = null;
         if (SelectedUnit.unit.data('rank') == 'range') {
@@ -112,25 +113,47 @@ var Offense = {
     },
 
     registerMovableHex: function () {
-        Offense.moveRange.on('click', function () {
-            Offense.selectableUnits.off('click');
-            Offense.newLocation = $(this);
-            Offense.oldLocation = SelectedUnit.unit.parent();
-            Offense.moveUnitToNewPosition();
-            Offense.finishTurn()
-        });
+
+        if (Game.offense == Game.currentUserIsTeam){
+            Offense.moveRange.on('click', function () {
+                Offense.moveToAttack($(this));
+            });
+        }
+
+
     },
 
     registerAttackUnit: function () {
-        Offense.attackRange.on('click', function () {
-            Death.unitKilled($(this).children("img"));
-            Offense.newLocation = $(this);
-            Offense.oldLocation = SelectedUnit.unit.parent();
+
+        if (Game.offense == Game.currentUserIsTeam){
+            Offense.attackRange.on('click', function () {
+                Offense.moveToAttack($(this))
+            });
+        }
+
+    },
+
+    moveToHex:function(hex){
+        Offense.selectableUnits.off('click');
+        Offense.newLocation = hex;
+        Offense.oldLocation = SelectedUnit.unit.parent();
+        Offense.moveUnitToNewPosition();
+        Offense.finishTurn()
+    },
+
+    moveToAttack:function(hex){
+        Offense.newLocation = hex;
+        Offense.oldLocation = SelectedUnit.unit.parent();
+        if (hex.children('img').length == 0){
+            Offense.moveUnitToNewPosition();
+        } else {
+            Death.unitKilled(hex.children("img"));
             if (SelectedUnit.unit.attr('data-attackRange') == 0) {
                 Offense.moveUnitToNewPosition();
             }
-            Offense.finishTurn()
-        });
+        }
+
+        Offense.finishTurn()
     },
 
     moveUnitToNewPosition: function () {

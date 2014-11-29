@@ -1,63 +1,56 @@
 <article class="one_fourth">
   Welcome back <%= current_user.username %>
+  <br>
+  <%= link_to "Play Computer", create_computer_match_path, method: :post, class: 'vsComputer' %>
+  <br>
+  <%= link_to "Two Player", new_match_path, class: 'vsComputer' %>
+
 </article>
 <article class="three_fourth">
 
-  <%= link_to "New Game Vs Computer", create_computer_match_path, method: :post %>
+  <h1>Games</h1>
 
   <table>
     <thead>
     <tr>
       <th>Index</th>
-      <th>ID</th>
+      <th>Status</th>
       <th>Turn</th>
-      <th>Link</th>
-      <th>Match Status</th>
-      <th>Delete</th>
+      <th>Opponent</th>
+      <th>Quit</th>
     </tr>
     </thead>
     <tbody>
-    <% @matches_vs_computer.each_with_index do |match,index| %>
+    <% @matches.each_with_index do |match, index| %>
         <tr>
           <td><%= index + 1 %></td>
-          <td><%= match.id %></td>
-          <td><%= match.turn %></td>
-          <td><%= link_to 'Show', match_path(match) %></td>
-          <td><%= match.match_status %></td>
+          <td>
+            <% if (match.turn == 0) %>
+                <%= link_to '1New Game', match_path(match) %>
+            <% elsif (match.who_started == 1) %>
+
+                <% if (match.turn%2 == 1) %>
+                    <%= link_to '2Your Turn', match_path(match) %>
+                <% else %>
+                    <%= link_to '3There Turn', match_path(match) %>
+                <% end %>
+
+            <% else %>
+
+                <% if (match.turn%2 == 1) %>
+                    <%= link_to '4There Turn', match_path(match) %>
+                <% else %>
+                    <%= link_to '5Your Turn', match_path(match) %>
+                <% end %>
+
+            <% end %>
+          </td>
+          <td><%= link_to match.turn %></td>
+          <td><%= User.find(match.away_user_id).username %></td>
           <td><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?'} %></td>
         </tr>
     <% end %>
     </tbody>
   </table>
-
-  <br><hr><hr><br>
-
-  <%= link_to "New Game Vs Player", new_match_path %>
-
-  <table>
-    <thead>
-    <tr>
-      <th>Index</th>
-      <th>ID</th>
-      <th>Turn</th>
-      <th>Link</th>
-      <th>Computer</th>
-      <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @matches_vs_player.each_with_index do |match,index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= match.id %></td>
-          <td><%= match.turn %></td>
-          <td><%= link_to 'Show', match_path(match) %></td>
-          <td><%= match.away_user_id %></td>
-          <td><%= link_to 'Resign', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-
 
 </article>

@@ -17,7 +17,7 @@ var LoadingFactory = {
         LoadingFactory.prependThingToMap($(".map"));
     },
     prependThingToMap: function (map) {
-        map.prepend("<article class='auxSpace rotating'></article>");
+        map.prepend("<article class='auxSpace rotating' id='lDock'></article>");
         $('#metaInfo').prepend("<article class=enemyBay></article>");
         map.prepend("<article class=graveyard id=g1 data-hexIndex=g1><a>Team 1 Graveyard</a></article>");
         map.prepend("<article class=graveyard id=g0 data-hexIndex=g0><a>Team 0 Graveyard</a></article>");

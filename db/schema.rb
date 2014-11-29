@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125222246) do
+ActiveRecord::Schema.define(version: 20141128214631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20141125222246) do
     t.string   "match_against"
     t.string   "home_units_position"
     t.string   "away_units_position"
+    t.integer  "whos_turn"
+    t.boolean  "home_ready"
+    t.boolean  "away_ready"
   end
 
   create_table "users", force: true do |t|
@@ -40,6 +43,8 @@ ActiveRecord::Schema.define(version: 20141125222246) do
     t.boolean  "email_confirmed"
     t.string   "account_type"
     t.boolean  "admin"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   create_table "world_statuses", force: true do |t|

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   put 'start_game' => 'matches#start_game'
   put 'update_match_info' => 'matches#update_match_info'
+  put 'home_user_ready' => 'matches#home_user_ready'
+  put 'away_user_ready' => 'matches#away_user_ready'
 
   post "create_computer_match" => "matches#create_match_vs_computer"
 

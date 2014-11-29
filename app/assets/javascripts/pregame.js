@@ -11,6 +11,17 @@ var PreGame = {
         PreGame.initialRange = $("[data-ring=1]");
         PreGame.moveableRange = PreGame.initialRange;
     },
+    continueSetup: function(){
+
+        var teamArray = GameStatus.convertStringToArray(You.unitsPos).reverse();
+
+        $.each(teamArray, function (i, e) {
+            Game.moveUnits(e, 1);
+        });
+
+        PreGame.loadPreGameTurn()
+
+    },
     loadPreGameTurn: function () {
         PreGame.hexVisualUpdate();
         PreGame.resetAndUpdateUnitsAndRange();
@@ -25,7 +36,10 @@ var PreGame = {
         PreGame.moveableUnits.off('click');
         PreGame.moveableRange.off('click');
         PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
-        PreGame.moveableUnits = $('img[data-team=' + 1 + ']').parent();
+
+        var unplacedUnits = $('img[data-team=' + 1 + '][data-status=unplaced]');
+        var placedUnits = $('img[data-team=' + 1 + '][data-status=alive]').parent();
+        PreGame.moveableUnits = $(unplacedUnits).add($(placedUnits));
     },
 
     pregameClickUnit: function () {
@@ -33,10 +47,13 @@ var PreGame = {
             PreGame.moveableRange.off('click');
             PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
 
-            PreGame.unit = $(this).children("img");
+            if ($(this).attr('data-status') == 'unplaced'){
+                PreGame.unit = $(this);
+            } else {
+                PreGame.unit = $(this).children("img");
+            }
 
             InfoBoxes.updateSelectBox(PreGame.unit);
-
             PreGame.registerClickHex();
         })
     },
@@ -64,16 +81,33 @@ var PreGame = {
         movingFrom.attr('data-occupied', false);
     },
     finishMove: function(){
+        GameStatus.saveGameStatus();
+
         PreGame.addStartButton();
         PreGame.loadPreGameTurn();
     },
     addStartButton: function () {
-        if ($(".unplacedUnitSpace").length == 0) {
+        if ($(".auxSpace").children().length == 0) {
 
             if (PreGame.startAnimationExecuted == false) {
                 Rotator.rotateOff($('.auxSpace'));
                 Rotator.rotateOn($('.startGameButton'));
+
+                var readyPath;
+                if (You.team == 1){
+                    readyPath = '/home_user_ready'
+                }else {
+                    readyPath = '/away_user_ready'
+                }
                 $('.startGameButton').on('click', function () {
+                    $.ajax({
+                        type: 'put',
+                        url: readyPath,
+                        data: {
+                            match_id: Game.matchID
+                        },
+                        dataType: 'json'
+                    });
                     RandomSetup.placeLineOne();
                     PreGame.initialRange.off('click');
                     Rotator.rotateOff($('.startGameButton'));

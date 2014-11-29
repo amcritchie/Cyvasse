@@ -1,6 +1,21 @@
+
+var You = {
+    team: null,
+    ready: null,
+    unitsPos: null
+};
+
+var Opponent = {
+    isA: null,
+    team: null,
+    ready: null,
+    unitsPos: null
+};
+
 var Game = {
 
     turn: null,
+
     whoStarted: null,
     startTime: null,
 
@@ -13,6 +28,12 @@ var Game = {
     playingAI: false,
     playingAsAI: false,
 
+    currentUser: null,
+    homeUser:null,
+    awayUser:null,
+
+    currentUserIsTeam: null,
+
     matchID: null,
     matchStatus: null,
     matchAgainst: null,
@@ -20,11 +41,41 @@ var Game = {
     awayUnitsString: null,
 
     grabMatchData: function(){
+        Game.currentUser = parseInt(document.getElementById('currentUserID').innerHTML);
+        Game.homeUser = parseInt(document.getElementById('homeID').innerHTML);
+        Game.awayUser = parseInt(document.getElementById('awayID').innerHTML);
+
+        if (Game.currentUser == Game.homeUser){
+            Game.currentUserIsTeam = 1;
+            You.team = 1;
+            You.ready = document.getElementById('homeReady').innerHTML;
+            You.unitsPos = document.getElementById('homeUnitsPos').innerHTML;
+            Opponent.team = 0;
+            Opponent.ready = document.getElementById('awayReady').innerHTML;
+            Opponent.unitsPos = document.getElementById('awayUnitsPos').innerHTML;
+
+        } else if (Game.currentUser == Game.awayUser){
+            Game.currentUserIsTeam = 0;
+            You.team = 0;
+            You.ready = document.getElementById('awayReady').innerHTML;
+            You.unitsPos = document.getElementById('awayUnitsPos').innerHTML;
+            Opponent.team = 1;
+            Opponent.ready = document.getElementById('homeReady').innerHTML;
+            Opponent.unitsPos = document.getElementById('homeUnitsPos').innerHTML;
+        } else{
+            debugger;
+        }
+
+        Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
+        Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
+
         Game.matchID = parseInt(document.getElementById('matchID').innerHTML);
         Game.matchStatus = document.getElementById('matchStatus').innerHTML;
         Game.matchAgainst = document.getElementById('matchAgainst').innerHTML;
         Game.homeUnitsString = document.getElementById('homeUnitsPos').innerHTML;
         Game.awayUnitsString = document.getElementById('awayUnitsPos').innerHTML;
+
+        Opponent.isA = Game.matchAgainst;
     },
 
     startGame: function () {
@@ -69,7 +120,6 @@ var Game = {
             Game.offense = 0;
         }
     },
-
 
     firstTurn: function (offense) {
         Game.turn = 1;
@@ -147,9 +197,15 @@ var Game = {
         if (positionArray[1] == 'g' + team) {
             unit.attr('data-status', 'dead');
             unit.prependTo($('#' + positionArray[1]));
-        } else {
+        } else if (positionArray[1] == 'lDock'){
+
+            unit.attr('data-status', 'unplaced');
+            unit.prependTo($('#' + positionArray[1]));
+
+        }else {
             unit.attr('data-status', 'alive');
             unit.prependTo($('[data-hexIndex=' + positionArray[1] + ']'));
+            $('[data-hexIndex=' + positionArray[1] + ']').attr('data-occupied','true')
         }
     },
 

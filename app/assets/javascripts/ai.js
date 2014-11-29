@@ -36,7 +36,8 @@ var AI = {
         }
 
         setTimeout(function () {
-            AI.unitBeingMoved.click();
+
+            Offense.selectUnit(AI.unitBeingMoved);
 
             if (AI.hexBeingMovedTo == 'empty'){
                 AI.hexBeingMovedTo = Offense.moveRange.random();
@@ -47,7 +48,7 @@ var AI = {
             }
 
             setTimeout(function () {
-                AI.hexBeingMovedTo.click();
+                Offense.moveToAttack(AI.hexBeingMovedTo);
             }, 1000);
 
         }, 1500);
