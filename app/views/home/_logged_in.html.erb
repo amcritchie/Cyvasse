@@ -3,6 +3,9 @@
   <br>
   <%= link_to "Play Computer", create_computer_match_path, method: :post, class: 'vsComputer' %>
   <br>
+  <%= link_to "Play Admin", create_player_match_path, method: :post, class: 'vsComputer' %>
+
+  <br>
   <%= link_to "Two Player", new_match_path, class: 'vsComputer' %>
 
 </article>
@@ -27,17 +30,15 @@
           <td>
             <% if (match.turn == 0) %>
                 <%= link_to '1New Game', match_path(match) %>
-            <% elsif (match.who_started == 1) %>
+            <% elsif (match.whos_turn == 1) %>
 
-                <% if (match.turn%2 == 1) %>
+                <% if (current_user.id == match.home_user_id) %>
                     <%= link_to '2Your Turn', match_path(match) %>
                 <% else %>
                     <%= link_to '3There Turn', match_path(match) %>
                 <% end %>
-
             <% else %>
-
-                <% if (match.turn%2 == 1) %>
+                <% if (current_user.id == match.home_user_id) %>
                     <%= link_to '4There Turn', match_path(match) %>
                 <% else %>
                     <%= link_to '5Your Turn', match_path(match) %>

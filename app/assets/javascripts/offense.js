@@ -21,7 +21,7 @@ var Offense = {
     },
 
     registerSelectUnit: function () {
-        if (Game.offense == 1){
+        if (Game.offense == You.team){
             Offense.selectableUnits.on('click', function () {
                 Offense.selectUnit($(this))
             })

@@ -63,7 +63,6 @@ var Game = {
             Opponent.ready = document.getElementById('homeReady').innerHTML;
             Opponent.unitsPos = document.getElementById('homeUnitsPos').innerHTML;
         } else{
-            debugger;
         }
 
         Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
@@ -75,15 +74,25 @@ var Game = {
         Game.homeUnitsString = document.getElementById('homeUnitsPos').innerHTML;
         Game.awayUnitsString = document.getElementById('awayUnitsPos').innerHTML;
 
+        if (Game.matchAgainst == 'computer') {
+            Game.playingAI = true
+        }
+
         Opponent.isA = Game.matchAgainst;
+    },
+
+    opponentOpeningArray: function(){
+        if (Opponent.isA == 'human'){
+            PlaceUnits.byArray(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(),Opponent.team);
+        }else{
+            RandomSetup.placeLineOne();
+        }
     },
 
     startGame: function () {
 
         Game.turn = 1;
-
-        $('.loadEnemiesButton').off('click').remove();
-        $('.enemyLineUpOne').off('click').remove();
+        Game.opponentOpeningArray();
 
         addAIButtons();
         Game.whoGoesFirst();
@@ -172,16 +181,8 @@ var Game = {
 
     oldGame: function () {
 
-        var teamOneArray = GameStatus.convertStringToArray(Game.homeUnitsString);
-        var teamTwoArray = GameStatus.convertStringToArray(Game.awayUnitsString);
-
-        $.each(teamOneArray, function (i, e) {
-            Game.moveUnits(e, 1);
-        });
-        $.each(teamTwoArray, function (i, e) {
-            Game.moveUnits(e, 0);
-        });
-
+        PlaceUnits.byArray(GameStatus.convertStringToArray(Game.homeUnitsString),1);
+        PlaceUnits.byArray(GameStatus.convertStringToArray(Game.awayUnitsString),0);
 
         if (Game.whoStarted == 1){
             Game.offense = Game.turn%2

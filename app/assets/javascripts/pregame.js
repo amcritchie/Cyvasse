@@ -1,31 +1,20 @@
-
 var PreGame = {
     moveableUnits: null,
     moveableRange: null,
     initialRange: null,
     selectedUnit: null,
     startAnimationExecuted: false,
-
     initialize: function () {
-        PreGame.moveableUnits = $('img[data-team=' + 1 + ']').parent();
+        PreGame.moveableUnits = $('img[data-team=' + You.team + ']').parent();
         PreGame.initialRange = $("[data-ring=1]");
         PreGame.moveableRange = PreGame.initialRange;
     },
-    continueSetup: function(){
-
-        var teamArray = GameStatus.convertStringToArray(You.unitsPos).reverse();
-
-        $.each(teamArray, function (i, e) {
-            Game.moveUnits(e, 1);
-        });
-
-        PreGame.loadPreGameTurn()
-
-    },
+//    placeUnits: function () {
+//        PlaceUnits.byArray(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
+//    },
     loadPreGameTurn: function () {
         PreGame.hexVisualUpdate();
         PreGame.resetAndUpdateUnitsAndRange();
-        InfoBoxes.registerHoverUnit();
         PreGame.pregameClickUnit();
     },
     hexVisualUpdate: function () {
@@ -35,27 +24,28 @@ var PreGame = {
     resetAndUpdateUnitsAndRange: function () {
         PreGame.moveableUnits.off('click');
         PreGame.moveableRange.off('click');
-        PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
-
-        var unplacedUnits = $('img[data-team=' + 1 + '][data-status=unplaced]');
-        var placedUnits = $('img[data-team=' + 1 + '][data-status=alive]').parent();
-        PreGame.moveableUnits = $(unplacedUnits).add($(placedUnits));
+        PreGame.moveableUnits = PreGame.placedAndUnplacedUnits();
     },
-
+    placedAndUnplacedUnits: function () {
+        var unplacedUnits = $('img[data-team=' + You.team + '][data-status=unplaced]');
+        var placedUnits = $('img[data-team=' + You.team + '][data-status=alive]').parent();
+        return $(unplacedUnits).add($(placedUnits))
+    },
     pregameClickUnit: function () {
         PreGame.moveableUnits.on('click', function () {
             PreGame.moveableRange.off('click');
             PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
-
-            if ($(this).attr('data-status') == 'unplaced'){
-                PreGame.unit = $(this);
-            } else {
-                PreGame.unit = $(this).children("img");
-            }
-
+            PreGame.updateSelectUnit($(this));
             InfoBoxes.updateSelectBox(PreGame.unit);
             PreGame.registerClickHex();
         })
+    },
+    updateSelectUnit: function (unit) {
+        if (unit.attr('data-status') == 'unplaced') {
+            PreGame.unit = unit;
+        } else {
+            PreGame.unit = unit.children("img");
+        }
     },
     registerClickHex: function () {
         PreGame.moveableRange.on('click', function () {
@@ -80,42 +70,63 @@ var PreGame = {
         movingTo.attr('data-occupied', true);
         movingFrom.attr('data-occupied', false);
     },
-    finishMove: function(){
-        GameStatus.saveGameStatus();
-
-        PreGame.addStartButton();
+    finishMove: function () {
+        PreGame.saveYourSide();
+        PreGame.readyForStartButton();
         PreGame.loadPreGameTurn();
     },
-    addStartButton: function () {
-        if ($(".auxSpace").children().length == 0) {
-
-            if (PreGame.startAnimationExecuted == false) {
-                Rotator.rotateOff($('.auxSpace'));
-                Rotator.rotateOn($('.startGameButton'));
-
-                var readyPath;
-                if (You.team == 1){
-                    readyPath = '/home_user_ready'
-                }else {
-                    readyPath = '/away_user_ready'
-                }
-                $('.startGameButton').on('click', function () {
-                    $.ajax({
-                        type: 'put',
-                        url: readyPath,
-                        data: {
-                            match_id: Game.matchID
-                        },
-                        dataType: 'json'
-                    });
-                    RandomSetup.placeLineOne();
-                    PreGame.initialRange.off('click');
-                    Rotator.rotateOff($('.startGameButton'));
-                    Rotator.rotateOff($('.randomSetUpButton'));
-                    Game.startGame()
-                });
-                PreGame.startAnimationExecuted = true;
-            }
+    saveYourSide: function(){
+      if (You.team == 1){
+          GameStatus.saveHomeUnitsPosition()
+      }  else {
+          GameStatus.saveAwayUnitsPosition()
+      }
+    },
+    readyForStartButton: function () {
+        if (($(".auxSpace").children().length == 0) && (PreGame.startAnimationExecuted == false)) {
+            PreGame.loadStartButton()
+        }
+    },
+    loadStartButton: function(){
+        Rotator.rotateOff($('.auxSpace'));
+        Rotator.createAndRotateOn('startGameButton', 'Start Game');
+        $('.startGameButton').on('click', function () {
+            PreGame.onStartButtonClick();
+        });
+        PreGame.startAnimationExecuted = true;
+    },
+    onStartButtonClick: function () {
+        PreGame.startButtonAjax();
+        PreGame.initialRange.off('click');
+        Rotator.rotateOff($('.startGameButton'));
+        Rotator.rotateOff($('.randomSetUpButton'));
+        PreGame.readyOpponent();
+    },
+    startButtonAjax: function () {
+        $.ajax({
+            type: 'put',
+            url: PreGame.readyPath(),
+            data: {
+                match_id: Game.matchID
+            },
+            dataType: 'json'
+        });
+    },
+    readyPath: function () {
+        if (You.team == 1) {
+            return '/home_user_ready'
+        } else {
+            return '/away_user_ready'
+        }
+    },
+    readyOpponent: function () {
+        if (Opponent.ready == 'true') {
+            Game.startGame()
+        } else {
+            Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');
+            setTimeout(function () {
+                window.location.reload()
+            }, 5000)
         }
     }
 };

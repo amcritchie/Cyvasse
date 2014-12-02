@@ -29,7 +29,7 @@ var RandomSetup = {
         RandomSetup.dockType = 'aux';
         var possibleSpots = [];
         for(var i=52;i<=91;i++){ possibleSpots.push('[data-hexIndex='+i+']') }
-        RandomSetup.team = 1;
+        RandomSetup.team = You.team;
         RandomSetup.teamSize = $("[data-team=" + RandomSetup.team + "]").length;
         RandomSetup.possibleSpots = possibleSpots;
         RandomSetup.moveTeamToRandomSpots();
@@ -59,7 +59,7 @@ var RandomSetup = {
             RandomSetup.moveImageToMap(movingUnit);
             RandomSetup.moveUnitToNewPosition(newLocation, oldLocation, movingUnit)
         }
-        PreGame.addStartButton();
+        PreGame.readyForStartButton();
         PreGame.loadPreGameTurn();
     },
     moveTeamToOrderSpots: function(){
@@ -71,7 +71,7 @@ var RandomSetup = {
             RandomSetup.moveImageToMap(movingUnit);
             RandomSetup.moveUnitToNewPosition(newLocation, oldLocation, movingUnit)
         }
-        PreGame.addStartButton();
+        PreGame.readyForStartButton();
         PreGame.loadPreGameTurn();
     },
     moveUnitToNewPosition: function (newLocation, oldLocation, movingUnit) {

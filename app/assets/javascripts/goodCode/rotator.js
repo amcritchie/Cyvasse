@@ -23,7 +23,7 @@ var Rotator = {
             {
                 duration: 'slow',
                 complete: function () {
-                    $(button).remove();
+                    $(button).off('click').remove();
                 }
             });
     }

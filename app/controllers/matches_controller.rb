@@ -93,6 +93,18 @@ class MatchesController < ApplicationController
         away_units_position: params[:away_units]
     )
   end
+  def update_turn
+    @match = Match.find(params[:match_id])
+    @match.update(turn: params[:turn])
+  end
+  def update_home_units_position
+    @match = Match.find(params[:match_id])
+    @match.update(home_units_position: params[:home_units])
+  end
+  def update_away_units_position
+    @match = Match.find(params[:match_id])
+    @match.update(away_units_position: params[:away_units])
+  end
 
   def home_user_ready
     @match = Match.find(params[:match_id])

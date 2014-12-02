@@ -1,12 +1,50 @@
-
 var GameStatus = {
 
-    saveGameStatus: function(){
-        var teamOne = GameStatus.saveTeam(1);
-        var teamZero = GameStatus.saveTeam(0);
+    saveHomeUnitsPosition: function(){
+        var teamArray = GameStatus.saveTeam(1);
+        if (You.team == 0) {
+            teamArray = GameStatus.mirrorArray(teamArray);
+        }
+        var teamString = GameStatus.convertArrayToString(teamArray);
+        $.ajax({
+            type: 'put',
+            url: '/update_home_units_position',
+            data: {
+                match_id: Game.matchID,
+                home_units: teamString
+            },
+            dataType: 'json'
+        });
+    },
 
-        var teamOneString = GameStatus.convertArrayToString(teamOne);
-        var teamZeroString = GameStatus.convertArrayToString(teamZero);
+    saveAwayUnitsPosition: function(){
+        var teamArray = GameStatus.saveTeam(0);
+        if (You.team == 0) {
+            teamArray = GameStatus.mirrorArray(teamArray);
+        }
+        var teamString = GameStatus.convertArrayToString(teamArray);
+        $.ajax({
+            type: 'put',
+            url: '/update_away_units_position',
+            data: {
+                match_id: Game.matchID,
+                away_units: teamString
+            },
+            dataType: 'json'
+        });
+    },
+
+    saveGameStatus: function () {
+        var teamOneArray = GameStatus.saveTeam(1);
+        var teamZeroArray = GameStatus.saveTeam(0);
+
+        if (You.team == 0) {
+            teamOneArray = GameStatus.mirrorArray(teamOneArray);
+            teamZeroArray = GameStatus.mirrorArray(teamZeroArray);
+        }
+
+        var teamOneString = GameStatus.convertArrayToString(teamOneArray);
+        var teamZeroString = GameStatus.convertArrayToString(teamZeroArray);
 
         $.ajax({
             type: 'put',
@@ -20,43 +58,42 @@ var GameStatus = {
             },
             dataType: 'json'
         });
-
-        console.log('===================================');
-        console.log('Turn : '+ Game.turn - 1);
-        console.log('-----------------------------------');
-
-        console.log('Team 1');
-        console.log(teamOneString);
-        console.log('-----------------------------------');
-
-        console.log('Team 0');
-        console.log(teamZeroString);
-
     },
 
-    saveTeam: function(team){
+    saveTeam: function (team) {
         var array = [];
-        $.each($('[data-team='+team+']'), function(index,unit){
-            if ($(unit).attr('data-status') == 'alive'){
+        $.each($('[data-team=' + team + ']'), function (index, unit) {
+            if ($(unit).attr('data-status') == 'alive') {
                 array.push([$(unit).attr('data-index'), $(unit).parent().attr('data-hexIndex')]);
-            } else if (You.ready == 'true'){
-                array.push([$(unit).attr('data-index'),'g'+team])
+            } else if (You.ready == 'true') {
+                array.push([$(unit).attr('data-index'), 'g' + team])
             } else {
-                array.push([$(unit).attr('data-index'),'lDock'])
+                array.push([$(unit).attr('data-index'), 'lDock'])
             }
         });
         return array;
     },
-    convertArrayToString: function(array){
+    mirrorArray: function(array){
+        var flippedArray = [];
+        $.each(array, function (i, e) {
+            var location = e[1];
+            if ($.isNumeric(location)) {
+                location = 92 - parseInt(e[1])
+            }
+            flippedArray.push([e[0], location]);
+        });
+        return flippedArray;
+    },
+    convertArrayToString: function (array) {
         var string = "";
-        $.each(array,function(){
+        $.each(array, function () {
             string += $(this)[0] + ':' + $(this)[1] + '|';
         });
         return string;
     },
-    convertStringToArray: function(string){
+    convertStringToArray: function (string) {
         var array = [];
-        $.each(string.split('|'), function(i,e){
+        $.each(string.split('|'), function (i, e) {
             array.push(e.split(':'));
         });
         array.pop();

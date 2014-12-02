@@ -5,8 +5,8 @@ var LoadingFactory = {
         var templateEnemies = JST['LoadFactory/views/enemies'];
 
         var mapHTML = templateMap({map: Map.createMap()});
-        var unitsHTML = templateUnits({units: CreateUnits.createAllUnits(1)});
-        var enemiesHTML = templateEnemies({enemies: CreateUnits.createAllUnits(0)});
+        var unitsHTML = templateUnits({units: CreateUnits.createAllUnits(You.team)});
+        var enemiesHTML = templateEnemies({enemies: CreateUnits.createAllUnits(Opponent.team)});
 
         LoadingFactory.loadPartsOfMatchHTML();
         LoadingFactory.moveSVGsToPosition(mapHTML, unitsHTML, enemiesHTML);
