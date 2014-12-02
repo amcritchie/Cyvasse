@@ -7,8 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.features)
 
 User.destroy_all
+Match.destroy_all
 
-admin = User.new(
+admin = User.create(
     id: 1,
     username: 'admin',
     email: 'amcritchie@gmail.com',
@@ -21,7 +22,6 @@ admin = User.new(
     account_type: 'basic',
     email_confirmed: false
 )
-admin.save!
 
 computers = [
     ['qavo','nogarys'],
@@ -36,8 +36,8 @@ computers = [
 ]
 
 computers.each_with_index do |comp,index|
-  user = User.new(
-      id: (index+1),
+  user = User.create!(
+      id: (index+2),
       username: comp[0],
       email: "cyvasse#{index}@gmail.com",
       password: 'hearmeroar1254',
@@ -49,102 +49,4 @@ computers.each_with_index do |comp,index|
       account_type: 'basic',
       email_confirmed: false
   )
-  user.save!
 end
-
-
-# id2 = User.new(
-#     id: 2,
-#     username: 'qavo',
-#     email: 'cyvasse1@gmail.com',
-#     password: 'thepass',
-#     first_name: 'qavo',
-#     last_name: 'mcritchie',
-#     wins: 0,
-#     losses: 0,
-#     admin: false,
-#     account_type: 'basic',
-#     email_confirmed: false
-# )
-#
-# id2.save!
-#
-# id3 = User.new(
-#     id: 2,
-#     username: 'qavo',
-#     email: 'cyvasse1@gmail.com',
-#     password: 'thepass',
-#     first_name: 'qavo',
-#     last_name: 'mcritchie',
-#     wins: 0,
-#     losses: 0,
-#     admin: false,
-#     account_type: 'basic',
-#     email_confirmed: false
-# )
-#
-# id3.save!
-#
-# id4 = User.new(
-#     id: 4,
-#     username: 'qavo',
-#     email: 'cyvasse1@gmail.com',
-#     password: 'thepass',
-#     first_name: 'qavo',
-#     last_name: 'mcritchie',
-#     wins: 0,
-#     losses: 0,
-#     admin: false,
-#     account_type: 'basic',
-#     email_confirmed: false
-# )
-#
-# id4.save!
-#
-# id5 = User.new(
-#     id: 5,
-#     username: 'qavo',
-#     email: 'cyvasse1@gmail.com',
-#     password: 'thepass',
-#     first_name: 'qavo',
-#     last_name: 'mcritchie',
-#     wins: 0,
-#     losses: 0,
-#     admin: false,
-#     account_type: 'basic',
-#     email_confirmed: false
-# )
-#
-# id5.save!
-#
-# id6 = User.new(
-#     id: 6,
-#     username: 'qavo',
-#     email: 'cyvasse1@gmail.com',
-#     password: 'thepass',
-#     first_name: 'qavo',
-#     last_name: 'mcritchie',
-#     wins: 0,
-#     losses: 0,
-#     admin: false,
-#     account_type: 'basic',
-#     email_confirmed: false
-# )
-#
-# id6.save!
-#
-# id7 = User.new(
-#     id: 7,
-#     username: 'qavo',
-#     email: 'cyvasse1@gmail.com',
-#     password: 'thepass',
-#     first_name: 'qavo',
-#     last_name: 'mcritchie',
-#     wins: 0,
-#     losses: 0,
-#     admin: false,
-#     account_type: 'basic',
-#     email_confirmed: false
-# )
-#
-# id7.save!
