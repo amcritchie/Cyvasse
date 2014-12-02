@@ -14,7 +14,12 @@ admin = User.new(
     email: 'amcritchie@gmail.com',
     password: 'thepass',
     first_name: 'alex',
-    last_name: 'mcritchie'
+    last_name: 'mcritchie',
+    wins: 0,
+    losses: 0,
+    admin: false,
+    account_type: 'basic',
+    email_confirmed: false
 )
 
 admin.save!
