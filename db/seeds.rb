@@ -23,3 +23,19 @@ admin = User.new(
 )
 
 admin.save!
+
+id2 = User.new(
+    id: 2,
+    username: 'qavo',
+    email: 'cyvasse1@gmail.com',
+    password: 'thepass',
+    first_name: 'qavo',
+    last_name: 'mcritchie',
+    wins: 0,
+    losses: 0,
+    admin: false,
+    account_type: 'basic',
+    email_confirmed: false
+)
+
+id2.save!
