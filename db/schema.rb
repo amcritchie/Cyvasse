@@ -19,10 +19,8 @@ ActiveRecord::Schema.define(version: 20141128214631) do
   create_table "matches", force: true do |t|
     t.integer  "home_user_id"
     t.integer  "away_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "turn"
     t.integer  "who_started"
+    t.integer  "turn"
     t.string   "match_status"
     t.string   "match_against"
     t.string   "home_units_position"
@@ -30,21 +28,23 @@ ActiveRecord::Schema.define(version: 20141128214631) do
     t.integer  "whos_turn"
     t.boolean  "home_ready"
     t.boolean  "away_ready"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "wins"
-    t.integer  "losses"
+    t.string   "first_name"
+    t.string   "last_name"
     t.boolean  "email_confirmed"
     t.string   "account_type"
     t.boolean  "admin"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.integer  "wins"
+    t.integer  "losses"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "world_statuses", force: true do |t|

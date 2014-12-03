@@ -26,6 +26,9 @@ class UsersController < ApplicationController
     @user.email_confirmed = false
 
     if @user.save
+      Keen.publish(:sign_ups, { :username => @user.username }) if Rails.env.production?
+      Keen.publish(:test_sign_ups, { :username => @user.username }) if Rails.env.development?
+
       session[:user_id] = @user.id
       redirect_to root_path
     else

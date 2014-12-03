@@ -10,7 +10,6 @@ User.destroy_all
 Match.destroy_all
 
 admin = User.create(
-    # id: 1,
     username: 'admin',
     email: 'amcritchie@gmail.com',
     password: 'hearmeroar1254',
@@ -37,7 +36,6 @@ computers = [
 
 computers.each_with_index do |comp,index|
   user = User.create!(
-      # id: (index+2),
       username: comp[0],
       email: "cyvasse#{index}@gmail.com",
       password: 'hearmeroar1254',

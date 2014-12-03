@@ -1,5 +1,9 @@
 <% if session[:user_id] == nil %>
     <%= render 'logged_out' %>
 <% else %>
-    <%= render 'logged_in' %>
+    <% if current_user.admin %>
+        <%= render 'admin/admin' %>
+    <% else %>
+        <%= render 'logged_in' %>
+    <% end %>
 <% end %>

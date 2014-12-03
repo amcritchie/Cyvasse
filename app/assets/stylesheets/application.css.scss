@@ -66,6 +66,31 @@ th{
 td{
   text-align: center;
 }
+.yourTurn{
+  width: 120px;
+  display: inline-block;
+  background-color: green;
+  padding: .5rem 0;
+  color: white;
+  border: solid #000000;
+}
+.thereTurn{
+  display: inline-block;
+  background-color: orangered;
+  width: 120px;
+  padding: .5rem 0;
+  color: white;
+  border: solid #000000;
+}
+.newGame{
+  display: inline-block;
+  background-color: blue;
+  margin: 0;
+  width: 120px;
+  padding: .5rem 0;
+  color: white;
+  border: solid #000000;
+}
 
 .about_unit {
   height: 100px;

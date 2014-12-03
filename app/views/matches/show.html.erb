@@ -1,11 +1,12 @@
-
 <div id="matchShow">
   <article class="three_fourth">
     <div id="match"></div>
   </article>
   <article class="one_fourth">
     <div class="matchUp">
-      <%= current_user.username %> <br> vs <br> Tyrion <br>
+      <%= current_user.username %>
+      <br> vs <br>
+      <%= enemy_user.username %>
     </div>
     <div class="unitStats">
 
@@ -66,19 +67,19 @@
 </div>
 <div id=metaInfo>
   <article class="one_fourth">
-    <a id="currentUserID"><%=current_user.id %></a>
-    <a id="homeID"><%=@match.home_user_id %></a>
-    <a id="awayID"><%=@match.away_user_id %></a>
+    <a id="currentUserID"><%= current_user.id %></a>
+    <a id="homeID"><%= @match.home_user_id %></a>
+    <a id="awayID"><%= @match.away_user_id %></a>
 
-    <a id="homeReady"><%=@match.home_ready %></a>
-    <a id="awayReady"><%=@match.away_ready %></a>
+    <a id="homeReady"><%= @match.home_ready %></a>
+    <a id="awayReady"><%= @match.away_ready %></a>
 
 
-    <a id="matchID"><%=@match.id %></a>
-    <a id="matchTurn"><%=@match.turn %></a>
-    <a id="matchWhosTurn"><%=@match.whos_turn %></a>
-    <a id="matchAgainst"><%=@match.match_against %></a>
-    <a id="matchWhoStarted"><%=@match.who_started %></a>
+    <a id="matchID"><%= @match.id %></a>
+    <a id="matchTurn"><%= @match.turn %></a>
+    <a id="matchWhosTurn"><%= @match.whos_turn %></a>
+    <a id="matchAgainst"><%= @match.match_against %></a>
+    <a id="matchWhoStarted"><%= @match.who_started %></a>
     <a id="matchStatus"><%= @match.match_status %></a>
   </article>
   <article class="full_column">

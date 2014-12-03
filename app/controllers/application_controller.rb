@@ -8,6 +8,15 @@ class ApplicationController < ActionController::Base
   def current_user
     User.find_by(id: session[:user_id])
   end
-  helper_method :current_user
+
+  def enemy_user
+    if current_user.id == @match.home_user_id
+      User.find(@match.away_user_id)
+    else
+      User.find(@match.home_user_id)
+    end
+  end
+
+  helper_method :current_user, :enemy_user
 
 end
