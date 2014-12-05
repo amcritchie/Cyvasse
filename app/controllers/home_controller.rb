@@ -5,9 +5,8 @@ class HomeController < ApplicationController
   end
 
   def root
-    @matches_vs_computer = Match.where(home_user_id: session[:user_id], away_user_id: 2)
-    @matches_vs_player = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id]) - @matches_vs_computer
     @matches = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id])
+    @lastTenUsers = User.order('created_at DESC').limit(5)
   end
 
   def about

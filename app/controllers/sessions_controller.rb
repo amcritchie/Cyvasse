@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      flash[:success] = "Welcome, #{@user.username}!"
+      flash[:success] = "Welcome back #{@user.username}"
+      # flash[:success] = "Welcome, #{@user.username}!"
       redirect_to root_path
     else
       @user = User.new(email: params[:user][:email])

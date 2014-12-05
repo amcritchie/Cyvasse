@@ -21,6 +21,13 @@ var $allHexPoly;
 
 $(document).ready(function () {
 
+    setTimeout(function(){
+        $('#messageDock').children().fadeOut('slow')
+    },3000);
+
+    setTimeout(function(){
+        $('.flashFail').children().fadeOut('slow')
+    },3000);
 
     // underline under the active nav item
 //    $(".nav .nav-link").click(function () {

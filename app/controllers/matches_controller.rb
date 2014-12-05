@@ -56,14 +56,19 @@ class MatchesController < ApplicationController
         turn: 0
     )
 
-    @match.save
-    redirect_to match_path(@match)
+    if (current_user.total_matches(current_user) <= 5) || (current_user.account_type == 'premium')
+      @match.save
+      redirect_to match_path(@match)
+    else
+      flash[:cant_find_username] = "You have reached max games"
+      flash[:error] = "You may only have 5 active games with a basic account."
+      redirect_to :back
+    end
   end
 
   def create_match_vs_player
     @match = Match.new(
         home_user_id: current_user.id,
-        away_user_id: 1,
         home_ready: false,
         away_ready: false,
         match_status: 'pending',
@@ -71,8 +76,27 @@ class MatchesController < ApplicationController
         turn: 0
     )
 
-    @match.save
-    redirect_to match_path(@match)
+    if (current_user.total_matches(current_user) < 5) || (current_user.account_type == 'premium')
+      if params[:opponent][:which_user] == 'Random User'
+        @match.away_user_id = 1
+        @match.save
+        redirect_to match_path(@match)
+      else
+        @opponent = User.find_by_username(params[:opponent][:username])
+        if @opponent == nil
+          flash[:cant_find_username] = "No such Username"
+          redirect_to :back
+        else
+          @match.away_user_id = @opponent.id
+          @match.save
+          redirect_to match_path(@match)
+        end
+      end
+    else
+      flash[:cant_find_username] = "You have reached max games"
+      flash[:error] = "You may only have 5 active games with a basic account."
+      redirect_to :back
+    end
   end
 
   def start_game
@@ -93,14 +117,17 @@ class MatchesController < ApplicationController
         away_units_position: params[:away_units]
     )
   end
+
   def update_turn
     @match = Match.find(params[:match_id])
     @match.update(turn: params[:turn])
   end
+
   def update_home_units_position
     @match = Match.find(params[:match_id])
     @match.update(home_units_position: params[:home_units])
   end
+
   def update_away_units_position
     @match = Match.find(params[:match_id])
     @match.update(away_units_position: params[:away_units])

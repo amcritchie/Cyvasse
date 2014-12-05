@@ -4,7 +4,6 @@
 @import "match";
 @import "buttons";
 //@import "borbon";
-
 @import "navBar";
 @import "matchShow";
 @import "rootLoggedIn";
@@ -27,7 +26,7 @@ body {
 }
 
 .backgroundImage {
-//  background-image: url('http://images6.fanpop.com/image/photos/32600000/asoiaf-a-song-of-ice-and-fire-32690635-1200-583.jpg');
+  //  background-image: url('http://images6.fanpop.com/image/photos/32600000/asoiaf-a-song-of-ice-and-fire-32690635-1200-583.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
@@ -60,37 +59,40 @@ body {
   display: block;
 }
 
-th{
+#adminInfo {
   text-align: center;
+  .chart {
+    width: 344px;
+    display: inline-block;
+  }
 }
-td{
-  text-align: center;
+
+.userFieldDiv {
+  box-sizing: border-box;
+  float: left;
+  width: 100%;
+  //  padding: 1% 5% 2% 5%;
+  article {
+    display: inline-block;
+  }
+  ul {
+    padding-left: 0;
+  }
+  .half {
+    margin: 0;
+    width: 50%;
+    padding-left: .5rem;
+    &:nth-of-type(1) {
+      padding-right: .5rem;
+      padding-left: 0;
+    }
+  }
+  .full {
+    width: 98.5%;
+  }
 }
-.yourTurn{
-  width: 120px;
-  display: inline-block;
-  background-color: green;
-  padding: .5rem 0;
-  color: white;
-  border: solid #000000;
-}
-.thereTurn{
-  display: inline-block;
-  background-color: orangered;
-  width: 120px;
-  padding: .5rem 0;
-  color: white;
-  border: solid #000000;
-}
-.newGame{
-  display: inline-block;
-  background-color: blue;
-  margin: 0;
-  width: 120px;
-  padding: .5rem 0;
-  color: white;
-  border: solid #000000;
-}
+
+
 
 .about_unit {
   height: 100px;
@@ -120,7 +122,7 @@ td{
 
 /* ----- =columns ----- */
 .one_half {
-  border: greenyellow solid 3px;
+//  border: greenyellow solid 3px;
 
   width: 460px;
 }
@@ -135,12 +137,12 @@ td{
 
 .one_fourth {
   width: 220px;
-  border: red solid 3px;
+//  border: red solid 3px;
 }
 
 .three_fourth {
   width: 700px;
-  border: greenyellow solid 3px;
+//  border: greenyellow solid 3px;
 }
 
 .full_column {
@@ -151,21 +153,21 @@ td{
 .wrapper {
   margin: auto;
   width: 960px;
-//    border: solid green 1px;
-//    background: #0000ff; /* Old browsers */
+  //    border: solid green 1px;
+  //    background: #0000ff; /* Old browsers */
   //  background: -webkit-linear-gradient(right top, $temp2, $temp3);
 }
 
-.radio{
+.radio {
   display: block;
   width: 100%;
-//  height: 50px;
+  //  height: 50px;
   text-align: center;
-//  position: static;
+  //  position: static;
   float: left;
 }
 
-.submit{
+.submit {
   display: block;
   float: left;
 }
@@ -205,22 +207,27 @@ article {
 //  margin-top: 170px;
 //}
 
-
 .startGameButton {
   height: 80px;
   width: 200px;
   font-size: 24px;
-  margin: 120px 0 0 -382px;
+  margin: 120px 0 0 -450px;
 }
 
 .randomSetUpButton {
-  margin: 260px 0 0 -350px;
+  margin: 260px 0 0 -420px;
+  opacity: 0;
+}
+
+.pleaseWait{
+  margin: 120px 0 0 -505px;
   opacity: 0;
 }
 
 .auxSpace {
   height: 150px;
   width: 320px;
+  margin-left: -510px;
   background-color: orangered;
   border: solid #000000 3px;
   text-align: center;
@@ -404,8 +411,6 @@ polygon {
   stroke: limegreen;
   z-index: 11;
 }
-
-
 
 //CSS for each row of Hexagons.
 .grid {

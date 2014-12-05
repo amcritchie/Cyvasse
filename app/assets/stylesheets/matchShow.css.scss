@@ -9,14 +9,41 @@
   .hideSelectedUnitInfo {
     visibility: hidden;
   }
-  .matchUp {
-    background-color: yellow;
+  #matchInfo{
+//    text-align: center;
+    background-color: #666;
+    border: solid #000000 2px;
+    .matchUp {
+//          background-color: yellow;
+      border-bottom: solid 2px;
+      height: 160px;
+      text-align: center;
+      .usernameAndImage{
+        vertical-align: middle;
+        display: block;
+        width: 100%;
+        margin: 0;
+      }
+      h5{
+        display: inline-block;
+//        margin-top: 10px;
+        margin-bottom: -10px;
+      }
+      img{
+        display: inline-block;
+        width: 50px
+      }
+    }
   }
+
   .unitStats {
+
     text-align: center;
     height: 220px;
     //    width: 60px;
     background-color: blueviolet;
+    border-bottom: solid 2px;
+
     .selectUnitImage {
       //      background-color: red;
       display: inline-block;
@@ -48,7 +75,7 @@
     }
   }
   .toggleOptions {
-    background-color: greenyellow;
+//    background-color: greenyellow;
     text-align: center;
     button {
       width: 100px;

@@ -1,0 +1,112 @@
+$(document).ready(function () {
+
+
+    var client = new Keen({
+        projectId: "<%= ENV['KEEN_PROJECT_ID']%>",
+        readKey: "<%= ENV['KEEN_READ_KEY'] %>"
+    });
+
+
+    Keen.ready(function () {
+
+        var signupsPerDay = new Keen.Query("count", {
+            timeframe: "this_week",
+            interval: "daily",
+            eventCollection: "sign_ups"
+        });
+        client.draw(signupsPerDay, document.getElementById("signupsPerDay"), {
+            chartType: "columnchart",
+            title: "Sign Ups/Day",
+            colors: ["#666"],
+            width: "auto"
+        });
+
+        var signupsPerWeek = new Keen.Query("count", {
+            timeframe: "this_month",
+            interval: "daily",
+            eventCollection: "sign_ups"
+        });
+        client.draw(signupsPerWeek, document.getElementById("signupsPerWeek"), {
+            chartType: "columnchart",
+            title: "Sign Ups/Day",
+            colors: ["#666"],
+            width: "auto"
+        });
+
+
+        var loginsPerDay = new Keen.Query("count", {
+            timeframe: "this_week",
+            interval: "daily",
+            eventCollection: "sign_ups"
+        });
+        client.draw(loginsPerDay, document.getElementById("loginsPerDay"), {
+            chartType: "columnchart",
+            title: "Logins/Day",
+            colors: ["#666"],
+            width: "auto"
+        });
+
+        var loginsPerWeek = new Keen.Query("count", {
+            timeframe: "this_month",
+            interval: "daily",
+            eventCollection: "sign_ups"
+        });
+        client.draw(loginsPerWeek, document.getElementById("loginsPerWeek"), {
+            chartType: "columnchart",
+            title: "Logins/Day",
+            colors: ["#666"],
+            width: "auto"
+        });
+
+        var gamesStartedPerDay = new Keen.Query("count", {
+            timeframe: "this_week",
+            interval: "daily",
+            eventCollection: "sign_ups"
+        });
+        client.draw(gamesStartedPerDay, document.getElementById("gamesStartedPerDay"), {
+            chartType: "columnchart",
+            title: "Games Started/Day",
+            colors: ["#666"],
+            width: "auto"
+        });
+
+        var gamesStartedPerWeek = new Keen.Query("count", {
+            timeframe: "this_month",
+            interval: "daily",
+            eventCollection: "sign_ups"
+        });
+        client.draw(gamesStartedPerWeek, document.getElementById("gamesStartedPerWeek"), {
+            chartType: "columnchart",
+            title: "Games Started/Day",
+            colors: ["#666"],
+            width: "auto"
+        });
+
+
+        var gamesFinishedPerDay = new Keen.Query("count", {
+            timeframe: "this_week",
+            interval: "daily",
+            eventCollection: "sign_ups"
+        });
+        client.draw(gamesFinishedPerDay, document.getElementById("gamesFinishedPerDay"), {
+            chartType: "columnchart",
+            title: "Games Finished/Day",
+            colors: ["#666"],
+            width: "auto"
+        });
+
+        var gamesFinishedPerWeek = new Keen.Query("count", {
+            timeframe: "this_month",
+            interval: "daily",
+            eventCollection: "sign_ups"
+        });
+        client.draw(gamesFinishedPerWeek, document.getElementById("gamesFinishedPerWeek"), {
+            chartType: "columnchart",
+            title: "Games Finished/Day",
+            colors: ["#666"],
+            width: "auto"
+        });
+
+    });
+
+});

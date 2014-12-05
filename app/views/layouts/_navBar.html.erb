@@ -1,4 +1,5 @@
 <div class="navBar">
+
   <article class="root">
     <h3><%= link_to 'Cyvasse', root_path %></h3>
   </article>
@@ -12,9 +13,9 @@
 
   <article class="navLogin">
     <% if session[:user_id] == nil %>
-        <%= link_to 'Login', login_path %>
+        <h6><%= link_to 'Login', login_path %></h6>
     <% else %>
-        <%= link_to 'Logout', logout_path, method: :delete %>
+        <h6><%= link_to 'Logout', logout_path, method: :delete %></h6>
     <% end %>
   </article>
 </div>

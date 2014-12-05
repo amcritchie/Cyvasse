@@ -73,7 +73,7 @@ var Offense = {
             Offense.updateMeleeRange(); // <---- slow!!!!!
         }
 
-        $allHexagons.attr('class', 'hexPolygon');
+        $allHexPoly.attr('class', 'hexPolygon');
     },
     updateMoveRange: function (range) {
 

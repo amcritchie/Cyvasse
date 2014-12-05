@@ -123,8 +123,10 @@ function oldGame() {
 
 $(document).ready(function () {
 
-    InitialMatchLoad.onPageLoad();
-    $allHexagons = $('polygon');
+    if ($("#matchShow").length > 0) {
+        InitialMatchLoad.onPageLoad();
+    }
+//    $allHexagons = $('polygon');
 
 //  Json
     var pieceAtt;

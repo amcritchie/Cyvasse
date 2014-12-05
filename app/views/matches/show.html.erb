@@ -2,11 +2,17 @@
   <article class="three_fourth">
     <div id="match"></div>
   </article>
-  <article class="one_fourth">
+  <article id="matchInfo" class="one_fourth">
     <div class="matchUp">
-      <%= current_user.username %>
+      <article class="usernameAndImage">
+        <h5><%= current_user.first_name_or_username(current_user) %></h5>
+        <%= link_to image_tag(current_user.image_url), user_path(current_user) %>
+      </article>
       <br> vs <br>
-      <%= enemy_user.username %>
+      <article class="usernameAndImage">
+        <h5><%= enemy_user.first_name_or_username(enemy_user) %></h5>
+        <%= link_to image_tag(enemy_user.image_url), user_path(current_user) %>
+      </article>
     </div>
     <div class="unitStats">
 

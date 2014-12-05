@@ -1,15 +1,69 @@
-<article class="one_fourth">
-  Welcome back <%= current_user.username %>
-  <br>
-  <%= link_to "Play Computer", create_computer_match_path, method: :post, class: 'vsComputer' %>
-  <br>
-  <%= link_to "Play Admin", create_player_match_path, method: :post, class: 'vsComputer' %>
+<article id="userColumn" class="one_fourth">
+
+  <div class="profImage">
+    <%= link_to image_tag(current_user.image_url), edit_user_path(current_user) %>
+  </div>
+
+  <div>
+    <h2>
+      <%= link_to current_user.name_or_username, edit_user_path(current_user) %>
+
+    </h2>
+  </div>
+
+  <br><br>
+
+  <div>
+    <%= form_for :opponent, url: create_computer_match_path, method: :post, html: {class: 'playComp'} do |f| %>
+        <%= button_tag 'Play Computer', class: 'newMatch' %>
+    <% end %>
+
+    <p style="margin-bottom: 2px">or</p>
+    <%= form_for :opponent, url: create_player_match_path, method: :post, html: {class: 'playUser'} do |f| %>
+        <%= button_tag 'Play User', class: 'newMatch' %>
+        <div>
+          <%= f.radio_button :which_user, 'Random User', :checked => true %>
+          <%= f.label :which_user, 'Play Random User' %>
+        </div>
+        <div>
+          <%= f.radio_button :which_user, 'Chosen User' %>
+          <%= f.label :which_user, 'Play' %>
+          <%= f.text_field :username, class: 'usernameField', placeholder: 'username' %>
+        </div>
+        <div class="flashFail">
+          <h6><%= flash[:cant_find_username] %></h6>
+        </div>
+    <% end %>
+  </div>
 
   <br>
-  <%= link_to "Two Player", new_match_path, class: 'vsComputer' %>
 
+  <table id="onlineUsers">
+    <h5>Online Users</h5>
+    <thead>
+    <tr>
+      <th>Online</th>
+      <th>Username</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @lastTenUsers.each_with_index do |user, index| %>
+        <tr>
+          <td>Yes</td>
+          <td><%= user.username %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
 </article>
+
 <article class="three_fourth">
+
+  <div id="messageDock">
+    <div class="flashSuccess"><h5><%= flash[:success] %></h5></div>
+    <div class="flashError"><h5><%= flash[:error] %></h5></div>
+
+  </div>
 
   <h1>Games</h1>
 
@@ -44,14 +98,14 @@
           <td><%= index + 1 %></td>
           <td>
             <% if (match.turn == 0) %>
-                <%= link_to 'New Game', match_path(match), class: 'newGame' %>
+                <%= link_to 'New Game', match_path(match), class: 'toMatchButton newGame' %>
             <% else %>
-                <%= link_to info[0], match_path(match), class: info[1] %>
+                <%= link_to info[0], match_path(match), class: "toMatchButton #{info[1]}" %>
             <% end %>
           </td>
           <td><%= link_to match.turn %></td>
           <td>
-            <%= User.find(info[2]).username.capitalize %>
+            <%= User.find(info[2]).name_or_username %>
           </td>
           <td><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?'} %></td>
         </tr>
@@ -60,3 +114,4 @@
   </table>
 
 </article>
+

@@ -27,8 +27,7 @@ class UsersController < ApplicationController
 
     if @user.save
       Keen.publish(:sign_ups, { :username => @user.username }) if Rails.env.production?
-      Keen.publish(:test_sign_ups, { :username => @user.username }) if Rails.env.development?
-
+      flash[:success] = "Welcome to Cyvasse #{@user.username}"
       session[:user_id] = @user.id
       redirect_to root_path
     else
@@ -39,14 +38,12 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if current_user.id == params[:id].to_i
+      @user = User.find(params[:id])
+      @user.update(user_params)
+      redirect_to root_path
+    else
+      redirect_to :back
     end
   end
 
@@ -68,6 +65,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:username, :email, :password, :image, :first_name, :last_name)
     end
 end
