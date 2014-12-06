@@ -9,8 +9,8 @@ class Mountain < Unit
         :codename => "mountain",
         :image => "svgs/mountain.svg",
 
-        :movement => 0,
-        :strength => 9,
+        :movement => 'Immovable',
+        :strength => 'Impassable',
         :range => 0,
         :flank => 0,
         :trump => nil

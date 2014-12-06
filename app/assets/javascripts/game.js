@@ -18,6 +18,7 @@ var Game = {
 
     whoStarted: null,
     startTime: null,
+    whosTurn: null,
 
     offense: null,
     defense: null,
@@ -27,6 +28,7 @@ var Game = {
 
     playingAI: false,
     playingAsAI: false,
+    firstGame: false,
 
     currentUser: null,
     homeUser:null,
@@ -41,6 +43,9 @@ var Game = {
     awayUnitsString: null,
 
     grabMatchData: function(){
+
+        Game.firstGame = document.getElementById('firstGame').innerHTML;
+
         Game.currentUser = parseInt(document.getElementById('currentUserID').innerHTML);
         Game.homeUser = parseInt(document.getElementById('homeID').innerHTML);
         Game.awayUser = parseInt(document.getElementById('awayID').innerHTML);
@@ -64,6 +69,8 @@ var Game = {
             Opponent.unitsPos = document.getElementById('homeUnitsPos').innerHTML;
         } else{
         }
+
+        Game.whosTurn = parseInt(document.getElementById('whosTurn').innerHTML);
 
         Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
         Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
@@ -121,7 +128,6 @@ var Game = {
 
         var team0distance = (Math.abs(6 - $team0King.parent().data('ypos')));
         var team1distance = (Math.abs(6 - $team1King.parent().data('ypos')));
-
 
         if (team0distance > team1distance) {
             Game.offense = 1;
@@ -193,6 +199,12 @@ var Game = {
         Game.runTurn();
     },
 
+    finishedGame: function (){
+        PlaceUnits.byArray(GameStatus.convertStringToArray(Game.homeUnitsString),1);
+        PlaceUnits.byArray(GameStatus.convertStringToArray(Game.awayUnitsString),0);
+        Rotator.createAndRotateOn('over', 'Team: '+Game.whosTurn+' wins, at turn ' + Game.turn + '.');
+    },
+
     moveUnits: function (positionArray, team) {
         var unit = $('[data-team=' + team + '][data-index=' + positionArray[0] + ']');
         if (positionArray[1] == 'g' + team) {
@@ -214,16 +226,21 @@ var Game = {
         Game.turn += 1;
         Game.defense = Game.offense;
         Game.offense = Math.abs(Game.offense - 1);
-
         GameStatus.saveGameStatus();
-
         Game.runTurn();
     },
 
     over: function(){
+        GameStatus.saveGameStatus();
         var stop = new Date();
         var teamNum = Game.offense;
         Rotator.createAndRotateOn('over', 'Team: '+teamNum+' wins, at turn ' + Game.turn + '.  The game took '+parseInt((stop - Game.startTime)/1000)+'s');
+        $.ajax({
+            type: 'put',
+            url: '/finish_game',
+            data: {match_id: Game.matchID, winner: Game.offense},
+            dataType: 'json'
+        });
     }
 };
 

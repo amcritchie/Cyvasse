@@ -128,14 +128,4 @@ $(document).ready(function () {
     }
 //    $allHexagons = $('polygon');
 
-//  Json
-    var pieceAtt;
-    var getPieceAttributes = function () {
-        var pieceJson = $.getJSON('/piece_attributes');
-        pieceJson.success(function (jsonResponse) {
-            pieceAtt = jsonResponse;
-            console.log(jsonResponse)
-        });
-    };
-    getPieceAttributes();
 });

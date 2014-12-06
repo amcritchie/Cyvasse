@@ -3,33 +3,42 @@
   position: relative;
   width: 960px;
   //  height: 800px;
+
+  [data-team='1'][data-status='alive'] {
+    border: 2px solid blue;
+    border-radius:  40px;
+  }
+  [data-team='0'][data-status='alive'] {
+    border: 2px solid red;
+    border-radius:  40px;
+  }
   article {
   }
 
   .hideSelectedUnitInfo {
     visibility: hidden;
   }
-  #matchInfo{
-//    text-align: center;
+  #matchInfo {
+    //    text-align: center;
     background-color: #666;
     border: solid #000000 2px;
     .matchUp {
-//          background-color: yellow;
+      //          background-color: yellow;
       border-bottom: solid 2px;
       height: 160px;
       text-align: center;
-      .usernameAndImage{
+      .usernameAndImage {
         vertical-align: middle;
         display: block;
         width: 100%;
         margin: 0;
       }
-      h5{
+      h5 {
         display: inline-block;
-//        margin-top: 10px;
+        //        margin-top: 10px;
         margin-bottom: -10px;
       }
-      img{
+      img {
         display: inline-block;
         width: 50px
       }
@@ -75,7 +84,7 @@
     }
   }
   .toggleOptions {
-//    background-color: greenyellow;
+    //    background-color: greenyellow;
     text-align: center;
     button {
       width: 100px;

@@ -16,14 +16,18 @@ Rails.application.routes.draw do
   put 'update_away_units_position' => 'matches#update_away_units_position'
   put 'home_user_ready' => 'matches#home_user_ready'
   put 'away_user_ready' => 'matches#away_user_ready'
+  put 'finish_game' => 'matches#finish_game'
 
   post "create_computer_match" => "matches#create_match_vs_computer"
+  get "create_computer_match" => "matches#create_match_vs_computer"
+
   post "create_player_match" => "matches#create_match_vs_player"
 
 
   resource :session, only: [:new, :create, :destroy]
 
   get '/about', to: 'home#about'
+  get '/contact', to: 'home#contact'
 
   resources :game_statuses
 

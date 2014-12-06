@@ -12,11 +12,10 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       flash[:success] = "Welcome back #{@user.username}"
-      # flash[:success] = "Welcome, #{@user.username}!"
       redirect_to root_path
     else
       @user = User.new(email: params[:user][:email])
-      @user.errors[:base] << "Username / password is invalid."
+      flash[:error] = "Username / password is invalid."
       render :new
     end
   end

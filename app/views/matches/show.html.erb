@@ -22,7 +22,7 @@
 
 
       <article class="selectUnitImage hideSelectedUnitInfo">
-        <%= image_tag "elephant.svg", :class => "selectedUnitImage", :id => 'selectedUnitImage' %>
+        <%= image_tag "", :class => "selectedUnitImage", :id => 'selectedUnitImage' %>
       </article>
 
       <article class="selectUnitStats hideSelectedUnitInfo">
@@ -73,13 +73,19 @@
 </div>
 <div id=metaInfo>
   <article class="one_fourth">
+    <% if @match.created_at - current_user.created_at < 1 %>
+        <a id="firstGame"><%= true %></a>
+        <% else %>
+        <a id="firstGame"><%= false %></a>
+  <% end %>
+
+    <a id="whosTurn"><%= @match.whos_turn %></a>
     <a id="currentUserID"><%= current_user.id %></a>
     <a id="homeID"><%= @match.home_user_id %></a>
     <a id="awayID"><%= @match.away_user_id %></a>
 
     <a id="homeReady"><%= @match.home_ready %></a>
     <a id="awayReady"><%= @match.away_ready %></a>
-
 
     <a id="matchID"><%= @match.id %></a>
     <a id="matchTurn"><%= @match.turn %></a>
@@ -93,5 +99,8 @@
     <a id="awayUnitsPos"><%= @match.away_units_position %></a>
   </article>
 </div>
+
+
+
 
 

@@ -7,7 +7,7 @@ class Dragon < Unit
         :name => "Dragon",
         :codename => "dragon",
         :image => "svgs/dragon.svg",
-        :movement => 6,
+        :movement => 'Any distance in a line',
         :strength => 5,
         :range => 0,
         :flank => 0,

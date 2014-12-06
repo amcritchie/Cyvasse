@@ -16,11 +16,16 @@ var InitialMatchLoad = {
         $allHexPoly.css('fill', 'black');
     },
     readyFunctions: function(){
-        if (Opponent.ready == 'true') {
-            InitialMatchLoad.loadOldGame();
+        if (Game.matchStatus == 'finished'){
+            InitialMatchLoad.finishedGame();
         } else {
-            InitialMatchLoad.readyPlayer()
+            if (Opponent.ready == 'true') {
+                InitialMatchLoad.loadOldGame();
+            } else {
+                InitialMatchLoad.readyPlayer();
+            }
         }
+
     },
     notReadyFunctions: function(){
         PreGame.initialize();
@@ -64,5 +69,9 @@ var InitialMatchLoad = {
         Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
         Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
         Game.oldGame();
+    },
+    finishedGame: function(){
+        Game.offense = parseInt(document.getElementById('whosTurn').innerHTML);
+        Game.finishedGame()
     }
 };

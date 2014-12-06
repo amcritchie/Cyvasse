@@ -62,7 +62,6 @@
   <div id="messageDock">
     <div class="flashSuccess"><h5><%= flash[:success] %></h5></div>
     <div class="flashError"><h5><%= flash[:error] %></h5></div>
-
   </div>
 
   <h1>Games</h1>
@@ -99,6 +98,8 @@
           <td>
             <% if (match.turn == 0) %>
                 <%= link_to 'New Game', match_path(match), class: 'toMatchButton newGame' %>
+            <% elsif (match.match_status == 'finished') %>
+                <%= link_to 'Finished', match_path(match), class: 'toMatchButton newGame' %>
             <% else %>
                 <%= link_to info[0], match_path(match), class: "toMatchButton #{info[1]}" %>
             <% end %>

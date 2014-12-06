@@ -32,6 +32,9 @@ Rails.application.configure do
   # Generate digests for assets URLs.
   config.assets.digest = true
 
+
+  config.autoload_paths += Dir[Rails.root.join('app', 'models', '**', '*.rb')]
+
   # `config.assets.precompile` has moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.

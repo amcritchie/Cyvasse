@@ -108,6 +108,25 @@ class MatchesController < ApplicationController
     )
   end
 
+  def finish_game
+    @match = Match.find(params[:match_id])
+    @match.update(match_status: 'finished')
+
+    if params[:winner] == '1'
+      winner = User.find(@match.home_user_id)
+      loser = User.find(@match.away_user_id)
+    else
+      winner = User.find(@match.away_user_id)
+      loser = User.find(@match.home_user_id)
+    end
+    winner.update(
+        wins: (winner.wins + 1)
+    )
+    loser.update(
+        losses: (loser.losses + 1)
+    )
+  end
+
   def update_match_info
     @match = Match.find(params[:match_id])
     @match.update(

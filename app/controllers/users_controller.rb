@@ -13,9 +13,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-
   end
-
 
   def create
     @user = User.new(user_params)
@@ -29,7 +27,7 @@ class UsersController < ApplicationController
       Keen.publish(:sign_ups, { :username => @user.username }) if Rails.env.production?
       flash[:success] = "Welcome to Cyvasse #{@user.username}"
       session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to create_computer_match_path, method: :post
     else
       render :new
     end
