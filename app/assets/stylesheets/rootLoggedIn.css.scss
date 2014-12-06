@@ -134,6 +134,60 @@
   }
 }
 
+#gameIndex{
+//  height: 240px;
+  min-height: 240px;
+}
+
+#finishedGamesTable{
+  th{
+    font-size: 10px;
+    padding: 3px;
+    &:nth-of-type(1) {width: 30%}
+    &:nth-of-type(2) {
+      width: 20%;
+      font-size: 8px;
+    }
+    &:nth-of-type(3) {width: 50%}
+  }
+  td{
+    padding: 0;
+    &:nth-of-type(1) {
+      font-size: 12px;
+    }
+    &:nth-of-type(2) {
+      font-size: 10px;
+    }
+    &:nth-of-type(3) {
+      font-size: 10px;
+    }
+  }
+}
+
+#onlinePlayersTable{
+  th{
+    font-size: 10px;
+    padding: 3px;
+    &:nth-of-type(1) {width: 10%}
+    &:nth-of-type(2) {
+      width: 40%;
+      font-size: 10px;
+    }
+    &:nth-of-type(3) {width: 18%}
+  }
+  td{
+    padding: 0;
+    &:nth-of-type(1) {
+      font-size: 12px;
+    }
+    &:nth-of-type(2) {
+      font-size: 10px;
+    }
+    &:nth-of-type(3) {
+      font-size: 10px;
+    }
+  }
+}
 
 th {
   text-align: center;

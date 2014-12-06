@@ -36,6 +36,18 @@ class User < ActiveRecord::Base
   def total_matches(user_id)
     home_games = Match.where(home_user_id: user_id).length
     away_games = Match.where(away_user_id: user_id).length
-    total_game = home_games + away_games
+    (home_games + away_games).sort_by &:created_at
+  end
+
+  def active_matches(user_id)
+    home_games = Match.where(home_user_id: user_id).where.not(match_status: 'finished')
+    away_games = Match.where(away_user_id: user_id).where.not(match_status: 'finished')
+    (home_games + away_games).sort_by &:created_at
+  end
+
+  def finished_matches(user_id)
+    home_games = Match.where(home_user_id: user_id, match_status: 'finished')
+    away_games = Match.where(away_user_id: user_id, match_status: 'finished')
+    (home_games + away_games).sort_by &:created_at
   end
 end

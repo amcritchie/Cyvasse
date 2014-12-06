@@ -5,8 +5,10 @@ class HomeController < ApplicationController
   end
 
   def root
-    @matches = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id])
-    @lastTenUsers = User.order('created_at DESC').limit(5)
+    # @matches = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id])
+    @matches = current_user.active_matches(session[:user_id])
+    @finishedMatches = current_user.finished_matches(session[:user_id]).last(10).reverse
+    @lastTenUsers = User.order('created_at DESC').limit(10)
   end
 
   def about

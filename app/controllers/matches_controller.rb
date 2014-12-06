@@ -56,7 +56,7 @@ class MatchesController < ApplicationController
         turn: 0
     )
 
-    if (current_user.total_matches(current_user) <= 5) || (current_user.account_type == 'premium')
+    if (current_user.active_matches(current_user).length <= 5) || (current_user.account_type == 'premium')
       @match.save
       redirect_to match_path(@match)
     else
@@ -76,7 +76,7 @@ class MatchesController < ApplicationController
         turn: 0
     )
 
-    if (current_user.total_matches(current_user) < 5) || (current_user.account_type == 'premium')
+    if (current_user.active_matches(current_user).length < 5) || (current_user.account_type == 'premium')
       if params[:opponent][:which_user] == 'Random User'
         @match.away_user_id = 1
         @match.save

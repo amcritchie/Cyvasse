@@ -9,4 +9,11 @@ class Match < ActiveRecord::Base
     super
     # hash = {}
   end
+
+  def active_matches(user_id)
+    home_games = Match.where(home_user_id: user_id)
+    away_games = Match.where(away_user_id: user_id)
+    home_games + away_games
+  end
+
 end
