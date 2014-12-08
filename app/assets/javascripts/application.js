@@ -21,13 +21,66 @@ var $allHexPoly;
 
 $(document).ready(function () {
 
-    setTimeout(function(){
+    setTimeout(function () {
         $('#messageDock').children().fadeOut('slow')
-    },3000);
+    }, 3000);
 
-    setTimeout(function(){
+    setTimeout(function () {
         $('.flashFail').children().fadeOut('slow')
-    },3000);
+    }, 3000);
+
+    $('[data-linkType = "favorite"]').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        favoriteUser(e, parseInt($(this).attr('data-favorited')));
+    });
+
+    $('[data-linkType = "unfavorite"]').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        unfavoriteUser(e, parseInt($(this).attr('data-favorited')));
+    });
+
+    function favoriteUser(ele, userID) {
+        $.post('/users/' + userID + '/favorites.json').success();
+        var favoriteLinks = $('[data-linkType=favorite][data-favorited=' + userID + ']');
+        favoriteLinks.off('click');
+        favoriteLinks.empty().text('Unfavorite').attr('data-linkType', 'unfavorite').off('click');
+
+        $('#favorites').append(
+                '<div class="favorite" data-favorited='+userID+'>' +
+                'qweasd' +
+                '</div>'
+        );
+
+        setTimeout(function () {
+            favoriteLinks.on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                unfavoriteUser(ele, userID);
+            })
+        }, 10);
+    }
+
+    function unfavoriteUser(ele, userID) {
+        $.ajax({
+            type: 'delete',
+            url: ('/users/' + userID + '/favorites/' + userID),
+            dataType: 'json'
+        });
+        var div = $('.favorite[data-favorited=' + userID + ']');
+        var links = $('[data-linkType=unfavorite][data-favorited=' + userID + ']');
+        div.off('click').remove();
+        links.empty().text('Favorite').attr('data-linkType', 'favorite').off('click');
+
+        setTimeout(function () {
+            links.on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                favoriteUser(ele, userID);
+            })
+        }, 10);
+    }
 
     // underline under the active nav item
 //    $(".nav .nav-link").click(function () {

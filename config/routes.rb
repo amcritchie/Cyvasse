@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root to: 'home#root'
 
-  resources :users
+  resources :users do
+    resources :favorites, only: [:create, :destroy, :index]
+  end
   resources :matches
   resources :world_statuses
 

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :matches
+  has_many :favorites
 
   mount_uploader :image, AvatarUploader
 
@@ -49,5 +50,14 @@ class User < ActiveRecord::Base
     home_games = Match.where(home_user_id: user_id, match_status: 'finished')
     away_games = Match.where(away_user_id: user_id, match_status: 'finished')
     (home_games + away_games).sort_by &:created_at
+  end
+
+  def add_win
+    p '++++'*70
+    p self
+    self.update(
+        wins: self.wins + 1
+    )
+    p self
   end
 end

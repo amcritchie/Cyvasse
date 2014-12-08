@@ -120,6 +120,11 @@
   height: 50px;
   .flashSuccess{
     color: green;
+    background-color: orangered;
+    position: absolute;
+    h4{
+      background-color: aquamarine;
+    }
     h5{
       padding-top: 7px;
       padding-left: 15px;
@@ -127,6 +132,9 @@
   }
   .flashError{
     color: red;
+    background-color: yellow;
+    position: absolute;
+
     h5{
       padding-top: 7px;
       padding-left: 15px;
@@ -138,6 +146,32 @@
 //  height: 240px;
   min-height: 240px;
 }
+
+#favorites{
+  text-align: center;
+  .favorite{
+    width: 70px;
+    height: 80px;
+    display: block;
+    float: left;
+    .unfavorite{
+      font-size: 8px;
+    }
+    a{
+      font-size: 10px;
+      display: block;
+    }
+    img{
+      width: 40px;
+      height: 45px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+}
+
 
 #finishedGamesTable{
   th{

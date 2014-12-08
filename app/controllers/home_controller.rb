@@ -6,9 +6,13 @@ class HomeController < ApplicationController
 
   def root
     # @matches = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id])
-    @matches = current_user.active_matches(session[:user_id])
-    @finishedMatches = current_user.finished_matches(session[:user_id]).last(10).reverse
-    @lastTenUsers = User.order('created_at DESC').limit(10)
+    if current_user != nil
+      @matches = current_user.active_matches(session[:user_id])
+      @finishedMatches = current_user.finished_matches(session[:user_id]).last(10).reverse
+      @lastTenUsers = User.order('created_at DESC').limit(10)
+      @favorites = Favorite.where(favoriter: current_user)
+    end
+
   end
 
   def about

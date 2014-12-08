@@ -184,6 +184,14 @@ class MatchesController < ApplicationController
   # DELETE /matches/1
   # DELETE /matches/1.json
   def destroy
+    p '-+'*80
+    p @match
+    if current_user.id == @match.home_user_id
+      User.find(@match.away_user_id).add_win
+    else
+      p 'he is away'
+    end
+
     @match.destroy
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Match was successfully destroyed.' }
