@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
+      Keen.publish(:logins, { :username => @user.username }) if Rails.env.production?
       flash[:success] = "Welcome back #{@user.username}"
       redirect_to root_path
     else

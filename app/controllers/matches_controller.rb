@@ -101,6 +101,7 @@ class MatchesController < ApplicationController
 
   def start_game
     @match = Match.find(params[:match_id])
+    Keen.publish(:new_games, {home_user: @match.home_user_id, away_user: @match.away_user_id }) if Rails.env.production?
     @match.update(
         who_started: params[:who_started],
         whos_turn: params[:who_started],
@@ -119,6 +120,8 @@ class MatchesController < ApplicationController
       winner = User.find(@match.away_user_id)
       loser = User.find(@match.home_user_id)
     end
+    Keen.publish(:finish_games, {winner: winner.id, loser: loser.id, turn: @match.turn}) if Rails.env.production?
+
     winner.update(
         wins: (winner.wins + 1)
     )

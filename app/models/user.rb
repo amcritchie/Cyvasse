@@ -52,17 +52,17 @@ class User < ActiveRecord::Base
     (home_games + away_games).sort_by &:created_at
   end
 
-  def add_win
-    user = User.find(user_id)
-    wins = user.wins
-    p '++++'*70
-    p self
-    p user
-    p wins
-    user.update(
-        wins: wins + 1
-    )
-  end
+  # def add_win
+  #   user = User.find(user_id)
+  #   wins = user.wins
+  #   p '++++'*70
+  #   p self
+  #   p user
+  #   p wins
+  #   user.update(
+  #       wins: wins + 1
+  #   )
+  # end
 
   def resign(quitter, match)
     if quitter.id == match.home_user_id

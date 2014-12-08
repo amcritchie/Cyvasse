@@ -13,6 +13,10 @@ class HomeController < ApplicationController
       @favorites = Favorite.where(favoriter: current_user)
     end
 
+    @users = User.all
+    @matches = Match.all
+
+
   end
 
   def about
