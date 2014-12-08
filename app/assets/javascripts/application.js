@@ -18,16 +18,23 @@ var $allHexDivs;
 var $allHexSVGs;
 var $allHexPoly;
 
+var flashMessage;
+
+var Flash = {
+    animation: null,
+    message: function (type,text) {
+        clearTimeout(Flash.animation);
+        var message = type+'Message';
+        $('#messageDock').empty().prepend('<h3 class="'+type+'Message">'+text+'</h3>');
+        Flash.animation = setTimeout(function () {
+            $('#messageDock').children().fadeOut("slow");
+            clearTimeout(Flash.animation);
+        }, 1500);
+    }
+};
+
 
 $(document).ready(function () {
-
-    setTimeout(function () {
-        $('#messageDock').children().fadeOut('slow')
-    }, 3000);
-
-    setTimeout(function () {
-        $('.flashFail').children().fadeOut('slow')
-    }, 3000);
 
     $('[data-linkType = "favorite"]').on('click', function (e) {
         e.preventDefault();
@@ -47,9 +54,11 @@ $(document).ready(function () {
         favoriteLinks.off('click');
         favoriteLinks.empty().text('Unfavorite').attr('data-linkType', 'unfavorite').off('click');
 
+        Flash.message('success','Favorited');
+
         $('#favorites').append(
-                '<div class="favorite" data-favorited='+userID+'>' +
-                'qweasd' +
+                '<div class="favorite" data-favorited=' + userID + '>' +
+                'Will be added on reload' +
                 '</div>'
         );
 
@@ -70,7 +79,10 @@ $(document).ready(function () {
         });
         var div = $('.favorite[data-favorited=' + userID + ']');
         var links = $('[data-linkType=unfavorite][data-favorited=' + userID + ']');
+        Flash.message('error','Unfavorited');
+
         div.off('click').remove();
+
         links.empty().text('Favorite').attr('data-linkType', 'favorite').off('click');
 
         setTimeout(function () {

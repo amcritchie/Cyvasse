@@ -50,9 +50,6 @@ var Animation = {
         Animation.updateStroke('red', 7, distanceFromUnit,8);
         Animation.updateStroke('red', 8, distanceFromUnit,8);
 
-
-
-
     },
 
     updateStroke: function(color, code, distanceFromUnit,zIndex){

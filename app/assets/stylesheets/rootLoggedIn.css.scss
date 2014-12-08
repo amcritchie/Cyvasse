@@ -118,12 +118,28 @@
 
 #messageDock{
   height: 50px;
+  margin-top: 5px;
+  .successMessage{
+    text-align: center;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 5px;
+    width: 250px;
+  }
+  .errorMessage{
+    background-color: red;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    width: 250px;
+  }
+
   .flashSuccess{
     color: green;
-    background-color: orangered;
+//    background-color: orangered;
     position: absolute;
     h4{
-      background-color: aquamarine;
+//      background-color: aquamarine;
     }
     h5{
       padding-top: 7px;
@@ -132,7 +148,7 @@
   }
   .flashError{
     color: red;
-    background-color: yellow;
+//    background-color: yellow;
     position: absolute;
 
     h5{

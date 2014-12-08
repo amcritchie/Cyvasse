@@ -145,13 +145,12 @@
   </table>
 </article>
 <article id="favorites" class="one_fourth">
-  <h6>Fravorites</h6>
+  <h6>Favorites</h6>
   <% @favorites.each do |favorite| %>
 
       <div class="favorite" data-favorited="<%=favorite.favorited%>">
         <%= image_tag User.find(favorite.favorited).image %>
         <%= link_to User.find(favorite.favorited).username, root_path %>
-        <%= link_to 'unfavorite', root_path, class: 'unfavorite' %>
         <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.favorited} %>
       </div>
 

@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
         favorited: params[:user_id]
     )
     if @favorite.save
-      flash[:success] = "User Favorited"
+      # flash[:success] = "User Favorited"
     end
     redirect_to root_path
   end
@@ -14,7 +14,7 @@ class FavoritesController < ApplicationController
   def destroy
     favorite = Favorite.where(favoriter: current_user.id, favorited: params[:user_id])
     favorite.delete_all
-    flash[:error] = "Favorite Removed"
+    # flash[:error] = "Favorite Removed"
     redirect_to :back
   end
 
