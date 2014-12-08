@@ -10,7 +10,7 @@ $(document).ready(function () {
     Keen.ready(function () {
 
         var signupsPerDay = new Keen.Query("count", {
-            timeframe: "previous_week",
+            timeframe: "previous_7_days",
             interval: "daily",
             eventCollection: "sign_ups"
         });
@@ -35,9 +35,9 @@ $(document).ready(function () {
 
 
         var loginsPerDay = new Keen.Query("count", {
-            timeframe: "this_week",
+            timeframe: "previous_7_days",
             interval: "daily",
-            eventCollection: "sign_ups"
+            eventCollection: "logins"
         });
         client.draw(loginsPerDay, document.getElementById("loginsPerDay"), {
             chartType: "columnchart",
@@ -49,7 +49,7 @@ $(document).ready(function () {
         var loginsPerWeek = new Keen.Query("count", {
             timeframe: "this_month",
             interval: "daily",
-            eventCollection: "sign_ups"
+            eventCollection: "logins"
         });
         client.draw(loginsPerWeek, document.getElementById("loginsPerWeek"), {
             chartType: "columnchart",
@@ -59,9 +59,9 @@ $(document).ready(function () {
         });
 
         var gamesStartedPerDay = new Keen.Query("count", {
-            timeframe: "this_week",
+            timeframe: "previous_7_days",
             interval: "daily",
-            eventCollection: "sign_ups"
+            eventCollection: "new_games"
         });
         client.draw(gamesStartedPerDay, document.getElementById("gamesStartedPerDay"), {
             chartType: "columnchart",
@@ -73,7 +73,7 @@ $(document).ready(function () {
         var gamesStartedPerWeek = new Keen.Query("count", {
             timeframe: "this_month",
             interval: "daily",
-            eventCollection: "sign_ups"
+            eventCollection: "new_games"
         });
         client.draw(gamesStartedPerWeek, document.getElementById("gamesStartedPerWeek"), {
             chartType: "columnchart",
@@ -84,9 +84,9 @@ $(document).ready(function () {
 
 
         var gamesFinishedPerDay = new Keen.Query("count", {
-            timeframe: "this_week",
+            timeframe: "previous_7_days",
             interval: "daily",
-            eventCollection: "sign_ups"
+            eventCollection: "finished_games"
         });
         client.draw(gamesFinishedPerDay, document.getElementById("gamesFinishedPerDay"), {
             chartType: "columnchart",
@@ -98,7 +98,7 @@ $(document).ready(function () {
         var gamesFinishedPerWeek = new Keen.Query("count", {
             timeframe: "this_month",
             interval: "daily",
-            eventCollection: "sign_ups"
+            eventCollection: "finished_games"
         });
         client.draw(gamesFinishedPerWeek, document.getElementById("gamesFinishedPerWeek"), {
             chartType: "columnchart",

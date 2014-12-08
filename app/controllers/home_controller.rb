@@ -11,10 +11,11 @@ class HomeController < ApplicationController
       @finishedMatches = current_user.finished_matches(session[:user_id]).last(10).reverse
       @lastTenUsers = User.order('created_at DESC').limit(10)
       @favorites = Favorite.where(favoriter: current_user)
+      @allUsers = User.all
+      @allMatches = Match.all
     end
 
-    @users = User.all
-    @matches = Match.all
+
 
 
   end
