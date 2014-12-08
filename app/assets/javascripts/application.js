@@ -18,14 +18,12 @@ var $allHexDivs;
 var $allHexSVGs;
 var $allHexPoly;
 
-var flashMessage;
-
 var Flash = {
     animation: null,
-    message: function (type,text) {
+    message: function (type, text) {
         clearTimeout(Flash.animation);
-        var message = type+'Message';
-        $('#messageDock').empty().prepend('<h3 class="'+type+'Message">'+text+'</h3>');
+        var message = type + 'Message';
+        $('#messageDock').empty().prepend('<h3 class="' + type + 'Message">' + text + '</h3>');
         Flash.animation = setTimeout(function () {
             $('#messageDock').children().fadeOut("slow");
             clearTimeout(Flash.animation);
@@ -33,45 +31,27 @@ var Flash = {
     }
 };
 
+var Favorite = {
 
-$(document).ready(function () {
-
-    $('[data-linkType = "favorite"]').on('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        favoriteUser(e, parseInt($(this).attr('data-favorited')));
-    });
-
-    $('[data-linkType = "unfavorite"]').on('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        unfavoriteUser(e, parseInt($(this).attr('data-favorited')));
-    });
-
-    function favoriteUser(ele, userID) {
+    favoriteUser: function(ele,userID){
         $.post('/users/' + userID + '/favorites.json').success();
         var favoriteLinks = $('[data-linkType=favorite][data-favorited=' + userID + ']');
         favoriteLinks.off('click');
         favoriteLinks.empty().text('Unfavorite').attr('data-linkType', 'unfavorite').off('click');
-
-        Flash.message('success','Favorited');
-
+        Flash.message('success', 'Favorited');
         $('#favorites').append(
                 '<div class="favorite" data-favorited=' + userID + '>' +
                 'Will be added on reload' +
                 '</div>'
         );
+        favoriteLinks.on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            Favorite.unfavoriteUser(ele, userID);
+        });
+    },
 
-        setTimeout(function () {
-            favoriteLinks.on('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                unfavoriteUser(ele, userID);
-            })
-        }, 10);
-    }
-
-    function unfavoriteUser(ele, userID) {
+    unfavoriteUser: function(ele,userID){
         $.ajax({
             type: 'delete',
             url: ('/users/' + userID + '/favorites/' + userID),
@@ -79,27 +59,29 @@ $(document).ready(function () {
         });
         var div = $('.favorite[data-favorited=' + userID + ']');
         var links = $('[data-linkType=unfavorite][data-favorited=' + userID + ']');
-        Flash.message('error','Unfavorited');
-
+        Flash.message('error', 'Unfavorited');
         div.off('click').remove();
-
         links.empty().text('Favorite').attr('data-linkType', 'favorite').off('click');
-
-        setTimeout(function () {
-            links.on('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                favoriteUser(ele, userID);
-            })
-        }, 10);
+        links.on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            Favorite.favoriteUser(ele, userID);
+        });
     }
 
-    // underline under the active nav item
-//    $(".nav .nav-link").click(function () {
-//        $(".nav .nav-link").each(function () {
-//            $(this).removeClass("active-nav-item");
-//        });
-//        $(this).addClass("active-nav-item");
-//        $(".nav .more").removeClass("active-nav-item");
-//    });
+};
+
+$(document).ready(function () {
+
+    $('[data-linkType = "favorite"]').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        Favorite.favoriteUser(e, parseInt($(this).attr('data-favorited')));
+    });
+    $('[data-linkType = "unfavorite"]').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        Favorite.unfavoriteUser(e, parseInt($(this).attr('data-favorited')));
+    });
+
 });

@@ -74,7 +74,7 @@
             <% end %>
         <% end %>
 
-        <tr>
+        <tr data-matchID=<%= match.id %> data-opponentID=<%= info[2] %>>
           <td><%= index + 1 %></td>
           <td>
             <% if (match.turn == 0) %>
@@ -87,9 +87,14 @@
           </td>
           <td><%= link_to match.turn %></td>
           <td>
-            <%= User.find(info[2]).name_or_username %>
+            <h4><%= User.find(info[2]).name_or_username %></h4>
+            <% if Favorite.where(favoriter: current_user.id, favorited: info[2])== [] ? true : false %>
+                <h6><%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: info[2]} %></h6>
+            <% else %>
+                <h6><%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: info[2]} %></h6>
+            <% end %>
           </td>
-          <td><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <td class="Resign"><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?'} %></td>
         </tr>
     <% end %>
     </tbody>
@@ -150,7 +155,7 @@
 
       <div class="favorite" data-favorited="<%=favorite.favorited%>">
         <%= image_tag User.find(favorite.favorited).image %>
-        <%= link_to User.find(favorite.favorited).username, root_path %>
+        <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)) %>
         <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.favorited} %>
       </div>
 
@@ -164,7 +169,8 @@
     <tr>
       <th>Online</th>
       <th>Username</th>
-      <th>Win - Loss</th>
+      <th>Favorite</th>
+      <th>W - L</th>
     </tr>
     </thead>
     <tbody>
@@ -173,13 +179,16 @@
           <td>Yes</td>
           <td>
             <%= user.username %>
+
+
+
+          </td>
+          <td>
             <% if Favorite.where(favoriter: current_user.id, favorited: user.id)== [] ? true : false %>
                 <%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: user.id} %>
-          <% else %>
+            <% else %>
                 <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: user.id} %>
             <% end %>
-
-
           </td>
           <td><%= user.wins %> - <%= user.losses %></td>
         </tr>

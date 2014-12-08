@@ -10,7 +10,7 @@ $(document).ready(function () {
     Keen.ready(function () {
 
         var signupsPerDay = new Keen.Query("count", {
-            timeframe: "this_week",
+            timeframe: "previous_week",
             interval: "daily",
             eventCollection: "sign_ups"
         });

@@ -53,11 +53,25 @@ class User < ActiveRecord::Base
   end
 
   def add_win
+    user = User.find(user_id)
+    wins = user.wins
     p '++++'*70
     p self
-    self.update(
-        wins: self.wins + 1
+    p user
+    p wins
+    user.update(
+        wins: wins + 1
     )
-    p self
   end
+
+  def resign(quitter, match)
+    if quitter.id == match.home_user_id
+      opponent = User.find(match.away_user_id)
+    else
+      opponent = User.find(match.home_user_id)
+    end
+    quitter.update_attribute(:losses, opponent.wins+1)
+    opponent.update_attribute(:wins, opponent.wins+1)
+  end
+
 end

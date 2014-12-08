@@ -184,13 +184,27 @@ class MatchesController < ApplicationController
   # DELETE /matches/1
   # DELETE /matches/1.json
   def destroy
-    p '-+'*80
-    p @match
-    if current_user.id == @match.home_user_id
-      User.find(@match.away_user_id).add_win
-    else
-      p 'he is away'
-    end
+    # p '-+'*80
+    # p @match
+    # if current_user.id == @match.home_user_id
+    #   enemy_id = @match.away_user_id
+    #   opponent = User.find(enemy_id)
+    #   # opponent.add_win
+    #   # opponent.update(
+    #   #     wins: 1
+    #   # )
+    #   # p '&'*40
+    #   # p opponent
+    #   # p '-===-====='
+    # else
+    #   p 'he is away'
+    # end
+    current_user.resign(current_user,@match)
+
+    # wins = opponent.wins
+    # opponent.update(
+    #     wins: wins + 1
+    # )
 
     @match.destroy
     respond_to do |format|
