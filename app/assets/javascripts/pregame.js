@@ -97,6 +97,7 @@ var PreGame = {
     },
     onStartButtonClick: function () {
         PreGame.startButtonAjax();
+        You.ready = true;
         PreGame.initialRange.off('click');
         Rotator.rotateOff($('.startGameButton'));
         Rotator.rotateOff($('.randomSetUpButton'));

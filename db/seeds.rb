@@ -6,10 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.features)
 
-User.destroy_all
-Match.destroy_all
+# rake db:reset
 
-admin = User.create(
+admin = User.create!(
     username: 'admin',
     email: 'amcritchie@gmail.com',
     password: 'hearmeroar1254',
@@ -41,6 +40,7 @@ computers.each_with_index do |comp,index|
       password: 'hearmeroar1254',
       first_name: comp[0],
       last_name: comp[1],
+      # image: "assets/images/#{comp[0]+comp[1]}.jpg",
       wins: 0,
       losses: 0,
       admin: false,

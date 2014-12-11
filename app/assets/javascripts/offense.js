@@ -1,18 +1,84 @@
-var Offense = {
+var Validates = {
+    rabble: ['1', '3', '0', 'none'],
+    spearman: ['2', '2', '0', 'lighthorse,heavyhorse'],
+    elephant: ['4', '3', '0', 'none'],
+    lighthorse: ['2', '5', '0', 'none'],
+    heavyhorse: ['3', '4', '0', 'none'],
+    crossbowman: ['2', '1', '2', 'none'],
+    catapult: ['4', '2', '3', 'none'],
+    trebuchet: ['1', '1', '3', 'dragon'],
+    dragon: ['5', '10', '0', 'none'],
+    king: ['2', '2', '0', 'none'],
+    mountain: ['9', '0', '0', 'none'],
 
+    arrayEqual: function (a, b) {
+        if (a === b) return true;
+        if (a == null || b == null) return false;
+        if (a.length != b.length) return false;
+
+        // If you don't care about the order of the elements inside
+        // the array, you should sort both arrays here.
+
+        for (var i = 0; i < a.length; ++i) {
+            if (a[i] !== b[i]) return false;
+        }
+        return true;
+    },
+
+    unitStats: function (unit) {
+        var unitClass = unit.children('img').attr('data-codename');
+        var unitStats = [
+            unit.children('img').attr('data-attack'),
+            unit.children('img').attr('data-moverange'),
+            unit.children('img').attr('data-attackrange'),
+            unit.children('img').attr('data-trump')
+        ];
+        return !!Validates.arrayEqual(Validates[unitClass], unitStats);
+    },
+
+    combat: function (attacker, defender){
+        if (attacker.children('img').attr('data-team') == defender.children('img').attr('data-team')){
+            return false
+        }else{
+            return !!(Validates.unitStats(attacker) && Validates.unitStats(defender));
+        }
+    },
+
+    unitsPosition: function(){
+        GameStatus.setStrings();
+        if (You.team == 0) {
+            if ((You.unitsPos == GameStatus.teamZeroString)&&(Opponent.unitsPos = GameStatus.teamOneString)){
+                console.log('SSallll Good1111');
+                return true;
+            } else {
+                console.log('Now its NOT!');
+                return false;
+            }
+        } else {
+            if ((You.unitsPos == GameStatus.teamOneString)&&(Opponent.unitsPos = GameStatus.teamZeroString)){
+                console.log('SSallll Good322222');
+                return true;
+
+            } else {
+                console.log('!!!Now its NOT!!!iiii!!!!');
+                return false;
+            }
+//            You.unitsPos = GameStatus.convertArrayToString(GameStatus.teamOneArray);
+//            Opponent.unitsPos = GameStatus.convertArrayToString(GameStatus.teamZeroArray);
+        }
+    }
+};
+
+var Offense = {
     offense: null,
     defense: null,
     selectableUnits: $('hex53'),
-
     start: null,
     end: null,
-
     newLocation: null,
     oldLocation: null,
-
     moveRange: $('hex52'),
     attackRange: $('hex54'),
-
     runOffense: function (offense) {
         Offense.offense = offense;
         Offense.defense = Math.abs(offense - 1);
@@ -21,18 +87,25 @@ var Offense = {
     },
 
     registerSelectUnit: function () {
-        if (Game.offense == You.team){
+        if (Game.offense == You.team) {
             Offense.selectableUnits.on('click', function () {
-                Offense.selectUnit($(this))
+                if (Validates.unitStats($(this))){
+                    Offense.selectUnit($(this))
+                }else{
+                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
+                    setTimeout(function(){
+                        window.location.reload()
+                    },3000);
+                }
             })
         }
     },
 
     selectUnit: function (unit) {
-        $('.hexPolygon').css('fill','black');
-        $('.hexPolygon').css('stroke','white');
-        $('.hexSVG').css('overflow','hidden');
-        $('.hexSVG').css('z-index','2');
+        $('.hexPolygon').css('fill', 'black');
+        $('.hexPolygon').css('stroke', 'white');
+        $('.hexSVG').css('overflow', 'hidden');
+        $('.hexSVG').css('z-index', '2');
 
         clearInterval(Animation.function);
         SelectedUnit.update(unit.children('img'));
@@ -62,10 +135,10 @@ var Offense = {
         Offense.updateMoveRange(potentialRange);
 
 //
-        if (SelectedUnit.unit.attr('data-rank') == 'range'){
+        if (SelectedUnit.unit.attr('data-rank') == 'range') {
 
             var attackRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.attackRange).parent().parent();
-            RangeRings.createRings(SelectedUnit.unit,attackRange); // <------ Not working.
+            RangeRings.createRings(SelectedUnit.unit, attackRange); // <------ Not working.
 
             Offense.updateAttackRange();
         } else {
@@ -114,9 +187,16 @@ var Offense = {
 
     registerMovableHex: function () {
 
-        if (Game.offense == Game.currentUserIsTeam){
+        if (Game.offense == Game.currentUserIsTeam) {
             Offense.moveRange.on('click', function () {
-                Offense.moveToAttack($(this));
+                if (Validates.unitStats(SelectedUnit.unit.parent())&&Validates.unitsPosition()){
+                    Offense.moveToAttack($(this))
+                }else{
+                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
+                    setTimeout(function(){
+                        window.location.reload()
+                    },3000);
+                }
             });
         }
 
@@ -125,15 +205,22 @@ var Offense = {
 
     registerAttackUnit: function () {
 
-        if (Game.offense == Game.currentUserIsTeam){
+        if (Game.offense == Game.currentUserIsTeam) {
             Offense.attackRange.on('click', function () {
-                Offense.moveToAttack($(this))
+                if (Validates.combat(SelectedUnit.unit.parent(),$(this))&&Validates.unitsPosition()){
+                    Offense.moveToAttack($(this))
+                }else{
+                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
+                    setTimeout(function(){
+                        window.location.reload()
+                    },3000);
+                }
             });
         }
 
     },
 
-    moveToHex:function(hex){
+    moveToHex: function (hex) {
         Offense.selectableUnits.off('click');
         Offense.newLocation = hex;
         Offense.oldLocation = SelectedUnit.unit.parent();
@@ -141,10 +228,10 @@ var Offense = {
         Offense.finishTurn()
     },
 
-    moveToAttack:function(hex){
+    moveToAttack: function (hex) {
         Offense.newLocation = hex;
         Offense.oldLocation = SelectedUnit.unit.parent();
-        if (hex.children('img').length == 0){
+        if (hex.children('img').length == 0) {
             Offense.moveUnitToNewPosition();
         } else {
             Death.unitKilled(hex.children("img"));
@@ -152,7 +239,6 @@ var Offense = {
                 Offense.moveUnitToNewPosition();
             }
         }
-
         Offense.finishTurn()
     },
 
@@ -174,7 +260,7 @@ var Offense = {
         Offense.selectableUnits.off('click');
         SelectedUnit.unit = null;
 
-        if ($('[alt=king][data-status=dead]').length == 1){
+        if ($('[alt=king][data-status=dead]').length == 1) {
             Game.over();
         } else {
             Game.finishTurn();

@@ -209,7 +209,7 @@ var Game = {
         var unit = $('[data-team=' + team + '][data-index=' + positionArray[0] + ']');
         if (positionArray[1] == 'g' + team) {
             unit.attr('data-status', 'dead');
-            unit.prependTo($('#' + positionArray[1]));
+            unit.appendTo($('#' + positionArray[1]));
         } else if (positionArray[1] == 'lDock'){
 
             unit.attr('data-status', 'unplaced');
@@ -227,7 +227,18 @@ var Game = {
         Game.defense = Game.offense;
         Game.offense = Math.abs(Game.offense - 1);
         GameStatus.saveGameStatus();
+        Game.updateOpponentsObjects();
         Game.runTurn();
+    },
+
+    updateOpponentsObjects: function(){
+        if (You.team == 0) {
+            You.unitsPos = GameStatus.convertArrayToString(GameStatus.teamZeroArray);
+            Opponent.unitsPos = GameStatus.convertArrayToString(GameStatus.teamOneArray);
+        } else {
+            You.unitsPos = GameStatus.convertArrayToString(GameStatus.teamOneArray);
+            Opponent.unitsPos = GameStatus.convertArrayToString(GameStatus.teamZeroArray);
+        }
     },
 
     over: function(){

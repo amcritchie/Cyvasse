@@ -7,6 +7,9 @@ Rails.application.configure do
   # and recreated between test runs. Don't rely on the data there!
   config.cache_classes = true
 
+  config.logger = Logger.new('/dev/null')
+
+
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
   # preloads Rails for running tests, you may have to set it to true.
@@ -15,6 +18,8 @@ Rails.application.configure do
   # Configure static asset server for tests with Cache-Control for performance.
   config.serve_static_assets  = true
   config.static_cache_control = 'public, max-age=3600'
+  # ActiveRecord::Base.logger.level = 1
+
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

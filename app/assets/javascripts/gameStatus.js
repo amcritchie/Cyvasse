@@ -1,5 +1,10 @@
 var GameStatus = {
 
+    teamOneArray: null,
+    teamZeroArray: null,
+    teamOneString: null,
+    teamZeroString: null,
+
     saveHomeUnitsPosition: function(){
         var teamArray = GameStatus.saveTeam(1);
         if (You.team == 0) {
@@ -34,17 +39,22 @@ var GameStatus = {
         });
     },
 
-    saveGameStatus: function () {
-        var teamOneArray = GameStatus.saveTeam(1);
-        var teamZeroArray = GameStatus.saveTeam(0);
+    setStrings: function(){
+        GameStatus.teamOneArray = GameStatus.saveTeam(1);
+        GameStatus.teamZeroArray = GameStatus.saveTeam(0);
 
         if (You.team == 0) {
-            teamOneArray = GameStatus.mirrorArray(teamOneArray);
-            teamZeroArray = GameStatus.mirrorArray(teamZeroArray);
+            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray);
+            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray);
         }
 
-        var teamOneString = GameStatus.convertArrayToString(teamOneArray);
-        var teamZeroString = GameStatus.convertArrayToString(teamZeroArray);
+        GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray);
+        GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray);
+    },
+
+    saveGameStatus: function () {
+        GameStatus.setStrings();
+
 
         $.ajax({
             type: 'put',
@@ -53,8 +63,8 @@ var GameStatus = {
                 turn: Game.turn,
                 whos_turn: Game.offense,
                 match_id: Game.matchID,
-                home_units: teamOneString,
-                away_units: teamZeroString
+                home_units: GameStatus.teamOneString,
+                away_units: GameStatus.teamZeroString
             },
             dataType: 'json'
         });
@@ -65,7 +75,7 @@ var GameStatus = {
         $.each($('[data-team=' + team + ']'), function (index, unit) {
             if ($(unit).attr('data-status') == 'alive') {
                 array.push([$(unit).attr('data-index'), $(unit).parent().attr('data-hexIndex')]);
-            } else if (You.ready == 'true') {
+            } else if ((You.ready == true) || (You.ready == 'true')) {
                 array.push([$(unit).attr('data-index'), 'g' + team])
             } else {
                 array.push([$(unit).attr('data-index'), 'lDock'])

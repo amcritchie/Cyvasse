@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, AvatarUploader
 
-  validates_presence_of :username, :email, :password_digest, :image
+  validates_presence_of :username, :email, :password_digest
   validates_uniqueness_of :username, :email
-  validates :password_digest, length: {minimum: 4}
+  validates :password_digest, length: {minimum: 8}
 
   def my_first_name
     self.first_name.capitalize
