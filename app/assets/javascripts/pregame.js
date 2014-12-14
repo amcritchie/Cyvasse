@@ -3,15 +3,14 @@ var PreGame = {
     moveableRange: null,
     initialRange: null,
     selectedUnit: null,
+    hintOne: null,
+    hintTwo: null,
     startAnimationExecuted: false,
     initialize: function () {
         PreGame.moveableUnits = $('img[data-team=' + You.team + ']').parent();
         PreGame.initialRange = $("[data-ring=1]");
         PreGame.moveableRange = PreGame.initialRange;
     },
-//    placeUnits: function () {
-//        PlaceUnits.byArray(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
-//    },
     loadPreGameTurn: function () {
         PreGame.hexVisualUpdate();
         PreGame.resetAndUpdateUnitsAndRange();
@@ -33,6 +32,10 @@ var PreGame = {
     },
     pregameClickUnit: function () {
         PreGame.moveableUnits.on('click', function () {
+            if (Tutorial.step === 2) {
+                $('.tutorial').remove();
+                Tutorial.placeUnit();
+            }
             PreGame.moveableRange.off('click');
             PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
             PreGame.updateSelectUnit($(this));
@@ -49,6 +52,18 @@ var PreGame = {
     },
     registerClickHex: function () {
         PreGame.moveableRange.on('click', function () {
+            if (Tutorial.step === 3) {
+                $('.tutorial').remove();
+                Tutorial.secondMove();
+                PreGame.hintOne = setTimeout(function () {
+                    $('.tutorial').remove();
+                    Tutorial.goal();
+                    PreGame.hintTwo = setTimeout(function () {
+                        $('.tutorial').remove();
+                        Tutorial.whoGoesFirst();
+                    }, 7000)
+                }, 7000);
+            }
             var newLocation = $(this);
             var oldLocation = PreGame.unit.parent();
             PreGame.moveImageToMap(PreGame.unit);
@@ -75,21 +90,28 @@ var PreGame = {
         PreGame.readyForStartButton();
         PreGame.loadPreGameTurn();
     },
-    saveYourSide: function(){
-      if (You.team == 1){
-          GameStatus.saveHomeUnitsPosition()
-      }  else {
-          GameStatus.saveAwayUnitsPosition()
-      }
+    saveYourSide: function () {
+        if (You.team == 1) {
+            GameStatus.saveHomeUnitsPosition()
+        } else {
+            GameStatus.saveAwayUnitsPosition()
+        }
     },
     readyForStartButton: function () {
         if (($(".auxSpace").children().length == 0) && (PreGame.startAnimationExecuted == false)) {
             PreGame.loadStartButton()
         }
     },
-    loadStartButton: function(){
+    loadStartButton: function () {
         Rotator.rotateOff($('.auxSpace'));
         Rotator.createAndRotateOn('startGameButton', 'Start Game');
+
+        if (Game.firstGame === 'true') {
+            clearTimeout(PreGame.hintOne);
+            clearTimeout(PreGame.hintTwo);
+            $('.tutorial').remove();
+            Tutorial.startGame();
+        }
         $('.startGameButton').on('click', function () {
             PreGame.onStartButtonClick();
         });

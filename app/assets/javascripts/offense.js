@@ -1,74 +1,3 @@
-var Validates = {
-    rabble: ['1', '3', '0', 'none'],
-    spearman: ['2', '2', '0', 'lighthorse,heavyhorse'],
-    elephant: ['4', '3', '0', 'none'],
-    lighthorse: ['2', '5', '0', 'none'],
-    heavyhorse: ['3', '4', '0', 'none'],
-    crossbowman: ['2', '1', '2', 'none'],
-    catapult: ['4', '2', '3', 'none'],
-    trebuchet: ['1', '1', '3', 'dragon'],
-    dragon: ['5', '10', '0', 'none'],
-    king: ['2', '2', '0', 'none'],
-    mountain: ['9', '0', '0', 'none'],
-
-    arrayEqual: function (a, b) {
-        if (a === b) return true;
-        if (a == null || b == null) return false;
-        if (a.length != b.length) return false;
-
-        // If you don't care about the order of the elements inside
-        // the array, you should sort both arrays here.
-
-        for (var i = 0; i < a.length; ++i) {
-            if (a[i] !== b[i]) return false;
-        }
-        return true;
-    },
-
-    unitStats: function (unit) {
-        var unitClass = unit.children('img').attr('data-codename');
-        var unitStats = [
-            unit.children('img').attr('data-attack'),
-            unit.children('img').attr('data-moverange'),
-            unit.children('img').attr('data-attackrange'),
-            unit.children('img').attr('data-trump')
-        ];
-        return !!Validates.arrayEqual(Validates[unitClass], unitStats);
-    },
-
-    combat: function (attacker, defender){
-        if (attacker.children('img').attr('data-team') == defender.children('img').attr('data-team')){
-            return false
-        }else{
-            return !!(Validates.unitStats(attacker) && Validates.unitStats(defender));
-        }
-    },
-
-    unitsPosition: function(){
-        GameStatus.setStrings();
-        if (You.team == 0) {
-            if ((You.unitsPos == GameStatus.teamZeroString)&&(Opponent.unitsPos = GameStatus.teamOneString)){
-                console.log('SSallll Good1111');
-                return true;
-            } else {
-                console.log('Now its NOT!');
-                return false;
-            }
-        } else {
-            if ((You.unitsPos == GameStatus.teamOneString)&&(Opponent.unitsPos = GameStatus.teamZeroString)){
-                console.log('SSallll Good322222');
-                return true;
-
-            } else {
-                console.log('!!!Now its NOT!!!iiii!!!!');
-                return false;
-            }
-//            You.unitsPos = GameStatus.convertArrayToString(GameStatus.teamOneArray);
-//            Opponent.unitsPos = GameStatus.convertArrayToString(GameStatus.teamZeroArray);
-        }
-    }
-};
-
 var Offense = {
     offense: null,
     defense: null,
@@ -89,6 +18,10 @@ var Offense = {
     registerSelectUnit: function () {
         if (Game.offense == You.team) {
             Offense.selectableUnits.on('click', function () {
+                if (Tutorial.step == 8){
+                    $('.tutorial').remove();
+                    Tutorial.attack();
+                }
                 if (Validates.unitStats($(this))){
                     Offense.selectUnit($(this))
                 }else{

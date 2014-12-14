@@ -213,6 +213,77 @@ article {
   font-size: 24px;
   margin: 120px 0 0 -450px;
 }
+.tutorial{
+  background-color: blueviolet;
+//  height: 90px;
+  width: 200px;
+  font-size: 20px;
+  padding: 4px 7px;
+  white-space: normal;
+  position: absolute;
+  z-index: 87;
+  h5{
+    font-size: 17px;
+  }
+  h6{
+    font-size: 16px;
+  }
+  a{
+    font-size: 8px;
+    text-align: right;
+  }
+  p{
+    font-size: 11px;
+  }
+  img{
+    width: 80px;
+  }
+}
+
+.tutorialWelcome {
+  margin: 20px 0 0 -650px;
+}
+.tutorialSelectUnit{
+  margin: 190px 0 0 -610px;
+}
+.tutorialStats{
+  margin: 220px 0 0 -140px;
+}
+.tutorialPlaceUnit{
+  margin: 340px 0 0 -580px;
+}
+.tutorialSecondMove{
+  margin: 190px 0 0 -610px;
+  height: 120px;
+}
+.tutorialGoal{
+  margin: 170px 0 0 -270px;
+}
+.tutorialWhoGoesFirst{
+  margin: 190px 0 0 -610px;
+}
+
+.tutorialStartGame{
+  margin: 150px 0 0 -270px;
+  height: 100px;
+}
+
+.tutorialFirstTurn{
+  margin: 60px 0 0 -270px;
+  height: 100px;
+}
+.tutorialSecondTurn{
+  margin: 30px 0 0 -680px;
+  height: 100px;
+}
+.tutorialAttack{
+  margin: 30px 0 0 -280px;
+  height: 100px;
+}
+.tutorialGoodLuck{
+  margin: 30px 0 0 -680px;
+  height: 100px;
+}
 
 .randomSetUpButton {
   margin: 260px 0 0 -420px;

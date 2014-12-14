@@ -86,7 +86,7 @@ $(document).ready(function () {
         var gamesFinishedPerDay = new Keen.Query("count", {
             timeframe: "previous_7_days",
             interval: "daily",
-            eventCollection: "finished_games"
+            eventCollection: "finish_games"
         });
         client.draw(gamesFinishedPerDay, document.getElementById("gamesFinishedPerDay"), {
             chartType: "columnchart",
@@ -98,7 +98,7 @@ $(document).ready(function () {
         var gamesFinishedPerWeek = new Keen.Query("count", {
             timeframe: "this_month",
             interval: "daily",
-            eventCollection: "finished_games"
+            eventCollection: "finish_games"
         });
         client.draw(gamesFinishedPerWeek, document.getElementById("gamesFinishedPerWeek"), {
             chartType: "columnchart",

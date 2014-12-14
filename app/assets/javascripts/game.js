@@ -105,6 +105,7 @@ var Game = {
         Game.whoGoesFirst();
 
         GameStatus.saveGameStatus();
+        Game.updateOpponentsObjects();
         $.ajax({
             type: 'put',
             url: '/start_game',
@@ -118,6 +119,11 @@ var Game = {
         }, 1300);
 
         Game.startTime = new Date();
+        if (Game.firstGame === 'true'){
+            $('.tutorial').remove();
+            Tutorial.firstTurn();
+            Tutorial.step = 7;
+        }
         Game.runTurn(Game.offense)
     },
 
@@ -140,7 +146,6 @@ var Game = {
         Game.turn = 1;
         Game.whoStarted = offense;
         Offense.runOffense(offense)
-
     },
 
 
@@ -186,16 +191,13 @@ var Game = {
     },
 
     oldGame: function () {
-
         PlaceUnits.byArray(GameStatus.convertStringToArray(Game.homeUnitsString),1);
         PlaceUnits.byArray(GameStatus.convertStringToArray(Game.awayUnitsString),0);
-
         if (Game.whoStarted == 1){
             Game.offense = Game.turn%2
         } else {
             Game.offense = Math.abs((Game.turn%2) - 1)
         }
-
         Game.runTurn();
     },
 
@@ -211,10 +213,8 @@ var Game = {
             unit.attr('data-status', 'dead');
             unit.appendTo($('#' + positionArray[1]));
         } else if (positionArray[1] == 'lDock'){
-
             unit.attr('data-status', 'unplaced');
             unit.prependTo($('#' + positionArray[1]));
-
         }else {
             unit.attr('data-status', 'alive');
             unit.prependTo($('[data-hexIndex=' + positionArray[1] + ']'));
@@ -228,7 +228,20 @@ var Game = {
         Game.offense = Math.abs(Game.offense - 1);
         GameStatus.saveGameStatus();
         Game.updateOpponentsObjects();
-        Game.runTurn();
+        if (Tutorial.step == 7){
+            $('.tutorial').remove();
+            Tutorial.secondTurn();
+            Game.runTurn();
+        } else if (Tutorial.step == 9){
+            $('.tutorial').remove();
+            Tutorial.goodLuck();
+            setTimeout(function(){
+                $('.tutorial').remove();
+                Game.runTurn();
+            },3000)
+        } else {
+            Game.runTurn();
+        }
     },
 
     updateOpponentsObjects: function(){
