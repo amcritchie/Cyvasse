@@ -240,10 +240,13 @@ var Game = {
         } else if (Tutorial.step == 9){
             $('.tutorial').remove();
             Tutorial.goodLuck();
-            setTimeout(function(){
-                $('.tutorial').remove();
+//            setTimeout(function(){
                 Game.runTurn();
-            },3000)
+                setTimeout(function(){
+                    $('.tutorial').remove();
+                    Tutorial.checkOutRoot();
+                },3000);
+//            },3000)
         } else {
             Game.runTurn();
         }

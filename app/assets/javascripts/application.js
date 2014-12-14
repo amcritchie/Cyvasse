@@ -85,7 +85,7 @@ $(document).ready(function () {
     $('a').on('click',function(){
         $.post('/update_last_active.json').success();
     });
-    
+
     $('[data-linkType = "favorite"]').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();

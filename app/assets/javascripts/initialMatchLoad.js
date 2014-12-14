@@ -50,8 +50,13 @@ var Tutorial = {
         Tutorial.step += 1;
     },
     goodLuck: function(){
-        $(".map").prepend("<button class='tutorialGoodLuck tutorial'><h6>And that's all you need to know about Cyvasse.</h6><h5>Good Luck!!!</h5><a>skip</a></button>");
+        $(".map").prepend("<button class='tutorialGoodLuck tutorial'><h6>And that's all you need to know about Cyvasse.</h6><h5>Good Luck!</h5><a>skip</a></button>");
         Rotator.rotateOn($('.tutorialGoodLuck'));
+        Tutorial.step += 1;
+    },
+    checkOutRoot: function(){
+        $(".map").prepend("<button class='tutorialCheckIndex tutorial'>&#8598&nbsp&nbsp&nbsp&nbsp<h6>Check out your dashboard, your game saves automatically.</h6><a>skip</a></button>");
+        Rotator.rotateOn($('.tutorialCheckIndex'));
         Tutorial.step += 1;
     }
 };
