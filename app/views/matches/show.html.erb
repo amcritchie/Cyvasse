@@ -74,8 +74,7 @@
     </div>
     <div class="toggleOptions">
       <h4>Toggle</h4>
-      <button>button 1</button>
-      <button>button 2</button>
+      <button id="toggleOutline">Outlines</button>
     </div>
 
   </article>
@@ -102,6 +101,8 @@
     <a id="matchAgainst"><%= @match.match_against %></a>
     <a id="matchWhoStarted"><%= @match.who_started %></a>
     <a id="matchStatus"><%= @match.match_status %></a>
+
+    <a id="togglePreference"><%= current_user.unit_outlines %></a>
 
   </article>
   <article class="full_column">

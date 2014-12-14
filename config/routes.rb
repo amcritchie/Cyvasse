@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy, :index]
   end
   post "update_last_active" => "users#update_last_active"
+  post "toggle_outlines" => "users#toggle_outlines"
   resources :matches
   resources :world_statuses
 

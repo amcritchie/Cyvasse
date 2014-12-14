@@ -4,14 +4,25 @@
   width: 960px;
   //  height: 800px;
 
-  [data-team='1'][data-status='alive'] {
+  .unit1 {
     border: 2px solid blue;
     border-radius:  40px;
   }
-  [data-team='0'][data-status='alive'] {
+  .unit0 {
     border: 2px solid red;
     border-radius:  40px;
   }
+  .noBoarder {
+    border: 0;
+    padding: 2px;
+  }
+  [data-status=dead]{
+    border: 0;
+  }
+  [data-status=unplaced]{
+    border: 0;
+  }
+
   article {
   }
 
@@ -62,10 +73,6 @@
         display: inline-block;
         margin-bottom: -10px;
       }
-//      img {
-//        display: inline-block;
-//        width: 50px
-//      }
     }
   }
 
@@ -73,12 +80,9 @@
 
     text-align: center;
     height: 220px;
-    //    width: 60px;
-    background-color: blueviolet;
     border-bottom: solid 2px;
 
     .selectUnitImage {
-      //      background-color: red;
       display: inline-block;
       width: 120px;
       img {

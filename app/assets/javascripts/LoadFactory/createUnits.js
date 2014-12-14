@@ -75,9 +75,16 @@ var CreateUnits = {
         var code = "trebuchet-aa9661cf55458eff1d003546e8fcfda9";
 
         var svg = '/images/svgs/' + codename + '.svg';
+        var noBoarder = '';
+
+        if (Game.outlines == 'true'){
+
+        }else{
+            noBoarder = 'noBoarder'
+        }
 
         CreateUnits.index += 1;
-        return "<img alt='" + name + "' data-rank=" + attributes.rank + "" +
+        return "<img class='unit"+CreateUnits.team+" "+noBoarder+"' alt='" + name + "' data-rank=" + attributes.rank + "" +
             " data-attack=" + attributes.attack + " " + " data-defence=" + attributes.defence +
             " data-moveRange=" + attributes.moveRange + " data-attackRange=" + attributes.attackRange +
             " data-flank=" + attributes.flank + " " + "data-trump=" + attributes.trump + " data-team=" + CreateUnits.team +

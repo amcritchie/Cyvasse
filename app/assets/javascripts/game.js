@@ -26,6 +26,8 @@ var Game = {
     player1name: null,
     player0name: null,
 
+    outlines: null,
+
     playingAI: false,
     playingAsAI: false,
     firstGame: false,
@@ -74,6 +76,8 @@ var Game = {
 
         Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
         Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
+
+        Game.outlines = document.getElementById('togglePreference').innerHTML;
 
         Game.matchID = parseInt(document.getElementById('matchID').innerHTML);
         Game.matchStatus = document.getElementById('matchStatus').innerHTML;
@@ -163,15 +167,6 @@ var Game = {
         $('.hexPolygon').css('stroke', 'white');
         $('.hexSVG').css('overflow', 'hidden');
         $('.hexSVG').css('z-index', '2');
-
-        $('[data-team=1]').parent().children('svg').children('polygon').css('stroke', 'blue');
-
-        $('[data-team=1]').parent().children('svg').css('overflow', 'overlay');
-        $('[data-team=1]').parent().children('svg').css('z-index', '3');
-        $('[data-team=0]').parent().children('svg').css('overflow', 'overlay');
-        $('[data-team=0]').parent().children('svg').css('z-index', '3');
-
-        $('[data-team=0]').parent().children('svg').children('polygon').css('stroke', 'red');
 
         Offense.runOffense(Game.offense);
 

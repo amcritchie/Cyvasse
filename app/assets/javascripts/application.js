@@ -80,10 +80,16 @@ $(document).ready(function () {
     },3000);
 
     $('div').on('click',function(){
-        $.post('/update_last_active.json').success();
+        $.post('/update_last_active.json');
     });
     $('a').on('click',function(){
-        $.post('/update_last_active.json').success();
+        $.post('/update_last_active.json');
+    });
+
+    $('#toggleOutline').click(function(){
+        $('.unit0').toggleClass('noBoarder');
+        $('.unit1').toggleClass('noBoarder');
+        $.post('/toggle_outlines.json')
     });
 
     $('[data-linkType = "favorite"]').on('click', function (e) {

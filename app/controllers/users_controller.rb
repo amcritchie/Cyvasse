@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     @user.admin = false
     @user.account_type = 'basic'
     @user.email_confirmed = false
+    @user.unit_outlines = true
 
     if @user.save
       Keen.publish(:sign_ups, { :username => @user.username }) if Rails.env.production?
@@ -30,6 +31,21 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def toggle_outlines
+    @user = current_user
+    # @user.unit_outlines
+    if (@user.unit_outlines)
+      @user.update(
+          unit_outlines: false
+      )
+    else
+      @user.update(
+          unit_outlines: true
+      )
+    end
+
   end
 
   def update_last_active
