@@ -100,10 +100,7 @@ var Game = {
 
         Game.turn = 1;
         Game.opponentOpeningArray();
-
-        addAIButtons();
         Game.whoGoesFirst();
-
         GameStatus.saveGameStatus();
         Game.updateOpponentsObjects();
         $.ajax({

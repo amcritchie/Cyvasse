@@ -4,15 +4,24 @@
   </article>
   <article id="matchInfo" class="one_fourth">
     <div class="matchUp">
-      <article class="usernameAndImage">
-        <h5><%= current_user.first_name_or_username(current_user) %></h5>
-        <%= link_to image_tag(current_user.image_url), user_path(current_user) %>
-      </article>
+      <div class="usernameAndImage">
+        <article>
+          <h5><%= current_user.first_name_or_username(current_user) %></h5>
+        </article>
+        <article>
+          <%= link_to image_tag(current_user.image_url), user_path(current_user) %>
+        </article>
+      </div>
       <br> vs <br>
-      <article class="usernameAndImage">
-        <h5><%= enemy_user.first_name_or_username(enemy_user) %></h5>
-        <%= link_to image_tag(enemy_user.image_url), user_path(current_user) %>
-      </article>
+
+      <div class="usernameAndImage">
+        <article>
+          <h5><%= enemy_user.first_name_or_username(enemy_user) %></h5>
+        </article>
+        <article>
+          <%= link_to image_tag(enemy_user.image_url), user_path(current_user) %>
+        </article>
+      </div>
     </div>
     <div class="unitStats">
 
@@ -75,9 +84,9 @@
   <article class="one_fourth">
     <% if @match.created_at - current_user.created_at < 1 %>
         <a id="firstGame"><%= true %></a>
-        <% else %>
+    <% else %>
         <a id="firstGame"><%= false %></a>
-  <% end %>
+    <% end %>
 
     <a id="whosTurn"><%= @match.whos_turn %></a>
     <a id="currentUserID"><%= current_user.id %></a>

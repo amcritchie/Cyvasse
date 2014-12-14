@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username, :email, :password_digest
   validates_uniqueness_of :username, :email
   validates :password_digest, length: {minimum: 8}
+  validates :username, length: {maximum: 10, minimum: 4}
 
   def my_first_name
     self.first_name.capitalize
