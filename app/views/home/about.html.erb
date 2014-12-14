@@ -87,7 +87,7 @@ defeated Defender, unless the Attacker was a Range unit.</p>
 <div class="about_unit">
   <% @vangaurd.each do |unit_class| %>
 
-      <img class="about_unit_image" src="assets/pieces/<%= unit_class[:codename] %>.png">
+      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
       <article class="about_unit_description">
         <h6><%= unit_class[:name] %></h6>
 
@@ -127,7 +127,7 @@ defeated Defender, unless the Attacker was a Range unit.</p>
 
   <% @cavalry.each do |unit_class| %>
 
-      <img class="about_unit_image cavalry" src="assets/pieces/<%= unit_class[:codename].downcase %>.png">
+      <img class="about_unit_image cavalry" src="/images/svgs/<%= unit_class[:codename].downcase %>.svg">
       <article class="about_unit_description">
         <h6><%= unit_class[:name] %></h6>
 
@@ -167,7 +167,7 @@ defeated Defender, unless the Attacker was a Range unit.</p>
 
   <% @range.each do |unit_class| %>
 
-      <img class="about_unit_image" src="assets/pieces/<%= unit_class[:name].downcase %>.png">
+      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
       <article class="about_unit_description">
         <h6><%= unit_class[:name] %></h6>
 
@@ -206,7 +206,7 @@ defeated Defender, unless the Attacker was a Range unit.</p>
 
   <% @unique.each do |unit_class| %>
 
-      <img class="about_unit_image" src="assets/pieces/<%= unit_class[:name].downcase %>.png">
+      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
       <article class="about_unit_description">
         <h6><%= unit_class[:name] %></h6>
 

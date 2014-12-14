@@ -110,7 +110,11 @@ var Game = {
             dataType: 'json'
         });
 
-        Rotator.createAndRotateOn('whoGoesFirst', 'Team ' + Game.offense + ' moves first.');
+        if (Game.offense == You.team){
+            Rotator.createAndRotateOn('whoGoesFirst', 'You have the first move.');
+        }else{
+            Rotator.createAndRotateOn('whoGoesFirst', 'Opponent moves first');
+        }
         setTimeout(function () {
             Rotator.rotateOff('.whoGoesFirst');
         }, 1300);
@@ -201,7 +205,11 @@ var Game = {
     finishedGame: function (){
         PlaceUnits.byArray(GameStatus.convertStringToArray(Game.homeUnitsString),1);
         PlaceUnits.byArray(GameStatus.convertStringToArray(Game.awayUnitsString),0);
-        Rotator.createAndRotateOn('over', 'Team: '+Game.whosTurn+' wins, at turn ' + Game.turn + '.');
+        if (Game.whosTurn == You.team){
+            Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
+        }else{
+            Rotator.createAndRotateOn('over', 'You were defeated, at turn ' + Game.turn + '.');
+        }
     },
 
     moveUnits: function (positionArray, team) {
@@ -255,7 +263,11 @@ var Game = {
         GameStatus.saveGameStatus();
         var stop = new Date();
         var teamNum = Game.offense;
-        Rotator.createAndRotateOn('over', 'Team: '+teamNum+' wins, at turn ' + Game.turn + '.  The game took '+parseInt((stop - Game.startTime)/1000)+'s');
+        if (teamNum == You.team){
+            Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
+        }else{
+            Rotator.createAndRotateOn('over', 'You were defeated, at turn ' + Game.turn + '.');
+        }
         $.ajax({
             type: 'put',
             url: '/finish_game',

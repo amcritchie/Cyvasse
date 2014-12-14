@@ -73,6 +73,19 @@ var Favorite = {
 
 $(document).ready(function () {
 
+    setInterval(function(){
+        $('.flashSuccess').children().fadeOut();
+        $('.flashError').children().fadeOut();
+        $('.flashFail').children().fadeOut();
+    },3000);
+
+    $('div').on('click',function(){
+        $.post('/update_last_active.json').success();
+    });
+    $('a').on('click',function(){
+        $.post('/update_last_active.json').success();
+    });
+    
     $('[data-linkType = "favorite"]').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();

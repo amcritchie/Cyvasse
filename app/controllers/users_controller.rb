@@ -23,23 +23,20 @@ class UsersController < ApplicationController
     @user.account_type = 'basic'
     @user.email_confirmed = false
 
-    if user_params['image'] == nil
-      p '?'*800
-
-    else
-      p '{'*800
-    end
-
-
-
     if @user.save
       Keen.publish(:sign_ups, { :username => @user.username }) if Rails.env.production?
-      flash[:success] = "Welcome to Cyvasse #{@user.username}"
       session[:user_id] = @user.id
       redirect_to create_computer_match_path, method: :post
     else
       render :new
     end
+  end
+
+  def update_last_active
+    @user = current_user
+    @user.update(
+        last_active: Time.new
+    )
   end
 
   # PATCH/PUT /users/1
@@ -72,16 +69,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      # p '------==='*90
-      # p params
-      # p '**'
-      # p params[:user]
-      # p '=='
-      # p params[:user][:image]
-      # p '++'
-      # if params[:user][:image] == nil
-      #   params[:user][:image] = '/images/svgs/king.svg'
-      # end
       params.require(:user).permit(:username, :email, :password, :image, :first_name, :last_name)
     end
 end

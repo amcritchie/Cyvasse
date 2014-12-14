@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :favorites, only: [:create, :destroy, :index]
   end
+  post "update_last_active" => "users#update_last_active"
   resources :matches
   resources :world_statuses
 
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
   get "create_computer_match" => "matches#create_match_vs_computer"
 
   post "create_player_match" => "matches#create_match_vs_player"
-
 
   resource :session, only: [:new, :create, :destroy]
 
