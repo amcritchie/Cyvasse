@@ -36,7 +36,6 @@ class UsersController < ApplicationController
 
   def toggle_outlines
     @user = current_user
-    # @user.unit_outlines
     if (@user.unit_outlines)
       @user.update(
           unit_outlines: false
