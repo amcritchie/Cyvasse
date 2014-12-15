@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     if current_user != nil
       @matches = current_user.active_matches(session[:user_id])
       @finishedMatches = current_user.finished_matches(session[:user_id]).last(10).reverse
-      @lastTenUsers = User.order('created_at DESC').limit(10)
+      @lastTenUsers = last_ten_active_users
       @favorites = Favorite.where(favoriter: current_user)
       @allUsers = User.all
       @allMatches = Match.all
