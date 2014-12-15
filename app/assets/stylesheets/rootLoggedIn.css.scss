@@ -294,6 +294,11 @@ td {
   background-color: orangered;
 }
 
+#matchesTable{
+  max-height: 350px;
+  overflow: scroll;
+}
+
 #userShow{
   text-align: center;
   .profileImage{

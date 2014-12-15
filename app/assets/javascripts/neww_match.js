@@ -116,11 +116,6 @@ function capitalizeEachWord(str) {
 }
 
 
-function oldGame() {
-    loadEverything();
-    Game.oldGame();
-}
-
 $(document).ready(function () {
 
     if ($("#matchShow").length > 0) {

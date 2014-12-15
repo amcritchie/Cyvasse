@@ -15,9 +15,6 @@ class HomeController < ApplicationController
       @allMatches = Match.all
     end
 
-
-
-
   end
 
   def about

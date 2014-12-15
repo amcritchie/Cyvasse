@@ -96,7 +96,8 @@ var Game = {
         if (Opponent.isA == 'human'){
             PlaceUnits.byArray(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(),Opponent.team);
         }else{
-            RandomSetup.placeLineOne();
+//            RandomSetup.placeLineOne();
+            RandomSetup.placeComputerLineUp();
         }
     },
 

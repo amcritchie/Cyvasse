@@ -2,7 +2,6 @@ var Animation = {
     hslRange: [],
     function: null,
     runAnimation: function () {
-        debugger;
         Animation.setRange();
         $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
         $('.hexDiv').children('svg').children('polygon').css('stroke', 'white');

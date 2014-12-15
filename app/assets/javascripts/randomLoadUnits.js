@@ -124,5 +124,13 @@ var RandomSetup = {
             unit.prependTo(".map");
             unit.attr('data-status', 'alive');
         }
+    },
+    placeComputerLineUp: function(){
+        var rightReserve = "2:40|9:39|6:38|12:37|4:36|5:35|7:34|10:33|11:32|1:31|3:27|14:26|15:25|13:24|8:23|16:12|18:8|19:7|17:1|";
+        var leftReserve = "12:39|2:38|9:37|6:36|7:35|8:34|10:33|11:32|4:28|14:26|5:25|13:24|15:23|3:22|1:19|18:13|19:12|16:8|17:6|";
+        var westWatch = "18:40|19:39|7:38|6:37|4:36|11:33|9:32|10:31|13:30|12:29|14:28|15:27|5:26|17:21|3:19|2:18|8:17|1:12|16:10|";
+        var behindRange = "10:39|6:38|8:37|18:36|19:35|5:34|12:33|9:32|1:29|15:28|4:27|17:26|7:25|14:24|2:23|13:18|11:15|3:10|16:7|";
+        var arrays = [rightReserve,leftReserve,westWatch,behindRange];
+        PlaceUnits.byArray(GameStatus.convertStringToArray(shuffle(arrays).pop()).reverse(),0)
     }
 };
