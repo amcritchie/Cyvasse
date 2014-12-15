@@ -78,7 +78,11 @@ class MatchesController < ApplicationController
 
     if (current_user.active_matches(current_user).length <= 4) || (current_user.account_type == 'premium')
       if params[:opponent][:which_user] == 'Random User'
-        @match.away_user_id = 1
+        # away_user_id = random_active_user
+        # p '_=+=_'*100
+        # p away_user_id
+        # p '_=+=_'*100
+        @match.away_user_id = random_active_user
         @match.save
         redirect_to match_path(@match)
       else

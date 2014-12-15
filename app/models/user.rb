@@ -65,6 +65,7 @@ class User < ActiveRecord::Base
   #   )
   # end
 
+
   def resign(quitter, match)
     if quitter.id == match.home_user_id
       opponent = User.find(match.away_user_id)

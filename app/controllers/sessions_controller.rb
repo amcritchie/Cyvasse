@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(username: params[:user][:username])
-
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
+      @user.update(last_active: Time.new)
       Keen.publish(:logins, { :username => @user.username }) if Rails.env.production?
       flash[:success] = "Welcome back #{@user.username}"
       redirect_to root_path

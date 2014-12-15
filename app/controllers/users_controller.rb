@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     @user.admin = false
     @user.account_type = 'basic'
     @user.email_confirmed = false
+    @user.last_active = Time.new
     @user.unit_outlines = true
 
     if @user.save

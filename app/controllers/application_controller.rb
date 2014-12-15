@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def random_active_user
+    active_users = User.where("id > 10 AND id != #{current_user.id}").limit(10).order('last_active asc')
+    active_users.shuffle[0].id
+  end
+
   helper_method :current_user, :enemy_user
 
 end
