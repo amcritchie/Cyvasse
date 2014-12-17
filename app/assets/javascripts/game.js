@@ -96,7 +96,7 @@ var Game = {
 
     opponentOpeningArray: function(){
         if (Opponent.isA == 'human'){
-            PlaceUnits.byArray(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(),Opponent.team);
+            AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(),Opponent.team);
         }else{
 //            RandomSetup.placeLineOne();
             RandomSetup.placeComputerLineUp();
@@ -171,8 +171,8 @@ var Game = {
         $('.hexSVG').css('overflow', 'hidden');
         $('.hexSVG').css('z-index', '2');
 
-        $('#'+Game.lastMove[1]).children('svg').children('polygon').css('fill', 'orange');
-        $('#'+Game.lastMove[0]).children('svg').children('polygon').css('fill', 'orange');
+        $('[data-hexIndex='+Game.lastMove[1]+']').children('svg').children('polygon').css('fill', 'orange');
+        $('[data-hexIndex='+Game.lastMove[0]+']').children('svg').children('polygon').css('fill', 'orange');
 
         Offense.runOffense(Game.offense);
 
@@ -193,10 +193,9 @@ var Game = {
     },
 
     oldGame: function () {
-        Game.lastMove = Game.lastMove.split(',');
-
-        PlaceUnits.byArray(GameStatus.convertStringToArray(Game.homeUnitsString),1);
-        PlaceUnits.byArray(GameStatus.convertStringToArray(Game.awayUnitsString),0);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Game.homeUnitsString),1);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Game.awayUnitsString),0);
+        AwayTeamNormalize.placeLastMove();
         if (Game.whoStarted == 1){
             Game.offense = Game.turn%2
         } else {
@@ -206,8 +205,8 @@ var Game = {
     },
 
     finishedGame: function (){
-        PlaceUnits.byArray(GameStatus.convertStringToArray(Game.homeUnitsString),1);
-        PlaceUnits.byArray(GameStatus.convertStringToArray(Game.awayUnitsString),0);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Game.homeUnitsString),1);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Game.awayUnitsString),0);
         if (Game.whosTurn == You.team){
             Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
         }else{
@@ -232,7 +231,7 @@ var Game = {
 
     finishTurn: function(){
         Game.turn += 1;
-        Game.lastMove = [Offense.oldLocation.attr('id'),Offense.newLocation.attr('id')];
+        Game.lastMove = [Offense.oldLocation.attr('data-hexIndex'),Offense.newLocation.attr('data-hexIndex')];
         Game.defense = Game.offense;
         Game.offense = Math.abs(Game.offense - 1);
         GameStatus.saveGameStatus();

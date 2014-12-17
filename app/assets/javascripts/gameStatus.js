@@ -52,8 +52,19 @@ var GameStatus = {
         GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray);
     },
 
+    setLastMove: function(){
+        var oldLocation = parseInt(Offense.oldLocation.attr('data-hexIndex'));
+        var newLocation = parseInt(Offense.newLocation.attr('data-hexIndex'));
+        if (You.team == 0){
+            oldLocation = 92 - oldLocation;
+            newLocation = 92 - newLocation;
+        }
+        return oldLocation + ',' + newLocation
+    },
+
     saveGameStatus: function () {
         GameStatus.setStrings();
+        GameStatus.setLastMove();
 
 
         $.ajax({
@@ -65,7 +76,7 @@ var GameStatus = {
                 match_id: Game.matchID,
                 home_units: GameStatus.teamOneString,
                 away_units: GameStatus.teamZeroString,
-                last_move: Offense.oldLocation.attr('id') + ',' + Offense.newLocation.attr('id')
+                last_move: GameStatus.setLastMove()
             },
             dataType: 'json'
         });

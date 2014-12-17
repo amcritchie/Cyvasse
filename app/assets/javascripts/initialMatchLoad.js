@@ -46,7 +46,7 @@ var InitialMatchLoad = {
         }
     },
     continuePregame: function () {
-        PlaceUnits.byArray(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
         PreGame.loadPreGameTurn();
         InitialMatchLoad.randomSetupButton();
         if ($(".auxSpace").children().length != 0) {
@@ -65,7 +65,7 @@ var InitialMatchLoad = {
     },
     readyPlayer: function(){
         Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');
-        PlaceUnits.byArray(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
         $('[data-occupied=true]').children("svg").children("polygon").css('stroke', 'blue');
         setTimeout(function () {
             window.location.reload()

@@ -131,6 +131,6 @@ var RandomSetup = {
         var westWatch = "18:40|19:39|7:38|6:37|4:36|11:33|9:32|10:31|13:30|12:29|14:28|15:27|5:26|17:21|3:19|2:18|8:17|1:12|16:10|";
         var behindRange = "10:39|6:38|8:37|18:36|19:35|5:34|12:33|9:32|1:29|15:28|4:27|17:26|7:25|14:24|2:23|13:18|11:15|3:10|16:7|";
         var arrays = [rightReserve,leftReserve,westWatch,behindRange];
-        PlaceUnits.byArray(GameStatus.convertStringToArray(shuffle(arrays).pop()).reverse(),0)
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(shuffle(arrays).pop()).reverse(),0)
     }
 };
