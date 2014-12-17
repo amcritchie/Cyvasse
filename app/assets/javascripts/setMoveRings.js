@@ -1,16 +1,16 @@
 var MoveRings = {
     offenseTeam: null,
     defenseTeam: null,
-    jsSelectedUnit: null,
-    jsSelectedTrumps: null,
+    selectedUnit: null,
+    selectedTrumps: null,
 
     createRings: function (selectedUnit, potentialRange) {
         var ring = 0;
         MoveRings.offenseTeam = selectedUnit.attr('data-team');
         MoveRings.defenseTeam = Math.abs(MoveRings.offenseTeam - 1);
-        MoveRings.jsSelectedUnit = selectedUnit[0];
-        MoveRings.jsSelectedTrumps = selectedUnit[0].getAttribute('data-trump').split(',');
-        while (ring < MoveRings.jsSelectedUnit.getAttribute('data-moveRange')) {
+        MoveRings.selectedUnit = selectedUnit[0];
+        MoveRings.selectedTrumps = selectedUnit[0].getAttribute('data-trump').split(',');
+        while (ring < MoveRings.selectedUnit.getAttribute('data-moveRange')) {
             potentialRange = potentialRange.not('[data-locked=true]');
             MoveRings.nextRingOfHexagons(potentialRange, ring);
             ring += 1;
@@ -29,7 +29,7 @@ var MoveRings = {
                         return;
                     }
                 });
-                if (MoveRings.jsSelectedUnit.getAttribute('alt') == 'dragon') {
+                if (MoveRings.selectedUnit.getAttribute('alt') == 'dragon') {
                     MoveRings.createDragonRings(image, hex, lastRingNum);
                 } else {
                     MoveRings.createNonDragonRings(image,imageTrumpArray, hex, lastRingNum)
@@ -64,14 +64,14 @@ var MoveRings = {
 
             } else if (image.getAttribute('data-team') == MoveRings.defenseTeam) {
 
-                if (image.getAttribute('data-defence') > MoveRings.jsSelectedUnit.getAttribute('data-attack')) {
+                if (image.getAttribute('data-defence') > MoveRings.selectedUnit.getAttribute('data-attack')) {
                     hex.setAttribute('data-ring', (lastRingNum + 50));
                 } else {
                     hex.setAttribute('data-ring', (lastRingNum + 40));
                 }
-                if (MoveRings.jsSelectedTrumps[0] != 'none') {
+                if (MoveRings.selectedTrumps[0] != 'none') {
 
-                    MoveRings.jsSelectedTrumps.forEach(function (e) {
+                    MoveRings.selectedTrumps.forEach(function (e) {
                         if (e == image.getAttribute('data-codename')) {
                             hex.setAttribute('data-ring', (lastRingNum + 40));
                         }
@@ -79,7 +79,7 @@ var MoveRings = {
                 }
                 if (imageTrumpArray[0] != 'none') {
                     imageTrumpArray.forEach(function (e) {
-                        if (e == MoveRings.jsSelectedUnit.getAttribute('data-codename')) {
+                        if (e == MoveRings.selectedUnit.getAttribute('data-codename')) {
                             hex.setAttribute('data-ring', (lastRingNum + 50));
                         }
                     });

@@ -4,8 +4,8 @@ var Offense = {
     selectableUnits: $('hex53'),
     start: null,
     end: null,
-    newLocation: null,
-    oldLocation: null,
+    newLocation: $('hex52'),
+    oldLocation: $('hex52'),
     moveRange: $('hex52'),
     attackRange: $('hex54'),
     runOffense: function (offense) {

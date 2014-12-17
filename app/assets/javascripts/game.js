@@ -36,7 +36,7 @@ var Game = {
     homeUser:null,
     awayUser:null,
 
-    lastMove:null,
+    lastMove:[0,0],
 
     currentUserIsTeam: null,
 

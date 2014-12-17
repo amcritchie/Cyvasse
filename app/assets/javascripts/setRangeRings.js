@@ -41,9 +41,9 @@ var RangeRings = {
                     } else {
                         hex.setAttribute('data-rangeRing', (lastRingNum + 80));
                     }
-                    if (MoveRings.jsSelectedTrumps[0] != 'none'){
+                    if (MoveRings.selectedTrumps[0] != 'none'){
 
-                        MoveRings.jsSelectedTrumps.forEach(function (e) {
+                        MoveRings.selectedTrumps.forEach(function (e) {
                             if ( e == image.getAttribute('data-codename')){
                                 hex.setAttribute('data-rangeRing', (lastRingNum + 80));
                             }
@@ -53,7 +53,8 @@ var RangeRings = {
 
                     if (imageTrumpArray[0] != 'none'){
                         imageTrumpArray.forEach(function (e) {
-                            if ( e == MoveRings.selectedUnit.attr('data-codename')){
+
+                            if ( e == MoveRings.selectedUnit.getAttribute('data-codename')){
                                 hex.setAttribute('data-rangeRing', (lastRingNum + 90));
                             }
                         });
