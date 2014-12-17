@@ -41,14 +41,14 @@ var Animation = {
 
     updateRangeRing: function(distanceFromUnit){
 
-        Animation.updateRangeFill(10, 8, distanceFromUnit);
+        Animation.updateRangeFill(10, 2, distanceFromUnit);
 
-        Animation.updateStroke('blue', 9, distanceFromUnit,7);
-        Animation.updateStroke('blue', 5, distanceFromUnit,7);
+//        Animation.updateStroke('blue', 9, distanceFromUnit,7);
+        Animation.updateStroke('blue', 3, distanceFromUnit,9);
 
-        Animation.updateStroke('red', 6, distanceFromUnit,8);
-        Animation.updateStroke('red', 7, distanceFromUnit,8);
-        Animation.updateStroke('red', 8, distanceFromUnit,8);
+        Animation.updateStroke('red', 2, distanceFromUnit,8);
+        Animation.updateStroke('red', 1, distanceFromUnit,8);
+//        Animation.updateStroke('red', 8, distanceFromUnit,8);
 
     },
 

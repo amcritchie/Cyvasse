@@ -86,11 +86,10 @@ var Offense = {
     },
     updateAttackRange: function (unit, range) {
         var potentialRange = Offense.potentialRange();
-
         MoveRings.createRings(SelectedUnit.unit, potentialRange);
         Offense.attackRange.off('click');
         Offense.attackRange = potentialRange.filter(function () {
-            return ($(this).attr('data-rangeRing') <= 89) && ($(this).attr('data-rangeRing') >= 80)
+            return ($(this).attr('data-rangeRing') <= 29) && ($(this).attr('data-rangeRing') >= 20)
         });
     },
     updateMeleeRange: function (unit, range) {
