@@ -23,7 +23,7 @@ var Offense = {
                     Tutorial.attack();
                 }
 //                if (Validates.unitStats($(this))){
-                    Offense.selectUnit($(this))
+                    Offense.selectUnit($(this));
 //                }else{
 //                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
 //                    setTimeout(function(){
@@ -72,19 +72,13 @@ var Offense = {
 
             var attackRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.attackRange).parent().parent();
             RangeRings.createRings(SelectedUnit.unit, attackRange); // <------ Not working.
-
             Offense.updateAttackRange();
         } else {
-
             Offense.updateMeleeRange(); // <---- slow!!!!!
         }
-
         $allHexPoly.attr('class', 'hexPolygon');
     },
     updateMoveRange: function (range) {
-
-        console.log('createRings() ends');
-
         Offense.moveRange.off('click');
         Offense.moveRange = range.filter(function () {
             return ($(this).attr('data-ring') <= 19) && ($(this).attr('data-ring') >= 10)
@@ -105,7 +99,7 @@ var Offense = {
         MoveRings.createRings(SelectedUnit.unit, potentialRange);
         Offense.attackRange.off('click');
         Offense.attackRange = potentialRange.filter(function () {
-            return ($(this).attr('data-ring') <= 39) && ($(this).attr('data-ring') >= 30)
+            return ($(this).attr('data-ring') <= 49) && ($(this).attr('data-ring') >= 30)
         });
     },
     potentialRange: function () {

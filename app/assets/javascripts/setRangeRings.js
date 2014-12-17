@@ -28,10 +28,10 @@ var RangeRings = {
                     if (child.tagName == 'IMG') {
                         image = child;
                         imageTrumpArray = image.getAttribute('data-trump').split(',');
-
                         return;
                     }
                 });
+
 
                 if (image && image.getAttribute('alt') == 'mountain') {
                     hex.setAttribute('data-rangeRing', (lastRingNum + 50));
@@ -41,9 +41,9 @@ var RangeRings = {
                     } else {
                         hex.setAttribute('data-rangeRing', (lastRingNum + 80));
                     }
-                    if (MoveRings.selectedTrump[0] != 'none'){
+                    if (MoveRings.jsSelectedTrumps[0] != 'none'){
 
-                        MoveRings.selectedTrump.forEach(function (e) {
+                        MoveRings.jsSelectedTrumps.forEach(function (e) {
                             if ( e == image.getAttribute('data-codename')){
                                 hex.setAttribute('data-rangeRing', (lastRingNum + 80));
                             }

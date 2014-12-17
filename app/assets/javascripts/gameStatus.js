@@ -64,7 +64,8 @@ var GameStatus = {
                 whos_turn: Game.offense,
                 match_id: Game.matchID,
                 home_units: GameStatus.teamOneString,
-                away_units: GameStatus.teamZeroString
+                away_units: GameStatus.teamZeroString,
+                last_move: Offense.oldLocation.attr('id') + ',' + Offense.newLocation.attr('id')
             },
             dataType: 'json'
         });

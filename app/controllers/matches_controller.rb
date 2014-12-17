@@ -136,7 +136,8 @@ class MatchesController < ApplicationController
         turn: params[:turn],
         whos_turn: params[:whos_turn],
         home_units_position: params[:home_units],
-        away_units_position: params[:away_units]
+        away_units_position: params[:away_units],
+        last_move: params[:last_move]
     )
   end
 

@@ -62,7 +62,7 @@ var Animation = {
         Animation.updateFill(240, 1, distanceFromUnit);
         Animation.updateFill(290, 2, distanceFromUnit);
         Animation.updateFill(10, 3, distanceFromUnit);
-        Animation.updateFill(115, 4, distanceFromUnit);
+        Animation.updateFill(10, 4, distanceFromUnit);
         Animation.updateFill(280, 5, distanceFromUnit);
     },
     updateRangeFill: function (hslColor, code, distanceFromUnit) {
