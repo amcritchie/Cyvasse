@@ -43,7 +43,7 @@ var Animation = {
 
         Animation.updateRangeFill(10, 2, distanceFromUnit);
 
-//        Animation.updateStroke('blue', 9, distanceFromUnit,7);
+        Animation.updateStroke('violet', 4, distanceFromUnit,10);
         Animation.updateStroke('blue', 3, distanceFromUnit,9);
 
         Animation.updateStroke('red', 2, distanceFromUnit,8);
