@@ -1,31 +1,31 @@
 
-#userColumn{
+#userColumn {
   background-color: #666;
   text-align: center;
   height: 100%;
-  .profImage{
+  .profImage {
     margin-top: 20px;
     width: 100%;
     height: 200px;
-    img{
+    img {
       margin-left: auto;
       margin-right: auto;
-      max-width:100%;
-      max-height:100%;
+      max-width: 100%;
+      max-height: 100%;
     }
   }
-  .newMatch{
-//    text-align: center;
+  .newMatch {
+    //    text-align: center;
     margin-left: auto;
     margin-right: auto;
     display: block;
     width: 170px;
     padding: .5rem 0;
-//    color: white;
+    //    color: white;
     background-color: #000000;
     border: solid #000000 3px;
   }
-  .usernameField{
+  .usernameField {
 
     text-align: center;
     margin-left: auto;
@@ -37,36 +37,36 @@
     color: white;
     background-color: #666;
     height: 24px;
-//    border: solid #000000 3px;
+    //    border: solid #000000 3px;
 
     //    visibility: hidden;
   }
-  button{
-    color:#477dca;
-    -o-transition:.1s;
-    -ms-transition:.1s;
-    -moz-transition:.1s;
-    -webkit-transition:.1s;
-    transition:.1s;
+  button {
+    color: #477dca;
+    -o-transition: .1s;
+    -ms-transition: .1s;
+    -moz-transition: .1s;
+    -webkit-transition: .1s;
+    transition: .1s;
   }
   button:hover {
     color: #2c5999;
   }
-  .playComp{
-    button{
+  .playComp {
+    button {
       height: 40px;
     }
   }
-  .playUser{
-    label{
+  .playUser {
+    label {
       display: inline-block;
     }
 
-    .flashFail{
+    .flashFail {
       height: 20px;
       color: red;
     }
-    .usernameField{
+    .usernameField {
 
       text-align: center;
       margin-left: auto;
@@ -84,19 +84,18 @@
     }
   }
 
-  #onlinePlayersTable{
-
+  #onlinePlayersTable {
 
   }
 
-  #onlineUsers{
+  #onlineUsers {
 
     background-color: tan;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     width: 190px;
-    td{
+    td {
       &:nth-of-type(1) {
         padding-right: 1rem;
       }
@@ -115,7 +114,7 @@
   }
 }
 
-.vsComputer{
+.vsComputer {
   width: 80px;
   height: 40px;
   background-color: black;
@@ -128,17 +127,17 @@
   -khtml-border-radius: 4px; /* for old Konqueror browsers */
 }
 
-#messageDock{
+#messageDock {
   height: 50px;
   margin-top: 5px;
-  .successMessage{
+  .successMessage {
     text-align: center;
     background-color: green;
     color: #ffffff;
     border-radius: 5px;
     width: 250px;
   }
-  .errorMessage{
+  .errorMessage {
     background-color: red;
     color: #ffffff;
     text-align: center;
@@ -146,51 +145,51 @@
     width: 250px;
   }
 
-  .flashSuccess{
+  .flashSuccess {
     color: green;
     position: absolute;
-    h5{
+    h5 {
       padding-top: 7px;
       padding-left: 15px;
     }
   }
-  .flashError{
+  .flashError {
     color: red;
     position: absolute;
 
-    h5{
+    h5 {
       padding-top: 7px;
       padding-left: 15px;
     }
   }
 }
 
-#gameIndex{
-//  height: 240px;
+#gameIndex {
+  //  height: 240px;
   min-height: 320px;
-  h4{
+  h4 {
     font-size: 20px;
   }
-  h6{
+  h6 {
     font-size: 10px;
   }
 }
 
-#favorites{
+#favorites {
   text-align: center;
-  .favorite{
+  .favorite {
     width: 70px;
     height: 80px;
     display: block;
     float: left;
-    .unfavorite{
+    .unfavorite {
       font-size: 8px;
     }
-    a{
+    a {
       font-size: 10px;
       display: block;
     }
-    img{
+    img {
       width: 40px;
       height: 45px;
       display: block;
@@ -201,20 +200,23 @@
 
 }
 
-
-#finishedGamesTable{
-  th{
+#finishedGamesTable {
+  th {
 
     font-size: 10px;
     padding: 3px;
-    &:nth-of-type(1) {width: 30%}
+    &:nth-of-type(1) {
+      width: 30%
+    }
     &:nth-of-type(2) {
       width: 20%;
       font-size: 8px;
     }
-    &:nth-of-type(3) {width: 50%}
+    &:nth-of-type(3) {
+      width: 50%
+    }
   }
-  td{
+  td {
     padding: 0;
     &:nth-of-type(1) {
       font-size: 12px;
@@ -228,29 +230,32 @@
   }
 }
 
-#onlinePlayersTable{
-  th{
+#onlinePlayersTable {
+  th {
 
     font-size: 10px;
     padding: 3px;
     background-color: royalblue;
 
-    &:nth-of-type(1) {width: 16%;
-//    background-color: darkslategray
-  }
+    &:nth-of-type(1) {
+      width: 16%;
+      //    background-color: darkslategray
+    }
     &:nth-of-type(2) {
       width: 40%;
       font-size: 10px;
-//      background-color: royalblue;
+      //      background-color: royalblue;
     }
-    &:nth-of-type(3) {width: 19%;
-//      background-color: tomato;
+    &:nth-of-type(3) {
+      width: 19%;
+      //      background-color: tomato;
     }
-    &:nth-of-type(4) {width: 20%;
-//      background-color: royalblue;
+    &:nth-of-type(4) {
+      width: 20%;
+      //      background-color: royalblue;
     }
   }
-  td{
+  td {
 
     padding: 0;
     &:nth-of-type(1) {
@@ -276,32 +281,61 @@ td {
   text-align: center;
 }
 
-.toMatchButton{
+.toMatchButton {
   display: inline-block;
   width: 120px;
   padding: .5rem 0;
   color: white;
   border: solid #000000;
 }
+
 .newGame {
   background-color: blue;
   margin: 0;
 }
+
 .yourTurn {
   background-color: green;
 }
+
 .thereTurn {
   background-color: orangered;
 }
 
-#matchesTable{
+#matchesTable {
   max-height: 350px;
   overflow: scroll;
+  thead {
+    tr {
+      th {
+        &:nth-of-type(1) {
+          width: 60px;
+        }
+        &:nth-of-type(2) {
+          width: 180px;
+        }
+        &:nth-of-type(3) {
+          width: 100px;
+        }
+        &:nth-of-type(4) {
+          width: 200px;
+        }
+        &:nth-of-type(5) {
+          width: 50px;
+        }
+        &:nth-of-type(6) {
+          width: 120px;
+
+        }
+
+      }
+    }
+  }
 }
 
-#userShow{
+#userShow {
   text-align: center;
-  .profileImage{
+  .profileImage {
     width: 200px;
   }
 }

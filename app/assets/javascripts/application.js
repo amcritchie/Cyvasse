@@ -81,9 +81,10 @@ $(document).ready(function () {
         $('.flashFail').children().fadeOut();
     },3000);
 
-    var startTime = $('#clock').data("time");
-
-    $('#clock').countdown({until: (new Date(startTime)), compact: true});
+    $('.countDown').each(function( index, timer ) {
+        var startTime = $(timer).data("time");
+        $(timer).countdown({until: (new Date(startTime)), compact: true});
+    });
 
     $('div').on('click',function(){
         $.post('/update_last_active.json');

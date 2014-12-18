@@ -53,8 +53,8 @@
       <th>Index</th>
       <th>Status</th>
       <th>Time Left</th>
-      <th>Turn</th>
       <th>Opponent</th>
+      <th>Turn</th>
       <th>Quit</th>
     </tr>
     </thead>
@@ -88,8 +88,8 @@
             <% end %>
           </td>
           <td>
-
-          <td><%= link_to match.turn %></td>
+            <% t = (match.time_of_last_move.gmtime()+86400) %>
+            <div class="countDown" data-time="<%= t %>"></div></td>
           <td>
             <h4><%= User.find(info[2]).name_or_username %></h4>
             <% if Favorite.where(favoriter: current_user.id, favorited: info[2])== [] ? true : false %>
@@ -98,6 +98,8 @@
                 <h6><%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: info[2]} %></h6>
             <% end %>
           </td>
+          <td><%= link_to match.turn %></td>
+
           <td class="Resign"><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!'} %></td>
         </tr>
     <% end %>

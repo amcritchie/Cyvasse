@@ -13,6 +13,7 @@ class HomeController < ApplicationController
         p match.time_of_last_move
         p '++++'
         if match.time_of_last_move != nil
+          @boom = Time.now.utc - match.time_of_last_move
           p Time.now.utc - match.time_of_last_move
           p 'seconds in 24 hours 86400'
         end
