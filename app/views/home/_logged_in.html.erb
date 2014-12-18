@@ -47,64 +47,69 @@
   <h1>Games</h1>
 
   <div id="matchesTable">
-  <table>
-    <thead>
-    <tr>
-      <th>Index</th>
-      <th>Status</th>
-      <th>Time Left</th>
-      <th>Opponent</th>
-      <th>Turn</th>
-      <th>Quit</th>
-    </tr>
-    </thead>
+    <table>
+      <thead>
+      <tr>
+        <th>Index</th>
+        <th>Status</th>
+        <th>Time Left</th>
+        <th>Opponent</th>
+        <th>Turn</th>
+        <th>Quit</th>
+      </tr>
+      </thead>
 
-    <tbody>
-    <% @matches.each_with_index do |match, index| %>
+      <tbody>
+      <% @matches.each_with_index do |match, index| %>
 
-        <% if (match.whos_turn == 1) %>
-            <% if (current_user.id == match.home_user_id) %>
-                <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
-            <% else %>
-                <% info = ['There Turn', 'thereTurn', match.home_user_id] %>
-            <% end %>
-        <% else %>
-            <% if (current_user.id == match.away_user_id) %>
-                <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
-            <% else %>
-                <% info = ['There Turn', 'thereTurn', match.away_user_id] %>
-            <% end %>
-        <% end %>
-        <tr data-matchID=<%= match.id %> data-opponentID=<%= info[2] %>>
+          <% if (match.whos_turn == 1) %>
+              <% if (current_user.id == match.home_user_id) %>
+                  <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
+              <% else %>
+                  <% info = ['There Turn', 'thereTurn', match.home_user_id] %>
+              <% end %>
+          <% else %>
+              <% if (current_user.id == match.away_user_id) %>
+                  <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
+              <% else %>
+                  <% info = ['There Turn', 'thereTurn', match.away_user_id] %>
+              <% end %>
+          <% end %>
+          <tr data-matchID=<%= match.id %> data-opponentID=<%= info[2] %>>
 
-          <td><%= index + 1 %></td>
-          <td>
-            <% if (match.turn == 0) %>
-                <%= link_to 'New Game', match_path(match), class: 'toMatchButton newGame' %>
-            <% elsif (match.match_status == 'finished') %>
-                <%= link_to 'Finished', match_path(match), class: 'toMatchButton newGame' %>
-            <% else %>
-                <%= link_to info[0], match_path(match), class: "toMatchButton #{info[1]}" %>
+            <td><%= index + 1 %></td>
+            <td>
+              <% if (match.turn == 0) %>
+                  <%= link_to 'New Game', match_path(match), class: 'toMatchButton newGame' %>
+              <% elsif (match.match_status == 'finished') %>
+                  <%= link_to 'Finished', match_path(match), class: 'toMatchButton newGame' %>
+              <% else %>
+                  <%= link_to info[0], match_path(match), class: "toMatchButton #{info[1]}" %>
+              <% end %>
+            </td>
+            <td>
+              <% if match.time_of_last_move == nil %>
+                  <div class="countDown" data-time="12">boom</div>
+              <% else %>
+                  <% t = (match.time_of_last_move.gmtime()+86400) %>
+                  <div class="countDown" data-time="<%= t %>"></div>
             <% end %>
-          </td>
-          <td>
-            <% t = (match.time_of_last_move.gmtime()+86400) %>
-            <div class="countDown" data-time="<%= t %>"></div></td>
-          <td>
-            <h4><%= User.find(info[2]).name_or_username %></h4>
-            <% if Favorite.where(favoriter: current_user.id, favorited: info[2])== [] ? true : false %>
-                <h6><%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: info[2]} %></h6>
-            <% else %>
-                <h6><%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: info[2]} %></h6>
-            <% end %>
-          </td>
-          <td><%= link_to match.turn %></td>
+            </td>
+            <td>
+              <h4><%= User.find(info[2]).name_or_username %></h4>
+              <% if Favorite.where(favoriter: current_user.id, favorited: info[2])== [] ? true : false %>
+                  <h6><%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: info[2]} %></h6>
+              <% else %>
+                  <h6><%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: info[2]} %></h6>
+              <% end %>
+            </td>
+            <td><%= link_to match.turn %></td>
 
-          <td class="Resign"><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!'} %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
+            <td class="Resign"><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!'} %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 
 
@@ -160,7 +165,7 @@
   <h6>Favorites</h6>
   <% @favorites.each do |favorite| %>
 
-      <div class="favorite" data-favorited="<%=favorite.favorited%>">
+      <div class="favorite" data-favorited="<%= favorite.favorited %>">
         <%= image_tag User.find(favorite.favorited).image %>
         <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)) %>
         <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.favorited} %>
@@ -186,7 +191,6 @@
           <td>Yes</td>
           <td>
             <%= user.username %>
-
 
 
           </td>
