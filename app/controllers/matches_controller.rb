@@ -132,8 +132,10 @@ class MatchesController < ApplicationController
 
   def update_match_info
     @match = Match.find(params[:match_id])
+
     @match.update(
         turn: params[:turn],
+        time_of_last_move: Time.now.utc,
         whos_turn: params[:whos_turn],
         home_units_position: params[:home_units],
         away_units_position: params[:away_units],

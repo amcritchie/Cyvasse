@@ -72,7 +72,7 @@ var Offense = {
 
             var attackRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.attackRange).parent().parent();
             RangeRings.createRings(SelectedUnit.unit, attackRange); // <------ Not working.
-            Offense.updateAttackRange();
+            Offense.updateAttackRange(attackRange);
         } else {
             Offense.updateMeleeRange(); // <---- slow!!!!!
         }
@@ -84,11 +84,9 @@ var Offense = {
             return ($(this).attr('data-ring') <= 19) && ($(this).attr('data-ring') >= 10)
         });
     },
-    updateAttackRange: function (unit, range) {
-        var potentialRange = Offense.potentialRange();
-        MoveRings.createRings(SelectedUnit.unit, potentialRange);
+    updateAttackRange: function (range) {
         Offense.attackRange.off('click');
-        Offense.attackRange = potentialRange.filter(function () {
+        Offense.attackRange = $(range).filter(function () {
             return ($(this).attr('data-rangeRing') <= 29) && ($(this).attr('data-rangeRing') >= 20)
         });
     },

@@ -52,6 +52,7 @@
     <tr>
       <th>Index</th>
       <th>Status</th>
+      <th>Time Left</th>
       <th>Turn</th>
       <th>Opponent</th>
       <th>Quit</th>
@@ -86,6 +87,8 @@
                 <%= link_to info[0], match_path(match), class: "toMatchButton #{info[1]}" %>
             <% end %>
           </td>
+          <td>
+
           <td><%= link_to match.turn %></td>
           <td>
             <h4><%= User.find(info[2]).name_or_username %></h4>

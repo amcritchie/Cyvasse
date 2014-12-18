@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require jquery.plugin.min
+//= require jquery.countdown.min
 
 var $allHexDivs;
 var $allHexSVGs;
@@ -78,6 +80,10 @@ $(document).ready(function () {
         $('.flashError').children().fadeOut();
         $('.flashFail').children().fadeOut();
     },3000);
+
+    var startTime = $('#clock').data("time");
+
+    $('#clock').countdown({until: (new Date(startTime)), compact: true});
 
     $('div').on('click',function(){
         $.post('/update_last_active.json');

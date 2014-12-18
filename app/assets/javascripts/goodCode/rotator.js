@@ -8,7 +8,7 @@ var Rotator = {
         $(button).animate(
             {
                 opacity: 1,
-                left: "+=700"
+                left: "700px"
             },
             {
                 duration: 'slow'
@@ -18,7 +18,7 @@ var Rotator = {
         $(button).animate(
             {
                 opacity: 0,
-                left: "+=700"
+                left: "+=700px"
             },
             {
                 duration: 'slow',
