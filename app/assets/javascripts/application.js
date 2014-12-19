@@ -35,7 +35,7 @@ var Flash = {
 
 var Favorite = {
 
-    favoriteUser: function(ele,userID){
+    favoriteUser: function (ele, userID) {
         $.post('/users/' + userID + '/favorites.json').success();
         var favoriteLinks = $('[data-linkType=favorite][data-favorited=' + userID + ']');
         favoriteLinks.off('click');
@@ -53,7 +53,7 @@ var Favorite = {
         });
     },
 
-    unfavoriteUser: function(ele,userID){
+    unfavoriteUser: function (ele, userID) {
         $.ajax({
             type: 'delete',
             url: ('/users/' + userID + '/favorites/' + userID),
@@ -75,28 +75,61 @@ var Favorite = {
 
 $(document).ready(function () {
 
-    setInterval(function(){
+//    window.addEventListener('devtoolschange', function (e) {
+//        console.log('is DevTools open?', e.detail.open);
+//    });
+//
+//    console.log('is DevTools open?', window.devtools.open);
+//
+//    window.onresize = function () {
+//        if ((window.outerWidth - window.innerWidth) > 100) {
+////            alert('Warning: Tampering with units, will result in a loss');
+//            Rotator.createAndRotateOn('turn', 'Warning: Tampering with units, will result in a loss');
+//            Offense.selectableUnits.off('click');
+//            Offense.moveRange.off('click');
+//            Offense.attackRange.off('click');
+//            setTimeout(function () {
+//                window.location.reload()
+//            }, 2000);
+//        }
+//
+//        if ((window.outerHeight - window.innerHeight) > 100) {
+//            Rotator.createAndRotateOn('turn', 'Warning: Tampering with units, will result in a loss');
+//            Offense.selectableUnits.off('click');
+//            Offense.moveRange.off('click');
+//            Offense.attackRange.off('click');
+//            setTimeout(function () {
+//                window.location.reload()
+//            }, 2000);
+//        }
+//    };
+
+    setInterval(function () {
         $('.flashSuccess').children().fadeOut();
         $('.flashError').children().fadeOut();
         $('.flashFail').children().fadeOut();
-    },3000);
+    }, 3000);
 
-    $('.countDown').each(function( index, timer ) {
+    $('.countDown').each(function (index, timer) {
         var startTime = $(timer).data("time");
         $(timer).countdown({until: (new Date(startTime)), compact: true});
     });
 
-    $('div').on('click',function(){
+    $('div').on('click', function () {
         $.post('/update_last_active.json');
     });
-    $('a').on('click',function(){
+    $('a').on('click', function () {
         $.post('/update_last_active.json');
     });
 
-    $('#toggleOutline').click(function(){
+    $('#toggleOutline').click(function () {
         $('.unit0').toggleClass('noBoarder');
         $('.unit1').toggleClass('noBoarder');
         $.post('/toggle_outlines.json')
+    });
+
+    $('#button').on('click', function () {
+        $(this).css('backround-color', 'blue')
     });
 
     $('[data-linkType = "favorite"]').on('click', function (e) {

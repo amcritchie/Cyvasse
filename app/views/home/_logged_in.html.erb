@@ -89,7 +89,8 @@
             </td>
             <td>
               <% if match.time_of_last_move == nil %>
-                  <div class="countDown" data-time="12">boom</div>
+                  <% t = Time.now %>
+                  <div class="countDown" data-time="<%= t %>">boom</div>
               <% else %>
                   <% t = (match.time_of_last_move.gmtime()+86400) %>
                   <div class="countDown" data-time="<%= t %>"></div>

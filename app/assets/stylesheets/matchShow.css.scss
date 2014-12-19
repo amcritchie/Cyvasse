@@ -90,6 +90,18 @@
       }
     }
     .selectUnitStats {
+
+      #selectUnitTrump{
+        .value{
+          margin-left: 0;
+          margin-right: 0;
+          width: 100%;
+          img{
+            height: 25px;
+          }
+        }
+
+      }
       text-align: center;
       //      background-color: cyan;
       margin-left: 2px;

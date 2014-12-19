@@ -22,14 +22,14 @@ var Offense = {
                     $('.tutorial').remove();
                     Tutorial.attack();
                 }
-//                if (Validates.unitStats($(this))){
+                if (Validates.unitStats($(this))){
                     Offense.selectUnit($(this));
-//                }else{
-//                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
-//                    setTimeout(function(){
-//                        window.location.reload()
-//                    },3000);
-//                }
+                }else{
+                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
+                    setTimeout(function(){
+                        window.location.reload()
+                    },3000);
+                }
             })
         }
     },
@@ -113,14 +113,14 @@ var Offense = {
 
         if (Game.offense == Game.currentUserIsTeam) {
             Offense.moveRange.on('click', function () {
-//                if (Validates.unitStats(SelectedUnit.unit.parent())&&Validates.unitsPosition()){
+                if (Validates.unitStats(SelectedUnit.unit.parent())&&Validates.unitsPosition()){
                     Offense.moveToAttack($(this));
-//                }else{
-//                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
-//                    setTimeout(function(){
-//                        window.location.reload()
-//                    },3000);
-//                }
+                }else{
+                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
+                    setTimeout(function(){
+                        window.location.reload()
+                    },3000);
+                }
             });
         }
 
@@ -131,14 +131,14 @@ var Offense = {
 
         if (Game.offense == Game.currentUserIsTeam) {
             Offense.attackRange.on('click', function () {
-//                if (Validates.combat(SelectedUnit.unit.parent(),$(this))&&Validates.unitsPosition()){
+                if (Validates.combat(SelectedUnit.unit.parent(),$(this))&&Validates.unitsPosition()){
                     Offense.moveToAttack($(this));
-//                }else{
-//                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
-//                    setTimeout(function(){
-//                        window.location.reload()
-//                    },3000);
-//                }
+                }else{
+                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
+                    setTimeout(function(){
+                        window.location.reload()
+                    },3000);
+                }
             });
         }
 

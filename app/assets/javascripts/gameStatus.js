@@ -44,12 +44,33 @@ var GameStatus = {
         GameStatus.teamZeroArray = GameStatus.saveTeam(0);
 
         if (You.team == 0) {
-            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray);
-            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray);
+            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray.sort());
+            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray.sort());
         }
 
-        GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray);
-        GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray);
+        GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
+        GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
+    },
+
+    setValidationString: function(){
+        GameStatus.teamOneArray = GameStatus.saveTeam(1);
+        GameStatus.teamZeroArray = GameStatus.saveTeam(0);
+
+        if (You.team == 0) {
+            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray.sort());
+            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray.sort());
+        }
+
+//        if (Game.whoStarted == 1){
+//            if (((1+Game.turn) % 2) == 0){
+                GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
+                GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
+//            } else {
+//                GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
+//                GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
+//            }
+//        }
+
     },
 
     setLastMove: function(){
