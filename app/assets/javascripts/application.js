@@ -75,35 +75,6 @@ var Favorite = {
 
 $(document).ready(function () {
 
-//    window.addEventListener('devtoolschange', function (e) {
-//        console.log('is DevTools open?', e.detail.open);
-//    });
-//
-//    console.log('is DevTools open?', window.devtools.open);
-//
-//    window.onresize = function () {
-//        if ((window.outerWidth - window.innerWidth) > 100) {
-////            alert('Warning: Tampering with units, will result in a loss');
-//            Rotator.createAndRotateOn('turn', 'Warning: Tampering with units, will result in a loss');
-//            Offense.selectableUnits.off('click');
-//            Offense.moveRange.off('click');
-//            Offense.attackRange.off('click');
-//            setTimeout(function () {
-//                window.location.reload()
-//            }, 2000);
-//        }
-//
-//        if ((window.outerHeight - window.innerHeight) > 100) {
-//            Rotator.createAndRotateOn('turn', 'Warning: Tampering with units, will result in a loss');
-//            Offense.selectableUnits.off('click');
-//            Offense.moveRange.off('click');
-//            Offense.attackRange.off('click');
-//            setTimeout(function () {
-//                window.location.reload()
-//            }, 2000);
-//        }
-//    };
-
     setInterval(function () {
         $('.flashSuccess').children().fadeOut();
         $('.flashError').children().fadeOut();
@@ -115,9 +86,15 @@ $(document).ready(function () {
         $(timer).countdown({until: (new Date(startTime)), compact: true});
     });
 
-    $('div').on('click', function () {
-        $.post('/update_last_active.json');
-    });
+//    setInterval(function(){
+//        $('div').off('click');
+//        $('div').on('click', function () {
+//            $('div').off('click');
+//            $.post('/update_last_active.json').success();
+//        });
+//
+//    },2000);
+
     $('a').on('click', function () {
         $.post('/update_last_active.json');
     });

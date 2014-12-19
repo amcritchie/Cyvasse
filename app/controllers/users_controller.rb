@@ -49,6 +49,8 @@ class UsersController < ApplicationController
   end
 
   def update_last_active
+    p '--'*200
+    p 'next'
     @user = current_user
     @user.update(
         last_active: Time.new
