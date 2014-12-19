@@ -19,7 +19,6 @@ var AI = {
             AI.checkKillableEnemies(e.children[0]);
         });
 
-
         AI.SearchKillableEnemiesFor('rabble');
         AI.SearchKillableEnemiesFor('light horse');
         AI.SearchKillableEnemiesFor('spearman');
@@ -74,13 +73,13 @@ var AI = {
             RangeRings.createRings($(unit),potentialAttackRange); // <------ Not working.
 
             var attackRange = potentialAttackRange.filter(function () {
-                return ($(this).attr('data-rangeRing') <= 89) && ($(this).attr('data-rangeRing') >= 80)
+                return ($(this).attr('data-rangeRing') <= 29) && ($(this).attr('data-rangeRing') >= 20)
             });
 
         } else {
 
             var attackRange = potentialRange.filter(function () {
-                return ($(this).attr('data-ring') <= 39) && ($(this).attr('data-ring') >= 30)
+                return ($(this).attr('data-ring') <= 49) && ($(this).attr('data-ring') >= 30)
             });
         }
 
