@@ -20,6 +20,7 @@ var InitialMatchLoad = {
             InitialMatchLoad.finishedGame();
         } else {
             if (Opponent.ready == 'true') {
+
                 InitialMatchLoad.loadOldGame();
             } else {
                 InitialMatchLoad.readyPlayer();

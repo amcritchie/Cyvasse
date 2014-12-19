@@ -9,15 +9,9 @@ class HomeController < ApplicationController
     if current_user != nil
       @matches = current_user.active_matches(session[:user_id])
       @matches.each do |match|
-        p '-'*200
-        p match.time_of_last_move
-        p '++++'
-        if match.time_of_last_move != nil
-          @boom = Time.now.utc - match.time_of_last_move
-          p Time.now.utc - match.time_of_last_move
-          p 'seconds in 24 hours 86400'
-        end
-        p '*'*200
+        # if match.time_of_last_move != nil
+        #   @boom = Time.now.utc - match.time_of_last_move
+        # end
       end
       @finishedMatches = current_user.finished_matches(session[:user_id]).last(10).reverse
       @lastTenUsers = last_ten_active_users

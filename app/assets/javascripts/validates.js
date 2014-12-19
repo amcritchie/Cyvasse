@@ -34,7 +34,6 @@ var Validates = {
     },
 
     combat: function (attacker, defender) {
-        debugger;
         if (attacker.children('img').attr('data-team') == defender.children('img').attr('data-team')) {
             return false
         } else {

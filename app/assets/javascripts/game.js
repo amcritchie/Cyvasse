@@ -137,8 +137,8 @@ var Game = {
 
     whoGoesFirst: function () {
 
-        var $team0King = $('[alt=king][data-team=0]');
-        var $team1King = $('[alt=king][data-team=1]');
+        var $team0King = $('[alt=king][data-team="0"]');
+        var $team1King = $('[alt=king][data-team="1"]');
 
         var team0distance = (Math.abs(6 - $team0King.parent().data('ypos')));
         var team1distance = (Math.abs(6 - $team1King.parent().data('ypos')));
