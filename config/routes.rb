@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :favorites, only: [:create, :destroy, :index]
+    resources :setups, only: [:create, :destroy, :index]
   end
   post "update_last_active" => "users#update_last_active"
   post "toggle_outlines" => "users#toggle_outlines"

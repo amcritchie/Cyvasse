@@ -39,6 +39,7 @@ var InitialMatchLoad = {
         PreGame.loadPreGameTurn();
         Rotator.rotateOn('.auxSpace');
         InitialMatchLoad.randomSetupButton();
+        InitialMatchLoad.savedSetups();
         if (Game.firstGame === 'true'){
             Tutorial.welcome();
             setTimeout(function(){
@@ -50,6 +51,7 @@ var InitialMatchLoad = {
         AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
         PreGame.loadPreGameTurn();
         InitialMatchLoad.randomSetupButton();
+        InitialMatchLoad.savedSetups();
         if ($(".auxSpace").children().length != 0) {
             Rotator.rotateOn('.auxSpace');
         } else {
@@ -63,6 +65,27 @@ var InitialMatchLoad = {
             PreGame.saveYourSide();
             Tutorial.step = 6;
         });
+    },
+    savedSetups: function(){
+
+        for (var i = 1; i <= 3; i++) {
+            var setup = $('#setup'+i);
+            if (setup.data('name')){
+                PreGame.setups[i] = [setup.data('name'),setup.data('unitposition'),setup.data('id')]
+            } else {
+                PreGame.setups[i] = ['New Setup',null,null]
+            }
+
+            Rotator.createAndRotateSetupButton(i, PreGame.setups[i][0]);
+        }
+
+        Setup.activateClick();
+
+//        $('.setUpOne').on('click', function () {
+////            RandomSetup.placeUnits();
+////            PreGame.saveYourSide();
+////            Tutorial.step = 6;
+//        });
     },
     readyPlayer: function(){
         Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');

@@ -1,17 +1,3 @@
-
-var You = {
-    team: null,
-    ready: null,
-    unitsPos: null
-};
-
-var Opponent = {
-    isA: null,
-    team: null,
-    ready: null,
-    unitsPos: null
-};
-
 var Game = {
 
     turn: null,

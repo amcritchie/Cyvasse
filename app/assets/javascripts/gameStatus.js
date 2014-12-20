@@ -5,7 +5,15 @@ var GameStatus = {
     teamOneString: null,
     teamZeroString: null,
 
-    saveHomeUnitsPosition: function(){
+    positionOfYourUnits: function () {
+        var teamArray = GameStatus.saveTeam(1);
+        if (You.team == 0) {
+            teamArray = GameStatus.mirrorArray(teamArray);
+        }
+        return GameStatus.convertArrayToString(teamArray.sort());
+    },
+
+    saveHomeUnitsPosition: function () {
         var teamArray = GameStatus.saveTeam(1);
         if (You.team == 0) {
             teamArray = GameStatus.mirrorArray(teamArray);
@@ -22,7 +30,7 @@ var GameStatus = {
         });
     },
 
-    saveAwayUnitsPosition: function(){
+    saveAwayUnitsPosition: function () {
         var teamArray = GameStatus.saveTeam(0);
         if (You.team == 0) {
             teamArray = GameStatus.mirrorArray(teamArray);
@@ -39,7 +47,7 @@ var GameStatus = {
         });
     },
 
-    setStrings: function(){
+    setStrings: function () {
         GameStatus.teamOneArray = GameStatus.saveTeam(1);
         GameStatus.teamZeroArray = GameStatus.saveTeam(0);
 
@@ -52,7 +60,7 @@ var GameStatus = {
         GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
     },
 
-    setValidationString: function(){
+    setValidationString: function () {
         GameStatus.teamOneArray = GameStatus.saveTeam(1);
         GameStatus.teamZeroArray = GameStatus.saveTeam(0);
 
@@ -63,8 +71,8 @@ var GameStatus = {
 
 //        if (Game.whoStarted == 1){
 //            if (((1+Game.turn) % 2) == 0){
-                GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
-                GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
+        GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
+        GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
 //            } else {
 //                GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
 //                GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
@@ -73,10 +81,10 @@ var GameStatus = {
 
     },
 
-    setLastMove: function(){
+    setLastMove: function () {
         var oldLocation = parseInt(Offense.oldLocation.attr('data-hexIndex'));
         var newLocation = parseInt(Offense.newLocation.attr('data-hexIndex'));
-        if (You.team == 0){
+        if (You.team == 0) {
             oldLocation = 92 - oldLocation;
             newLocation = 92 - newLocation;
         }
@@ -116,7 +124,7 @@ var GameStatus = {
         });
         return array;
     },
-    mirrorArray: function(array){
+    mirrorArray: function (array) {
         var flippedArray = [];
         $.each(array, function (i, e) {
             var location = e[1];

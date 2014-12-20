@@ -106,6 +106,10 @@
 
     <a id="togglePreference"><%= current_user.unit_outlines %></a>
 
+    <% current_user.setups.each do |setup| %>
+        <a id="setup<%= setup.button_position %>" data-id=<%= setup.id %> data-name='<%= setup.name %>' data-unitPosition=<%= setup.units_position %>></a>
+    <% end %>
+
   </article>
   <article class="full_column">
     <a id="homeUnitsPos"><%= @match.home_units_position %></a>

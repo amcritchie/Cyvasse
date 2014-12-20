@@ -43,7 +43,7 @@ var RandomSetup = {
             var possiblePlaces = $('[data-ring=1][data-occupied=false]');
             var movingUnits = $('[data-status=unplaced][data-team='+You.team+']');
             $.each(possiblePlaces, function(index,hex){
-                possibleSpots.push('[data-hexIndex=' + $(hex).attr('data-hexIndex') + ']')
+                possibleSpots.push('[data-hexIndex=' + $(hex).attr('data-hexIndex') + ']');
             });
             RandomSetup.possibleSpots = possibleSpots;
             RandomSetup.moveUnitsToSpotsRandomly(movingUnits,possibleSpots);
@@ -51,7 +51,9 @@ var RandomSetup = {
 
         $('.randomSetUpButton').off('click');
         $('.randomSetUpButton').on('click', function () {
-            RandomSetup.placeUnits()
+            RandomSetup.placeUnits();
+            PreGame.saveYourSide();
+
         });
     },
     placeLineOne: function () {

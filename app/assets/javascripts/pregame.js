@@ -6,6 +6,9 @@ var PreGame = {
     hintOne: null,
     hintTwo: null,
     startAnimationExecuted: false,
+
+    setups: [],
+
     initialize: function () {
         PreGame.moveableUnits = $('img[data-team=' + You.team + ']').parent();
         PreGame.initialRange = $("[data-ring=1]");
