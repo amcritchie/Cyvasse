@@ -283,20 +283,39 @@ td {
 
 .toMatchButton {
   display: inline-block;
-  width: 120px;
+//  width: 120px;
   padding: .5rem 0;
   color: white;
   border: solid #000000;
   border-radius: 10px;
+  height: 45px;
+  width: 150px;
 }
 
-.newGame {
-  background-color: blue;
+.waitingGame{
+  background-color: #666;
+  margin: 0;
+  font-size: 14px;
+}
+.pendingGame{
+  background-color: #666;
   margin: 0;
 }
+.acceptGame{
+  background-color: royalblue;
+  margin: 0;
+}
+.setupGame{
+  background-color: steelblue;
+  margin: 0;
+}
+//.newGame {
+//  background-color: blue;
+//  margin: 0;
+//}
 
 .yourTurn {
-  background-color: green;
+  background-color: royalblue;
 }
 
 .thereTurn {

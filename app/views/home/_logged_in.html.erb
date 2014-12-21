@@ -79,8 +79,21 @@
 
             <td><%= index + 1 %></td>
             <td>
-              <% if (match.turn == 0) %>
-                  <%= link_to 'New Game', match_path(match), class: 'toMatchButton newGame' %>
+              <% if (match.match_status == 'pending') %>
+                  <% if (match.home_user_id == current_user.id) %>
+                      <%= link_to 'Pending', match_path(match), class: 'toMatchButton pendingGame' %>
+                  <% else %>
+                      <%= link_to 'Accept', match_path(match), class: 'toMatchButton acceptGame' %>
+                  <% end %>
+              <% elsif (match.match_status == 'new') %>
+                  <% if ((match.home_user_id == current_user.id)&&(match.home_ready == true)) %>
+                      <%= link_to 'Opponent Setting Up', match_path(match), class: 'toMatchButton waitingGame' %>
+                  <% elsif ((match.away_user_id == current_user.id)&&(match.away_ready == true)) %>
+                      <%= link_to 'Opponent Setting Up', match_path(match), class: 'toMatchButton waitingGame' %>
+                  <% else %>
+                      <%= link_to 'Setup', match_path(match), class: 'toMatchButton setupGame' %>
+                  <% end %>
+
               <% elsif (match.match_status == 'finished') %>
                   <%= link_to 'Finished', match_path(match), class: 'toMatchButton newGame' %>
               <% else %>
@@ -94,7 +107,7 @@
               <% else %>
                   <% t = (match.time_of_last_move.gmtime()+86400) %>
                   <div class="countDown" data-time="<%= t %>"></div>
-            <% end %>
+              <% end %>
             </td>
             <td>
               <h4><%= User.find(info[2]).name_or_username %></h4>
@@ -106,7 +119,13 @@
             </td>
             <td><%= link_to match.turn %></td>
 
-            <td class="Resign"><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!'} %></td>
+            <td class="Resign">
+              <% if ((match.match_status == 'pending')&&(match.away_user_id == current_user.id)) %>
+                  <%= link_to 'Decline', match, method: :delete, data: {confirm: 'Are you sure you would like to cancel this invitation?'} %>
+            <% else %>
+                  <%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!'} %>
+              <% end %>
+            </td>
           </tr>
       <% end %>
       </tbody>

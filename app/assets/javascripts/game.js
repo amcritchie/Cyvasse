@@ -9,7 +9,7 @@ var Game = {
     playingAI: false,
     playingAsAI: false,
 
-    lastMove:[0,0],
+    lastMove: [0, 0],
 
     startGame: function () {
 
@@ -25,16 +25,16 @@ var Game = {
             dataType: 'json'
         });
 
-        if (Game.offense == You.team){
+        if (Game.offense == You.team) {
             Rotator.createAndRotateOn('whoGoesFirst', 'You have the first move.');
-        }else{
+        } else {
             Rotator.createAndRotateOn('whoGoesFirst', 'Opponent moves first');
         }
         setTimeout(function () {
             Rotator.rotateOff('.whoGoesFirst');
         }, 1300);
 
-        if (MatchData.firstGame === 'true'){
+        if (MatchData.firstGame === 'true') {
             $('.tutorial').remove();
             Tutorial.firstTurn();
             Tutorial.step = 7;
@@ -42,10 +42,10 @@ var Game = {
         Game.runTurn(Game.offense)
     },
 
-    opponentOpeningArray: function(){
-        if (Opponent.isA == 'human'){
-            AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(),Opponent.team);
-        }else{
+    opponentOpeningArray: function () {
+        if (Opponent.isA == 'human') {
+            AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(), Opponent.team);
+        } else {
             RandomSetup.placeComputerLineUp();
         }
     },
@@ -71,30 +71,27 @@ var Game = {
         Offense.runOffense(offense)
     },
 
-
     runTurn: function (offense) {
-
         clearInterval(Animation.function);
         Rotator.createAndRotateOn('turn', 'Turn ' + Game.turn);
-
         setTimeout(function () {
             Rotator.rotateOff('.turn');
         }, 1300);
+        Game.hexVisualUpdate();
+        Offense.runOffense(Game.offense);
+        AI.shouldAIMove();
+    },
 
+    hexVisualUpdate: function () {
         $('.hexPolygon').css('fill', 'black');
         $('.hexPolygon').css('stroke', 'white');
         $('.hexSVG').css('overflow', 'hidden');
         $('.hexSVG').css('z-index', '2');
-
-        $('[data-hexIndex='+Game.lastMove[1]+']').children('svg').children('polygon').css('fill', 'orange');
-        $('[data-hexIndex='+Game.lastMove[0]+']').children('svg').children('polygon').css('fill', 'orange');
-
-        Offense.runOffense(Game.offense);
-
-        AI.shouldAIMove();
+        $('[data-hexIndex=' + Game.lastMove[1] + ']').children('svg').children('polygon').css('fill', 'orange');
+        $('[data-hexIndex=' + Game.lastMove[0] + ']').children('svg').children('polygon').css('fill', 'orange');
     },
 
-    placeTeam: function(team, string){
+    placeTeam: function (team, string) {
         var teamArray = GameStatus.convertStringToArray(string);
         $.each(teamArray, function (i, e) {
             Game.moveUnits(e, team);
@@ -102,23 +99,23 @@ var Game = {
     },
 
     oldGame: function () {
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.homeUnitsString),1);
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString),0);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.homeUnitsString), 1);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString), 0);
         AwayTeamNormalize.placeLastMove();
-        if (MatchData.whoStarted == 1){
-            Game.offense = Game.turn%2
+        if (MatchData.whoStarted == 1) {
+            Game.offense = Game.turn % 2
         } else {
-            Game.offense = Math.abs((Game.turn%2) - 1)
+            Game.offense = Math.abs((Game.turn % 2) - 1)
         }
         Game.runTurn();
     },
 
-    finishedGame: function (){
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.homeUnitsString),1);
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString),0);
-        if (Game.whosTurn == You.team){
+    finishedGame: function () {
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.homeUnitsString), 1);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString), 0);
+        if (Game.whosTurn == You.team) {
             Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
-        }else{
+        } else {
             Rotator.createAndRotateOn('over', 'You were defeated, at turn ' + Game.turn + '.');
         }
     },
@@ -128,43 +125,41 @@ var Game = {
         if (positionArray[1] == 'g' + team) {
             unit.attr('data-status', 'dead');
             unit.appendTo($('#' + positionArray[1]));
-        } else if (positionArray[1] == 'lDock'){
+        } else if (positionArray[1] == 'lDock') {
             unit.attr('data-status', 'unplaced');
             unit.prependTo($('#' + positionArray[1]));
-        }else {
+        } else {
             unit.attr('data-status', 'alive');
             unit.prependTo($('[data-hexIndex=' + positionArray[1] + ']'));
-            $('[data-hexIndex=' + positionArray[1] + ']').attr('data-occupied','true')
+            $('[data-hexIndex=' + positionArray[1] + ']').attr('data-occupied', 'true')
         }
     },
 
-    finishTurn: function(){
+    finishTurn: function () {
         Game.turn += 1;
-        Game.lastMove = [Offense.oldLocation.attr('data-hexIndex'),Offense.newLocation.attr('data-hexIndex')];
+        Game.lastMove = [Offense.oldLocation.attr('data-hexIndex'), Offense.newLocation.attr('data-hexIndex')];
         Game.defense = Game.offense;
         Game.offense = Math.abs(Game.offense - 1);
         GameStatus.saveGameStatus();
         Game.updateOpponentsObjects();
-        if (Tutorial.step == 7){
+        if (Tutorial.step == 7) {
             $('.tutorial').remove();
             Tutorial.secondTurn();
             Game.runTurn();
-        } else if (Tutorial.step == 9){
+        } else if (Tutorial.step == 9) {
             $('.tutorial').remove();
             Tutorial.goodLuck();
-//            setTimeout(function(){
-                Game.runTurn();
-                setTimeout(function(){
-                    $('.tutorial').remove();
-                    Tutorial.checkOutRoot();
-                },3000);
-//            },3000)
+            Game.runTurn();
+            setTimeout(function () {
+                $('.tutorial').remove();
+                Tutorial.checkOutRoot();
+            }, 3000);
         } else {
             Game.runTurn();
         }
     },
 
-    updateOpponentsObjects: function(){
+    updateOpponentsObjects: function () {
         if (You.team == 0) {
             You.unitsPos = GameStatus.convertArrayToString(GameStatus.teamZeroArray);
             Opponent.unitsPos = GameStatus.convertArrayToString(GameStatus.teamOneArray);
@@ -174,13 +169,13 @@ var Game = {
         }
     },
 
-    over: function(){
+    over: function () {
         GameStatus.saveGameStatus();
         var stop = new Date();
         var teamNum = Game.offense;
-        if (teamNum == You.team){
+        if (teamNum == You.team) {
             Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
-        }else{
+        } else {
             Rotator.createAndRotateOn('over', 'You were defeated, at turn ' + Game.turn + '.');
         }
         $.ajax({

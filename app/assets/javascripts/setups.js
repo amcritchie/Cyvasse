@@ -33,6 +33,7 @@ var Setup = {
         $('.hexDiv').attr('data-occupied', false);
         NoTeamNormalize.placeUnits(GameStatus.convertStringToArray(PreGame.setups[whichSetup][1]).reverse(), You.team);
         PreGame.saveYourSide();
+        PreGame.loadPreGameTurn();
         PreGame.readyForStartButton();
     },
 

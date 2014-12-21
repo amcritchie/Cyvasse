@@ -27,6 +27,16 @@ var InitialMatchLoad = {
     },
     freshLoad: function () {
         Rotator.rotateOn('.auxSpace');
+        if (You.team == 0){
+            $.ajax({
+                type: 'post',
+                url: '/game_accepted.json',
+                data: {
+                    id: MatchData.matchID
+                },
+                dataType: 'json'
+            });
+        }
         InitialMatchLoad.loadPregame();
         if (MatchData.firstGame === 'true'){
             Tutorial.welcome();

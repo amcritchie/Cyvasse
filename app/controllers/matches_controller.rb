@@ -56,6 +56,9 @@ class MatchesController < ApplicationController
         turn: 0
     )
 
+    p '--|--'*80
+    p current_user.active_matches(current_user).length
+
     if (current_user.active_matches(current_user).length <= 4) || (current_user.account_type == 'premium')
       @match.save
       redirect_to match_path(@match)
@@ -64,6 +67,13 @@ class MatchesController < ApplicationController
       flash[:error] = "You may only have 5 active games with a basic account."
       redirect_to :back
     end
+  end
+
+  def game_accepted
+    @match = Match.find(params[:id])
+    @match.update(
+        match_status: 'new'
+    )
   end
 
   def create_match_vs_player
@@ -190,6 +200,9 @@ class MatchesController < ApplicationController
   # DELETE /matches/1
   # DELETE /matches/1.json
   def destroy
+    p '---'*800
+    p params
+    p '88__88'
     current_user.resign(current_user,@match)
 
     @match.destroy

@@ -8,11 +8,16 @@ class HomeController < ApplicationController
     # @matches = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id])
     if current_user != nil
       @matches = current_user.active_matches(session[:user_id])
-      @matches.each do |match|
-        # if match.time_of_last_move != nil
-        #   @boom = Time.now.utc - match.time_of_last_move
-        # end
-      end
+      match_offers = Match.where(away_user_id: current_user.id, match_status: 'pending')
+      match_your_move = Match.where(home_user_id: current_user.id, whos_turn: 1) + Match.where(away_user_id: current_user.id, whos_turn: 0)
+      match_there_move = Match.where(home_user_id: current_user.id, whos_turn: 0) + Match.where(away_user_id: current_user.id, whos_turn: 1)
+      match_pending = Match.where(home_user_id: current_user.id, match_status: 'pending')
+      # @matches = match_offers + match_your_move + match_pending + match_there_move
+      # @matches.each do |match|
+      #   # if match.time_of_last_move != nil
+      #   #   @boom = Time.now.utc - match.time_of_last_move
+      #   # end
+      # end
       @finishedMatches = current_user.finished_matches(session[:user_id]).last(10).reverse
       @lastTenUsers = last_ten_active_users
       @favorites = Favorite.where(favoriter: current_user)

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post "update_last_active" => "users#update_last_active"
   post "toggle_outlines" => "users#toggle_outlines"
   post "change_setup_name" => "setups#change_name"
+  post "game_accepted" => "matches#game_accepted"
+
   resources :matches
   resources :world_statuses
 
