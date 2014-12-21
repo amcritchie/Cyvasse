@@ -199,11 +199,17 @@ class MatchesController < ApplicationController
 
   # DELETE /matches/1
   # DELETE /matches/1.json
+  def game_declined
+
+    Match.find(params[:match_id]).destroy
+    flash[:error] = "Invitation Declined"
+
+    redirect_to :back
+  end
+
   def destroy
-    p '---'*800
-    p params
-    p '88__88'
     current_user.resign(current_user,@match)
+    flash[:error] = "Game Quit"
 
     @match.destroy
     respond_to do |format|

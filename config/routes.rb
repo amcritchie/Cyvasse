@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   post "change_setup_name" => "setups#change_name"
   post "game_accepted" => "matches#game_accepted"
 
-  resources :matches
+  resources :matches do
+    post "game_declined" => "matches#game_declined"
+  end
   resources :world_statuses
 
   get "login" => "sessions#new", as: :login

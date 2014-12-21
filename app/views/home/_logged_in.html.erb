@@ -121,9 +121,9 @@
 
             <td class="Resign">
               <% if ((match.match_status == 'pending')&&(match.away_user_id == current_user.id)) %>
-                  <%= link_to 'Decline', match, method: :delete, data: {confirm: 'Are you sure you would like to cancel this invitation?'} %>
+                  <%= link_to 'Decline', "/matches/#{match.id}/game_declined", method: :post %>
             <% else %>
-                  <%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!'} %>
+                  <%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!', type: 'resign'} %>
               <% end %>
             </td>
           </tr>

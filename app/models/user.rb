@@ -89,12 +89,22 @@ class User < ActiveRecord::Base
 
 
   def resign(quitter, match)
+    p '7'*777
+    p 'quitter'
+    p quitter
+    p '--'
+    p 'match'
+    p match
+    p '8888888'
+
     if quitter.id == match.home_user_id
+      p 'its home'
       opponent = User.find(match.away_user_id)
     else
       opponent = User.find(match.home_user_id)
     end
-    quitter.update_attribute(:losses, opponent.wins+1)
+
+    quitter.update_attribute(:losses, quitter.losses+1)
     opponent.update_attribute(:wins, opponent.wins+1)
   end
 
