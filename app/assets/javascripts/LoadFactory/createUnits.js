@@ -77,7 +77,7 @@ var CreateUnits = {
         var svg = '/images/svgs/' + codename + '.svg';
         var noBoarder = '';
 
-        if (Game.outlines == 'true'){
+        if (You.outlines == 'true'){
 
         }else{
             noBoarder = 'noBoarder'

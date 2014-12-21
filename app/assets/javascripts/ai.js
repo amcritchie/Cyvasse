@@ -6,6 +6,15 @@ var AI = {
     unitBingMoved: null,
     hexBeingMovedTo: null,
 
+    shouldAIMove: function (){
+        if ((Game.offense == 0) && (Game.playingAI == true)) {
+            AI.makeAMove();
+        }
+        if ((Game.offense == 1) && (Game.playingAsAI == true)) {
+            AI.makeAMove();
+        }
+    },
+
     makeAMove: function () {
 
         AI.killableEnemies = [];

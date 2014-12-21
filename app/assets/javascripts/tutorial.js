@@ -2,7 +2,10 @@ var Tutorial = {
     step: 0,
     welcome: function () {
         $(".map").prepend("<button class='tutorialWelcome tutorial'><h5>Welcome to Cyvasse,</h5><h6> here is a quick tutorial on how to play.</h6><a>skip</a></button>");
-        Rotator.rotateOn($('.tutorialWelcome'))
+        Rotator.rotateOn($('.tutorialWelcome'));
+        setTimeout(function(){
+            Tutorial.selectUnit();
+        },1000);
     },
     selectUnit: function () {
         $(".map").prepend("<button class='tutorialSelectUnit tutorial'>&#8599<h5>These are your units,</h5><h6>click one.</h6><a>skip</a></button>");

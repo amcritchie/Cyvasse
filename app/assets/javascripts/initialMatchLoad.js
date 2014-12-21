@@ -1,13 +1,9 @@
 var InitialMatchLoad = {
     onPageLoad: function () {
-        Game.grabMatchData();
+        MatchData.loadMatchDataToJavaScript();
         LoadingFactory.loadMapUnitsAndEnemiesHTML();
         InitialMatchLoad.setGlobalHexVariables();
-        if (You.ready == 'true') {
-            InitialMatchLoad.readyFunctions();
-        } else {
-            InitialMatchLoad.notReadyFunctions();
-        }
+        InitialMatchLoad.runGame();
     },
     setGlobalHexVariables: function(){
         $allHexDivs = $('.hexDiv');
@@ -15,20 +11,14 @@ var InitialMatchLoad = {
         $allHexPoly = $allHexSVGs.children('polygon');
         $allHexPoly.css('fill', 'black');
     },
-    readyFunctions: function(){
-        if (Game.matchStatus == 'finished'){
-            InitialMatchLoad.finishedGame();
+    runGame: function () {
+        if (You.ready == 'true') {
+            InitialMatchLoad.readyFunctions();
         } else {
-            if (Opponent.ready == 'true') {
-
-                InitialMatchLoad.loadOldGame();
-            } else {
-                InitialMatchLoad.readyPlayer();
-            }
+            InitialMatchLoad.notReadyFunctions();
         }
     },
     notReadyFunctions: function(){
-        PreGame.initialize();
         if (You.unitsPos == '') {
             InitialMatchLoad.freshLoad()
         } else {
@@ -36,27 +26,58 @@ var InitialMatchLoad = {
         }
     },
     freshLoad: function () {
-        PreGame.loadPreGameTurn();
         Rotator.rotateOn('.auxSpace');
-        InitialMatchLoad.randomSetupButton();
-        InitialMatchLoad.savedSetups();
-        if (Game.firstGame === 'true'){
+        InitialMatchLoad.loadPregame();
+        if (MatchData.firstGame === 'true'){
             Tutorial.welcome();
-            setTimeout(function(){
-                Tutorial.selectUnit();
-            },1000);
         }
     },
     continuePregame: function () {
         AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
-        PreGame.loadPreGameTurn();
-        InitialMatchLoad.randomSetupButton();
-        InitialMatchLoad.savedSetups();
+        InitialMatchLoad.loadPregame();
         if ($(".auxSpace").children().length != 0) {
             Rotator.rotateOn('.auxSpace');
         } else {
             PreGame.loadStartButton();
         }
+    },
+    loadPregame: function () {
+        PreGame.initialize();
+        PreGame.loadPreGameTurn();
+        InitialMatchLoad.savedSetups();
+        InitialMatchLoad.randomSetupButton();
+    },
+    readyFunctions: function(){
+        if (Game.status == 'finished'){
+            InitialMatchLoad.finishedGame();
+        } else {
+            InitialMatchLoad.nonFinishedGame();
+        }
+    },
+    finishedGame: function(){
+        Game.offense = parseInt(document.getElementById('whosTurn').innerHTML);
+        Game.finishedGame()
+    },
+    nonFinishedGame: function () {
+        if (Opponent.ready == 'true') {
+            InitialMatchLoad.continueGame();
+        } else {
+            InitialMatchLoad.opponentNotReady();
+        }
+    },
+    continueGame: function () {
+        Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
+        Game.lastMove = document.getElementById('matchLastMove').innerHTML;
+        MatchData.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
+        Game.oldGame();
+    },
+    opponentNotReady: function(){
+        Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
+        $('[data-occupied=true]').children("svg").children("polygon").css('stroke', 'blue');
+        setTimeout(function () {
+            window.location.reload()
+        }, 4000)
     },
     randomSetupButton: function(){
         Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
@@ -67,42 +88,15 @@ var InitialMatchLoad = {
         });
     },
     savedSetups: function(){
-
         for (var i = 1; i <= 3; i++) {
             var setup = $('#setup'+i);
             if (setup.data('name')){
                 PreGame.setups[i] = [setup.data('name'),setup.data('unitposition'),setup.data('id')]
             } else {
-                PreGame.setups[i] = ['New Setup',null,null]
+                PreGame.setups[i] = ['Blank',null,null]
             }
-
             Rotator.createAndRotateSetupButton(i, PreGame.setups[i][0]);
         }
-
         Setup.activateClick();
-
-//        $('.setUpOne').on('click', function () {
-////            RandomSetup.placeUnits();
-////            PreGame.saveYourSide();
-////            Tutorial.step = 6;
-//        });
-    },
-    readyPlayer: function(){
-        Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
-        $('[data-occupied=true]').children("svg").children("polygon").css('stroke', 'blue');
-        setTimeout(function () {
-            window.location.reload()
-        }, 4000)
-    },
-    loadOldGame: function () {
-        Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
-        Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
-        Game.lastMove = document.getElementById('matchLastMove').innerHTML;
-        Game.oldGame();
-    },
-    finishedGame: function(){
-        Game.offense = parseInt(document.getElementById('whosTurn').innerHTML);
-        Game.finishedGame()
     }
 };

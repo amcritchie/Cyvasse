@@ -23,7 +23,7 @@ var GameStatus = {
             type: 'put',
             url: '/update_home_units_position',
             data: {
-                match_id: Game.matchID,
+                match_id: MatchData.matchID,
                 home_units: teamString
             },
             dataType: 'json'
@@ -40,7 +40,7 @@ var GameStatus = {
             type: 'put',
             url: '/update_away_units_position',
             data: {
-                match_id: Game.matchID,
+                match_id: MatchData.matchID,
                 away_units: teamString
             },
             dataType: 'json'
@@ -102,7 +102,7 @@ var GameStatus = {
             data: {
                 turn: Game.turn,
                 whos_turn: Game.offense,
-                match_id: Game.matchID,
+                match_id: MatchData.matchID,
                 home_units: GameStatus.teamOneString,
                 away_units: GameStatus.teamZeroString,
                 last_move: GameStatus.setLastMove()

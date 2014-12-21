@@ -18,6 +18,10 @@ class SetupsController < ApplicationController
   end
 
   def change_name
-
+    @setup = Setup.find(params[:id].to_i)
+    @setup.update(
+        name: params[:name]
+    )
+    redirect :back
   end
 end

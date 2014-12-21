@@ -1,93 +1,15 @@
 var Game = {
-
     turn: null,
-
-    whoStarted: null,
-    startTime: null,
+    status: null,
     whosTurn: null,
 
     offense: null,
     defense: null,
 
-    player1name: null,
-    player0name: null,
-
-    outlines: null,
-
     playingAI: false,
     playingAsAI: false,
-    firstGame: false,
-
-    currentUser: null,
-    homeUser:null,
-    awayUser:null,
 
     lastMove:[0,0],
-
-    currentUserIsTeam: null,
-
-    matchID: null,
-    matchStatus: null,
-    matchAgainst: null,
-    homeUnitsString: null,
-    awayUnitsString: null,
-
-    grabMatchData: function(){
-
-        Game.firstGame = document.getElementById('firstGame').innerHTML;
-
-        Game.currentUser = parseInt(document.getElementById('currentUserID').innerHTML);
-        Game.homeUser = parseInt(document.getElementById('homeID').innerHTML);
-        Game.awayUser = parseInt(document.getElementById('awayID').innerHTML);
-
-        if (Game.currentUser == Game.homeUser){
-            Game.currentUserIsTeam = 1;
-            You.team = 1;
-            You.ready = document.getElementById('homeReady').innerHTML;
-            You.unitsPos = document.getElementById('homeUnitsPos').innerHTML;
-            Opponent.team = 0;
-            Opponent.ready = document.getElementById('awayReady').innerHTML;
-            Opponent.unitsPos = document.getElementById('awayUnitsPos').innerHTML;
-
-        } else if (Game.currentUser == Game.awayUser){
-            Game.currentUserIsTeam = 0;
-            You.team = 0;
-            You.ready = document.getElementById('awayReady').innerHTML;
-            You.unitsPos = document.getElementById('awayUnitsPos').innerHTML;
-            Opponent.team = 1;
-            Opponent.ready = document.getElementById('homeReady').innerHTML;
-            Opponent.unitsPos = document.getElementById('homeUnitsPos').innerHTML;
-        } else{
-        }
-
-        Game.whosTurn = parseInt(document.getElementById('whosTurn').innerHTML);
-
-        Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
-        Game.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
-
-        Game.outlines = document.getElementById('togglePreference').innerHTML;
-
-        Game.matchID = parseInt(document.getElementById('matchID').innerHTML);
-        Game.matchStatus = document.getElementById('matchStatus').innerHTML;
-        Game.matchAgainst = document.getElementById('matchAgainst').innerHTML;
-        Game.homeUnitsString = document.getElementById('homeUnitsPos').innerHTML;
-        Game.awayUnitsString = document.getElementById('awayUnitsPos').innerHTML;
-
-        if (Game.matchAgainst == 'computer') {
-            Game.playingAI = true
-        }
-
-        Opponent.isA = Game.matchAgainst;
-    },
-
-    opponentOpeningArray: function(){
-        if (Opponent.isA == 'human'){
-            AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(),Opponent.team);
-        }else{
-//            RandomSetup.placeLineOne();
-            RandomSetup.placeComputerLineUp();
-        }
-    },
 
     startGame: function () {
 
@@ -99,7 +21,7 @@ var Game = {
         $.ajax({
             type: 'put',
             url: '/start_game',
-            data: {match_id: Game.matchID, who_started: Game.offense},
+            data: {match_id: MatchData.matchID, who_started: Game.offense},
             dataType: 'json'
         });
 
@@ -112,13 +34,20 @@ var Game = {
             Rotator.rotateOff('.whoGoesFirst');
         }, 1300);
 
-        Game.startTime = new Date();
-        if (Game.firstGame === 'true'){
+        if (MatchData.firstGame === 'true'){
             $('.tutorial').remove();
             Tutorial.firstTurn();
             Tutorial.step = 7;
         }
         Game.runTurn(Game.offense)
+    },
+
+    opponentOpeningArray: function(){
+        if (Opponent.isA == 'human'){
+            AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(),Opponent.team);
+        }else{
+            RandomSetup.placeComputerLineUp();
+        }
     },
 
     whoGoesFirst: function () {
@@ -138,7 +67,7 @@ var Game = {
 
     firstTurn: function (offense) {
         Game.turn = 1;
-        Game.whoStarted = offense;
+        MatchData.whoStarted = offense;
         Offense.runOffense(offense)
     },
 
@@ -162,13 +91,7 @@ var Game = {
 
         Offense.runOffense(Game.offense);
 
-        if ((Game.offense == 0) && (Game.playingAI == true)) {
-            AI.makeAMove();
-        }
-
-        if ((Game.offense == 1) && (Game.playingAsAI == true)) {
-            AI.makeAMove();
-        }
+        AI.shouldAIMove();
     },
 
     placeTeam: function(team, string){
@@ -179,10 +102,10 @@ var Game = {
     },
 
     oldGame: function () {
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Game.homeUnitsString),1);
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Game.awayUnitsString),0);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.homeUnitsString),1);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString),0);
         AwayTeamNormalize.placeLastMove();
-        if (Game.whoStarted == 1){
+        if (MatchData.whoStarted == 1){
             Game.offense = Game.turn%2
         } else {
             Game.offense = Math.abs((Game.turn%2) - 1)
@@ -191,8 +114,8 @@ var Game = {
     },
 
     finishedGame: function (){
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Game.homeUnitsString),1);
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Game.awayUnitsString),0);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.homeUnitsString),1);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString),0);
         if (Game.whosTurn == You.team){
             Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
         }else{
@@ -263,9 +186,8 @@ var Game = {
         $.ajax({
             type: 'put',
             url: '/finish_game',
-            data: {match_id: Game.matchID, winner: Game.offense},
+            data: {match_id: MatchData.matchID, winner: Game.offense},
             dataType: 'json'
         });
     }
 };
-

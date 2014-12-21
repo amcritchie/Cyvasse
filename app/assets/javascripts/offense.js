@@ -110,8 +110,7 @@ var Offense = {
     },
 
     registerMovableHex: function () {
-
-        if (Game.offense == Game.currentUserIsTeam) {
+        if (Game.offense == You.team) {
             Offense.moveRange.on('click', function () {
                 if (Validates.unitStats(SelectedUnit.unit.parent())&&Validates.unitsPosition()){
                     Offense.moveToAttack($(this));
@@ -123,13 +122,10 @@ var Offense = {
                 }
             });
         }
-
-
     },
 
     registerAttackUnit: function () {
-
-        if (Game.offense == Game.currentUserIsTeam) {
+        if (Game.offense == You.team) {
             Offense.attackRange.on('click', function () {
                 if (Validates.combat(SelectedUnit.unit.parent(),$(this))&&Validates.unitsPosition()){
                     Offense.moveToAttack($(this));
@@ -141,7 +137,6 @@ var Offense = {
                 }
             });
         }
-
     },
 
     moveToHex: function (hex) {

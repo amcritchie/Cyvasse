@@ -109,7 +109,7 @@ var PreGame = {
         Rotator.rotateOff($('.auxSpace'));
         Rotator.createAndRotateOn('startGameButton', 'Start Game');
 
-        if (Game.firstGame === 'true') {
+        if (MatchData.firstGame === 'true') {
             clearTimeout(PreGame.hintOne);
             clearTimeout(PreGame.hintTwo);
             $('.tutorial').remove();
@@ -126,6 +126,7 @@ var PreGame = {
         PreGame.initialRange.off('click');
         Rotator.rotateOff($('.startGameButton'));
         Rotator.rotateOff($('.randomSetUpButton'));
+        Rotator.rotateOff($('.setUp'));
         PreGame.readyOpponent();
     },
     startButtonAjax: function () {
@@ -133,7 +134,7 @@ var PreGame = {
             type: 'put',
             url: PreGame.readyPath(),
             data: {
-                match_id: Game.matchID
+                match_id: MatchData.matchID
             },
             dataType: 'json'
         });
