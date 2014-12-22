@@ -36,7 +36,6 @@ var PreGame = {
     pregameClickUnit: function () {
         PreGame.moveableUnits.on('click', function () {
             if (Tutorial.step === 2) {
-                $('.tutorial').remove();
                 Tutorial.placeUnit();
             }
             PreGame.moveableRange.off('click');
@@ -56,13 +55,12 @@ var PreGame = {
     registerClickHex: function () {
         PreGame.moveableRange.on('click', function () {
             if (Tutorial.step === 3) {
-                $('.tutorial').remove();
                 Tutorial.secondMove();
                 PreGame.hintOne = setTimeout(function () {
-                    $('.tutorial').remove();
+                    $('.tutorialSecondMove').remove();
                     Tutorial.goal();
                     PreGame.hintTwo = setTimeout(function () {
-                        $('.tutorial').remove();
+                        $('.tutorialGoal').remove();
                         Tutorial.whoGoesFirst();
                     }, 7000)
                 }, 7000);

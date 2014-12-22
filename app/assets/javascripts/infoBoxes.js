@@ -95,6 +95,7 @@ var InfoBoxes = {
                 } else {
                     $('#selectUnitUtility').show().children('.value').empty().append(unit.data('flank'));
                     $('#selectUnitUtility').show().children('.key').empty().append('Flank');
+                    $('#selectUnitUtility').hide();
                 }
             }
             $('#selectUnitStrength').children('.value').empty().append(unit.data('attack'));

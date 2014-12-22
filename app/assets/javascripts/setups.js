@@ -7,6 +7,7 @@ var Setup = {
 
         $('.nameSetup').on('click', function () {
             if ($(this).parent().children('.executeSetup').text() != 'Blank') {
+                $('.tutorialRenameSetup').remove();
                 Setup.changeName($(this));
             } else {
                 alert('You must save a lineup first.')

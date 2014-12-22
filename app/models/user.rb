@@ -50,7 +50,6 @@ class User < ActiveRecord::Base
     match_your_move = Match.where(home_user_id: user_id, whos_turn: 1).where.not(match_status: 'finished') + Match.where(away_user_id: user_id, whos_turn: 0).where.not(match_status: 'finished')
     match_there_move = Match.where(home_user_id: user_id, whos_turn: 0).where.not(match_status: 'finished') + Match.where(away_user_id: user_id, whos_turn: 1).where.not(match_status: 'finished')
 
-
     home_waiting = Match.where(home_user_id: user_id, home_ready: true).where.not(match_status: 'finished').where.not(match_status: 'in progress')
     away_waiting = Match.where(away_user_id: user_id, away_ready: true).where.not(match_status: 'finished').where.not(match_status: 'in progress')
     waiting_on_opponent = home_waiting + away_waiting - match_offerings
@@ -60,14 +59,8 @@ class User < ActiveRecord::Base
 
     match_pregame = (match_pregame_away + match_pregame_home) - (waiting_on_opponent + match_offers + match_offerings)
 
-    home_games = Match.where(home_user_id: user_id).where.not(match_status: 'finished')
-    away_games = Match.where(away_user_id: user_id).where.not(match_status: 'finished')
-    # # (home_games + away_games).sort_by &:created_at
-    waiting_on_opponent
     match_offers + match_your_move + match_pregame + match_offerings + waiting_on_opponent + match_there_move
-
   end
-
 
   def finished_matches(user_id)
     home_games = Match.where(home_user_id: user_id, match_status: 'finished')
@@ -75,30 +68,9 @@ class User < ActiveRecord::Base
     (home_games + away_games).sort_by &:created_at
   end
 
-  # def add_win
-  #   user = User.find(user_id)
-  #   wins = user.wins
-  #   p '++++'*70
-  #   p self
-  #   p user
-  #   p wins
-  #   user.update(
-  #       wins: wins + 1
-  #   )
-  # end
-
-
   def resign(quitter, match)
-    p '7'*777
-    p 'quitter'
-    p quitter
-    p '--'
-    p 'match'
-    p match
-    p '8888888'
 
     if quitter.id == match.home_user_id
-      p 'its home'
       opponent = User.find(match.away_user_id)
     else
       opponent = User.find(match.home_user_id)

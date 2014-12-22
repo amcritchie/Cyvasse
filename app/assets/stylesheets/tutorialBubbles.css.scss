@@ -1,0 +1,206 @@
+
+.tutorialWelcome {
+  width: 250px;
+  margin: 10px 0 0 -250px;
+  h5 {
+    font-size: 20px;
+  }
+}
+
+.tutorialSelectUnit {
+  margin: 185px 0 0 -560px;
+}
+
+.tutorialRules {
+  width: 265px;
+  margin: 10px 0 0 -740px;
+  h5 {
+    font-size: 20px;
+  }
+  div{
+    margin-bottom: 4px;
+    height: 20px;
+    &:nth-of-type(3) {
+      margin-top: 15px;
+    }
+    &:nth-of-type(4) {
+      margin-top: 15px;
+      height: 40px;
+      .title{
+        font-size: 12px;
+      }
+    }
+  }
+  .title{
+    float: left;
+//    width: 15%;
+    height: 100%;
+    margin-right: 5px;
+//    display: inline-block;
+//    display: inline-block;
+    font-size: 14px;
+//    height: 30px;
+//    &:nth-of-type(1) {
+//      padding-bottom: 5px;
+//      //      font-size: 12px;
+//      //      display: inline-block;
+//      //      //      width: 220px;
+//      //      padding-bottom: 10px;
+//      //      float: none;
+//    }
+//    float: left;
+  }
+  .info{
+//    margin-left: 5px;
+    margin-top: 2px;
+    float: left;
+    width: 70%;
+    text-align: left;
+    height: 100%;
+//    display: inline-block;
+//    display: inline-block;
+    font-size: 11px;
+//    width: 200px;
+//    margin-top: 2px;
+//    margin-left: 4px;
+//    text-align: left;
+//    padding-bottom: 10px;
+  }
+  h6 {
+    font-size: 10px;
+    &:nth-of-type(3) {
+//      font-size: 12px;
+//      display: inline-block;
+//      //      width: 220px;
+//      padding-bottom: 10px;
+//      float: none;
+    }
+    &:nth-of-type(5) {
+      font-size: 12px;
+      display: inline-block;
+//      width: 220px;
+      padding-bottom: 10px;
+    }
+    &:nth-of-type(6) {
+      font-size: 12px;
+      display: inline-block;
+      width: 220px;
+      padding-bottom: 10px;
+    }
+  }
+  img {
+    float: right;
+    position: absolute;
+    margin-top: -10px;
+    margin-left: -15px;
+  }
+}
+
+.tutorialRange{
+  margin: 0 0 0 -48px;
+  width: 160px;
+  height: 180px;
+  img{
+    width: 110px;
+    height: 110px;
+  }
+  p{
+    font-size: 8px;
+  }
+//  &:nth-of-type(2) {
+//    margin: 0 0 0 -15px;
+//
+//    z-index: 100;
+//  }
+}
+.tutorialTrump{
+  margin: 0 0 0 -210px;
+  width: 160px;
+  height: 200px;
+  img{
+    width: 110px;
+    height: 110px;
+  }
+  p{
+    font-size: 8px;
+  }
+  //  &:nth-of-type(2) {
+  //    margin: 0 0 0 -15px;
+  //
+  //    z-index: 100;
+  //  }
+}
+
+
+
+.tutorialStats {
+  margin: 280px 0 0 -140px;
+}
+
+.tutorialPlaceUnit {
+  margin: 340px 0 0 -580px;
+}
+
+.tutorialSecondMove {
+  margin: 190px 0 0 -610px;
+  height: 120px;
+}
+
+.tutorialGoal {
+  margin: 170px 0 0 -270px;
+}
+
+.tutorialWhoGoesFirst {
+  margin: 190px 0 0 -610px;
+}
+
+.tutorialStartGame {
+  margin: 150px 0 0 -620px;
+  height: 100px;
+}
+
+.tutorialSaveSetup {
+  margin: 230px 0 0 -315px;
+  //  height: 100px;
+  //  font-size: 10px;
+  h5 {
+    font-size: 14px;
+  }
+
+}
+
+.tutorialRenameSetup {
+  margin: 235px 0 0 -350px;
+  //  height: 100px;
+  //  font-size: 10px;
+  width: 100px;
+  h5 {
+    font-size: 15px;
+  }
+
+}
+
+.tutorialFirstTurn {
+  margin: 60px 0 0 -270px;
+  height: 100px;
+}
+
+.tutorialSecondTurn {
+  margin: 30px 0 0 -680px;
+  height: 100px;
+}
+
+.tutorialAttack {
+  margin: 30px 0 0 -280px;
+  height: 100px;
+}
+
+.tutorialGoodLuck {
+  margin: 30px 0 0 -680px;
+  height: 100px;
+}
+
+.tutorialCheckIndex {
+  margin: 20px 0 0 -720px;
+  height: 100px;
+}

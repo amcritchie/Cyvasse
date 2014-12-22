@@ -81,7 +81,7 @@
 </div>
 <div id=metaInfo>
   <article class="one_fourth">
-    <% if @match.created_at - current_user.created_at < 1 %>
+    <% if @match.created_at - current_user.created_at < 5 %>
         <a id="firstGame"><%= true %></a>
     <% else %>
         <a id="firstGame"><%= false %></a>
