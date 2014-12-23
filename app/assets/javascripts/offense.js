@@ -8,6 +8,7 @@ var Offense = {
     oldLocation: $('hex52'),
     moveRange: $('hex52'),
     attackRange: $('hex54'),
+    jump: 1,
     runOffense: function (offense) {
         Offense.offense = offense;
         Offense.defense = Math.abs(offense - 1);
@@ -17,7 +18,9 @@ var Offense = {
 
     registerSelectUnit: function () {
         if (Game.offense == You.team) {
+            Offense.jump = 1;
             Offense.selectableUnits.on('click', function () {
+
                 if (Tutorial.step == 8){
                     $('.tutorial').remove();
                     Tutorial.attack();
@@ -62,7 +65,6 @@ var Offense = {
         var potentialRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.moveRange).parent().parent();
 
         MoveRings.createRings(SelectedUnit.unit, potentialRange);
-
 
         Animation.runAnimation();
         Offense.updateMoveRange(potentialRange);
@@ -112,7 +114,7 @@ var Offense = {
     registerMovableHex: function () {
         if (Game.offense == You.team) {
             Offense.moveRange.on('click', function () {
-                if (Validates.unitStats(SelectedUnit.unit.parent())&&Validates.unitsPosition()){
+                if (Validates.unitStats(SelectedUnit.unit.parent())&&(Validates.unitsPosition()||Offense.jump==2)){
                     Offense.moveToAttack($(this));
                 }else{
                     Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
@@ -158,7 +160,16 @@ var Offense = {
                 Offense.moveUnitToNewPosition();
             }
         }
-        Offense.finishTurn()
+        if ((SelectedUnit.rank == 'cavalry')&&(Offense.jump == 1)){
+            $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
+
+            Offense.attackRange.off('click');
+            Offense.selectableUnits.off('click');
+            Offense.selectUnit(SelectedUnit.unit.parent());
+            Offense.jump = 2;
+        } else {
+            Offense.finishTurn()
+        }
     },
 
     moveUnitToNewPosition: function () {

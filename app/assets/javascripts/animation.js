@@ -3,6 +3,7 @@ var Animation = {
     function: null,
     runAnimation: function () {
         Animation.setRange();
+        debugger;
         $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
         $('.hexDiv').children('svg').children('polygon').css('stroke', 'white');
 
@@ -13,6 +14,7 @@ var Animation = {
         var startA = new Date();
 
         Animation.function = setInterval(function () {
+            debugger;
 
             var ringStart = new Date();
 
@@ -58,6 +60,8 @@ var Animation = {
     },
 
     updateRing: function (distanceFromUnit) {
+
+        debugger;
         Animation.updateFill(240, 1, distanceFromUnit);
         Animation.updateFill(290, 2, distanceFromUnit);
         Animation.updateFill(10, 3, distanceFromUnit);

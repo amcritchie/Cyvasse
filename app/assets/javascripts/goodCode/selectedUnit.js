@@ -2,6 +2,8 @@ var SelectedUnit = {
     unit: null,
     team: null,
 
+    rank: null,
+
     xPos: null,
     yPos: null,
 
@@ -17,6 +19,7 @@ var SelectedUnit = {
     update: function (newUnit) {
         SelectedUnit.unit = newUnit;
         SelectedUnit.team = parseInt(newUnit.attr('data-team'));
+        SelectedUnit.rank = newUnit.attr('data-rank');
 
         SelectedUnit.xPos = parseInt(newUnit.parent().attr('data-xPos'));
         SelectedUnit.yPos = parseInt(newUnit.parent().attr('data-yPos'));

@@ -17,27 +17,9 @@ var AI = {
 
     makeAMove: function () {
 
-        AI.killableEnemies = [];
         var moveableUnits = Offense.selectableUnits.not($('[alt=mountain]').parent());
 
-        AI.unitBeingMoved = 'empty';
-        AI.hexBeingMovedTo = 'empty';
-
-
-        Array.prototype.slice.call(moveableUnits).forEach(function (e) {
-            AI.checkKillableEnemies(e.children[0]);
-        });
-
-        AI.SearchKillableEnemiesFor('rabble');
-        AI.SearchKillableEnemiesFor('light horse');
-        AI.SearchKillableEnemiesFor('spearman');
-        AI.SearchKillableEnemiesFor('crossbowman');
-        AI.SearchKillableEnemiesFor('heavy horse');
-        AI.SearchKillableEnemiesFor('elephant');
-        AI.SearchKillableEnemiesFor('trebuchet');
-        AI.SearchKillableEnemiesFor('catapult');
-        AI.SearchKillableEnemiesFor('dragon');
-        AI.SearchKillableEnemiesFor('king');
+        AI.findKillableEnemies(moveableUnits);
 
         if (AI.unitBeingMoved == 'empty'){
             AI.unitBeingMoved = Offense.selectableUnits.not($('[alt=mountain]').parent()).random();
@@ -57,9 +39,53 @@ var AI = {
 
             setTimeout(function () {
                 Offense.moveToAttack(AI.hexBeingMovedTo);
+
+                if ((SelectedUnit.rank == 'cavalry')){
+                    AI.findKillableEnemies(SelectedUnit.unit.parent());
+//                    Offense.selectUnit(SelectedUnit.unit.parents());
+                    if (AI.hexBeingMovedTo == 'empty'){
+                        AI.hexBeingMovedTo = Offense.moveRange.random();
+
+                        if (Offense.attackRange.length != 0) {
+                            AI.hexBeingMovedTo = Offense.attackRange.random();
+                        }
+                    }
+
+                    setTimeout(function () {
+                        debugger;
+                        Offense.moveToAttack(AI.hexBeingMovedTo);
+                    }, 20000);
+//                    $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
+
+//                    Offense.attackRange.off('click');
+//                    Offense.selectableUnits.off('click');
+//                    Offense.selectUnit(SelectedUnit.unit.parent());
+//                    Offense.jump = 2;
+                }
+
             }, 1000);
 
         }, 1500);
+    },
+
+    findKillableEnemies: function (moveableUnits) {
+        AI.killableEnemies = [];
+        AI.unitBeingMoved = 'empty';
+        AI.hexBeingMovedTo = 'empty';
+        Array.prototype.slice.call(moveableUnits).forEach(function (e) {
+            AI.checkKillableEnemies(e.children[0]);
+        });
+
+        AI.SearchKillableEnemiesFor('rabble');
+        AI.SearchKillableEnemiesFor('light horse');
+        AI.SearchKillableEnemiesFor('spearman');
+        AI.SearchKillableEnemiesFor('crossbowman');
+        AI.SearchKillableEnemiesFor('heavy horse');
+        AI.SearchKillableEnemiesFor('elephant');
+        AI.SearchKillableEnemiesFor('trebuchet');
+        AI.SearchKillableEnemiesFor('catapult');
+        AI.SearchKillableEnemiesFor('dragon');
+        AI.SearchKillableEnemiesFor('king');
     },
 
     checkKillableEnemies: function(unit){
