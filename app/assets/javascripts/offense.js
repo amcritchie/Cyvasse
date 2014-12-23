@@ -129,7 +129,7 @@ var Offense = {
     registerAttackUnit: function () {
         if (Game.offense == You.team) {
             Offense.attackRange.on('click', function () {
-                if (Validates.combat(SelectedUnit.unit.parent(),$(this))&&Validates.unitsPosition()){
+                if (Validates.combat(SelectedUnit.unit.parent(),$(this))&&(Validates.unitsPosition()||Offense.jump == 2)){
                     Offense.moveToAttack($(this));
                 }else{
                     Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
