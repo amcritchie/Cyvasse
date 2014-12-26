@@ -41,7 +41,7 @@ var PreGame = {
             PreGame.moveableRange.off('click');
             PreGame.moveableRange = PreGame.initialRange.not('[data-occupied=true]');
             PreGame.updateSelectUnit($(this));
-            InfoBoxes.updateSelectBox(PreGame.unit);
+            InfoBox.update(PreGame.unit);
             PreGame.registerClickHex();
         })
     },

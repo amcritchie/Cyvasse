@@ -1,10 +1,10 @@
-var InfoBoxes = {
+var InfoBox = {
 
     registerHoverUnit: function(){
         var $hoverableRange = $('img[data-team]');
         $hoverableRange.on({
             mouseenter: function () {
-                InfoBoxes.updateHoverBox($(this));
+                InfoBox.updateHoverBox($(this));
             },
             mouseleave: function () {
                 $('.hideHoveredUnitInfo').css('visibility', 'hidden');
@@ -56,7 +56,7 @@ var InfoBoxes = {
         }
     },
 
-    updateSelectBox: function(unit){
+    update: function(unit){
 
         var trumps = unit.data('trump').split(',');
         var string = '';

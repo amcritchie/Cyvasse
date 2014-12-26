@@ -1,20 +1,19 @@
 var SelectedUnit = {
     unit: null,
     team: null,
-
     rank: null,
 
     xPos: null,
     yPos: null,
 
+    strength: null,
     movement: null,
     range: null,
 
-    trump: null,
-
-    strength: null,
     moveRange: null,
     attackRange: null,
+
+    trump: null,
 
     update: function (newUnit) {
         SelectedUnit.unit = newUnit;
@@ -32,5 +31,23 @@ var SelectedUnit = {
         SelectedUnit.attackRange = parseInt(newUnit.attr('data-attackrange'));
 
         SelectedUnit.trump = newUnit.attr('data-trump').split(',')
+    },
+
+    clear: function () {
+        SelectedUnit.unit = null;
+        SelectedUnit.team = null;
+        SelectedUnit.rank = null;
+
+        SelectedUnit.xPos = null;
+        SelectedUnit.yPos = null;
+
+        SelectedUnit.strength = null;
+        SelectedUnit.movement = null;
+        SelectedUnit.range = null;
+
+        SelectedUnit.moveRange = null;
+        SelectedUnit.attackRange = null;
+
+        SelectedUnit.trump = null;
     }
 };

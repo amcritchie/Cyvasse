@@ -3,20 +3,13 @@ var Animation = {
     function: null,
     runAnimation: function () {
         Animation.setRange();
-        debugger;
         $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
         $('.hexDiv').children('svg').children('polygon').css('stroke', 'white');
 
         $('[data-ring=9]').children('svg').children('polygon').css('fill', 'orange');
         var distanceFromUnit = 1;
 
-
-        var startA = new Date();
-
         Animation.function = setInterval(function () {
-            debugger;
-
-            var ringStart = new Date();
 
             if ((SelectedUnit.unit.attr('data-rank') == 'range')) {
                 Animation.updateRangeRing(distanceFromUnit);
@@ -28,17 +21,16 @@ var Animation = {
 
             if ((SelectedUnit.unit.attr('data-rank') == 'range')&&(SelectedUnit.range < distanceFromUnit)) {
                 clearInterval(Animation.function)
+            } else if ((SelectedUnit.unit.attr('data-rank') == 'cavalry')){
+                if ((2*SelectedUnit.movement < distanceFromUnit)) {
+                    clearInterval(Animation.function)
+                }
             } else if ((SelectedUnit.unit.attr('data-rank') != 'range')&&(SelectedUnit.movement < distanceFromUnit)){
                 clearInterval(Animation.function)
             }
 
-            var ringStop = new Date();
-            console.log("Update Ring #" + distanceFromUnit + "  total run time - >", ringStop - ringStart);
-
         }, 120);
 
-        var stopA = new Date();
-        console.log("Total Animation run time - >", stopA - startA);
     },
 
     updateRangeRing: function(distanceFromUnit){
@@ -61,12 +53,45 @@ var Animation = {
 
     updateRing: function (distanceFromUnit) {
 
-        debugger;
         Animation.updateFill(240, 1, distanceFromUnit);
         Animation.updateFill(290, 2, distanceFromUnit);
         Animation.updateFill(10, 3, distanceFromUnit);
         Animation.updateFill(10, 4, distanceFromUnit);
         Animation.updateFill(280, 5, distanceFromUnit);
+
+//        Animation.updateFill(200, 6, distanceFromUnit);
+//        Animation.updateFill(200, 7, distanceFromUnit);
+//        Animation.updateFill(200, 8, distanceFromUnit);
+
+        $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', 'blue');
+        $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').css('overflow','overlay');
+        $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').css('z-index',8);
+
+        $('[data-ring=' + 7 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', 'red');
+        $('[data-ring=' + 7 + '' + (distanceFromUnit - 1) + ']').children('svg').css('overflow','overlay');
+        $('[data-ring=' + 7 + '' + (distanceFromUnit - 1) + ']').children('svg').css('z-index',10);
+
+        $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', 'purple');
+        $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').css('overflow','overlay');
+        $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').css('z-index',9);
+//        Animation.updateStroke('blue', 6, distanceFromUnit,8);
+//        var color = "hsl(" + 205 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
+//        $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color).css('stroke', color);
+//        var color = "hsl(" + 205 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
+//        $('[data-ring=' + 7 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color);
+//        var color = "hsl(" + 205 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
+//        $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color);
+
+//        var color = "hsl(" + 240 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
+//        $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', color);
+
+//        var color = "hsl(" + 10 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
+//        $('[data-ring=' + 7 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', color);
+//
+//        var color = "hsl(" + 280 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
+//        $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', color);
+//        Animation.updateFill(10, 7, distanceFromUnit);
+//        Animation.updateFill(280, 8, distanceFromUnit);
     },
     updateRangeFill: function (hslColor, code, distanceFromUnit) {
         var color = "hsl(" + hslColor + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";

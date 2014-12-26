@@ -25,11 +25,39 @@ $temp4: #f6f6ae;
 $temp5: #d52822;
 
 body {
-  a{
-//    font: 'cinzel';
-    font-family: 'Cinzel', serif;
-  }
+//  a{
+////    font: 'cinzel';
+////    font-family: 'Cinzel', serif;
+//  }
+//  h1{
+//    font-family: 'Cinzel', serif;
+//  }
+//  h2{
+//    font-family: 'Cinzel', serif;
+//  }
+//  h3{
+//    font-family: 'Cinzel', serif;
+//  }
+//  h4{
+//    font-family: 'Cinzel', serif;
+//  }
+//  h5{
+//    font-family: 'Cinzel', serif;
+//  }
+//  h6{
+//    font-family: 'Cinzel', serif;
+//  }
+//  button{
+//    font-family: 'Cinzel', serif;
+//  }
+//  label{
+//    font-family: 'Cinzel', serif;
+//  }
+//  input{
+//    font-family: 'Cinzel', serif;
+//  }
   font-family: 'Cinzel', serif;
+
 }
 
 .essos{
@@ -279,36 +307,7 @@ article {
   @extend .clearfix;
 }
 
-//Unit Classes
-[data-status='unplaced'] {
 
-  z-index: 6;
-  position: relative;
-  margin-bottom: -6px;
-  margin-right: -5px;
-  width: 40px;
-  height: 40px;
-}
-
-[data-status='alive'] {
-  z-index: 10;
-  position: absolute;
-  margin-left: 0px;
-  margin-bottom: -5px;
-  width: 60px;
-  height: 70px;
-  cursor: pointer;
-  display: inline-block;
-
-  -webkit-border-radius: 100px;
-}
-
-[data-status='dead'] {
-  z-index: 6;
-  position: relative;
-  margin-bottom: -6px;
-  margin-right: -5px;
-}
 
 .options {
   //  text-align: center;
@@ -357,6 +356,8 @@ article {
       position: absolute;
       stroke: white;
       stroke-width: 20px;
+      width: 60px;
+      height: 68px;
     }
   }
 }
@@ -385,6 +386,9 @@ polygon {
   fill: url(#grad1);
   stroke-width: 25;
   transform: scale(.108);
+  -ms-transform: scale(.108); /* IE 9 */
+  -webkit-transform: scale(.108); /* Chrome, Safari, Opera */
+
   //  &:hover {
   //    fill: $devil-gray;
   //    stroke: $white;
@@ -465,3 +469,4 @@ polygon {
     margin-bottom: 0;
   }
 }
+

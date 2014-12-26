@@ -1,5 +1,6 @@
 var LoadingFactory = {
     loadMapUnitsAndEnemiesHTML: function () {
+        $('#testP').prepend("<svg><polygon points='1,1 100,100 1,100' style='fill: red;'></polygon></svg>");
         var templateMap = JST['LoadFactory/views/map'];
         var templateUnits = JST['LoadFactory/views/units'];
         var templateEnemies = JST['LoadFactory/views/enemies'];

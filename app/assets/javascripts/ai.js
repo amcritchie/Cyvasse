@@ -1,12 +1,11 @@
-
 var AI = {
 
     killableEnemies: null,
 
-    unitBingMoved: null,
+    unitBeingMoved: null,
     hexBeingMovedTo: null,
 
-    shouldAIMove: function (){
+    shouldAIMove: function () {
         if ((Game.offense == 0) && (Game.playingAI == true)) {
             AI.makeAMove();
         }
@@ -21,7 +20,7 @@ var AI = {
 
         AI.findKillableEnemies(moveableUnits);
 
-        if (AI.unitBeingMoved == 'empty'){
+        if (AI.unitBeingMoved == 'empty') {
             AI.unitBeingMoved = Offense.selectableUnits.not($('[alt=mountain]').parent()).random();
         }
 
@@ -29,7 +28,7 @@ var AI = {
 
             Offense.selectUnit(AI.unitBeingMoved);
 
-            if (AI.hexBeingMovedTo == 'empty'){
+            if (AI.hexBeingMovedTo == 'empty') {
                 AI.hexBeingMovedTo = Offense.moveRange.random();
 
                 if (Offense.attackRange.length != 0) {
@@ -39,28 +38,17 @@ var AI = {
 
             setTimeout(function () {
                 Offense.moveToAttack(AI.hexBeingMovedTo);
-
-                if ((SelectedUnit.rank == 'cavalry')){
-                    AI.findKillableEnemies(SelectedUnit.unit.parent());
-//                    Offense.selectUnit(SelectedUnit.unit.parents());
-                    if (AI.hexBeingMovedTo == 'empty'){
-                        AI.hexBeingMovedTo = Offense.moveRange.random();
-
-                        if (Offense.attackRange.length != 0) {
-                            AI.hexBeingMovedTo = Offense.attackRange.random();
-                        }
-                    }
-
+                if ((SelectedUnit.rank == 'cavalry')) {
                     setTimeout(function () {
-                        debugger;
+                        AI.findKillableEnemies(SelectedUnit.unit.parent());
+                        if (AI.hexBeingMovedTo == 'empty') {
+                            AI.hexBeingMovedTo = Offense.moveRange.random();
+                            if (Offense.attackRange.length != 0) {
+                                AI.hexBeingMovedTo = Offense.attackRange.random();
+                            }
+                        }
                         Offense.moveToAttack(AI.hexBeingMovedTo);
-                    }, 20000);
-//                    $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
-
-//                    Offense.attackRange.off('click');
-//                    Offense.selectableUnits.off('click');
-//                    Offense.selectUnit(SelectedUnit.unit.parent());
-//                    Offense.jump = 2;
+                    }, 1000);
                 }
 
             }, 1000);
@@ -88,7 +76,7 @@ var AI = {
         AI.SearchKillableEnemiesFor('king');
     },
 
-    checkKillableEnemies: function(unit){
+    checkKillableEnemies: function (unit) {
 
 
         $('.hexDiv').attr('data-ring', 8);
@@ -102,10 +90,10 @@ var AI = {
         var potentialRange = PotentialRange.create($(unit), $(unit).attr('data-moverange')).parent().parent();
         MoveRings.createRings($(unit), potentialRange);
 
-        if ($(unit).attr('data-rank') == 'range'){
+        if ($(unit).attr('data-rank') == 'range') {
 
             var potentialAttackRange = PotentialRange.create($(unit), $(unit).attr('data-attackrange')).parent().parent();
-            RangeRings.createRings($(unit),potentialAttackRange); // <------ Not working.
+            RangeRings.createRings($(unit), potentialAttackRange); // <------ Not working.
 
             var attackRange = potentialAttackRange.filter(function () {
                 return ($(this).attr('data-rangeRing') <= 29) && ($(this).attr('data-rangeRing') >= 20)
@@ -124,7 +112,7 @@ var AI = {
 
         Array.prototype.slice.call(attackRange).forEach(function (e) {
 
-            AI.killableEnemies.push([e.children[0].getAttribute('alt'),e.getAttribute('id'),$(unit).attr('alt'),$(unit).parent().attr('id')]);
+            AI.killableEnemies.push([e.children[0].getAttribute('alt'), e.getAttribute('id'), $(unit).attr('alt'), $(unit).parent().attr('id')]);
         });
 
         $allHexPoly.attr('class', 'hexPolygon');
@@ -151,11 +139,11 @@ var AI = {
         return PotentialRange.create(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, range).parent().parent();
     },
 
-    SearchKillableEnemiesFor: function (unitName){
-        AI.killableEnemies.forEach(function(e){
-            if (e[0] == unitName){
-                AI.unitBeingMoved = $('#'+e[3]);
-                AI.hexBeingMovedTo = $('#'+e[1]);
+    SearchKillableEnemiesFor: function (unitName) {
+        AI.killableEnemies.forEach(function (e) {
+            if (e[0] == unitName) {
+                AI.unitBeingMoved = $('#' + e[3]);
+                AI.hexBeingMovedTo = $('#' + e[1]);
             }
         });
     }

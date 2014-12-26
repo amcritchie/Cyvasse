@@ -1,3 +1,31 @@
+//Unit Statuses
+[data-status='unplaced'] {
+  z-index: 6;
+  position: relative;
+  margin-bottom: -6px;
+  margin-right: -5px;
+  width: 40px;
+  height: 40px;
+}
+[data-status='alive'] {
+  z-index: 12;
+  position: absolute;
+  margin-left: 0px;
+  margin-bottom: -5px;
+  width: 60px;
+  height: 70px;
+  cursor: pointer;
+  display: inline-block;
+  -webkit-border-radius: 100px;
+}
+[data-status='dead'] {
+  z-index: 6;
+  position: relative;
+  margin-bottom: -6px;
+  margin-right: -5px;
+}
+
+
 #matchShow {
 
   .auxSpace {

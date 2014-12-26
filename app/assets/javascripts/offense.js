@@ -1,177 +1,88 @@
 var Offense = {
-    offense: null,
+    jump: 1,
     defense: null,
     selectableUnits: $('hex53'),
-    start: null,
-    end: null,
     newLocation: $('hex52'),
     oldLocation: $('hex52'),
     moveRange: $('hex52'),
     attackRange: $('hex54'),
-    jump: 1,
+
     runOffense: function (offense) {
-        Offense.offense = offense;
+        Offense.jump = 1;
         Offense.defense = Math.abs(offense - 1);
         Offense.selectableUnits = $('[data-status=alive][data-team=' + offense + ']').parent();
-        Offense.registerSelectUnit()
+        Offense.registerClickUnit()
     },
-
-    registerSelectUnit: function () {
+    registerClickUnit: function () {
         if (Game.offense == You.team) {
-            Offense.jump = 1;
             Offense.selectableUnits.on('click', function () {
-
-                if (Tutorial.step == 8){
-                    $('.tutorial').remove();
-                    Tutorial.attack();
-                }
-                if (Validates.unitStats($(this))){
-                    Offense.selectUnit($(this));
-                }else{
-                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
-                    setTimeout(function(){
-                        window.location.reload()
-                    },3000);
-                }
+                Tutorial.stepEight();
+                Offense.validatesClickedUnit($(this));
             })
         }
     },
-
+    validatesClickedUnit: function (unit) {
+        if (Validates.unitStats(unit)) {
+            Offense.selectUnit(unit);
+        } else {
+            Validates.notPassed();
+        }
+    },
     selectUnit: function (unit) {
-        $('.hexPolygon').css('fill', 'black');
-        $('.hexPolygon').css('stroke', 'white');
-        $('.hexSVG').css('overflow', 'hidden');
-        $('.hexSVG').css('z-index', '2');
-
-        clearInterval(Animation.function);
+        Offense.refreshHexVisual();
         SelectedUnit.update(unit.children('img'));
-        InfoBoxes.updateSelectBox(unit.children('img'));
+        InfoBox.update(unit.children('img'));
         Offense.registerMoveOrAttack();
     },
+    refreshHexVisual: function () {
+        clearInterval(Animation.function);
+        $allHexPoly.css('fill', 'black');
+        $allHexPoly.css('stroke', 'white');
+        $allHexSVGs.css('overflow', 'hidden');
+        $allHexSVGs.css('z-index', '2');
+    },
     registerMoveOrAttack: function () {
-        Offense.updateUnitRanges();
-        Offense.registerMovableHex();
-        Offense.registerAttackUnit();
-    },
-    updateUnitRanges: function () {
-        $('.hexDiv').attr('data-ring', 8);
-        $('.hexDiv').attr('data-locked', false);
-        SelectedUnit.unit.parent().attr('data-ring', 9);
-
-        $('.hexDiv').attr('data-rangeRing', 8);
-        $('.hexDiv').attr('data-rangeLocked', false);
-        SelectedUnit.unit.parent().attr('data-rangeRing', 9);
-
-        var potentialRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.moveRange).parent().parent();
-
-        MoveRings.createRings(SelectedUnit.unit, potentialRange);
-
-        Animation.runAnimation();
-        Offense.updateMoveRange(potentialRange);
-
-//
-        if (SelectedUnit.unit.attr('data-rank') == 'range') {
-
-            var attackRange = PotentialRange.create(SelectedUnit.unit, SelectedUnit.attackRange).parent().parent();
-            RangeRings.createRings(SelectedUnit.unit, attackRange); // <------ Not working.
-            Offense.updateAttackRange(attackRange);
-        } else {
-            Offense.updateMeleeRange(); // <---- slow!!!!!
+        Range.update();
+        if (Game.offense == You.team) {
+            Offense.registerMovableHex();
+            Offense.registerAttackUnit();
         }
-        $allHexPoly.attr('class', 'hexPolygon');
     },
-    updateMoveRange: function (range) {
-        Offense.moveRange.off('click');
-        Offense.moveRange = range.filter(function () {
-            return ($(this).attr('data-ring') <= 19) && ($(this).attr('data-ring') >= 10)
-        });
-    },
-    updateAttackRange: function (range) {
-        Offense.attackRange.off('click');
-        Offense.attackRange = $(range).filter(function () {
-            return ($(this).attr('data-rangeRing') <= 29) && ($(this).attr('data-rangeRing') >= 20)
-        });
-    },
-    updateMeleeRange: function (unit, range) {
-        var potentialRange = Offense.potentialRange();
-
-        MoveRings.createRings(SelectedUnit.unit, potentialRange);
-        Offense.attackRange.off('click');
-        Offense.attackRange = potentialRange.filter(function () {
-            return ($(this).attr('data-ring') <= 49) && ($(this).attr('data-ring') >= 30)
-        });
-    },
-    potentialRange: function () {
-        var range = null;
-        if (SelectedUnit.unit.data('rank') == 'range') {
-            range = SelectedUnit.attackRange
-        } else {
-            range = SelectedUnit.moveRange
-        }
-        return PotentialRange.create(SelectedUnit.unit, SelectedUnit.xPos, SelectedUnit.yPos, range).parent().parent();
-    },
-
     registerMovableHex: function () {
-        if (Game.offense == You.team) {
-            Offense.moveRange.on('click', function () {
-                if (Validates.unitStats(SelectedUnit.unit.parent())&&(Validates.unitsPosition()||Offense.jump==2)){
-                    Offense.moveToAttack($(this));
-                }else{
-                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
-                    setTimeout(function(){
-                        window.location.reload()
-                    },3000);
-                }
-            });
-        }
+        Offense.moveRange.on('click', function () {
+            var validation = Validates.unitStats(SelectedUnit.unit.parent()) && (Validates.unitsPosition() || Offense.jump == 2);
+            Offense.validatesAction($(this),validation);
+        });
     },
-
     registerAttackUnit: function () {
-        if (Game.offense == You.team) {
-            Offense.attackRange.on('click', function () {
-                if (Validates.combat(SelectedUnit.unit.parent(),$(this))&&(Validates.unitsPosition()||Offense.jump == 2)){
-                    Offense.moveToAttack($(this));
-                }else{
-                    Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
-                    setTimeout(function(){
-                        window.location.reload()
-                    },3000);
-                }
-            });
+        Offense.attackRange.on('click', function () {
+            var validation = Validates.combat(SelectedUnit.unit.parent(), $(this)) && (Validates.unitsPosition() || Offense.jump == 2);
+            Offense.validatesAction($(this),validation);
+        });
+    },
+    validatesAction: function (unit, validation) {
+        if (validation) {
+            Offense.moveToAttack(unit);
+        } else {
+            Validates.notPassed();
         }
     },
-
-    moveToHex: function (hex) {
-        Offense.selectableUnits.off('click');
-        Offense.newLocation = hex;
-        Offense.oldLocation = SelectedUnit.unit.parent();
-        Offense.moveUnitToNewPosition();
-        Offense.finishTurn()
-    },
-
     moveToAttack: function (hex) {
         Offense.newLocation = hex;
         Offense.oldLocation = SelectedUnit.unit.parent();
         if (hex.children('img').length == 0) {
             Offense.moveUnitToNewPosition();
         } else {
-            Death.unitKilled(hex.children("img"));
-            if (SelectedUnit.unit.attr('data-attackRange') == 0) {
-                Offense.moveUnitToNewPosition();
-            }
+            Offense.captureEnemy(hex);
         }
-        if ((SelectedUnit.rank == 'cavalry')&&(Offense.jump == 1)){
-            $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
-
-            Offense.attackRange.off('click');
-            Offense.selectableUnits.off('click');
-            Offense.selectUnit(SelectedUnit.unit.parent());
+        if ((SelectedUnit.rank == 'cavalry') && (Offense.jump == 1)) {
+            Offense.turnOffClickHandlers();
             Offense.jump = 2;
+            Offense.selectUnit(SelectedUnit.unit.parent());
         } else {
             Offense.finishTurn()
         }
     },
-
     moveUnitToNewPosition: function () {
         var movingTo = $(Offense.newLocation);
         var movingFrom = $(Offense.oldLocation);
@@ -179,17 +90,22 @@ var Offense = {
         movingTo.attr('data-occupied', true);
         movingFrom.attr('data-occupied', false);
     },
-
-    finishTurn: function () {
-        $('.hideHoveredUnitInfo').css('visibility', 'hidden');
-        $('.hideSelectedUnitInfo').css('visibility', 'hidden');
-
-        $('.hexDiv').children('svg').children('polygon').css('fill', 'black');
-
+    captureEnemy: function (hex) {
+        Death.unitKilled(hex.children("img"));
+        if (SelectedUnit.range == 0) {
+            Offense.moveUnitToNewPosition();
+        }
+    },
+    turnOffClickHandlers: function () {
+        $allHexPoly.css('fill', 'black');
+        Offense.moveRange.off('click');
         Offense.attackRange.off('click');
         Offense.selectableUnits.off('click');
-        SelectedUnit.unit = null;
-
+    },
+    finishTurn: function () {
+        $('.hideSelectedUnitInfo').css('visibility', 'hidden');
+        Offense.turnOffClickHandlers();
+        SelectedUnit.clear();
         if ($('[alt=king][data-status=dead]').length == 1) {
             Game.over();
         } else {

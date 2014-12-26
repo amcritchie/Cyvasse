@@ -101,5 +101,12 @@ var Tutorial = {
         $(".map").prepend("<button class='tutorialCheckIndex tutorial'>&#8598&nbsp&nbsp&nbsp&nbsp<h6>Check out your dashboard, your game saves automatically.</h6></button>");
         Rotator.rotateOn($('.tutorialCheckIndex'));
         Tutorial.step += 1;
+    },
+
+    stepEight: function() {
+        if (Tutorial.step == 8){
+            $('.tutorial').remove();
+            Tutorial.attack();
+        }
     }
 };

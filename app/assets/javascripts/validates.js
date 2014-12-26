@@ -22,7 +22,6 @@ var Validates = {
     },
 
     unitStats: function (unit) {
-        debugger;
         var unitClass = unit.children('img').attr('data-codename');
         var unitStats = [
             unit.children('img').attr('data-attack'),
@@ -31,16 +30,13 @@ var Validates = {
             unit.children('img').attr('data-attackrange'),
             unit.children('img').attr('data-trump')
         ];
-        debugger;
         return !!Validates.arrayEqual(Validates[unitClass], unitStats);
     },
 
     combat: function (attacker, defender) {
         if (attacker.children('img').attr('data-team') == defender.children('img').attr('data-team')) {
-            debugger;
             return false
         } else {
-            debugger;
             return !!(Validates.unitStats(attacker) && Validates.unitStats(defender));
         }
     },
@@ -52,5 +48,12 @@ var Validates = {
         } else {
             return !!((You.unitsPos == GameStatus.teamOneString) && (Opponent.unitsPos = GameStatus.teamZeroString));
         }
+    },
+
+    notPassed: function () {
+        Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
+        setTimeout(function(){
+            window.location.reload()
+        },3000);
     }
 };

@@ -1,4 +1,5 @@
 <% var yPos = 1; %>
+<%     $('#testP').prepend("<svg><polygon points='1,1 100,100 1,100' style='fill: yellow;'></polygon></svg>"); %>
 <% $.each(map,function(index, row){ %>
     <div class="grid" data-y-pos=<%= yPos %>>
     <% $.each (row , function(index, col){ %>

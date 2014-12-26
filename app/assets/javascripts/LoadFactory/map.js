@@ -54,9 +54,10 @@ var Map = {
             " data-xPos=" + parseInt(Map.col) + " data-yPos=" + parseInt(Map.row) + " " +
             " data-size=" + size + " data-occupied=false data-even=true data-src=nil " +
             " data-off=nil data-movement=nil  data-range=nil>" +
-            "<svg class='hexSVG'>" +
+            "<svg class='hexSVG' xmlns='http://www.w3.org/2000/svg' version='1.1'>" +
+//            "<staticContent><mimeMap fileExtension='.svg' mimeType='image/svg+xml' /></staticContent>" +
 
-            "<polygon class='hexPolygon'" +
+            "<polygon class='hexPolygon' style='fill: black;'" +
             " data-size=" + size + " data-even='true'" +
             " points='" + (width * hex_scale) + ",0 0," + (height * hex_scale) + "" +
             " 0," + (height + hypotenuse) * hex_scale + "" +
