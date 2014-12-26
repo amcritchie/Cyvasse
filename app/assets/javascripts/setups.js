@@ -5,15 +5,6 @@ var Setup = {
             Setup.createNewSetup($(this));
         });
 
-//        $('.nameSetup').on('click', function () {
-//            if ($(this).parent().children('.executeSetup').text() != 'Blank') {
-//                $('.tutorialRenameSetup').remove();
-//                Setup.changeName($(this));
-//            } else {
-//                alert('You must save a lineup first.')
-//            }
-//        });
-
         $('.executeSetup').on('click', function () {
             if ($(this).parent().children('.executeSetup').text() != 'Blank') {
                 Setup.executeSetup($(this));
@@ -22,10 +13,6 @@ var Setup = {
                 alert('You must save a lineup first.')
             }
         });
-    },
-
-    active: function () {
-
     },
 
     executeSetup: function (button) {
@@ -38,49 +25,12 @@ var Setup = {
         PreGame.readyForStartButton();
     },
 
-    changeName: function (nameButton) {
-        var name = prompt("What would you like to call this line up?");
-        if (name.length != 0) {
-            if (name.length > 20) {
-                Setup.changeNameWithError(nameButton);
-            } else {
-//                $(".setup" + nameButton.parent().data('setup')).children('.executeSetup').text(name);
-                var setupPosition = nameButton.parent().data('setup');
-                Setup.changeNameAjax(name, setupPosition);
-            }
-        }
-    },
-
-    changeNameWithError: function (nameButton) {
-        var name = prompt("It must be less then 20 characters");
-        if (name.length != 0) {
-            if (name.length > 20) {
-                Setup.changeNameWithError(nameButton);
-            } else {
-                var setupPosition = nameButton.parent().data('setup');
-                Setup.changeNameAjax(name, setupPosition);
-            }
-        }
-    },
-
-    changeNameAjax: function (name, setupPosition) {
-        $.ajax({
-            type: 'post',
-            url: '/change_setup_name.json',
-            data: {
-                id: PreGame.setups[setupPosition][2],
-                name: name
-            },
-            dataType: 'json'
-        }).success($(".setup" + setupPosition).children('.executeSetup').text(name));
-    },
-
     createNewSetupError: function (saveButton) {
         var name = prompt("The name must be at least 20 characters");
         if (name != null) {
             if (name.length != 0) {
                 if (name.length > 20) {
-                    Setup.changeNameWithError(saveButton);
+                    Setup.createNewSetupError(saveButton);
                 } else {
 
                     var setupPosition = saveButton.parent().data('setup');

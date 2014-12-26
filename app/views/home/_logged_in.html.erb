@@ -117,7 +117,7 @@
                   <h6><%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: info[2]} %></h6>
               <% end %>
             </td>
-            <td><%= link_to match.turn %></td>
+            <td><%= match.turn %></td>
 
             <td class="Resign">
               <% if ((match.match_status == 'pending')&&(match.away_user_id == current_user.id)) %>
