@@ -5,14 +5,14 @@ var Setup = {
             Setup.createNewSetup($(this));
         });
 
-        $('.nameSetup').on('click', function () {
-            if ($(this).parent().children('.executeSetup').text() != 'Blank') {
-                $('.tutorialRenameSetup').remove();
-                Setup.changeName($(this));
-            } else {
-                alert('You must save a lineup first.')
-            }
-        });
+//        $('.nameSetup').on('click', function () {
+//            if ($(this).parent().children('.executeSetup').text() != 'Blank') {
+//                $('.tutorialRenameSetup').remove();
+//                Setup.changeName($(this));
+//            } else {
+//                alert('You must save a lineup first.')
+//            }
+//        });
 
         $('.executeSetup').on('click', function () {
             if ($(this).parent().children('.executeSetup').text() != 'Blank') {
@@ -75,28 +75,64 @@ var Setup = {
         }).success($(".setup" + setupPosition).children('.executeSetup').text(name));
     },
 
+    createNewSetupError: function (saveButton) {
+        var name = prompt("The name must be at least 20 characters");
+        if (name != null) {
+            if (name.length != 0) {
+                if (name.length > 20) {
+                    Setup.changeNameWithError(saveButton);
+                } else {
+
+                    var setupPosition = saveButton.parent().data('setup');
+                    $.ajax({
+                        type: 'post',
+                        url: '/users/' + MatchData.currentUser + '/setups.json',
+                        data: {
+                            id: PreGame.setups[setupPosition][2],
+                            name: name,
+                            units_position: GameStatus.positionOfYourUnits(),
+                            button_position: setupPosition
+                        },
+                        dataType: 'json'
+                    }).success(
+                        $(".setup" + setupPosition).children('.executeSetup').text(name),
+                        window.location.reload()
+                    );
+                }
+            }
+        }
+    },
 
     createNewSetup: function (saveButton) {
         var setupPosition = saveButton.parent().data('setup');
         if ($(".auxSpace").children().length != 0) {
             alert('You must have all your units on the board to save.');
         } else {
-            var r = confirm("Are you sure you would like to Overwrite this Setup?");
-            if (r == true) {
-                $.ajax({
-                    type: 'post',
-                    url: '/users/' + MatchData.currentUser + '/setups.json',
-                    data: {
-                        id: PreGame.setups[setupPosition][2],
-                        name: 'New Setup',
-                        units_position: GameStatus.positionOfYourUnits(),
-                        button_position: setupPosition
-                    },
-                    dataType: 'json'
-                }).success(
-                    $(".setup" + setupPosition).children('.executeSetup').text('New Setup'),
-                    window.location.reload()
-                );
+            var name = prompt("What would you like to call this line up?");
+
+            if (name != null) {
+                if (name.length != 0) {
+                    if (name.length > 20) {
+                        Setup.createNewSetupError(saveButton);
+                    } else {
+
+                        var setupPosition = saveButton.parent().data('setup');
+                        $.ajax({
+                            type: 'post',
+                            url: '/users/' + MatchData.currentUser + '/setups.json',
+                            data: {
+                                id: PreGame.setups[setupPosition][2],
+                                name: name,
+                                units_position: GameStatus.positionOfYourUnits(),
+                                button_position: setupPosition
+                            },
+                            dataType: 'json'
+                        }).success(
+                            $(".setup" + setupPosition).children('.executeSetup').text(name),
+                            window.location.reload()
+                        );
+                    }
+                }
             }
         }
     }

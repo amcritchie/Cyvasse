@@ -31,7 +31,7 @@ var Rotator = {
 //        var text = 'rr';
         $(".map").prepend(
                 "<div class='setup" + setupNum + " setUp rotating' data-setup="+setupNum+"><button class=executeSetup>"+nameOfSetup+"</button>" +
-                    "<button class=nameSetup>rename</button><button class=saveSetup>save</button></div>");
+                    "<button class=saveSetup>Save Current</button></div>");
         Rotator.rotateOn($('.setup' + setupNum));
     }
 

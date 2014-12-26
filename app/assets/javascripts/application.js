@@ -86,14 +86,7 @@ $(document).ready(function () {
         $(timer).countdown({until: (new Date(startTime)), compact: true});
     });
 
-//    setInterval(function(){
-//        $('div').off('click');
-//        $('div').on('click', function () {
-//            $('div').off('click');
-//            $.post('/update_last_active.json').success();
-//        });
-//
-//    },2000);
+
 
     $('a').on('click', function () {
         $.post('/update_last_active.json');
