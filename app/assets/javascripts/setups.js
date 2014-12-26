@@ -99,6 +99,8 @@ var Setup = {
                         window.location.reload()
                     );
                 }
+            } else {
+                Setup.createNewSetupError(saveButton);
             }
         }
     },
