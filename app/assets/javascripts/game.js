@@ -37,9 +37,12 @@ var Game = {
         if (MatchData.firstGame === 'true') {
             $('.tutorial').remove();
             Tutorial.firstTurn();
-            Tutorial.step = 7;
+            setTimeout(function () {
+                Game.runTurn(Game.offense)
+            }, 2000);
+        } else {
+            Game.runTurn(Game.offense)
         }
-        Game.runTurn(Game.offense)
     },
 
     opponentOpeningArray: function () {

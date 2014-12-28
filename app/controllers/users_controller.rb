@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.username = @user.username.downcase
+    @user.email = @user.email.downcase
     @user.wins = 0
     @user.losses = 0
     @user.admin = false

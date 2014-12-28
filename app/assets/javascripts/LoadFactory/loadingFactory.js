@@ -20,8 +20,13 @@ var LoadingFactory = {
     prependThingToMap: function (map) {
         map.prepend("<article class='auxSpace rotating' id='lDock'></article>");
         $('#metaInfo').prepend("<article class=enemyBay></article>");
-        map.prepend("<article class=graveyard id=g1 data-hexIndex=g1><a>Team 1 Graveyard</a></article>");
-        map.prepend("<article class=graveyard id=g0 data-hexIndex=g0><a>Team 0 Graveyard</a></article>");
+        if (You.team == 1){
+            $('#youInfo').append("<p>Graveyard</p><div class=graveyard id=g1 data-hexIndex=g1></div>");
+            $('#opponentInfo').append("<p>Graveyard</p><div class=graveyard id=g0 data-hexIndex=g0></div>");
+        } else {
+            $('#youInfo').append("<p>Graveyard</p><div class=graveyard id=g0 data-hexIndex=g0></div>");
+            $('#opponentInfo').append("<p>Graveyard</p><div class=graveyard id=g1 data-hexIndex=g1></div>");
+        }
         map.prepend("<article class=board></article>");
     },
     moveSVGsToPosition: function (map, units, enemies) {

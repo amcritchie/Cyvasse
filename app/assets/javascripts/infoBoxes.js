@@ -35,7 +35,9 @@ var InfoBox = {
         } else {
             if (name == 'dragon'){
                 $('#hoverMvRange').empty().append('Movement:  ∞');
-            }else{
+            }else if (false){
+
+            } else{
                 $('#hoverMvRange').empty().append('Movement:  ' + unit.data('moverange'));
             }
 
@@ -87,7 +89,12 @@ var InfoBox = {
                     $('#selectUnitMoveRange').show().children('.value').empty().append(unit.data('moverange'));
                 }
             }else{
-                $('#selectUnitMoveRange').show().children('.value').empty().append(unit.data('moverange'));
+                if (rank == 'cavalry'){
+                    $('#selectUnitMoveRange').show().children('.value').empty().append(unit.data('moverange') + ' + 2');
+                } else {
+                    $('#selectUnitMoveRange').show().children('.value').empty().append(unit.data('moverange'));
+                }
+
 
                 if (rank == 'range'){
                     $('#selectUnitUtility').show().children('.value').empty().append(unit.data('attackrange'));
@@ -105,8 +112,7 @@ var InfoBox = {
         if (string.length > 55){
             $('#selectUnitTrump').show().children('.value').empty().append(string)
         } else {
-            $('#selectUnitTrump').children('.value').empty()
-
+            $('#selectUnitTrump').hide();
         }
     }
 };

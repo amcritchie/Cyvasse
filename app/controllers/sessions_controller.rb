@@ -7,7 +7,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:user][:username])
+    @user = User.find_by(username: params[:user][:username].downcase)
+    if @user == nil
+      @user = User.find_by(email: params[:user][:username].downcase)
+    end
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       @user.update(last_active: Time.new)

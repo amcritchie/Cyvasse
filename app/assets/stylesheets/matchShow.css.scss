@@ -56,10 +56,15 @@
     border: 0;
     padding: 2px;
   }
+  .hexHover {
+    fill: yellow;
+  }
   [data-status=dead]{
+    padding: 0;
     border: 0;
   }
   [data-status=unplaced]{
+    padding: 0;
     border: 0;
   }
 
@@ -167,21 +172,22 @@
     //    background-color: greenyellow;
     text-align: center;
     button {
-      width: 100px;
+      width: 200px;
+      margin-bottom: 4px;
       height: 40px;
       display: inline-block;
     }
   }
-  .graveyard {
-    margin-top: 5px;
-    width: 40%;
-    height: 20px;
-    background-color: peru;
-    img {
-      height: 16px;
-      margin: 0;
-    }
-  }
+//  .graveyard {
+//    margin-top: 5px;
+//    width: 40%;
+//    height: 20px;
+//    background-color: peru;
+//    img {
+//      height: 16px;
+//      margin: 0;
+//    }
+//  }
 }
 
 #metaInfo {
@@ -189,4 +195,40 @@
     visibility: hidden;
     margin: 0;
   }
+}
+
+.hexHover {
+  fill: yellow;
+}
+
+.userr{
+  height: 100%;
+  width: 40%;
+  .avatar{
+    margin-top: 3%;
+    height: 30%;
+    img{
+      height: 100%;
+    }
+  }
+  .username{
+    height: 15%;
+  }
+  p{
+    font-size: 10px;
+    margin-bottom: 0;
+    margin-top: 5%;
+  }
+  .graveyard {
+    width: 100%;
+    height: 41%;
+    img {
+      height: 19px;
+      margin: 0;
+      margin-top: -4px;
+    }
+  }
+  #g1 { background-color: #477dca; }
+  #g0 { background-color: red; }
+
 }

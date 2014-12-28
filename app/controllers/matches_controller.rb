@@ -56,9 +56,6 @@ class MatchesController < ApplicationController
         turn: 0
     )
 
-    p '--|--'*80
-    p current_user.active_matches(current_user).length
-
     if (current_user.active_matches(current_user).length <= 4) || (current_user.account_type == 'premium')
       @match.save
       redirect_to match_path(@match)
@@ -112,9 +109,6 @@ class MatchesController < ApplicationController
   def start_game
     @match = Match.find(params[:match_id])
     Keen.publish(:new_games, {home_user: @match.home_user_id, away_user: @match.away_user_id }) if Rails.env.production?
-    p '_==+==_'*100
-    p @match
-    p '0-0'*20
     @match.update(
         who_started: params[:who_started],
         whos_turn: params[:who_started],

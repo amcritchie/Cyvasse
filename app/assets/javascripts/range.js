@@ -5,8 +5,9 @@ var Range = {
         Range.initialize();
         Range.setPotentialRanges();
         if ((SelectedUnit.unit.attr('data-rank') == 'cavalry')&&(Offense.jump == 1)){
-            CavalryMoveRings.createRings(SelectedUnit.unit, PotentialRange.create(SelectedUnit.unit, 2*SelectedUnit.moveRange).parent().parent());
+            CavalryMoveRings.createRings(SelectedUnit.unit, PotentialRange.create(SelectedUnit.unit, SelectedUnit.moveRange + 2).parent().parent());
             $allHexDivs.attr('data-locked', false);
+            debugger;
         }
         MoveRings.createRings(SelectedUnit.unit, Range.potentialMoveRange);
         Range.updateMovementRange(Range.potentialMoveRange);

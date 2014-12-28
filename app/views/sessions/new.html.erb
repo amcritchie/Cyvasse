@@ -9,7 +9,7 @@
   <%= form_for @user, url: login_path do |f| %>
       <ul>
         <li>
-          <%= f.label :username %>
+          <%= f.label :username, 'Email / Username' %>
           <%= f.text_field :username %>
         </li>
         <li>

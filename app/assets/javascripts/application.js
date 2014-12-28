@@ -87,16 +87,30 @@ $(document).ready(function () {
     });
 
 
-
     $('a').on('click', function () {
         $.post('/update_last_active.json');
     });
 
-    $('#toggleOutline').click(function () {
-        $('.unit0').toggleClass('noBoarder');
-        $('.unit1').toggleClass('noBoarder');
-        $.post('/toggle_outlines.json')
-    });
+    Toggle.createAll();
+
+//    if ($('.dashboardTutorial').length == 1){
+////        $('.dashboardTutorial').prepend('<button class="tutorialDash tutorial"><h5>Welcome to Cyvasse, </h5><h6> this is your dashboard where you can manage all your games.</h6></button>')
+////        Rotator.rotateOn($('.tutorialDash'));
+//        setTimeout(function(){
+//            $('#gameIndex').prepend('<button class="tutorialDash tutorial"><h5>Welcome to Cyvasse! </h5><h6> This is your dashboard, where you can manage all your games.</h6></button>');
+//            Rotator.rotateOn($('.tutorialDash'));
+//            setTimeout(function(){
+//                $('.dashboardTutorial').prepend('<button class="tutorialCreateGames tutorial"><h6>Here you can create new matches. </h6>&#8601</button>');
+//                Rotator.rotateOn($('.tutorialCreateGames'));
+//                setTimeout(function(){
+//                    $('.dashboardTutorial').prepend('<button class="tutorialActiveGames tutorial"><h5>These are your active games, </h5><h6> Click here.</h6>&#8601</button>');
+//                    Rotator.rotateOn($('.tutorialActiveGames'));
+//                },1000)
+//            },1000)
+//        },500)
+//    }
+
+
 
     $('#button').on('click', function () {
         $(this).css('backround-color', 'blue')

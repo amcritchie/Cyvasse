@@ -10,7 +10,13 @@ var MoveRings = {
         MoveRings.defenseTeam = Math.abs(MoveRings.offenseTeam - 1);
         MoveRings.selectedUnit = selectedUnit[0];
         MoveRings.selectedTrumps = selectedUnit[0].getAttribute('data-trump').split(',');
-        while (ring < MoveRings.selectedUnit.getAttribute('data-moveRange')) {
+        debugger;
+        if ((selectedUnit.attr('data-rank') == 'cavalry')&&(Offense.jump == 2)){
+            var moveRange = 2;
+        }else{
+            var moveRange = MoveRings.selectedUnit.getAttribute('data-moveRange');
+        }
+        while (ring < moveRange) {
             potentialRange = potentialRange.not('[data-locked=true]');
             MoveRings.nextRingOfHexagons(potentialRange, ring);
             ring += 1;
@@ -131,7 +137,7 @@ var CavalryMoveRings = {
         CavalryMoveRings.defenseTeam = Math.abs(CavalryMoveRings.offenseTeam - 1);
         CavalryMoveRings.selectedUnit = selectedUnit[0];
         CavalryMoveRings.selectedTrumps = selectedUnit[0].getAttribute('data-trump').split(',');
-        while (ring < 2 * CavalryMoveRings.selectedUnit.getAttribute('data-moveRange')) {
+        while (ring < 2 + parseInt(CavalryMoveRings.selectedUnit.getAttribute('data-moveRange'))) {
             potentialRange = potentialRange.not('[data-locked=true]');
             CavalryMoveRings.nextRingOfHexagons(potentialRange, ring);
             ring += 1;

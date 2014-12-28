@@ -57,13 +57,9 @@ var PreGame = {
             if (Tutorial.step === 3) {
                 Tutorial.secondMove();
                 PreGame.hintOne = setTimeout(function () {
-                    $('.tutorialSecondMove').remove();
-                    Tutorial.goal();
-                    PreGame.hintTwo = setTimeout(function () {
-                        $('.tutorialGoal').remove();
-                        Tutorial.whoGoesFirst();
-                    }, 7000)
-                }, 7000);
+                    $('.tutorialGoal').remove();
+                    Tutorial.whoGoesFirst();
+                }, 20000);
             }
             var newLocation = $(this);
             var oldLocation = PreGame.unit.parent();
