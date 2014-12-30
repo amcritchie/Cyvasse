@@ -6,7 +6,7 @@ var GameStatus = {
     teamZeroString: null,
 
     positionOfYourUnits: function () {
-        var teamArray = GameStatus.saveTeam(1);
+        var teamArray = GameStatus.saveTeam(You.team);
         if (You.team == 0) {
             teamArray = GameStatus.mirrorArray(teamArray);
         }
