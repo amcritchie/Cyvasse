@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   put 'start_game' => 'matches#start_game'
   put 'update_match_info' => 'matches#update_match_info'
+  put 'cavalry_first_jump' => 'matches#cavalry_first_jump'
   put 'update_home_units_position' => 'matches#update_home_units_position'
   put 'update_away_units_position' => 'matches#update_away_units_position'
   put 'home_user_ready' => 'matches#home_user_ready'

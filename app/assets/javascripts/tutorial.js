@@ -121,7 +121,6 @@ var Tutorial = {
     },
 
     stepEight: function () {
-//        debugger;
         if (Tutorial.step == 8) {
             $('.tutorial').remove();
             Tutorial.attack();

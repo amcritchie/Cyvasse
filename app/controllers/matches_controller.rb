@@ -146,7 +146,25 @@ class MatchesController < ApplicationController
         whos_turn: params[:whos_turn],
         home_units_position: params[:home_units],
         away_units_position: params[:away_units],
-        last_move: params[:last_move]
+        last_move: params[:last_move],
+        utility_saved_hex: 95
+    )
+  end
+
+  def cavalry_first_jump
+    p '_-=^=-'*200
+    @match = Match.find(params[:match_id])
+
+    p 'match'
+    p @match
+    p '-----'
+    p 'params'
+    p params
+    p '------'
+
+
+    @match.update(
+        utility_saved_hex: params[:cavalry_first_jump]
     )
   end
 

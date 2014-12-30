@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220043124) do
+ActiveRecord::Schema.define(version: 20141230031643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20141220043124) do
     t.boolean  "away_ready"
     t.string   "last_move"
     t.datetime "time_of_last_move"
+    t.string   "utility_saved_hex"
   end
 
   create_table "setups", force: true do |t|

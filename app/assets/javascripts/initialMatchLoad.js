@@ -78,6 +78,7 @@ var InitialMatchLoad = {
     continueGame: function () {
         Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);
         Game.lastMove = document.getElementById('matchLastMove').innerHTML;
+        Game.utilMove = document.getElementById('matchUtilMove').innerHTML;
         MatchData.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
         Game.oldGame();
     },

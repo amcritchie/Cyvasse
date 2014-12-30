@@ -6,6 +6,7 @@ var Offense = {
     oldLocation: $('hex52'),
     moveRange: $('hex52'),
     attackRange: $('hex54'),
+    utility: false,
 
     runOffense: function (offense) {
         Offense.jump = 1;
@@ -23,6 +24,8 @@ var Offense = {
     },
     validatesClickedUnit: function (unit) {
         if (Validates.unitStats(unit)) {
+            Offense.utility = false;
+            Game.utilMove = false;
             Offense.selectUnit(unit);
         } else {
             Validates.notPassed();
@@ -76,8 +79,13 @@ var Offense = {
             Offense.captureEnemy(hex);
         }
         if ((SelectedUnit.rank == 'cavalry') && (Offense.jump == 1)) {
+
+            debugger;
+            Offense.utility = Offense.oldLocation.data('hexindex');
+            Game.utilMove = Offense.utility;
             Offense.turnOffClickHandlers();
             Offense.jump = 2;
+
             Offense.selectUnit(SelectedUnit.unit.parent());
         } else {
             Offense.finishTurn()

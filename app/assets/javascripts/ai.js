@@ -26,6 +26,9 @@ var AI = {
 
         setTimeout(function () {
 
+            Offense.utility = false;
+            Game.utilMove = false;
+
             Offense.selectUnit(AI.unitBeingMoved);
 
             if (AI.hexBeingMovedTo == 'empty') {

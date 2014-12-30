@@ -92,6 +92,7 @@ var Game = {
         $('.hexSVG').css('z-index', '2');
         $('[data-hexIndex=' + Game.lastMove[1] + ']').children('svg').children('polygon').css('fill', 'orange');
         $('[data-hexIndex=' + Game.lastMove[0] + ']').children('svg').children('polygon').css('fill', 'orange');
+        $('[data-hexIndex=' + Game.utilMove + ']').children('svg').children('polygon').css('fill', 'orange');
     },
 
     placeTeam: function (team, string) {
@@ -144,6 +145,16 @@ var Game = {
         Game.defense = Game.offense;
         Game.offense = Math.abs(Game.offense - 1);
         GameStatus.saveGameStatus();
+        debugger;
+        if (!!Offense.utility) {
+            debugger;
+            $.ajax({
+                type: 'put',
+                url: '/cavalry_first_jump',
+                data: {match_id: MatchData.matchID, cavalry_first_jump: Offense.utility},
+                dataType: 'json'
+            });
+        }
         Game.updateOpponentsObjects();
         if (Tutorial.step == 7) {
             $('.tutorial').remove();
