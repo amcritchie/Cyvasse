@@ -80,7 +80,6 @@ var Offense = {
         }
         if ((SelectedUnit.rank == 'cavalry') && (Offense.jump == 1)) {
 
-            debugger;
             Offense.utility = Offense.oldLocation.data('hexindex');
             Game.utilMove = Offense.utility;
             Offense.turnOffClickHandlers();

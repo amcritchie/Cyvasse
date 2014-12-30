@@ -145,9 +145,7 @@ var Game = {
         Game.defense = Game.offense;
         Game.offense = Math.abs(Game.offense - 1);
         GameStatus.saveGameStatus();
-        debugger;
         if (!!Offense.utility) {
-            debugger;
             $.ajax({
                 type: 'put',
                 url: '/cavalry_first_jump',
