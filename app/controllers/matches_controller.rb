@@ -53,7 +53,10 @@ class MatchesController < ApplicationController
         away_ready: true,
         match_status: 'new',
         match_against: 'computer',
-        turn: 0
+        turn: 0,
+        utility_saved_hex: 95
+
+
     )
 
     if (current_user.active_matches(current_user).length <= 4) || (current_user.account_type == 'premium')
@@ -80,7 +83,8 @@ class MatchesController < ApplicationController
         away_ready: false,
         match_status: 'pending',
         match_against: 'human',
-        turn: 0
+        turn: 0,
+        utility_saved_hex: 95
     )
 
     if (current_user.active_matches(current_user).length <= 4) || (current_user.account_type == 'premium')
