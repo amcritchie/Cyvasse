@@ -90,7 +90,6 @@ var Tutorial = {
         Rotator.rotateOn($('.tutorialRenameSetup'));
     },
     firstTurn: function () {
-        debugger;
         if (Game.offense === 0) {
             $(".map").prepend("<button class='tutorialFirstTurn tutorial'><h5>It looks like your opponents king is closer to the middle, so your opponent will go first.</h5></button>");
             Tutorial.step = 7

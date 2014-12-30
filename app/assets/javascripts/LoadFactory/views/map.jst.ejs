@@ -1,10 +1,15 @@
 <% var yPos = 1; %>
-<%     $('#testP').prepend("<svg><polygon points='1,1 100,100 1,100' style='fill: yellow;'></polygon></svg>"); %>
+<% $('#testP').prepend("<svg><polygon points='1,1 100,100 1,100' style='fill: yellow;'></polygon></svg>"); %>
 <% $.each(map,function(index, row){ %>
-    <div class="grid" data-y-pos=<%= yPos %>>
+<% if (index < 6 ){ %>
+    <% var size = index + 6; %>
+<% }else{ %>
+    <% var size = 16 - index; %>
+<% } %>
+<div class="grid" data-y-pos=<%= yPos %> data-size=<%= size %> >
     <% $.each (row , function(index, col){ %>
-        <%= col %>
+    <%= col %>
     <% }); %>
     <% yPos += 1; %>
-    </div>
+</div>
 <% }); %>

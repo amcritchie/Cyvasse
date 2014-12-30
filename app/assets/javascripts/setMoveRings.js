@@ -10,7 +10,6 @@ var MoveRings = {
         MoveRings.defenseTeam = Math.abs(MoveRings.offenseTeam - 1);
         MoveRings.selectedUnit = selectedUnit[0];
         MoveRings.selectedTrumps = selectedUnit[0].getAttribute('data-trump').split(',');
-        debugger;
         if ((selectedUnit.attr('data-rank') == 'cavalry')&&(Offense.jump == 2)){
             var moveRange = 2;
         }else{

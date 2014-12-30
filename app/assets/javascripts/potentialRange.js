@@ -20,13 +20,7 @@ var PotentialRange = {
         PotentialRange.yPos = parseInt(unit.parent().attr('data-yPos'));
 //        $allHexagons.attr('class', 'unSelected');
     },
-    initializeCircumference: function(){
-        PotentialRange.constantUp = 0;
-        PotentialRange.constantDown = 0;
-        PotentialRange.vertical = 1;
-        PotentialRange.initialSizeDown = PotentialRange.findHex(PotentialRange.xPos, PotentialRange.yPos).data('size');
-        PotentialRange.initialSizeUp = PotentialRange.findHex(PotentialRange.xPos, PotentialRange.yPos).data('size');
-    },
+
 
     create: function (selectedUnit, range) {
         PotentialRange.initializeRange(selectedUnit, range);
@@ -39,6 +33,13 @@ var PotentialRange = {
             PotentialRange.changeClassOfHexCircumference();
             PotentialRange.horizontal += 1;
         }
+    },
+    initializeCircumference: function(){
+        PotentialRange.constantUp = 0;
+        PotentialRange.constantDown = 0;
+        PotentialRange.vertical = 1;
+        PotentialRange.initialSizeDown = PotentialRange.findHex(PotentialRange.xPos, PotentialRange.yPos).data('size');
+        PotentialRange.initialSizeUp = PotentialRange.findHex(PotentialRange.xPos, PotentialRange.yPos).data('size');
     },
     changeClassOfHexCircumference: function () {
 
