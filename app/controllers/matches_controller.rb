@@ -45,6 +45,8 @@ class MatchesController < ApplicationController
     end
   end
 
+  def
+
   def create_match_vs_computer
     @match = Match.new(
         home_user_id: current_user.id,

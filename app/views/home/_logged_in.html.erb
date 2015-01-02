@@ -50,7 +50,6 @@
       <dt class="startOpen">Information</dt>
   <% else %>
       <dt class="startClose">Information</dt>
-
   <% end %>
   <dd>
     <article class="communityInfo">
@@ -111,16 +110,16 @@
           <% @favorites.sample(4).each do |favorite| %>
 
               <article class="favorite" data-favorited="<%= favorite.favorited %>">
-                <div class="fusername">
-                  <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)), class: 'kkkhgkdu' %>
+                <div class="username">
+                  <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
                 </div>
-                <div class="fimage">
+                <div class="image">
                   <%= image_tag User.find(favorite.favorited).image %>
                 </div>
-                <div class="fplay">
-                  Play
+                <div class="play">
+                  <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => User.find(favorite.favorited).username}) %>
                 </div>
-                <div class="funfavorite">
+                <div class="unfavorite">
                   <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.favorited} %>
                 </div>
 
@@ -152,7 +151,9 @@
 
 
                 </td>
-                <td>Play</td>
+                <td>
+                  <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => user.username}) %>
+                </td>
                 <td>
                   <% if Favorite.where(favoriter: current_user.id, favorited: user.id)== [] ? true : false %>
                       <%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: user.id} %>
@@ -189,7 +190,7 @@
     </tr>
     </thead>
 
-    <tbody>
+    <tbody id="activeGames">
     <% @matches.each_with_index do |match, index| %>
 
         <% if (match.whos_turn == 1) %>

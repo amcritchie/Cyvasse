@@ -30,6 +30,15 @@ var Flash = {
             $('#messageDock').children().fadeOut("slow");
             clearTimeout(Flash.animation);
         }, 1500);
+    },
+    messageLong: function (type, text) {
+        clearTimeout(Flash.animation);
+        var message = type + 'MessageLong';
+        $('#messageDock').empty().prepend('<h3 class="' + type + 'MessageLong">' + text + '</h3>');
+        Flash.animation = setTimeout(function () {
+            $('#messageDock').children().fadeOut("slow");
+            clearTimeout(Flash.animation);
+        }, 1500);
     }
 };
 
@@ -41,11 +50,14 @@ var Favorite = {
         favoriteLinks.off('click');
         favoriteLinks.empty().text('Unfavorite').attr('data-linkType', 'unfavorite').off('click');
         Flash.message('success', 'Favorited');
-        $('#favorites').append(
-                '<div class="favorite" data-favorited=' + userID + '>' +
-                'Will be added on reload' +
-                '</div>'
-        );
+        if ($('#fourFavorites').children().length < 4){
+            $('#fourFavorites').append(
+                    '<div class="favorite" data-favorited=' + userID + '>' +
+                    'Will be added on reload' +
+                    '</div>'
+            );
+        }
+
         favoriteLinks.on('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -112,20 +124,72 @@ $(document).ready(function () {
 
 //    setInterval(function(){
 //    $('body').style.font = "Cinzel";
-        $('.kkkhgkdu').each(function( index, element ) {
+    $('.favoriteUsername').each(function (index, element) {
 
-            if (element.text.length >= 9){
-                element.style.fontSize = "7px";
-            } else if (element.text.length >= 7) {
-                element.style.fontSize = "8px";
-            } else if (element.text.length >= 5) {
-                element.style.fontSize = "9px";
-            }
+        if (element.text.length >= 9) {
+            element.style.fontSize = "7px";
+        } else if (element.text.length >= 7) {
+            element.style.fontSize = "8px";
+        } else if (element.text.length >= 5) {
+            element.style.fontSize = "9px";
+        }
 //            element.style.fontSize = (9/(element.offsetWidth / 50))+"px";
-        });
+    });
 //    }, 3000);
 
-    if ($('dt').attr('class') === 'startOpen'){
+
+    var i = 0;
+
+//    function appendSomeItems() {
+//        for (var j = 0; j < 10; i++, j++) {
+//            $('#messageDock').append('<li>Line Item</li>');
+//            sleep(1000);
+//
+//        }
+//        if (i < 5) window.setTimeout(appendSomeItems, 1000);
+//    }
+
+
+    $('.playThisUser').on('click', function () {
+
+        if ($('#activeGames').children().length == 5){
+            Flash.messageLong('error', "You may only have 5 'Active' games with a basic account.");
+        } else {
+            $('#opponent_which_user_chosen_user').click();
+
+            var fullUsername = $(this).data('username');
+            var inputUsername = '';
+
+            var usernameArray = [];
+
+            for (var i = 0, len = fullUsername.length; i < len; i++) {
+                inputUsername += fullUsername[i];
+                usernameArray.push(inputUsername);
+            }
+
+            var cooper = 0;
+            var blah = setInterval(function () {
+                $('.usernameField').val(usernameArray[cooper]);
+                cooper += 1;
+                if (fullUsername.length == cooper) {
+                    clearInterval(blah);
+                    setTimeout(function () {
+                        $('.playUser').children('.newMatch').click();
+                    }, 500)
+                }
+            }, 100);
+        }
+    });
+
+    function sleep(dur) {
+        var d = new Date().getTime() + dur;
+        while (new Date().getTime() <= d) {
+            //Do nothing
+        }
+    }
+
+
+    if ($('dt').attr('class') === 'startOpen') {
         $('dt').addClass('open');
         var $active = $('dt');
         $next = $active.next();
@@ -135,9 +199,9 @@ $(document).ready(function () {
         var $active = null;
     }
 
-    $('dt').click(function(){
+    $('dt').click(function () {
 
-        if ($active !== null){
+        if ($active !== null) {
             $active.next().slideToggle("fast");
             $active.removeClass('open');
             $active.addClass('close');
@@ -150,19 +214,18 @@ $(document).ready(function () {
         $active.addClass('open');
         $next = $active.next();
 
-        if ($next.is(":hidden")){
+        if ($next.is(":hidden")) {
             $next.slideToggle("fast");
             console.log('save open');
             $.post('/extra_info_open.json')
 
 
-        }else{
+        } else {
             $active.removeClass('open');
             $active.addClass('close');
             $active = null;
         }
     });
-
 
 
     $('#button').on('click', function () {
