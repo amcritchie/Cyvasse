@@ -47,16 +47,15 @@ class UsersController < ApplicationController
           unit_outlines: true
       )
     end
-
+    render nothing: true
   end
 
   def update_last_active
-    p '--'*200
-    p 'next'
     @user = current_user
     @user.update(
         last_active: Time.new
     )
+    render nothing: true
   end
 
   # PATCH/PUT /users/1

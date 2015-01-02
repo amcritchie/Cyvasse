@@ -110,6 +110,47 @@ $(document).ready(function () {
 //        },500)
 //    }
 
+//    setInterval(function(){
+//    $('body').style.font = "Cinzel";
+        $('.kkkhgkdu').each(function( index, element ) {
+
+            if (element.text.length >= 9){
+                element.style.fontSize = "7px";
+            } else if (element.text.length >= 7) {
+                element.style.fontSize = "8px";
+            } else if (element.text.length >= 5) {
+                element.style.fontSize = "9px";
+            }
+//            element.style.fontSize = (9/(element.offsetWidth / 50))+"px";
+        });
+//    }, 3000);
+
+    $('dt').addClass('close');
+
+    var $active = null;
+
+    $('dt').click(function(){
+
+        if ($active !== null){
+            $active.next().slideToggle("fast");
+            $active.removeClass('open');
+            $active.addClass('close');
+        }
+
+        $active = $(this);
+        $active.addClass('open');
+        $next = $active.next();
+
+        if ($next.is(":hidden")){
+            $next.slideToggle("fast");
+        }else{
+            $active.removeClass('open');
+            $active.addClass('close');
+            $active = null;
+        }
+
+    })
+
 
 
     $('#button').on('click', function () {

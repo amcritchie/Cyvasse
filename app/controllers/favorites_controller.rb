@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
     favorite = Favorite.where(favoriter: current_user.id, favorited: params[:user_id])
     favorite.delete_all
     # flash[:error] = "Favorite Removed"
-    redirect_to :back
+    render nothing: true
   end
 
 end

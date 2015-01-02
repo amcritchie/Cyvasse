@@ -18,8 +18,9 @@ class HomeController < ApplicationController
       #   #   @boom = Time.now.utc - match.time_of_last_move
       #   # end
       # end
-      @finishedMatches = current_user.finished_matches(session[:user_id]).last(10).reverse
-      @lastTenUsers = last_ten_active_users
+      @finishedMatches = current_user.finished_matches(session[:user_id]).last(4).reverse
+      # @lastTenUsers = last_ten_active_users
+      @lastTenUsers = last_active_users(5)
       @favorites = Favorite.where(favoriter: current_user)
       @allUsers = User.all
       @allMatches = Match.all

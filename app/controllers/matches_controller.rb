@@ -118,6 +118,7 @@ class MatchesController < ApplicationController
         whos_turn: params[:who_started],
         match_status: 'in progress'
     )
+    render nothing: true
   end
 
   def finish_game
@@ -139,6 +140,7 @@ class MatchesController < ApplicationController
     loser.update(
         losses: (loser.losses + 1)
     )
+    render nothing: true
   end
 
   def update_match_info
@@ -153,33 +155,29 @@ class MatchesController < ApplicationController
         last_move: params[:last_move],
         utility_saved_hex: 95
     )
+    render nothing: true
   end
 
   def cavalry_first_jump
-    p '_-=^=-'*200
     @match = Match.find(params[:match_id])
-
-    p 'match'
-    p @match
-    p '-----'
-    p 'params'
-    p params
-    p '------'
-
 
     @match.update(
         utility_saved_hex: params[:cavalry_first_jump]
     )
+    render nothing: true
+
   end
 
   def update_turn
     @match = Match.find(params[:match_id])
     @match.update(turn: params[:turn])
+    render nothing: true
   end
 
   def update_home_units_position
     @match = Match.find(params[:match_id])
     @match.update(home_units_position: params[:home_units])
+    render nothing: true
   end
 
   def update_away_units_position
