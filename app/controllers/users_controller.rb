@@ -28,12 +28,24 @@ class UsersController < ApplicationController
     @user.unit_outlines = true
 
     if @user.save
-      Keen.publish(:sign_ups, { :username => @user.username }) if Rails.env.production?
+      Keen.publish(:sign_ups, {:username => @user.username}) if Rails.env.production?
       session[:user_id] = @user.id
       redirect_to create_computer_match_path, method: :post
     else
       render :new
     end
+  end
+
+  def extra_info_open
+    @user = current_user
+    @user.update(show_extra_info: true)
+    render nothing: true
+  end
+
+  def extra_info_close
+    @user = current_user
+    @user.update(show_extra_info: false)
+    render nothing: true
   end
 
   def toggle_outlines
@@ -58,8 +70,8 @@ class UsersController < ApplicationController
     render nothing: true
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+# PATCH/PUT /users/1
+# PATCH/PUT /users/1.json
   def update
     if current_user.id == params[:id].to_i
       @user = User.find(params[:id])
@@ -70,8 +82,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+# DELETE /users/1
+# DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
@@ -81,13 +93,14 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+# Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:username, :email, :password, :image, :first_name, :last_name)
-    end
+# Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :image, :first_name, :last_name)
+  end
+
 end

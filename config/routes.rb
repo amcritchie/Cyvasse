@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     resources :setups, only: [:create, :destroy, :index]
   end
   post "update_last_active" => "users#update_last_active"
+
   post "toggle_outlines" => "users#toggle_outlines"
+  post "extra_info_open" => "users#extra_info_open"
+  post "extra_info_close" => "users#extra_info_close"
+
   post "change_setup_name" => "setups#change_name"
   post "game_accepted" => "matches#game_accepted"
 
