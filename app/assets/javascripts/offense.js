@@ -81,9 +81,10 @@ var Offense = {
         if ((SelectedUnit.rank == 'cavalry') && (Offense.jump == 1)) {
 
             Offense.utility = parseInt(Offense.oldLocation.attr('data-hexIndex'));
-            if (You.team == 0) {
-                Offense.utility = 92 - Offense.utility;
-            }
+//            if (You.team == 0) {
+//                Offense.utility = 92 - Offense.utility;
+//                Game.utilMove = 92 - Game.utilMove;
+//            }
             Game.utilMove = Offense.utility;
             Offense.turnOffClickHandlers();
             Offense.jump = 2;

@@ -20,6 +20,9 @@ var AwayTeamNormalize = {
                 Game.lastMove = [92 - Game.lastMove[0],92 - Game.lastMove[1]]
             }
         }
+        if (You.team == 0){
+            Game.utilMove = 92 - Game.utilMove
+        }
     }
 };
 

@@ -146,6 +146,9 @@ var Game = {
         Game.offense = Math.abs(Game.offense - 1);
         GameStatus.saveGameStatus();
         if (!!Offense.utility) {
+            if (You.team == 0) {
+                Offense.utility = 92 - Offense.utility;
+            }
             $.ajax({
                 type: 'put',
                 url: '/cavalry_first_jump',
