@@ -150,9 +150,10 @@ $(document).ready(function () {
 //    }
 
 
+    console.log(document.getElementById('accountType').innerHTML);
     $('.playThisUser').on('click', function () {
 
-        if ($('#activeGames').children().length == 5){
+        if (($('#activeGames').children().length == 5) && (document.getElementById('accountType').innerHTML == 'basic')){
             Flash.messageLong('error', "You may only have 5 'Active' games with a basic account.");
         } else {
             $('#opponent_which_user_chosen_user').click();
