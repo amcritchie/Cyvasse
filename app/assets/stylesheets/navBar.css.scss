@@ -4,12 +4,12 @@
   margin-left: -1%;
   margin-right: -1%;
   margin-top: -1%;
-  height: 50px;
+  height: 54px;
   z-index: 40;
   background-color: #000;
   vertical-align: middle;
   .root{
-    margin-left: 70px;
+//    margin-left: 70px;
 //    float: left;
 //    margin-left: 30px;
     h3{
@@ -23,15 +23,27 @@
     h6{
       height: 100%;
       vertical-align: middle;
-      padding-top: 12px;
+      font-size: 17px;
+      padding-top: 13px;
+
+    }
+  }
+  .navOptionSmall{
+    h6{
+      height: 100%;
+      vertical-align: middle;
+      font-size: 12px;
+      padding-top: 15px;
 
     }
   }
   .navLogin{
+    float: right;
     h6{
       height: 100%;
       vertical-align: middle;
-      padding-top: 12px;
+      font-size: 17px;
+      padding-top: 13px;
     }
   }
   .option{
@@ -39,6 +51,7 @@
   }
   article{
     display: inline-block;
+    margin-top: 2px;
     height: 100%;
   }
 }

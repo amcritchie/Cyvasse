@@ -1,242 +1,97 @@
-<article class="full_column">
-<h3>About</h3>
+<article class="full_column" id="aboutPage">
 
-<p>Cyvasse is a two player, turn based, game with the objective of
-  capturing your opponent’s king. The game is played on a checkered
-  hexagon grid, and the initial position of the pieces are
-  determined by each of the players.</p>
 
-<h3>Pre Game</h3>
+  <article class="aboutMe">
+    <h4>Alex McRitchie</h4>
+    <%= image_tag '/images/thanks/alexmcritchie.jpeg' %>
+    <p>amcritchie@gmail.com
+      <br>
+      @mcritchiealex</p>
 
-<p>Before each player can start placing their pieces on the board, a
-  curtain is placed in the middle to prevent each player from seen
-  their opponent’s opening array.
+  </article>
+  <h4>About</h4>
 
-  Once the curtain is drawn, each player places their 20 pieces on
-  the board with the quantities specified below. Each square of the
-  board may only hold only one unit at a time.
+  <p>
+    <%= link_to 'Cyvasse', 'http://awoiaf.westeros.org/index.php/Cyvasse', :target => "_blank" %>
+    is a fictitious game from
+    <%= link_to "George R. R. Martin's", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>,
+    series
+    <%= link_to 'A Song of Ice and Fire', 'http://en.wikipedia.org/wiki/A_Song_of_Ice_and_Fire', :target => "_blank" %>
+    in Essos and Dorne. The rules of Cyvasse are not specified in great detail throughout any of the books, yet we are
+    given hints on how the game is played.
+    This project initially started on Aug 8 of 2014, as I was attending a
+    <%= link_to 'gSchool', 'http://www.galvanize.it/school/#main', :target => "_blank" %>,
+    a full stack web development boot camp. gSchool plays a crucial role in the development of Cyvasse, as
+    this is where I learned the skills I used to build this site. I started cyvasse because building games
+    is my passion, and I remembered the first time I googled Cyvasse, and finding nothing that held my interest.
 
-  Once the two players are satisfied with the arrangements of their
-  units, the curtain is removed and the game can begin.
-</p>
+  </p>
 
-<h3>Beginning the Game</h3>
+  <p>
+    In preparation for creating the rules, I have gone over the entire A Song of Ice and Fire series multiple times,
+    including
+    <%= link_to 'A World of Ice and Fire', 'http://awoiaf.westeros.org/index.php/The_World_of_Ice_and_Fire', :target => "_blank" %>
+    and
+    <%= link_to 'The Hedge Knight', 'http://awoiaf.westeros.org/index.php/The_Hedge_Knight', :target => "_blank" %>
+    diligently,
+    paying special attention to
+    <%= link_to 'A Feast for Crows', 'http://awoiaf.westeros.org/index.php/A_Feast_for_Crows', :target => "_blank" %>
+    and
+    <%= link_to 'A Dance with Dragons', 'http://awoiaf.westeros.org/index.php/A_Dance_with_Dragons', :target => "_blank" %>
+    where Cyvasse is referenced. The rules used in this imagining, are a combination of the specifics found in the books
+    combined with my views on game design.
 
-<p>First turn goes to the player whose King is closest to the middle
-  row of the board. In the case of a tie, the white army gets to move
-  first, then players alternate moves. A move and/or combat must be
-  made each turn, and units may not move through other pieces. The
-  exception to this rule is the Dragon which may move over Mountains
-  and friendly pieces, but not through foes.
-</p>
+  </p>
+  <p>
+    If nothing else, site as a love letter to my favorite author
+    <%= link_to "George R. R. Martin", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>,
+    and as an attempt to solidify a set of rules that reflect the specifics
+    and spirit we are taught about Cyvasse though out A Song of Ice and Fire.
+  </p>
 
-<h3>Moving</h3>
+  <h3>Thanks</h3>
+  <h6>I want to give a special thanks to the people who have been my friends and mentors though this whole journey.</h6>
+  <br>
 
-<p>All Units have a Movement attribute which explains how they may
-  traverse the board. The magnitude of the unit’s movement explains
-  how many jumps it can per in one turn. For all non-Range units and
-  attack counts as a jump.
-</p>
+  <article class="thanksProfile">
+    <h6>Jeff Taggart</h6>
+    <%= image_tag '/images/thanks/jefftaggart.jpeg' %>
+  </article>
 
-<h3>Combat</h3>
+  <article class="thanksProfile">
+    <h6>Bobby Wilson</h6>
+    <%= image_tag '/images/thanks/bobbywilson.jpg' %>
+  </article>
 
-<p>With the exemption of the Range units, a combat is made by moving to the
-  square occupied by an opponents piece. Range units must instead choose
-  to attack or move, but may not perform both actions in one turn.</p>
+  <article class="thanksProfile">
+    <h6>Bobby Blackstock</h6>
+    <%= image_tag '/images/thanks/bobbyblackstock.jpeg' %>
+  </article>
 
-<p>A combat is performed by a minimum of two pieces, an Attacker and a Defender,
-  but also may include a Flanker. The Attacker is the unit initiating the
-  combat, the Defender is the unit being attacked. Lastly the Flanker is a
-  piece which increases the Strength of the Attacker if it is adjacent to the
-  Attacker and Defender before combat begins, and shares a Class with the
-  Attacker, e.g. Light Horse is part of the Cavalry, while Spearman is part of
-  the Vanguard, so a Spearman may not help the Light Horse flank a Defender.</p>
+  <article class="thanksProfile">
+    <h6>Sean Smith</h6>
+    <%= image_tag '/images/thanks/seansmith.jpeg' %>
+  </article>
 
-<p>When the Attacker attacks a Defender, the Strength of the Defender is compared
-  to the Strength of the Attacker plus the Flank of the Flanker, and the piece
-  with the higher Strength wins. In the case of a tie, the Attacker wins. The
-  exemption to this rule is a Trump, for example, a Spearman will always defeat a
-  Heavy Horse piece, because a Spearman trumps Heavy Horse pieces, even though the
-  Heavy Horse has more Strength then the Spearman.</p>
+  <article class="thanksProfile">
+    <h6>Zach Klabunde</h6>
+    <%= image_tag '/images/thanks/zachklabunde.jpeg' %>
+  </article>
 
-<p>Range units may attack a enemy within its Range, unless a Mountain blocks the
-  direct path between the Range unit and it’s target.</p>
+  <article class="thanksProfile">
+    <h6>Aaron Gray</h6>
+    <%= image_tag '/images/thanks/aarongray.jpg' %>
+  </article>
 
-If the Attacker defeats the Defender, the Attacker takes the place of the
-defeated Defender, unless the Attacker was a Range unit.</p>
+  <article class="thanksgSchool">
+    <h5>gSchool g[3]</h5>
+    <p>
+      Last and most importantly, I want to thank gSchool for being greatest group
+      I have ever had the privilege of being a part of.  I love you all!
+    </p>
+    <%= image_tag '/images/thanks/gschool.jpg' %>
 
-<h3>Winning</h3>
+  </article>
 
-<p>
-  A player wins by destroying their opponent’s king.
-</p>
 
-<h3>Units</h3>
-<h5>Attributes</h5>
-
-<p>
-  There are 10 military pieces which each player uses in their army. Each piece
-  has unique set of Attributes which they use to interact with the map and enemy
-  units. Below is a description of all of the units and their attributes.
-</p>
-
-<!---------------------------Class info--------------------------->
-<h5>Classes</h5>
-<h6 class="class_title"><%= "="*43 %>Vanguard<%= "="*43 %></h6>
-
-<div class="about_unit">
-  <% @vangaurd.each do |unit_class| %>
-
-      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
-      <article class="about_unit_description">
-        <h6><%= unit_class[:name] %></h6>
-
-        <p>
-          <small>
-            Movement: <%= unit_class[:movement] %>
-            <br>
-            Strength: <%= unit_class[:strength] %>
-            <br>
-            Flank: <%= unit_class[:flank] %>
-            <br>
-            Trump:
-            <% if unit_class[:trump] != nil %>
-                <% unit_class[:trump].each do |trump| %>
-
-                    <% if (trump == unit_class[:trump].last) && (unit_class[:trump].length != 1) %>
-                        and <%= trump %>
-                    <% elsif unit_class[:trump].length != 1 %>
-                        <%= trump %>,
-                    <% else %>
-                        <%= trump %>
-                    <% end %>
-                <% end %>
-            <% else %>
-                --
-            <% end %>
-          </small>
-        </p>
-      </article>
-  <% end %>
-</div>
-<hr>
-
-<h6 class="class_title"><%= "="*43 %>Cavalry<%= "="*43 %></h6>
-
-<div class="about_unit">
-
-  <% @cavalry.each do |unit_class| %>
-
-      <img class="about_unit_image cavalry" src="/images/svgs/<%= unit_class[:codename].downcase %>.svg">
-      <article class="about_unit_description">
-        <h6><%= unit_class[:name] %></h6>
-
-        <p>
-          <small>
-            Movement: <%= unit_class[:movement] %>
-            <br>
-            Strength: <%= unit_class[:strength] %>
-            <br>
-            Flank: <%= unit_class[:flank] %>
-            <br>
-            Trump:
-            <% if unit_class[:trump] != nil %>
-                <% unit_class[:trump].each do |trump| %>
-
-                    <% if (trump == unit_class[:trump].last) && (unit_class[:trump].length != 1) %>
-                        and <%= trump %>
-                    <% elsif unit_class[:trump].length != 1 %>
-                        <%= trump %>,
-                    <% else %>
-                        <%= trump %>
-                    <% end %>
-                <% end %>
-            <% else %>
-                --
-            <% end %>
-          </small>
-        </p>
-      </article>
-  <% end %>
-</div>
-
-<hr>
-<h6 class="class_title"><%= "="*43 %>Range<%= "="*43 %></h6>
-
-<div class="about_unit">
-
-  <% @range.each do |unit_class| %>
-
-      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
-      <article class="about_unit_description">
-        <h6><%= unit_class[:name] %></h6>
-
-        <p>
-          <small>
-            Movement: <%= unit_class[:movement] %>
-            <br>
-            Strength: <%= unit_class[:strength] %>
-            <br>
-            Range: <%= unit_class[:movement] %>
-            <br>
-            Trump:
-            <% if unit_class[:trump] != nil %>
-                <% unit_class[:trump].each do |trump| %>
-                    <% if (trump == unit_class[:trump].last) && (unit_class[:trump].length != 1) %>
-                        and <%= trump %>
-                    <% elsif unit_class[:trump].length != 1 %>
-                        <%= trump %>,
-                    <% else %>
-                        <%= trump %>
-                    <% end %>
-                <% end %>
-            <% else %>
-                --
-            <% end %>
-          </small>
-        </p>
-      </article>
-  <% end %>
-</div>
-
-<hr>
-<h6 class="class_title"><%= "="*43 %>Unique<%= "="*43 %></h6>
-
-<div class="about_unit">
-
-  <% @unique.each do |unit_class| %>
-
-      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
-      <article class="about_unit_description">
-        <h6><%= unit_class[:name] %></h6>
-
-        <p>
-          <small>
-            Movement: <%= unit_class[:movement] %>
-            <br>
-            Strength: <%= unit_class[:strength] %>
-            <br>
-            Flank: <%= unit_class[:flank] %>
-            <br>
-            Trump:
-            <% if unit_class[:trump] != nil %>
-                <% unit_class[:trump].each do |trump| %>
-
-                    <% if (trump == unit_class[:trump].last) && (unit_class[:trump].length != 1) %>
-                        and <%= trump %>
-                    <% elsif unit_class[:trump].length != 1 %>
-                        <%= trump %>,
-                    <% else %>
-                        <%= trump %>
-                    <% end %>
-                <% end %>
-            <% else %>
-                --
-            <% end %>
-          </small>
-        </p>
-      </article>
-  <% end %>
-
-</div>
 </article>

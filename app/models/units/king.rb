@@ -9,8 +9,8 @@ class King < Unit
         :codename => "king",
         :image => "svgs/king.svg",
 
-        :movement => 1,
-        :strength => 1,
+        :movement => 2,
+        :strength => 2,
         :range => 0,
         :flank => 0,
         :trump => nil,

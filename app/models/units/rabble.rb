@@ -8,7 +8,7 @@ class Rabble < Unit
         :name => "Rabble",
         :codename => "rabble",
         :image => "svgs/rabble.svg",
-        :movement => 2,
+        :movement => 3,
         :strength => 1,
         :range => 0,
         :flank => 1,

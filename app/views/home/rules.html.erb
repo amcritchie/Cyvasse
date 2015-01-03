@@ -1,0 +1,235 @@
+<article class="full_column" id="aboutPage">
+
+
+<br>
+
+<h3>Goal</h3>
+<p>
+    The goal of Cyvasse is to capture your opponent's king.
+</p>
+
+<h3>Pre Game</h3>
+
+<p>Before the first move can be made, each player must place all their
+  pieces on the board. Each square of the board may only hold only one
+  unit at a time.
+
+  When both players are satisfied with the arrangements of their army
+  the game can begin.
+</p>
+
+<h3>Who Goes First</h3>
+<p>The first move is rewarded to the player whose King is closest to the
+  middle row of the board. In the case of a tie, the first move is chosen
+  randomly, now the game is ready to begin.
+</p>
+
+<h3>Game</h3>
+<p>
+  Now players exchange moves until one of the kings is captured.  A move is
+  composed of moving one of your units to a new space, or attacking an enemy.
+</p>
+
+<h3>Moving</h3>
+<p>All Units have a Movement attribute which explains how they may
+  traverse the board. The magnitude of the unit’s movement explains
+  how many jumps it can per in one turn. For all non-Range units and
+  attack counts as a jump.  Units may not move through other units,
+  the exception to this rule is the Dragon, which may fly over all units
+  and mountains, unless they are an enemy Range unit (crossbowman, catapult, trebuchet)
+</p>
+
+<h3>Combat</h3>
+
+<p>With the exemption of the Range units, a combat is made by moving to the
+  square occupied by an opponents piece. Range units instead choose to attack
+  or move, but may not perform both actions in one turn.</p>
+
+<p>A combat is performed by a minimum of two pieces, an Attacker and a Defender.
+  <!--but also may include a Flanker. -->
+  The Attacker is the unit initiating the combat, the Defender is the unit being
+  attacked.
+  <!--Lastly the Flanker is a piece which increases the Strength of the Attacker if it -->
+  <!--is adjacent to the Attacker and Defender before combat begins, and shares a Class -->
+  <!--with the Attacker, e.g. Light Horse is part of the Cavalry, while Spearman is part of-->
+  <!--the Vanguard, so a Spearman may not help the Light Horse flank a Defender.-->
+</p>
+
+<p>When the Attacker attacks a Defender, the Strength of the Defender is compared
+  to the Strength of the Attacker
+  <!--plus the Flank of the Flanker-->
+  , and the piece with the higher Strength wins, and in the case of a tie, the Attacker
+  wins.  There are two exceptions to this rule, the first is a Trump.  Some units have a
+  Trump against other units, for example, a Spearman will always defeat a Heavy Horse
+  piece, because a Spearman trumps Heavy Horse pieces, even though the Heavy Horse has
+  more Strength then the Spearman.  The second exception is Range units can betaken by
+  any attack regardless of the strengths of the Attacker and Defender, unless a trump is
+  involved.</p>
+
+<p>Range units may attack a enemy within its Range, unless a Mountain blocks the
+  direct path between the Range unit and it’s target.</p>
+
+
+<h3>Units</h3>
+<h5>Attributes</h5>
+
+<p>
+  There are 10 military pieces which each player uses in their army. Each piece
+  has unique set of Attributes which they use to interact with the map and enemy
+  units. Below is a description of all of the units and their attributes.
+</p>
+
+<!---------------------------Class info--------------------------->
+<h5>Classes</h5>
+<h6 class="class_title"><%= "="*43 %>Vanguard<%= "="*43 %></h6>
+
+<div class="about_unit">
+  <% @vangaurd.each do |unit_class| %>
+
+      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
+      <article class="about_unit_description">
+        <h6><%= unit_class[:name] %></h6>
+
+        <p>
+          <small>
+            Movement: <%= unit_class[:movement] %>
+            <br>
+            Strength: <%= unit_class[:strength] %>
+            <br>
+            Trump:
+            <% if unit_class[:trump] != nil %>
+                <% unit_class[:trump].each do |trump| %>
+
+                    <% if (trump == unit_class[:trump].last) && (unit_class[:trump].length != 1) %>
+                        and <%= trump %>
+                    <% elsif unit_class[:trump].length != 1 %>
+                        <%= trump %>,
+                    <% else %>
+                        <%= trump %>
+                    <% end %>
+                <% end %>
+            <% else %>
+                --
+            <% end %>
+          </small>
+        </p>
+      </article>
+  <% end %>
+</div>
+<hr>
+
+<h6 class="class_title"><%= "="*43 %>Cavalry<%= "="*43 %></h6>
+
+<div class="about_unit">
+
+  <% @cavalry.each do |unit_class| %>
+
+      <img class="about_unit_image cavalry" src="/images/svgs/<%= unit_class[:codename].downcase %>.svg">
+      <article class="about_unit_description">
+        <h6><%= unit_class[:name] %></h6>
+
+        <p>
+          <small>
+            Movement: <%= unit_class[:movement] %>
+            <br>
+            Strength: <%= unit_class[:strength] %>
+            <br>
+            Trump:
+            <% if unit_class[:trump] != nil %>
+                <% unit_class[:trump].each do |trump| %>
+
+                    <% if (trump == unit_class[:trump].last) && (unit_class[:trump].length != 1) %>
+                        and <%= trump %>
+                    <% elsif unit_class[:trump].length != 1 %>
+                        <%= trump %>,
+                    <% else %>
+                        <%= trump %>
+                    <% end %>
+                <% end %>
+            <% else %>
+                --
+            <% end %>
+          </small>
+        </p>
+      </article>
+  <% end %>
+</div>
+
+<hr>
+<h6 class="class_title"><%= "="*43 %>Range<%= "="*43 %></h6>
+
+<div class="about_unit">
+
+  <% @range.each do |unit_class| %>
+
+      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
+      <article class="about_unit_description">
+        <h6><%= unit_class[:name] %></h6>
+
+        <p>
+          <small>
+            Movement: <%= unit_class[:movement] %>
+            <br>
+            Strength: <%= unit_class[:strength] %>
+            <br>
+            Range: <%= unit_class[:range] %>
+            <br>
+            Trump:
+            <% if unit_class[:trump] != nil %>
+                <% unit_class[:trump].each do |trump| %>
+                    <% if (trump == unit_class[:trump].last) && (unit_class[:trump].length != 1) %>
+                        and <%= trump %>
+                    <% elsif unit_class[:trump].length != 1 %>
+                        <%= trump %>,
+                    <% else %>
+                        <%= trump %>
+                    <% end %>
+                <% end %>
+            <% else %>
+                --
+            <% end %>
+          </small>
+        </p>
+      </article>
+  <% end %>
+</div>
+
+<hr>
+<h6 class="class_title"><%= "="*43 %>Unique<%= "="*43 %></h6>
+
+<div class="about_unit">
+
+  <% @unique.each do |unit_class| %>
+
+      <img class="about_unit_image" src="/images/svgs/<%= unit_class[:name].downcase %>.svg">
+      <article class="about_unit_description">
+        <h6><%= unit_class[:name] %></h6>
+
+        <p>
+          <small>
+            Movement: <%= unit_class[:movement] %>
+            <br>
+            Strength: <%= unit_class[:strength] %>
+            <br>
+            Trump:
+            <% if unit_class[:trump] != nil %>
+                <% unit_class[:trump].each do |trump| %>
+
+                    <% if (trump == unit_class[:trump].last) && (unit_class[:trump].length != 1) %>
+                        and <%= trump %>
+                    <% elsif unit_class[:trump].length != 1 %>
+                        <%= trump %>,
+                    <% else %>
+                        <%= trump %>
+                    <% end %>
+                <% end %>
+            <% else %>
+                --
+            <% end %>
+          </small>
+        </p>
+      </article>
+  <% end %>
+
+</div>
+</article>

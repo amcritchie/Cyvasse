@@ -1,21 +1,39 @@
 <div class="navBar">
 
-  <article class="root">
-    <h3><%= link_to 'Cyvasse', root_path %></h3>
+  <!--<article class="one_fourth"></article>-->
+  <article class="three_fourth">
+
+
+    <article class="root">
+      <h3><%= link_to 'Cyvasse', root_path %></h3>
+    </article>
+
+    <article class="navOption">
+      <h6><%= link_to 'Rules', rules_path %></h6>
+    </article>
+
+    <article class="navOption">
+      <h6><%= link_to 'About', about_path %></h6>
+    </article>
+    <article class="navOption">
+      <h6><%= link_to 'Contact', contact_path %></h6>
+    </article>
+
+  </article>
+  <article class="one_fourth">
+
+    <article class="navLogin">
+      <% if session[:user_id] == nil %>
+          <h6>
+            <%= link_to 'Login', login_path %>
+            |
+            <%= link_to 'New User', login_path %>
+          </h6>
+      <% else %>
+          <h6><%= link_to 'Logout', logout_path, method: :delete %></h6>
+      <% end %>
+    </article>
+
   </article>
 
-  <article class="navOption">
-    <h6><%= link_to 'About', about_path %></h6>
-  </article>
-  <article class="navOption">
-    <h6><%= link_to 'Contact', contact_path %></h6>
-  </article>
-
-  <article class="navLogin">
-    <% if session[:user_id] == nil %>
-        <h6><%= link_to 'Login', login_path %></h6>
-    <% else %>
-        <h6><%= link_to 'Logout', logout_path, method: :delete %></h6>
-    <% end %>
-  </article>
 </div>

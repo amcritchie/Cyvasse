@@ -8,7 +8,7 @@ class Crossbowman < Unit
         :name => "Crossbowman",
         :codename => "crossbowman",
         :image => "svgs/crossbowman.svg",
-        :movement => 2,
+        :movement => 1,
         :strength => 2,
         :flank => 0,
         :range => 2,

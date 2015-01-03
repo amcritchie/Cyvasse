@@ -9,8 +9,8 @@ class Trebuchet < Unit
         :codename => "trebuchet",
         :image => "svgs/trebuchet.svg",
         :movement => 1,
-        :strength => 4,
-        :range => 4,
+        :strength => 1,
+        :range => 3,
         :flank => 0,
         :trump => ["Dragon"]
     }

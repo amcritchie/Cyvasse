@@ -8,7 +8,7 @@ class LightHorse < Unit
         :name => "Light Horse",
         :codename => "lighthorse",
         :image => "svgs/lighthorse.svg",
-        :movement => 4,
+        :movement => '3 + 2',
         :strength => 2,
         :range => 0,
         :flank => 2,

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   get '/about', to: 'home#about'
+  get '/rules', to: 'home#rules'
   get '/contact', to: 'home#contact'
 
   resources :game_statuses

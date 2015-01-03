@@ -203,6 +203,7 @@ body {
 .wrapper {
   margin: auto;
   width: 960px;
+  margin-top: 2px;
   //    border: solid green 1px;
   //    background: #0000ff; /* Old browsers */
   //  background: -webkit-linear-gradient(right top, $temp2, $temp3);
@@ -540,15 +541,35 @@ dd{
   transform: rotate(-180deg);
 }
 
-//@media only screen and (min-width : 1024px){
-//
-//  body{
-//    margin: 0 auto;
-//    width: 36rem;
-//  }
-//
-//  h1, dl{
-//    width: 36rem;
-//  }
-//
-//}
+#aboutPage{
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: .9em;
+}
+
+#rulesPage{
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+
+.thanksProfile{
+  width: 14%;
+  text-align: center;
+  h6{
+    font-size: 15px;
+  }
+  img{
+    height: 100px;
+  }
+}
+
+.aboutMe{
+  text-align: center;
+  width: 300px;
+  img{
+    width: 200px;
+  }
+}
+.thanksgSchool{
+  margin-top: 30px;
+  text-align: center;
+}
