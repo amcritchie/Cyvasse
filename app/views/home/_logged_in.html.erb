@@ -114,7 +114,7 @@
                   <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
                 </div>
                 <div class="image">
-                  <%= image_tag User.find(favorite.favorited).image %>
+                  <%= link_to image_tag(User.find(favorite.favorited).image), user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
                 </div>
                 <div class="play">
                   <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => User.find(favorite.favorited).username}) %>
@@ -145,11 +145,21 @@
           <tbody>
           <% @lastTenUsers.each_with_index do |user, index| %>
               <tr>
-                <td>&#<%= ['x0229A', 'x02297', 'x02296', 'x02295'].sample %></td>
                 <td>
-                  <%= user.username %>
+                  <% if (Time.new - user.last_active) < 300 %>
+                      &#x0229A
+                  <% elsif (Time.new - user.last_active) < 1000 %>
+                      &#x0229B
+                  <% elsif (Time.new - user.last_active) < 3000 %>
+                      &#x02296
+                <% else %>
+                      &#x02297
+                  <% end %>
 
-
+                  <!--&#['x0229A', 'x02297', 'x02296', 'x02295']-->
+                </td>
+                <td>
+                  <%= link_to user.username, user_path(user) %>
                 </td>
                 <td>
                   <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => user.username}) %>

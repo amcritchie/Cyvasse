@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'turbolinks'
 gem 'devise'
 
+gem "mini_magick"
+
 
 gem 'launchy'
 
@@ -29,6 +31,8 @@ gem 'figaro'
 gem 'carrierwave'
 gem 'fog'
 gem 'dotenv-rails'
+
+gem 'pry-rails'
 
 gem 'bootstrap-sass', '~> 2.3.1.0'
 

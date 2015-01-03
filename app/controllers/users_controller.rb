@@ -16,6 +16,14 @@ class UsersController < ApplicationController
   end
 
   def create
+
+
+    # if user_params[:image] == nil
+    #   @user.image.store!(File.open("public/images/tutorial/range.png"))
+    #   # @user.image.store!(File.open("public/images/tutorial/range.png"))
+    # end
+
+
     @user = User.new(user_params)
     @user.username = @user.username.downcase
     @user.email = @user.email.downcase

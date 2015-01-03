@@ -23,7 +23,8 @@ class ApplicationController < ActionController::Base
   end
 
   def last_active_users(count)
-    active_users = User.where("id > 10 AND id != #{current_user.id}").limit(count).order('last_active asc')
+    # active_users = User.where("id > 10 AND id != #{current_user.id}").limit(count).order('last_active asc')
+    active_users = User.where("id > 10 AND id != #{current_user.id}").where.not(:last_active => nil).limit(count).order('last_active desc')
     active_users.shuffle
   end
 
@@ -35,3 +36,5 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :enemy_user
 
 end
+
+# User.where("id > 10").limit(5).order('last_active asc')

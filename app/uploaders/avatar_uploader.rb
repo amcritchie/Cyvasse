@@ -4,10 +4,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
+
+  version :thumb do
+    # returns an image with a maximum width of 100px
+    # while maintaining the aspect ratio
+    # 10000 is used to tell CW that the height is free
+    # and so that it will hit the 100 px width first
+    process :resize_to_fill => [400, 400]
+  end
+
   storage :fog
 
   include CarrierWave::MimeTypes
