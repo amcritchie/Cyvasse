@@ -149,8 +149,10 @@ $(document).ready(function () {
 //        if (i < 5) window.setTimeout(appendSomeItems, 1000);
 //    }
 
+    if ($('#activeGames').children().length > 4){
+        $('#userColumn').css('height',(380+($('#activeGames').children().length * 70))+'px')
+    }
 
-    console.log(document.getElementById('accountType').innerHTML);
     $('.playThisUser').on('click', function () {
 
         if (($('#activeGames').children().length == 5) && (document.getElementById('accountType').innerHTML == 'basic')){
