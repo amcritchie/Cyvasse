@@ -573,3 +573,66 @@ dd{
   margin-top: 30px;
   text-align: center;
 }
+
+
+#allFavorites{
+  width: 100%;
+  height: 620px;
+  text-align: center;
+//  background-color: tan;
+
+  .favorite {
+
+    width: 88px;
+    height: 150px;
+//    margin-bottom: 10px;
+
+    display: block;
+
+    float: left;
+    margin-left: 2px;
+    margin-right: 2px;
+
+    .unfavorite {
+      font-size: 8px;
+    }
+
+    //    background-color: teal;
+    margin-bottom: 20px;
+    .username{
+      display: block;
+      height: 14%;
+      a{
+        width: 100%;
+        height: 10px;
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+    }
+    .image{
+      width: 100%;
+      height: 65%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      //      background-color: blue;
+      img{
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .play{
+      font-size: 16px;
+      display: block;
+      height: 14%;
+      //      background-color: green;
+    }
+    .unfavorite{
+      font-size: 11px;
+      display: block;
+      height: 10%;
+      //      background-color: orangered;
+    }
+  }
+}
+

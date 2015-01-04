@@ -1,5 +1,9 @@
 class FavoritesController < ApplicationController
 
+  def index
+    @favorites = Favorite.where(favoriter: current_user)
+  end
+
   def create
     @favorite = Favorite.new(
         favoriter: current_user.id,

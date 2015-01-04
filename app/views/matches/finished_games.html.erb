@@ -1,0 +1,50 @@
+<article class="one_fourth">&nbsp</article>
+<article class="one_half">
+
+  <h5>Last Games</h5>
+
+  <table id="finishedGamesTable">
+    <thead>
+    <tr>
+      <th>Result</th>
+      <th>Final Turn</th>
+      <th>Opponent</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @matches.each_with_index do |match, index| %>
+
+        <% if (match.whos_turn == 1) %>
+            <% if (current_user.id == match.home_user_id) %>
+                <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
+            <% else %>
+                <% info = ['There Turn', 'thereTurn', match.home_user_id] %>
+            <% end %>
+        <% else %>
+            <% if (current_user.id == match.away_user_id) %>
+                <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
+            <% else %>
+                <% info = ['There Turn', 'thereTurn', match.away_user_id] %>
+            <% end %>
+        <% end %>
+
+        <tr>
+          <td>
+            <% if (match.whos_turn == 1) && (match.home_user_id==current_user.id) %>
+                <%= link_to 'Win', root_path %>
+            <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user) %>
+                <%= link_to 'Win', root_path %>
+            <% else %>
+                <%= link_to 'Lose', root_path %>
+            <% end %>
+          </td>
+          <td><%= match.turn %></td>
+          <td>
+            <%= link_to User.find(info[2]).name_or_username, root_path %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</article>
+<article class="one_fourth">&nbsp</article>

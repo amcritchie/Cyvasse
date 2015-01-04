@@ -7,6 +7,11 @@ class MatchesController < ApplicationController
     @matches = Match.all
   end
 
+  def finished_games
+    @matches = current_user.finished_matches(session[:user_id]).reverse
+  end
+
+
   # GET /matches/1
   # GET /matches/1.json
   def show

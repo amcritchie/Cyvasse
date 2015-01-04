@@ -135,6 +135,22 @@ $(document).ready(function () {
         }
 //            element.style.fontSize = (9/(element.offsetWidth / 50))+"px";
     });
+
+    if ($('#allFavorites').length == 1){
+
+        $('.favoriteUsername').each(function (index, element) {
+
+            if (element.text.length >= 9) {
+                element.style.fontSize = "11px";
+            } else if (element.text.length >= 7) {
+                element.style.fontSize = "12px";
+            } else if (element.text.length >= 5) {
+                element.style.fontSize = "13px";
+            }
+//            element.style.fontSize = (9/(element.offsetWidth / 50))+"px";
+        });
+
+    }
 //    }, 3000);
 
 
@@ -155,7 +171,7 @@ $(document).ready(function () {
 
     $('.playThisUser').on('click', function () {
 
-        if (($('#activeGames').children().length == 5) && (document.getElementById('accountType').innerHTML == 'basic')){
+        if (($('#activeGames').children().length >= 5) && (document.getElementById('accountType').innerHTML == 'basic')){
             Flash.messageLong('error', "You may only have 5 'Active' games with a basic account.");
         } else {
             $('#opponent_which_user_chosen_user').click();

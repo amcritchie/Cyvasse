@@ -1,0 +1,44 @@
+<article class="one_fourth">&nbsp</article>
+<article class="one_half">
+
+
+  <div id="allFavorites">
+    <br>
+    <h3>Favorites</h3>
+    <br>
+    <% @favorites.each do |favorite| %>
+
+        <article class="favorite" data-favorited="<%= favorite.favorited %>">
+          <div class="username">
+            <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
+          </div>
+          <div class="image">
+            <%= link_to image_tag(User.find(favorite.favorited).image), user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
+          </div>
+          <div class="play">
+            <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => User.find(favorite.favorited).username}) %>
+          </div>
+          <div class="unfavorite">
+            <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.favorited} %>
+          </div>
+
+        </article>
+
+    <% end %>
+  </div>
+</article>
+<article class="one_fourth">&nbsp</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

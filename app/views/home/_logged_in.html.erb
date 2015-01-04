@@ -20,7 +20,7 @@
     <p style="margin-bottom: 2px">or</p>
     <%= form_for :opponent, url: create_player_match_path, method: :post, html: {class: 'playUser'} do |f| %>
         <%= button_tag 'Play User', class: 'newMatch' %>
-        <div>
+        <div >
           <%= f.radio_button :which_user, 'Random User', :checked => true %>
           <%= f.label :which_user, 'Play Random User' %>
         </div>
@@ -60,9 +60,11 @@
         <table id="finishedGamesTable">
           <thead>
           <tr>
-            <th>Result</th>
-            <th>Final Turn</th>
             <th>Opponent</th>
+            <th>Final Turn</th>
+            <th>Result</th>
+
+            <!--<th>..__..</th>-->
           </tr>
           </thead>
           <tbody>
@@ -83,24 +85,30 @@
               <% end %>
 
               <tr>
+
+                <td>
+                  <%= link_to User.find(info[2]).name_or_username, user_path(User.find(info[2]))%>
+                </td>
+                <td>
+                  <%= link_to match.turn, match_path(match), class: 'checkLastTurn' %>
+                </td>
                 <td>
                   <% if (match.whos_turn == 1) && (match.home_user_id==current_user.id) %>
-                      <%= link_to 'Win', root_path %>
-                  <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user) %>
-                      <%= link_to 'Win', root_path %>
-                  <% else %>
-                      <%= link_to 'Lose', root_path %>
-                  <% end %>
+                      <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
+                <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user) %>
+                      <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
+
+                <% else %>
+                      <%= link_to 'Lose', match_path(match), class: 'checkLastTurn' %>
+
+                <% end %>
                 </td>
-                <td><%= match.turn %></td>
-                <td>
-                  <%= link_to User.find(info[2]).name_or_username, root_path %>
-                </td>
+
               </tr>
           <% end %>
           </tbody>
         </table>
-        <%= link_to 'Past Games', root_path, class: 'dashLink' %>
+        <%= link_to 'Past Games', finished_games_path, class: 'dashLink' %>
 
       </article>
       <article id="favorites" class="one_fourth">
@@ -127,7 +135,7 @@
 
           <% end %>
         </div>
-        <%= link_to 'All Favorites', root_path, class: 'dashLink' %>
+        <%= link_to 'All Favorites', user_favorites_path(current_user.id), class: 'dashLink' %>
       </article>
       <article class="one_fourth">
         <h5>Online Players</h5>
@@ -175,8 +183,6 @@
           </tbody>
         </table>
       </article>
-
-      <%= link_to 'Online Players', root_path, class: 'dashLink' %>
     </article>
   </dd>
 

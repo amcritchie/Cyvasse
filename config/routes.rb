@@ -38,6 +38,10 @@ Rails.application.routes.draw do
 
   post "create_player_match" => "matches#create_match_vs_player"
 
+  get "finished_games" => "matches#finished_games"
+
+
+
   resource :session, only: [:new, :create, :destroy]
 
   get '/about', to: 'home#about'
