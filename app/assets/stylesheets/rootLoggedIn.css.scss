@@ -224,7 +224,7 @@
     width: 51px;
 
 
-    img {
+    .favoriteImage {
       width: 40px;
       height: 45px;
       display: block;
@@ -369,9 +369,17 @@
     }
     &:nth-of-type(5) {
       font-size: 9px;
-      //      background-color: royalblue;
     }
   }
+//  img{
+//    margin-top: 1px;
+//    height: 9px;
+//  }
+}
+
+.onlineStatusLight{
+  margin-top: 1px;
+  height: 9px;
 }
 
 th {

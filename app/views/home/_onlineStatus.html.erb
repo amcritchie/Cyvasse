@@ -1,0 +1,10 @@
+
+<% if (Time.new - locals[:user].last_active) < 300 %>
+    <%= image_tag'/images/green-ball.png', class: 'onlineStatusLight' %>
+<% elsif (Time.new - locals[:user].last_active) < 1000 %>
+    <%= image_tag '/images/yellow-ball.png', class: 'onlineStatusLight' %>
+<% elsif (Time.new - locals[:user].last_active) < 3000 %>
+    <%= image_tag '/images/yellow-ball.png', class: 'onlineStatusLight' %>
+<% else %>
+    <%= image_tag '/images/red-ball.png', class: 'onlineStatusLight' %>
+<% end %>

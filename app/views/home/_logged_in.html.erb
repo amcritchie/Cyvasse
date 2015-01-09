@@ -20,7 +20,7 @@
     <p style="margin-bottom: 2px">or</p>
     <%= form_for :opponent, url: create_player_match_path, method: :post, html: {class: 'playUser'} do |f| %>
         <%= button_tag 'Play User', class: 'newMatch' %>
-        <div >
+        <div>
           <%= f.radio_button :which_user, 'Random User', :checked => true %>
           <%= f.label :which_user, 'Play Random User' %>
         </div>
@@ -87,7 +87,7 @@
               <tr>
 
                 <td>
-                  <%= link_to User.find(info[2]).name_or_username, user_path(User.find(info[2]))%>
+                  <%= link_to User.find(info[2]).name_or_username, user_path(User.find(info[2])) %>
                 </td>
                 <td>
                   <%= link_to match.turn, match_path(match), class: 'checkLastTurn' %>
@@ -95,13 +95,13 @@
                 <td>
                   <% if (match.whos_turn == 1) && (match.home_user_id==current_user.id) %>
                       <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
-                <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user) %>
+                  <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user) %>
                       <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
 
-                <% else %>
+                  <% else %>
                       <%= link_to 'Lose', match_path(match), class: 'checkLastTurn' %>
 
-                <% end %>
+                  <% end %>
                 </td>
 
               </tr>
@@ -122,9 +122,11 @@
                   <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
                 </div>
                 <div class="image">
-                  <%= link_to image_tag(User.find(favorite.favorited).image), user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
+                  <%= link_to image_tag(User.find(favorite.favorited).image), user_path(User.find(favorite.favorited)), class: 'favoriteImage' %>
                 </div>
                 <div class="play">
+                  <%= render 'onlineStatus', :locals => {user: User.find(favorite.favorited)}  %>
+
                   <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => User.find(favorite.favorited).username}) %>
                 </div>
                 <div class="unfavorite">
@@ -154,15 +156,7 @@
           <% @lastTenUsers.each_with_index do |user, index| %>
               <tr>
                 <td>
-                  <% if (Time.new - user.last_active) < 300 %>
-                      &#x0229A
-                  <% elsif (Time.new - user.last_active) < 1000 %>
-                      &#x0229B
-                  <% elsif (Time.new - user.last_active) < 3000 %>
-                      &#x02296
-                <% else %>
-                      &#x02297
-                  <% end %>
+                  <%= render 'onlineStatus', :locals => {user: user}  %>
                 </td>
                 <td>
                   <%= link_to user.username, user_path(user) %>
@@ -255,7 +249,11 @@
             <% end %>
           </td>
           <td>
-            <h4><%= User.find(info[2]).name_or_username %></h4>
+            <h4>
+              <%= User.find(info[2]).name_or_username %>
+              <%= render 'onlineStatus', :locals => {user: User.find(info[2])}  %>
+
+            </h4>
             <% if Favorite.where(favoriter: current_user.id, favorited: info[2])== [] ? true : false %>
                 <h6><%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: info[2]} %></h6>
             <% else %>
@@ -282,6 +280,6 @@
 
 <div id=metaInfo>
 
-    <a id="accountType"><%= current_user.account_type %></a>
+  <a id="accountType"><%= current_user.account_type %></a>
 
 </div>
