@@ -1,57 +1,75 @@
 <article class="full_column" id="aboutPage">
 
+  <h1>About</h1>
+  <br>
+
 
   <article class="aboutMe">
     <h4>Alex McRitchie</h4>
     <%= image_tag '/images/thanks/alexmcritchie.jpeg' %>
-    <p>amcritchie@gmail.com
+    <p>
+      amcritchie@gmail.com
       <br>
-      @mcritchiealex</p>
-
+      @mcritchiealex
+    </p>
   </article>
-  <h4>About</h4>
+
 
   <p>
     <%= link_to 'Cyvasse', 'http://awoiaf.westeros.org/index.php/Cyvasse', :target => "_blank" %>
     is a fictitious game from
-    <%= link_to "George R. R. Martin's", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>,
+    <%= link_to "George R. R. Martin's", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>
     series
-    <%= link_to 'A Song of Ice and Fire', 'http://en.wikipedia.org/wiki/A_Song_of_Ice_and_Fire', :target => "_blank" %>
-    in Essos and Dorne. The rules of Cyvasse are not specified in great detail throughout any of the books, yet we are
-    given hints on how the game is played.
-    This project initially started on Aug 8 of 2014, as I was attending a
-    <%= link_to 'gSchool', 'http://www.galvanize.it/school/#main', :target => "_blank" %>,
-    a full stack web development boot camp. gSchool plays a crucial role in the development of Cyvasse, as
-    this is where I learned the skills I used to build this site. I started cyvasse because building games
-    is my passion, and I remembered the first time I googled Cyvasse, and finding nothing that held my interest.
+    <i><%= link_to 'A Song of Ice and Fire', 'http://en.wikipedia.org/wiki/A_Song_of_Ice_and_Fire', :target => "_blank" %></i>,
+    played in
+    <%= link_to 'Essos', 'http://awoiaf.westeros.org/index.php/Essos', :target => "_blank" %>
+    and
+    <%= link_to 'Dorne', 'http://awoiaf.westeros.org/index.php/Dorne', :target => "_blank" %>.
+    The true rules to Cyvasse are not known, save by George R. R. Martin himself, and it may
+    be the case that he has never developed a complete set of rules.
+    The goal of this website is to allow fans can get together and play each
+    other using a set of rules I developed.
 
   </p>
 
   <p>
-    In preparation for creating the rules, I have gone over the entire A Song of Ice and Fire series multiple times,
-    including
-    <%= link_to 'A World of Ice and Fire', 'http://awoiaf.westeros.org/index.php/The_World_of_Ice_and_Fire', :target => "_blank" %>
+    Though the rules of Cyvasse are not specified in great detail throughout any of the books,
+    we are given hints on how the game is played.
+
+    In preparation for creating the rules, I have gone over the entire <i>A Song of Ice and Fire</i>
+    series multiple times, including
+    <i><%= link_to 'A World of Ice and Fire', 'http://awoiaf.westeros.org/index.php/The_World_of_Ice_and_Fire', :target => "_blank" %></i>
     and
-    <%= link_to 'The Hedge Knight', 'http://awoiaf.westeros.org/index.php/The_Hedge_Knight', :target => "_blank" %>
-    diligently,
-    paying special attention to
-    <%= link_to 'A Feast for Crows', 'http://awoiaf.westeros.org/index.php/A_Feast_for_Crows', :target => "_blank" %>
+    <i><%= link_to 'The Hedge Knight', 'http://awoiaf.westeros.org/index.php/The_Hedge_Knight', :target => "_blank" %></i>
+    diligently, paying special attention to
+    <i><%= link_to 'A Feast for Crows', 'http://awoiaf.westeros.org/index.php/A_Feast_for_Crows', :target => "_blank" %></i>
     and
-    <%= link_to 'A Dance with Dragons', 'http://awoiaf.westeros.org/index.php/A_Dance_with_Dragons', :target => "_blank" %>
-    where Cyvasse is referenced. The rules used in this imagining, are a combination of the specifics found in the books
+    <i><%= link_to 'A Dance with Dragons', 'http://awoiaf.westeros.org/index.php/A_Dance_with_Dragons', :target => "_blank" %></i>
+    where Cyvasse is referenced. The rules used in this imagining are a combination of the specifics found in the books
     combined with my views on game design.
 
   </p>
+
   <p>
-    If nothing else, site as a love letter to my favorite author
+    This project initially started on August 8th of 2014, as I was attending
+    <%= link_to 'gSchool', 'http://www.galvanize.it/school/#main', :target => "_blank" %>,
+    a full stack web development boot camp. gSchool played a crucial role in the development of Cyvasse, as
+    this is where I learned the skills I used to build this site. I started Cyvasse because building games
+    is my passion, and remember the first time I googled Cyvasse, and found nothing that held my interest.
+  </p>
+
+  <p>
+    If nothing else, this site as a love letter to my favorite author
     <%= link_to "George R. R. Martin", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>,
-    and as an attempt to solidify a set of rules that reflect the specifics
-    and spirit we are taught about Cyvasse though out A Song of Ice and Fire.
+    as well as an attempt to solidify a set of rules that reflect the specifics
+    and spirit we learn about Cyvasse through out <i>A Song of Ice and Fire</i>.
   </p>
 
   <h3>Thanks</h3>
   <h6>I want to give a special thanks to the people who have been my friends and mentors though this whole journey.</h6>
   <br>
+
+
 
   <article class="thanksProfile">
     <h6>Jeff Taggart</h6>
@@ -85,9 +103,10 @@
 
   <article class="thanksgSchool">
     <h5>gSchool g[3]</h5>
+
     <p>
       Last and most importantly, I want to thank gSchool for being greatest group
-      I have ever had the privilege of being a part of.  I love you all!
+      I have ever had the privilege of being a part of. I love you all!
     </p>
     <%= image_tag '/images/thanks/gschool.jpg' %>
 
