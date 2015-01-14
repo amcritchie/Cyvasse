@@ -17,6 +17,15 @@ var Offense = {
     registerClickUnit: function () {
         if (Game.offense == You.team) {
             Offense.selectableUnits.on('click', function () {
+
+
+//                $('.hexPolygon').hover(function () {
+//                    $(this).parent().parent().addClass('hexHover');
+//                }, function () {
+//                    $(this).parent().parent().removeClass('hexHover');
+//                });
+
+
                 Tutorial.stepEight();
                 Offense.validatesClickedUnit($(this));
             })
@@ -53,23 +62,19 @@ var Offense = {
     },
     registerMovableHex: function () {
         Offense.moveRange.on('click', function () {
-            var validation = Validates.unitStats(SelectedUnit.unit.parent()) && (Validates.unitsPosition() || Offense.jump == 2);
-            Offense.validatesAction($(this),validation);
+            var validation = Validates.validateMovement(SelectedUnit.unit.parent());
+            Offense.validatesAction($(this), validation);
         });
     },
     registerAttackUnit: function () {
         Offense.attackRange.on('click', function () {
-            var validation = Validates.combat(SelectedUnit.unit.parent(), $(this)) && (Validates.unitsPosition() || Offense.jump == 2);
-            Offense.validatesAction($(this),validation);
+            var validation = Validates.validateAttack(SelectedUnit.unit.parent(), $(this));
+            Offense.validatesAction($(this), validation);
         });
     },
     validatesAction: function (unit, validation) {
         if (validation) {
-            if (Validates.teamZeroCount == $('.hexDiv').children('img.unit0').length && Validates.teamOneCount == $('.hexDiv').children('img.unit1').length){
-                Offense.moveToAttack(unit);
-            }else{
-                Validates.notPassed();
-            }
+            Offense.moveToAttack(unit);
         } else {
             Validates.notPassed();
         }
@@ -92,10 +97,7 @@ var Offense = {
             Game.utilMove = Offense.utility;
             Offense.turnOffClickHandlers();
             Offense.jump = 2;
-
-            Validates.teamZeroCount = $('.hexDiv').children('img.unit0').length;
-            Validates.teamOneCount = $('.hexDiv').children('img.unit1').length;
-
+            Validates.updateUnitCount();
             Offense.selectUnit(SelectedUnit.unit.parent());
         } else {
             Offense.finishTurn()

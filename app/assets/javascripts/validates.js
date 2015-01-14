@@ -1,41 +1,31 @@
 var Validates = {
-    rabble: ['1', '1', '3', '0', 'none'],
-    spearman: ['2', '2', '2', '0', 'lighthorse,heavyhorse'],
-    elephant: ['4', '4', '3', '0', 'none'],
-    lighthorse: ['2', '2', '3', '0', 'none'],
-    heavyhorse: ['3', '3', '2', '0', 'none'],
-    crossbowman: ['2', '1', '1', '2', 'none'],
-    catapult: ['4', '1', '2', '3', 'none'],
-    trebuchet: ['1', '1', '1', '3', 'dragon'],
-    dragon: ['5', '5', '10', '0', 'none'],
-    king: ['2', '2', '2', '0', 'none'],
-    mountain: ['9', '9', '0', '0', 'none'],
+
+    king: {attack: 2, defence: 2, moveRange: 2, attackRange: 0, trump: 'none'},
+    rabble: {attack: 1, defence: 1, moveRange: 3, attackRange: 0, trump: 'none'},
+    dragon: {attack: 5, defence: 5, moveRange: 10, attackRange: 0, trump: 'none'},
+    mountain: {attack: 9, defence: 9, moveRange: 0, attackRange: 0, trump: 'none'},
+    elephant: {attack: 4, defence: 4, moveRange: 3, attackRange: 0, trump: 'none'},
+    catapult: {attack: 4, defence: 1, moveRange: 2, attackRange: 3, trump: 'none'},
+    lighthorse: {attack: 2, defence: 2, moveRange: 3, attackRange: 0, trump: 'none'},
+    heavyhorse: {attack: 3, defence: 3, moveRange: 2, attackRange: 0, trump: 'none'},
+    trebuchet: {attack: 1, defence: 1, moveRange: 1, attackRange: 3, trump: 'dragon'},
+    crossbowman: {attack: 2, defence: 1, moveRange: 1, attackRange: 2, trump: 'none'},
+    spearman: {attack: 2, defence: 2, moveRange: 2, attackRange: 0, trump: 'lighthorse,heavyhorse'},
 
     teamZeroCount: null,
     teamOneCount: null,
 
-    arrayEqual: function (a, b) {
-        if (a === b) return true;
-        if (a == null || b == null) return false;
-        if (a.length != b.length) return false;
-        for (var i = 0; i < a.length; ++i) {
-            if (a[i] !== b[i]) return false;
-        }
-        return true;
-    },
-
     unitStats: function (unit) {
         var unitClass = unit.children('img').attr('data-codename');
-        var unitStats = [
-            unit.children('img').attr('data-attack'),
-            unit.children('img').attr('data-defence'),
-            unit.children('img').attr('data-moverange'),
-            unit.children('img').attr('data-attackrange'),
-            unit.children('img').attr('data-trump')
-        ];
-        return !!Validates.arrayEqual(Validates[unitClass], unitStats);
+        var unitStats = {
+            attack: parseInt(unit.children('img').attr('data-attack')),
+            defence:  parseInt(unit.children('img').attr('data-defence')),
+            moveRange:  parseInt(unit.children('img').attr('data-moverange')),
+            attackRange:  parseInt(unit.children('img').attr('data-attackrange')),
+            trump:  unit.children('img').attr('data-trump')
+        };
+        return JSON.stringify(Validates[unitClass]) === JSON.stringify(unitStats);
     },
-
     combat: function (attacker, defender) {
         if (attacker.children('img').attr('data-team') == defender.children('img').attr('data-team')) {
             return false
@@ -43,7 +33,46 @@ var Validates = {
             return !!(Validates.unitStats(attacker) && Validates.unitStats(defender));
         }
     },
-
+    updateUnitCount: function () {
+        var hexDivs = $('.hexDiv');
+        Validates.teamOneCount = hexDivs.children('img.unit1').length;
+        Validates.teamZeroCount = hexDivs.children('img.unit0').length;
+    },
+    validateMovement: function (mover) {
+        return (
+            Validates.boardIntact()
+            && Validates.unitStats(mover)
+            || Offense.jump == 2
+            )
+    },
+    validateAttack: function (attacker, defender) {
+        return (
+            Validates.boardIntact()
+            && Validates.combat(attacker, defender)
+            || Offense.jump == 2
+            )
+    },
+    boardIntact: function () {
+        return (
+            Validates.hexsIntact()
+            && Validates.unitsExist()
+            && Validates.unitsPosition()
+            )
+    },
+    hexsIntact: function () {
+        return(
+            $('.hexDiv').length == 91
+            && $('.hexSVG').length == 91
+            && $('.hexPolygon').length == 91
+            )
+    },
+    unitsExist: function () {
+        var hexDivs = $('.hexDiv');
+        return(
+            Validates.teamZeroCount == hexDivs.children('img.unit0').length
+            && Validates.teamOneCount == hexDivs.children('img.unit1').length
+            )
+    },
     unitsPosition: function () {
         GameStatus.setValidationString();
         if (You.team == 0) {
@@ -54,9 +83,9 @@ var Validates = {
     },
 
     notPassed: function () {
-        Rotator.createAndRotateOn('turn','Warning: Tampering with units, will result in a loss');
-        setTimeout(function(){
+        Rotator.createAndRotateOn('turn', 'Warning: Tampering with units, will result in a loss');
+        setTimeout(function () {
             window.location.reload()
-        },3000);
+        }, 3000);
     }
 };

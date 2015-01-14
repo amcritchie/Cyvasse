@@ -197,7 +197,11 @@
 }
 
 .hexHover {
-  fill: yellow;
+  .hexSVG {
+    .hexPolygon {
+      fill: yellow;
+    }
+  }
 }
 
 .userr{
