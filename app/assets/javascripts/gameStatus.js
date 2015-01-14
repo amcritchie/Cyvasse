@@ -95,7 +95,6 @@ var GameStatus = {
         GameStatus.setStrings();
         GameStatus.setLastMove();
 
-
         $.ajax({
             type: 'put',
             url: '/update_match_info',

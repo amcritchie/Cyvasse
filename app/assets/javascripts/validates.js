@@ -11,6 +11,9 @@ var Validates = {
     king: ['2', '2', '2', '0', 'none'],
     mountain: ['9', '9', '0', '0', 'none'],
 
+    teamZeroCount: null,
+    teamOneCount: null,
+
     arrayEqual: function (a, b) {
         if (a === b) return true;
         if (a == null || b == null) return false;

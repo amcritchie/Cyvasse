@@ -80,6 +80,8 @@ var Game = {
         setTimeout(function () {
             Rotator.rotateOff('.turn');
         }, 1300);
+        Validates.teamZeroCount = $('.hexDiv').children('img.unit0').length;
+        Validates.teamOneCount = $('.hexDiv').children('img.unit1').length;
         Game.hexVisualUpdate();
         Offense.runOffense(Game.offense);
         AI.shouldAIMove();

@@ -65,7 +65,11 @@ var Offense = {
     },
     validatesAction: function (unit, validation) {
         if (validation) {
-            Offense.moveToAttack(unit);
+            if (Validates.teamZeroCount == $('.hexDiv').children('img.unit0').length && Validates.teamOneCount == $('.hexDiv').children('img.unit1').length){
+                Offense.moveToAttack(unit);
+            }else{
+                Validates.notPassed();
+            }
         } else {
             Validates.notPassed();
         }
@@ -88,6 +92,9 @@ var Offense = {
             Game.utilMove = Offense.utility;
             Offense.turnOffClickHandlers();
             Offense.jump = 2;
+
+            Validates.teamZeroCount = $('.hexDiv').children('img.unit0').length;
+            Validates.teamOneCount = $('.hexDiv').children('img.unit1').length;
 
             Offense.selectUnit(SelectedUnit.unit.parent());
         } else {
