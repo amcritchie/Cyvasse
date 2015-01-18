@@ -147,7 +147,7 @@ class MatchesController < ApplicationController
     render nothing: true
   end
 
-  def update_match_info
+  def update_match_info()
     @match = Match.find(params[:match_id])
 
     @match.update(

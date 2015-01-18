@@ -198,10 +198,26 @@
 
 .hexHover {
   .hexSVG {
+    margin-top: 5px;
+    margin-left: 5px;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+
+
     .hexPolygon {
-      fill: yellow;
+      stroke-width: 124px;
+//      z-index: 666;
+      transform: scale(0.092);
+      -ms-transform: scale(0.092);
+      -webkit-transform: scale(0.092);
+      transition: all 0.20s;
+      box-sizing: border-box;
     }
   }
+}
+.polygonHover{
+  fill: yellow;
 }
 
 .userr{

@@ -17,15 +17,6 @@ var Offense = {
     registerClickUnit: function () {
         if (Game.offense == You.team) {
             Offense.selectableUnits.on('click', function () {
-
-
-//                $('.hexPolygon').hover(function () {
-//                    $(this).parent().parent().addClass('hexHover');
-//                }, function () {
-//                    $(this).parent().parent().removeClass('hexHover');
-//                });
-
-
                 Tutorial.stepEight();
                 Offense.validatesClickedUnit($(this));
             })
@@ -50,7 +41,7 @@ var Offense = {
         clearInterval(Animation.function);
         $allHexPoly.css('fill', 'black');
         $allHexPoly.css('stroke', 'white');
-        $allHexSVGs.css('overflow', 'hidden');
+        $allHexSVGs.css('overflow', 'overlay');
         $allHexSVGs.css('z-index', '2');
     },
     registerMoveOrAttack: function () {

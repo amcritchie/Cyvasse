@@ -343,22 +343,39 @@ article {
 //  border: solid 3px greenyellow;
 //}
 
+//.hexDiv {
+//  background-color: teal;
+//  float: left;
+//  width: 60px;
+//  height: 66px;
+//  z-index: 5;
+//  svg {
+//    width: 60px;
+//    height: 68px;
+//    position: absolute;
+//    z-index: 2;
+//    polygon {
+//      position: absolute;
+////      stroke: white;
+//      stroke: yellow;
+//      stroke-width: 20px;
+//      width: 60px;
+//      height: 68px;
+//    }
+//  }
+//}
 .hexDiv {
   float: left;
   width: 60px;
-  height: 66px;
+  height: 68px;
   z-index: 5;
   svg {
-    width: 60px;
+    width: 62px;
     height: 68px;
     position: absolute;
-    z-index: 2;
     polygon {
       position: absolute;
-      stroke: white;
       stroke-width: 20px;
-      width: 60px;
-      height: 68px;
     }
   }
 }
@@ -434,36 +451,69 @@ polygon {
 
   &:nth-of-type(1) {
     max-width: 364px;
+//    max-width: 370px;
+//    max-width: 376px;
   }
   &:nth-of-type(2) {
     max-width: 424px;
+//    max-width: 431px;
+//    max-width: 438px;
   }
   &:nth-of-type(3) {
     max-width: 484px;
+//    max-width: 492px;
+//    max-width: 500px;
   }
   &:nth-of-type(4) {
     max-width: 544px;
+//    max-width: 553px;
+//    max-width: 562px;
   }
   &:nth-of-type(5) {
     max-width: 604px;
+//    max-width: 612px;
+//    max-width: 622px;
   }
   &:nth-of-type(6) {
+//    max-width: 664px;
+    margin-left: -4px;
     max-width: 664px;
+//    max-width: 673px;
+//    max-width: 684px;
   }
   &:nth-of-type(7) {
-    max-width: 604px;
+        max-width: 604px;
+//    max-width: 612px;
+//    max-width: 622px;
+
   }
   &:nth-of-type(8) {
     max-width: 544px;
+//    max-width: 553px;
+//    max-width: 574px;
+
+
   }
   &:nth-of-type(9) {
     max-width: 484px;
+//    max-width: 492px;
+//    max-width: 500px;
+
+
   }
   &:nth-of-type(10) {
     max-width: 424px;
+//    max-width: 431px;
+//    max-width: 438px;
+
+
   }
   &:nth-of-type(11) {
     max-width: 364px;
+//    max-width: 370px;
+//    max-width: 376px;
+
+
   }
   &:last-of-type {
 

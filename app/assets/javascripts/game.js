@@ -18,6 +18,8 @@ var Game = {
         Game.whoGoesFirst();
         GameStatus.saveGameStatus();
         Game.updateOpponentsObjects();
+        HexHover.setHover();
+
         $.ajax({
             type: 'put',
             url: '/start_game',
@@ -89,8 +91,9 @@ var Game = {
     hexVisualUpdate: function () {
         $('.hexPolygon').css('fill', 'black');
         $('.hexPolygon').css('stroke', 'white');
-        $('.hexSVG').css('overflow', 'hidden');
+        $('.hexSVG').css('overflow', 'overlay');
         $('.hexSVG').css('z-index', '2');
+        $('.hexDiv').removeClass('hexHover');
         $('[data-hexIndex=' + Game.lastMove[1] + ']').children('svg').children('polygon').css('fill', 'orange');
         $('[data-hexIndex=' + Game.lastMove[0] + ']').children('svg').children('polygon').css('fill', 'orange');
         $('[data-hexIndex=' + Game.utilMove + ']').children('svg').children('polygon').css('fill', 'orange');
@@ -107,6 +110,7 @@ var Game = {
         AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.homeUnitsString), 1);
         AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString), 0);
         AwayTeamNormalize.placeLastMove();
+        HexHover.setHover();
         if (MatchData.whoStarted == 1) {
             Game.offense = Game.turn % 2
         } else {
@@ -118,6 +122,8 @@ var Game = {
     finishedGame: function () {
         AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.homeUnitsString), 1);
         AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString), 0);
+        HexHover.setHover();
+
         if (Game.whosTurn == You.team) {
             Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
         } else {

@@ -39,8 +39,6 @@ var Map = {
             size = 17 - Map.row
         }
 
-//        var theClass = "hexPolygon";
-
         var ring;
         if (Map.row > 6) {
             ring = 1;
@@ -57,13 +55,24 @@ var Map = {
             "<svg class='hexSVG' xmlns='http://www.w3.org/2000/svg' version='1.1'>" +
 //            "<staticContent><mimeMap fileExtension='.svg' mimeType='image/svg+xml' /></staticContent>" +
 
-            "<polygon class='hexPolygon' style='fill: black;'" +
+//            "<polygon class='hexPolygon' style='fill: black;'" +
+//            " data-size=" + size + " data-even='true'" +
+//            " points='" + (width * hex_scale) + ",0 10," + (height * hex_scale) + "" +
+//            " 10," + ( height + hypotenuse) * hex_scale + "" +
+//            " " + width * hex_scale + "," + (hypotenuse * 2) * hex_scale + "" +
+//            " " + (width * 2) * hex_scale + "," + (height + hypotenuse) * hex_scale + "" +
+//            " " + (width * 2) * hex_scale + "," + (height) * hex_scale + "'/>" +
+
+             "<polygon class='hexPolygon' style='fill: black;'" +
             " data-size=" + size + " data-even='true'" +
-            " points='" + (width * hex_scale) + ",0 0," + (height * hex_scale) + "" +
-            " 0," + (height + hypotenuse) * hex_scale + "" +
-            " " + width * hex_scale + "," + (hypotenuse * 2) * hex_scale + "" +
-            " " + (width * 2) * hex_scale + "," + (height + hypotenuse) * hex_scale + "" +
-            " " + (width * 2) * hex_scale + "," + (height) * hex_scale + "'/>" +
+            " points='" +
+            " 286.72,10 " +
+            " 16,160.8" +
+            " 16,484.4" +
+            " 286.72,643.2" +
+            " 557.44,482.4" +
+            " 557.44,160.8'/>" +
+
             "</svg></div>"
     }
 };
