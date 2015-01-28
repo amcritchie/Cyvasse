@@ -13,6 +13,11 @@ var GameStatus = {
         return GameStatus.convertArrayToString(teamArray.sort());
     },
 
+    southPositionOfYourUnits: function () {
+        var teamArray = GameStatus.saveTeam(You.team);
+        return GameStatus.convertArrayToString(teamArray.sort());
+    },
+
     saveHomeUnitsPosition: function () {
         var teamArray = GameStatus.saveTeam(1);
         if (You.team == 0) {

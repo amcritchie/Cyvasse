@@ -69,8 +69,6 @@ var Setup = {
                         Setup.createNewSetupError(saveButton);
                     } else {
 
-                        debugger;
-
                         var setupPosition = saveButton.parent().data('setup');
                         $.ajax({
                             type: 'post',
@@ -78,7 +76,7 @@ var Setup = {
                             data: {
                                 id: PreGame.setups[setupPosition][2],
                                 name: name,
-                                units_position: GameStatus.positionOfYourUnits(),
+                                units_position: GameStatus.southPositionOfYourUnits(),
                                 button_position: setupPosition
                             },
                             dataType: 'json'
