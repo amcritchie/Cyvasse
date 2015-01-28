@@ -22,8 +22,8 @@ class HomeController < ApplicationController
       # @lastTenUsers = last_ten_active_users
       @lastTenUsers = last_active_users(7)
       @favorites = Favorite.where(favoriter: current_user)
-      @allUsers = User.all
-      @allMatches = Match.all
+      @allUsers = User.all.order('created_at DESC')
+      @allMatches = Match.all.order('created_at DESC')
     end
 
   end
