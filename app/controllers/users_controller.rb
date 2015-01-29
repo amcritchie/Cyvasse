@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     @user.wins = 0
     @user.losses = 0
     @user.admin = false
+    @user.show_extra_info = true
     @user.account_type = 'basic'
     @user.email_confirmed = false
     @user.last_active = Time.new
