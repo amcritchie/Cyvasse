@@ -13,107 +13,73 @@
 
   <hr>
   <h2>Sign Ups</h2>
+
   <div class="chart" id="signupsPerDay"></div>
   <div class="chart" id="signupsPerWeek"></div>
   <hr>
 
   <h2>Logins</h2>
+
   <div class="chart" id="loginsPerDay"></div>
   <div class="chart" id="loginsPerWeek"></div>
   <hr>
 
   <h2>Games Started</h2>
+
   <div class="chart" id="gamesStartedPerDay"></div>
   <div class="chart" id="gamesStartedPerWeek"></div>
   <hr>
 
 
   <h2>Games Finished</h2>
+
   <div class="chart" id="gamesFinishedPerDay"></div>
   <div class="chart" id="gamesFinishedPerWeek"></div>
   <hr>
 
-
-  <h1>Games</h1>
-
-  <table>
-    <thead>
-    <tr>
-      <th>Index</th>
-      <th>Status</th>
-      <th>Turn</th>
-      <th>Opponent</th>
-      <th>Quit</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @matches.each_with_index do |match, index| %>
-
-        <% if (match.whos_turn == 1) %>
-            <% if (current_user.id == match.home_user_id) %>
-                <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
-            <% else %>
-                <% info = ['There Turn', 'thereTurn', match.home_user_id] %>
-            <% end %>
-        <% else %>
-            <% if (current_user.id == match.away_user_id) %>
-                <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
-            <% else %>
-                <% info = ['There Turn', 'thereTurn', match.away_user_id] %>
-            <% end %>
-        <% end %>
-
-        <tr>
-          <td><%= index + 1 %></td>
-          <td>
-            <% if (match.turn == 0) %>
-                <%= link_to 'New Game', match_path(match), class: 'newGame' %>
-            <% else %>
-                <%= link_to info[0], match_path(match), class: info[1] %>
-            <% end %>
-          </td>
-          <td><%= link_to match.turn %></td>
-          <td>
-            <%= User.find(info[2]).username.capitalize %>
-          </td>
-          <td><%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-
 </article>
 
+<div style="text-align: center">
+  <h3>Matches</h3><hr>
 
-<article class="one_fourth">
-  <hr>
-  In progress matches
-  <br>
-  <%= @in_progress_matches.length %>
-  <hr>
-</article>
-<article class="one_fourth">
-  <hr>
-  new matches  <br>
+  <article class="one_half">
+    Total matches <br>
+    <%= @allMatches.length %>
+  </article>
+  <article class="one_half">
+    PvP matches <br>
+    <%= @pvp_matches.length %>
+  </article>
+  <br><br><hr>
+  <article class="one_fourth">
+    Finished matches <br>
+    <%= @finished_matches.length %>
+  </article>
+  <article class="one_fourth">
+    In progress matches<br>
+    <%= @in_progress_matches.length %>
+  </article>
+  <article class="one_fourth">
+    New matches <br>
+    <%= @new_matches.length %>
+  </article>
+  <article class="one_fourth">
+    Pending matches <br>
+    <%= @pending_matches.length %>
+  </article>
 
-  <%= @new_matches.length %>
   <hr>
-</article>
-<article class="one_fourth">
+  <h3>Users</h3>
   <hr>
-  pvp matches  <br>
-
-  <%= @pvp_matches.length %>
-  <hr>
-</article>
-<article class="one_fourth">
-  <hr>
-  sign ups  <br>
-
-  <%= @allUsers.length %>
-
-  <hr>
-</article>
+  <article class="one_half">
+    Sign ups <br>
+    <%= @allUsers.length %>
+  </article>
+  <article class="one_half">
+    Sign ups <br>
+    <%= @allUsers.length %>
+  </article>
+</div>
 
 <%= render 'admin/users_index' %>
 <%= render 'admin/matches_index' %>
