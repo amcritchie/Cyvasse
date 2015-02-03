@@ -24,6 +24,13 @@ class HomeController < ApplicationController
       @favorites = Favorite.where(favoriter: current_user)
       @allUsers = User.all.order('created_at DESC')
       @allMatches = Match.all.order('created_at DESC')
+
+      @pvp_matches = Match.where(['away_user_id > ?', 10])
+
+      @in_progress_matches = Match.where(match_status: 'in progress').order('created_at DESC')
+      @finished_matches = Match.where(match_status: 'finished').order('created_at DESC')
+      @new_matches = Match.where(match_status: 'new').order('created_at DESC')
+      @pending_matches = Match.where(match_status: 'pending').order('created_at DESC')
     end
 
   end

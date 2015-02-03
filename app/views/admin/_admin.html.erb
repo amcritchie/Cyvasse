@@ -84,6 +84,37 @@
 
 </article>
 
-<%= render 'admin/matches_index' %>
+
+<article class="one_fourth">
+  <hr>
+  In progress matches
+  <br>
+  <%= @in_progress_matches.length %>
+  <hr>
+</article>
+<article class="one_fourth">
+  <hr>
+  new matches  <br>
+
+  <%= @new_matches.length %>
+  <hr>
+</article>
+<article class="one_fourth">
+  <hr>
+  pvp matches  <br>
+
+  <%= @pvp_matches.length %>
+  <hr>
+</article>
+<article class="one_fourth">
+  <hr>
+  sign ups  <br>
+
+  <%= @allUsers.length %>
+
+  <hr>
+</article>
+
 <%= render 'admin/users_index' %>
+<%= render 'admin/matches_index' %>
 
