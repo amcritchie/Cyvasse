@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
 
       if match.match_against == 'human'
 
-        if (Time.now.utc - match.time_of_last_move) > 86400
+        # if (Time.now.utc - match.time_of_last_move) > 86400
 
           # if match.match_status == 'in progress'
           #
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
           #   # match.update( match_status: 'finished' )
           # end
           # your_active_matches = your_active_matches - [match]
-        end
+        # end
 
       end
     end
