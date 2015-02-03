@@ -37,7 +37,18 @@
     <%= render 'layouts/navBar' %>
 
     <%= yield %>
+    <FORM action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <INPUT TYPE="hidden" name="" value="allowedValue">
+    </FORM>
+
   </section>
+
+  <script src="paypal-button.min.js?merchant=YOUR_MERCHANT_ID"
+          data-button="donate"
+          data-name="My product"
+          data-amount="1.00"
+          async
+  ></script>
 </div>
 
 </body>

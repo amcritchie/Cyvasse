@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
 
   def active_matches(user_id)
 
+    p '=+='*200
+
     match_offers = Match.where(away_user_id: user_id, match_status: 'pending')
     match_offerings = Match.where(home_user_id: user_id, match_status: 'pending')
 
@@ -59,7 +61,32 @@ class User < ActiveRecord::Base
 
     match_pregame = (match_pregame_away + match_pregame_home) - (waiting_on_opponent + match_offers + match_offerings)
 
-    match_offers + match_your_move + match_pregame + match_offerings + waiting_on_opponent + match_there_move
+    your_active_matches = match_offers + match_your_move + match_pregame + match_offerings + waiting_on_opponent + match_there_move
+
+    your_active_matches.each do |match|
+
+      if match.match_against == 'human'
+
+        if (Time.now.utc - match.time_of_last_move) > 86400
+
+          if match.match_status == 'in progress'
+            if match.whos_turn == 1
+              resigned_user = User.find(match.home_user_id)
+            else
+              resigned_user = User.find(match.away_user_id)
+            end
+            resign(resigned_user, match)
+            match.update( match_status: 'finished' )
+          else
+            match.update( match_status: 'finished' )
+          end
+          your_active_matches = your_active_matches - [match]
+        end
+
+      end
+    end
+
+    your_active_matches
   end
 
   def finished_matches(user_id)

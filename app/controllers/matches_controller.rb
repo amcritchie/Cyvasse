@@ -53,6 +53,7 @@ class MatchesController < ApplicationController
 
   def create_match_vs_computer
     @match = Match.new(
+        time_of_last_move: Time.now.utc,
         home_user_id: current_user.id,
         away_user_id: 2,
         home_ready: false,
@@ -82,6 +83,7 @@ class MatchesController < ApplicationController
 
   def create_match_vs_player
     @match = Match.new(
+        time_of_last_move: Time.now.utc,
         home_user_id: current_user.id,
         home_ready: false,
         away_ready: false,
@@ -102,6 +104,11 @@ class MatchesController < ApplicationController
           flash[:cant_find_username] = "No such Username"
           redirect_to :back
         else
+          if @opponent.id == 2
+            @match.match_against = 'computer'
+            @match.away_ready = true
+            @match.match_status = 'new'
+          end
           @match.away_user_id = @opponent.id
           @match.save
           redirect_to match_path(@match)
