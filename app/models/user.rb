@@ -69,21 +69,21 @@ class User < ActiveRecord::Base
 
         if (Time.now.utc - match.time_of_last_move) > 86400
 
-          if match.match_status == 'in progress'
-
-            if match.whos_turn == 1
-              resigned_user = User.find(match.home_user_id)
-            else
-              resigned_user = User.find(match.away_user_id)
-            end
-    
-            # resign(resigned_user, match)
-            #
-            # match.update( match_status: 'finished' )
-          else
-            # match.update( match_status: 'finished' )
-          end
-          your_active_matches = your_active_matches - [match]
+          # if match.match_status == 'in progress'
+          #
+          #   if match.whos_turn == 1
+          #     resigned_user = User.find(match.home_user_id)
+          #   else
+          #     resigned_user = User.find(match.away_user_id)
+          #   end
+          #
+          #   # resign(resigned_user, match)
+          #   #
+          #   # match.update( match_status: 'finished' )
+          # else
+          #   # match.update( match_status: 'finished' )
+          # end
+          # your_active_matches = your_active_matches - [match]
         end
 
       end
