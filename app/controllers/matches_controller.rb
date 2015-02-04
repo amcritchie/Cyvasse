@@ -108,7 +108,7 @@ class MatchesController < ApplicationController
             flash[:cant_find_username] = "You cannot play yourself"
             redirect_to :back
           else
-            if @opponent.id >= 2 && @opponent.id <= 10
+            if @opponent.id <= 10
               @match.match_against = 'computer'
               @match.away_ready = true
               @match.match_status = 'new'
