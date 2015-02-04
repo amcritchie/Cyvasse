@@ -104,14 +104,19 @@ class MatchesController < ApplicationController
           flash[:cant_find_username] = "No such Username"
           redirect_to :back
         else
-          if @opponent.id == 2
-            @match.match_against = 'computer'
-            @match.away_ready = true
-            @match.match_status = 'new'
+          if @opponent.id == current_user.id
+            flash[:cant_find_username] = "You cannot play yourself"
+            redirect_to :back
+          else
+            if @opponent.id == 2
+              @match.match_against = 'computer'
+              @match.away_ready = true
+              @match.match_status = 'new'
+            end
+            @match.away_user_id = @opponent.id
+            @match.save
+            redirect_to match_path(@match)
           end
-          @match.away_user_id = @opponent.id
-          @match.save
-          redirect_to match_path(@match)
         end
       end
     else
