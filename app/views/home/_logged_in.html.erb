@@ -124,7 +124,7 @@
                   <%= link_to image_tag(User.find(favorite.favorited).image), user_path(User.find(favorite.favorited)), class: 'favoriteImage' %>
                 </div>
                 <div class="play">
-                  <%= render 'onlineStatus', :locals => {user: User.find(favorite.favorited)}  %>
+                  <%= render 'onlineStatus', :locals => {user: User.find(favorite.favorited)} %>
 
                   <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => User.find(favorite.favorited).username}) %>
                 </div>
@@ -155,7 +155,7 @@
           <% @lastTenUsers.each_with_index do |user, index| %>
               <tr>
                 <td>
-                  <%= render 'onlineStatus', :locals => {user: user}  %>
+                  <%= render 'onlineStatus', :locals => {user: user} %>
                 </td>
                 <td>
                   <%= link_to user.username, user_path(user) %>
@@ -250,7 +250,7 @@
           <td>
             <h4>
               <%= User.find(info[2]).name_or_username %>
-              <%= render 'onlineStatus', :locals => {user: User.find(info[2])}  %>
+              <%= render 'onlineStatus', :locals => {user: User.find(info[2])} %>
 
             </h4>
             <% if Favorite.where(favoriter: current_user.id, favorited: info[2])== [] ? true : false %>

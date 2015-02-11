@@ -176,8 +176,8 @@ $(document).ready(function () {
 
     $('.playThisUser').on('click', function () {
 
-        if (($('#activeGames').children().length >= 5) && (document.getElementById('accountType').innerHTML == 'basic')){
-            Flash.messageLong('error', "You may only have 5 'Active' games with a basic account.");
+        if (($('#activeGames').children().length >= 10) && (document.getElementById('accountType').innerHTML == 'basic')){
+            Flash.messageLong('error', "You may only have 10 'Active' games with a basic account.");
         } else {
             $('#opponent_which_user_chosen_user').click();
 

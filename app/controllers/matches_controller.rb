@@ -64,12 +64,12 @@ class MatchesController < ApplicationController
         utility_saved_hex: 95
     )
 
-    if (current_user.active_matches(current_user).length <= 4) || (current_user.account_type == 'premium')
+    if (current_user.active_matches(current_user).length <= 9) || (current_user.account_type == 'premium')
       @match.save
       redirect_to match_path(@match)
     else
       flash[:cant_find_username] = "You have reached max games"
-      flash[:error] = "You may only have 5 active games with a basic account."
+      flash[:error] = "You may only have 10 active games with a basic account."
       redirect_to :back
     end
   end
@@ -93,7 +93,7 @@ class MatchesController < ApplicationController
         utility_saved_hex: 95
     )
 
-    if (current_user.active_matches(current_user).length <= 4) || (current_user.account_type == 'premium')
+    if (current_user.active_matches(current_user).length <= 9) || (current_user.account_type == 'premium')
       if params[:opponent][:which_user] == 'Random User'
         @match.away_user_id = random_active_user
         @match.save
@@ -121,7 +121,7 @@ class MatchesController < ApplicationController
       end
     else
       flash[:cant_find_username] = "You have reached max games"
-      flash[:error] = "You may only have 5 active games with a basic account."
+      flash[:error] = "You may only have 10 active games with a basic account."
       redirect_to :back
     end
   end
