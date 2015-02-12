@@ -93,7 +93,7 @@
                 <td>
                   <% if (match.whos_turn == 1) && (match.home_user_id==current_user.id) %>
                       <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
-                  <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user) %>
+                  <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user.id) %>
                       <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
                   <% elsif (match.whos_turn == nil) %>
                       <a class="checkLastTurn">Declined</a>
