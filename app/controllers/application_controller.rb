@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def random_active_user
-    active_users = User.where("id > 10 AND id != #{current_user.id}").limit(10).order('last_active asc')
+    active_users = User.where("id > 10 AND id != #{current_user.id}").where.not(:last_active => nil).limit(10).order('last_active desc')
     active_users.shuffle[0].id
   end
 
