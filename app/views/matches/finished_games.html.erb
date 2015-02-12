@@ -32,7 +32,7 @@
           <td>
             <% if (match.whos_turn == 1) && (match.home_user_id==current_user.id) %>
                 <%= link_to 'Win', root_path %>
-            <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user) %>
+            <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user.id) %>
                 <%= link_to 'Win', root_path %>
             <% else %>
                 <%= link_to 'Lose', root_path %>
