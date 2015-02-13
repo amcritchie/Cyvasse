@@ -28,7 +28,7 @@ var Offense = {
             Game.utilMove = false;
             Offense.selectUnit(unit);
         } else {
-            Validates.notPassed();
+            Validates.notPassed('VS21');
         }
     },
     selectUnit: function (unit) {
@@ -67,7 +67,7 @@ var Offense = {
         if (validation) {
             Offense.moveToAttack(unit);
         } else {
-            Validates.notPassed();
+            Validates.notPassed('VA10');
         }
     },
     moveToAttack: function (hex) {

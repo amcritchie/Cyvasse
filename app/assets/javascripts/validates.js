@@ -82,8 +82,8 @@ var Validates = {
         }
     },
 
-    notPassed: function () {
-        Rotator.createAndRotateOn('turn', 'Warning: Tampering with units, will result in a loss');
+    notPassed: function (code) {
+        Rotator.createAndRotateOn('turn', 'Warning: Tampering with units, will result in a loss-' + code);
         setTimeout(function () {
             window.location.reload()
         }, 3000);
