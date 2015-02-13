@@ -23,8 +23,8 @@ class HomeController < ApplicationController
       @lastTenUsers = last_active_users(7)
       # @favorites = Favorite.where(favoriter: current_user)
       @favorites = current_user.favorites(current_user,6)
-      @allUsers = User.all.order('created_at DESC')
-      @allMatches = Match.all.order('created_at DESC')
+      # @allUsers = User.all.order('created_at DESC')
+      # @allMatches = Match.all.order('created_at DESC')
 
       @pvp_matches = Match.where(['away_user_id > ?', 10])
 
