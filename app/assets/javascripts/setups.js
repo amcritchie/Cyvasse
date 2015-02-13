@@ -17,7 +17,6 @@ var Setup = {
 
     executeSetup: function (button) {
         var whichSetup = button.parent().data('setup');
-        console.log(PreGame.setups[whichSetup][1]);
         $('.hexDiv').attr('data-occupied', false);
         NoTeamNormalize.placeUnits(GameStatus.convertStringToArray(PreGame.setups[whichSetup][1]).reverse(), You.team);
         PreGame.saveYourSide();

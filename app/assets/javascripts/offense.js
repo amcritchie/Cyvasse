@@ -54,15 +54,12 @@ var Offense = {
     registerMovableHex: function () {
         Offense.moveRange.on('click', function () {
             var validation = Validates.validateMovement(SelectedUnit.unit.parent());
-            console.log('valMov ' + validation);
             Offense.validatesAction($(this), validation);
         });
     },
     registerAttackUnit: function () {
         Offense.attackRange.on('click', function () {
             var validation = Validates.validateAttack(SelectedUnit.unit.parent(), $(this));
-            console.log('valAtt ' + validation);
-
             Offense.validatesAction($(this), validation);
         });
     },

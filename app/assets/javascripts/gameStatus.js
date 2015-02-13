@@ -23,7 +23,7 @@ var GameStatus = {
         if (You.team == 0) {
             teamArray = GameStatus.mirrorArray(teamArray);
         }
-        var teamString = GameStatus.convertArrayToString(teamArray);
+        var teamString = GameStatus.convertArrayToString(teamArray.sort());
 
         $.ajax({
             type: 'put',
@@ -39,9 +39,9 @@ var GameStatus = {
     saveAwayUnitsPosition: function () {
         var teamArray = GameStatus.saveTeam(0);
         if (You.team == 0) {
-            teamArray = GameStatus.mirrorArray(teamArray);
+            teamArray = GameStatus.mirrorArray(teamArray.sort());
         }
-        var teamString = GameStatus.convertArrayToString(teamArray);
+        var teamString = GameStatus.convertArrayToString(teamArray.sort());
         $.ajax({
             type: 'put',
             url: '/update_away_units_position',
@@ -58,8 +58,8 @@ var GameStatus = {
         GameStatus.teamZeroArray = GameStatus.saveTeam(0);
 
         if (You.team == 0) {
-            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray.sort());
-            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray.sort());
+            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray);
+            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray);
         }
 
         GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
@@ -70,28 +70,13 @@ var GameStatus = {
         GameStatus.teamOneArray = GameStatus.saveTeam(1);
         GameStatus.teamZeroArray = GameStatus.saveTeam(0);
 
-        console.log('======1====');
-        console.log(GameStatus.teamOneArray.sort());
-        console.log('==========');
-        console.log('=========');
-        console.log(GameStatus.teamZeroArray.sort());
-        console.log('==========');
-
         if (You.team == 0) {
-            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray).sort();
-            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray).sort();
+            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray);
+            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray);
         }
 
-//        if (Game.whoStarted == 1){
-//            if (((1+Game.turn) % 2) == 0){
         GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
         GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
-//            } else {
-//                GameStatus.teamOneString = GameStatus.convertArrayToString(GameStatus.teamOneArray.sort());
-//                GameStatus.teamZeroString = GameStatus.convertArrayToString(GameStatus.teamZeroArray.sort());
-//            }
-//        }
-
     },
 
     setLastMove: function () {

@@ -98,7 +98,6 @@ var RandomSetup = {
 
             RandomSetup.moveImageToMap(movingUnit);
             RandomSetup.moveUnitToNewPosition(newLocation, oldLocation, movingUnit)
-            console.log('how many')
         }
         PreGame.readyForStartButton();
         PreGame.loadPreGameTurn();

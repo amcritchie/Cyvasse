@@ -39,11 +39,6 @@ var Validates = {
         Validates.teamZeroCount = hexDivs.children('img.unit0').length;
     },
     validateMovement: function (mover) {
-        console.log('boardInt - ' + Validates.boardIntact());
-        console.log('unitStat - ' + Validates.unitStats(mover));
-        console.log('mover - ' + mover);
-//        console.log('unitStat - ' + Validates.unitStats(mover));
-
         return (
             Validates.boardIntact()
             && Validates.unitStats(mover)
@@ -58,9 +53,7 @@ var Validates = {
             )
     },
     boardIntact: function () {
-        console.log('-1'+Validates.hexsIntact());
-        console.log('-2'+Validates.unitsExist());
-        console.log('-3'+Validates.unitsPosition());
+
         return (
             Validates.hexsIntact()
             && Validates.unitsExist()
@@ -84,30 +77,9 @@ var Validates = {
     unitsPosition: function () {
         GameStatus.setValidationString();
         if (You.team == 0) {
-            console.log('team 0');
-            console.log(You.unitsPos);
-            console.log(GameStatus.teamZeroString);
-            console.log((You.unitsPos == GameStatus.teamZeroString));
-            console.log('-+++--===---');
-            console.log(Opponent.unitsPos);
-            console.log(GameStatus.teamOneString);
-            console.log((Opponent.unitsPos == GameStatus.teamOneString));
-            console.log('-+123--');
-            console.log(!!((You.unitsPos == GameStatus.teamZeroString) && (Opponent.unitsPos = GameStatus.teamOneString)));
-
 
             return !!((You.unitsPos == GameStatus.teamZeroString) && (Opponent.unitsPos = GameStatus.teamOneString));
         } else {
-            console.log('team 1');
-            console.log(You.unitsPos);
-            console.log(GameStatus.teamOneString);
-            console.log((You.unitsPos == GameStatus.teamOneString));
-            console.log('-+++--===---');
-            console.log(Opponent.unitsPos);
-            console.log(GameStatus.teamZeroString);
-            console.log((Opponent.unitsPos == GameStatus.teamZeroString));
-            console.log('-+123--');
-            console.log(!!((You.unitsPos == GameStatus.teamZeroString) && (Opponent.unitsPos = GameStatus.teamOneString)));
             return !!((You.unitsPos == GameStatus.teamOneString) && (Opponent.unitsPos = GameStatus.teamZeroString));
         }
     },

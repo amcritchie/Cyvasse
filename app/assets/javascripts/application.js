@@ -96,8 +96,6 @@ $(document).ready(function () {
     $('.countDown').each(function (index, timer) {
         var startTime = $(timer).data("time");
         $(timer).countdown({until: (new Date(startTime)), compact: true}).on('finish', function(){
-                console.log('--finished--');
-
             }
 
         );
