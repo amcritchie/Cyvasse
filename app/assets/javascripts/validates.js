@@ -58,6 +58,9 @@ var Validates = {
             )
     },
     boardIntact: function () {
+        console.log('-1'+Validates.hexsIntact());
+        console.log('-2'+Validates.unitsExist());
+        console.log('-3'+Validates.unitsPosition());
         return (
             Validates.hexsIntact()
             && Validates.unitsExist()
