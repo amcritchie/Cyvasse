@@ -70,7 +70,12 @@ var GameStatus = {
         GameStatus.teamOneArray = GameStatus.saveTeam(1);
         GameStatus.teamZeroArray = GameStatus.saveTeam(0);
 
-        debugger;
+        console.log('======1====');
+        console.log(GameStatus.teamOneArray.sort());
+        console.log('==========');
+        console.log('====0=====');
+        console.log(GameStatus.teamZeroArray.sort());
+        console.log('==========');
 
         if (You.team == 0) {
             GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray.sort());
