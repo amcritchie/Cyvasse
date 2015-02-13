@@ -91,7 +91,7 @@ var Validates = {
             console.log('-+++--===---');
             console.log(Opponent.unitsPos);
             console.log(GameStatus.teamOneString);
-            console.log((Opponent.unitsPos = GameStatus.teamOneString));
+            console.log((Opponent.unitsPos == GameStatus.teamOneString));
             console.log('-+123--');
             console.log(!!((You.unitsPos == GameStatus.teamZeroString) && (Opponent.unitsPos = GameStatus.teamOneString)));
 
@@ -99,6 +99,15 @@ var Validates = {
             return !!((You.unitsPos == GameStatus.teamZeroString) && (Opponent.unitsPos = GameStatus.teamOneString));
         } else {
             console.log('team 1');
+            console.log(You.unitsPos);
+            console.log(GameStatus.teamOneString);
+            console.log((You.unitsPos == GameStatus.teamOneString));
+            console.log('-+++--===---');
+            console.log(Opponent.unitsPos);
+            console.log(GameStatus.teamZeroString);
+            console.log((Opponent.unitsPos == GameStatus.teamZeroString));
+            console.log('-+123--');
+            console.log(!!((You.unitsPos == GameStatus.teamZeroString) && (Opponent.unitsPos = GameStatus.teamOneString)));
             return !!((You.unitsPos == GameStatus.teamOneString) && (Opponent.unitsPos = GameStatus.teamZeroString));
         }
     },
