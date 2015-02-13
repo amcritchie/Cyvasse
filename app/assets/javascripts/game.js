@@ -116,7 +116,11 @@ var Game = {
         } else {
             Game.offense = Math.abs((Game.turn % 2) - 1)
         }
-        Game.runTurn();
+        if (Game.turn === 0){
+            Game.startGame()
+        } else {
+            Game.runTurn();
+        }
     },
 
     finishedGame: function () {

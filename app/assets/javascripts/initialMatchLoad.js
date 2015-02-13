@@ -5,7 +5,7 @@ var InitialMatchLoad = {
         InitialMatchLoad.setGlobalHexVariables();
         InitialMatchLoad.runGame();
     },
-    setGlobalHexVariables: function(){
+    setGlobalHexVariables: function () {
         $allHexDivs = $('.hexDiv');
         $allHexSVGs = $allHexDivs.children('svg');
         $allHexPoly = $allHexSVGs.children('polygon');
@@ -18,7 +18,7 @@ var InitialMatchLoad = {
             InitialMatchLoad.notReadyFunctions();
         }
     },
-    notReadyFunctions: function(){
+    notReadyFunctions: function () {
         if (You.unitsPos == '') {
             InitialMatchLoad.freshLoad()
         } else {
@@ -27,7 +27,7 @@ var InitialMatchLoad = {
     },
     freshLoad: function () {
         Rotator.rotateOn('.auxSpace');
-        if (You.team == 0){
+        if (You.team == 0) {
             $.ajax({
                 type: 'post',
                 url: '/game_accepted.json',
@@ -38,12 +38,12 @@ var InitialMatchLoad = {
             });
         }
         InitialMatchLoad.loadPregame();
-        if (MatchData.firstGame === 'true'){
+        if (MatchData.firstGame === 'true') {
             Tutorial.welcome();
         }
     },
     continuePregame: function () {
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(), You.team);
         InitialMatchLoad.loadPregame();
         if ($(".auxSpace").children().length != 0) {
             Rotator.rotateOn('.auxSpace');
@@ -57,14 +57,14 @@ var InitialMatchLoad = {
         InitialMatchLoad.savedSetups();
         InitialMatchLoad.randomSetupButton();
     },
-    readyFunctions: function(){
-        if (Game.status == 'finished'){
+    readyFunctions: function () {
+        if (Game.status == 'finished') {
             InitialMatchLoad.finishedGame();
         } else {
             InitialMatchLoad.nonFinishedGame();
         }
     },
-    finishedGame: function(){
+    finishedGame: function () {
         Game.offense = parseInt(document.getElementById('whosTurn').innerHTML);
         Game.finishedGame()
     },
@@ -82,15 +82,15 @@ var InitialMatchLoad = {
         MatchData.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
         Game.oldGame();
     },
-    opponentNotReady: function(){
+    opponentNotReady: function () {
         Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');
-        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(),You.team);
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(), You.team);
         $('[data-occupied=true]').children("svg").children("polygon").css('stroke', 'blue');
         setTimeout(function () {
             window.location.reload()
         }, 4000)
     },
-    randomSetupButton: function(){
+    randomSetupButton: function () {
         Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');
         $('.randomSetUpButton').on('click', function () {
             RandomSetup.placeUnits();
@@ -98,13 +98,13 @@ var InitialMatchLoad = {
             Tutorial.step = 6;
         });
     },
-    savedSetups: function(){
+    savedSetups: function () {
         for (var i = 1; i <= 3; i++) {
-            var setup = $('#setup'+i);
-            if (setup.data('name')){
-                PreGame.setups[i] = [setup.data('name'),setup.data('unitposition'),setup.data('id')]
+            var setup = $('#setup' + i);
+            if (setup.data('name')) {
+                PreGame.setups[i] = [setup.data('name'), setup.data('unitposition'), setup.data('id')]
             } else {
-                PreGame.setups[i] = ['Blank',null,null]
+                PreGame.setups[i] = ['Blank', null, null]
             }
             Rotator.createAndRotateSetupButton(i, PreGame.setups[i][0]);
         }

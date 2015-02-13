@@ -44,8 +44,6 @@ class User < ActiveRecord::Base
 
   def active_matches(user_id)
 
-    p '=+='*200
-
     match_offers = Match.where(away_user_id: user_id, match_status: 'pending')
     match_offerings = Match.where(home_user_id: user_id, match_status: 'pending')
 
@@ -100,31 +98,11 @@ class User < ActiveRecord::Base
 
   def favorites(current_user,count)
     favorites = Favorite.where(favoriter: current_user)
-    p '-=-' * 80
-    p favorites
-    p '-=-' * 80
     favorites = favorites.map do |favorite|
       User.find(favorite.favorited)
     end
-    p '-=-' * 80
     a = favorites.sort_by &:last_active
     a.reverse[0..3]
-    # p '-=-' * 80
-    # users = []
-    # favorites.each do |user|
-    #   if users.length < 4
-    #     users.push(user)
-    #
-    #   else
-    #
-    #   end
-    #   p '-'
-    #   p user.last_active
-    #   p '-'
-    # end
-    # p '-=-' * 80
-    # p users
-    # p '-=-' * 80
   end
 
   def resign(quitter, match)
