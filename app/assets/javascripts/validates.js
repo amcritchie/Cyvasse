@@ -39,6 +39,11 @@ var Validates = {
         Validates.teamZeroCount = hexDivs.children('img.unit0').length;
     },
     validateMovement: function (mover) {
+        console.log('boardInt - ' + Validates.boardIntact());
+        console.log('unitStat - ' + Validates.unitStats(mover));
+        console.log('mover - ' + mover);
+//        console.log('unitStat - ' + Validates.unitStats(mover));
+
         return (
             Validates.boardIntact()
             && Validates.unitStats(mover)
