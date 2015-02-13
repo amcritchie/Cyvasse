@@ -116,20 +116,20 @@
         <div id="fourFavorites">
           <% @favorites.sample(4).each do |favorite| %>
 
-              <article class="favorite" data-favorited="<%= favorite.favorited %>">
+              <article class="favorite" data-favorited="<%= favorite.id %>">
                 <div class="username">
-                  <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
+                  <%= link_to favorite.username, user_path(favorite), class: 'favoriteUsername' %>
                 </div>
                 <div class="image">
-                  <%= link_to image_tag(User.find(favorite.favorited).image), user_path(User.find(favorite.favorited)), class: 'favoriteImage' %>
+                  <%= link_to image_tag(favorite.image), user_path(favorite), class: 'favoriteImage' %>
                 </div>
                 <div class="play">
-                  <%= render 'onlineStatus', :locals => {user: User.find(favorite.favorited)} %>
+                  <%= render 'onlineStatus', :locals => {user: favorite} %>
 
-                  <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => User.find(favorite.favorited).username}) %>
+                  <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => favorite.username}) %>
                 </div>
                 <div class="unfavorite">
-                  <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.favorited} %>
+                  <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.id} %>
                 </div>
 
               </article>

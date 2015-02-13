@@ -21,7 +21,8 @@ class HomeController < ApplicationController
       @finishedMatches = current_user.finished_matches(session[:user_id]).last(4).reverse
       # @lastTenUsers = last_ten_active_users
       @lastTenUsers = last_active_users(7)
-      @favorites = Favorite.where(favoriter: current_user)
+      # @favorites = Favorite.where(favoriter: current_user)
+      @favorites = current_user.favorites(current_user,6)
       @allUsers = User.all.order('created_at DESC')
       @allMatches = Match.all.order('created_at DESC')
 

@@ -98,6 +98,35 @@ class User < ActiveRecord::Base
     (home_games + away_games).sort_by &:created_at
   end
 
+  def favorites(current_user,count)
+    favorites = Favorite.where(favoriter: current_user)
+    p '-=-' * 80
+    p favorites
+    p '-=-' * 80
+    favorites = favorites.map do |favorite|
+      User.find(favorite.favorited)
+    end
+    p '-=-' * 80
+    a = favorites.sort_by &:last_active
+    a.reverse[0..6].sample(4)
+    # p '-=-' * 80
+    # users = []
+    # favorites.each do |user|
+    #   if users.length < 4
+    #     users.push(user)
+    #
+    #   else
+    #
+    #   end
+    #   p '-'
+    #   p user.last_active
+    #   p '-'
+    # end
+    # p '-=-' * 80
+    # p users
+    # p '-=-' * 80
+  end
+
   def resign(quitter, match)
 
     if quitter.id == match.home_user_id
