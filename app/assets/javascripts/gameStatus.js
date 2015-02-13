@@ -73,13 +73,13 @@ var GameStatus = {
         console.log('======1====');
         console.log(GameStatus.teamOneArray.sort());
         console.log('==========');
-        console.log('====0=====');
+        console.log('=========');
         console.log(GameStatus.teamZeroArray.sort());
         console.log('==========');
 
         if (You.team == 0) {
-            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray.sort());
-            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray.sort());
+            GameStatus.teamOneArray = GameStatus.mirrorArray(GameStatus.teamOneArray).sort();
+            GameStatus.teamZeroArray = GameStatus.mirrorArray(GameStatus.teamZeroArray).sort();
         }
 
 //        if (Game.whoStarted == 1){
