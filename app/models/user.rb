@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
     end
     p '-=-' * 80
     a = favorites.sort_by &:last_active
-    a.reverse[0..6].sample(4)
+    a.reverse[0..4].sample(4)
     # p '-=-' * 80
     # users = []
     # favorites.each do |user|
