@@ -262,10 +262,10 @@
           <td><%= match.turn %></td>
 
           <td class="Resign">
-            <% if ((match.match_status == 'pending')&&(match.away_user_id == current_user.id)) %>
-                <%= link_to 'Decline', "/matches/#{match.id}/game_declined", method: :post %>
-            <% else %>
+            <% if (match.match_status == 'in progress') %>
                 <%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!', type: 'resign'} %>
+            <% else %>
+                <%= link_to 'Decline', "/matches/#{match.id}/game_declined", method: :post %><p class="small-font">no penalty</p>
             <% end %>
           </td>
         </tr>
