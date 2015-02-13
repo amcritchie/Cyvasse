@@ -55,7 +55,7 @@ class MatchesController < ApplicationController
     @match = Match.new(
         time_of_last_move: Time.now.utc,
         home_user_id: current_user.id,
-        away_user_id: 2,
+        away_user_id: [2,3,4,5,6,7].sample,
         home_ready: false,
         away_ready: true,
         match_status: 'new',

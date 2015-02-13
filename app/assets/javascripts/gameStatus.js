@@ -24,6 +24,7 @@ var GameStatus = {
             teamArray = GameStatus.mirrorArray(teamArray);
         }
         var teamString = GameStatus.convertArrayToString(teamArray);
+
         $.ajax({
             type: 'put',
             url: '/update_home_units_position',

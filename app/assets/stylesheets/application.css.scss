@@ -311,16 +311,10 @@ article {
 
 
 .options {
-  //  text-align: center;
-  //  font-size: 50px;
   font-size: 40px;
-
-  //  font-size: 20px;
-  //  background-color: yellowgreen;
 }
 
 .option {
-  //  font-size: 50px;
   display: block;
 
   margin-top: 12px;
@@ -330,40 +324,9 @@ article {
   vertical-align: center;
 
   background-color: yellowgreen;
-  //  border: solid blue 2px;
   -webkit-border-radius: 10px;
-
 }
 
-//'*[data-team=' + team_id + ']'
-//[data-team='1'] {
-//    border: solid 3px red;
-//}
-//[data-team='0'] {
-//  border: solid 3px greenyellow;
-//}
-
-//.hexDiv {
-//  background-color: teal;
-//  float: left;
-//  width: 60px;
-//  height: 66px;
-//  z-index: 5;
-//  svg {
-//    width: 60px;
-//    height: 68px;
-//    position: absolute;
-//    z-index: 2;
-//    polygon {
-//      position: absolute;
-////      stroke: white;
-//      stroke: yellow;
-//      stroke-width: 20px;
-//      width: 60px;
-//      height: 68px;
-//    }
-//  }
-//}
 .hexDiv {
   float: left;
   width: 60px;
