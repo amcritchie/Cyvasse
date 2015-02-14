@@ -1,8 +1,10 @@
-
 <div id="matchShow">
   <article class="three_fourth">
     <div id="match"></div>
   </article>
+
+  <%= render 'toggle' %>
+
   <article id="matchInfo" class="one_fourth">
     <div class="matchUp">
       <article class="userr" id="youInfo">
@@ -73,12 +75,8 @@
 
 
     </div>
-    <div class="toggleOptions">
-      <h4>Toggle</h4>
-      <button id="toggleRules">Rules</button>
-      <button id="toggleOutline">Outlines</button>
-      <button id="toggleHoverInfo">Hover Info</button>
-    </div>
+
+    <%= render 'messageDock' %>
 
   </article>
 </div>

@@ -15,7 +15,11 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
-
+    p '-=-=-$$$' * 30
+    p params
+    @messages = Message.where(match: params[:id]).order('created_at desc')
+    p @messages
+    @messages
   end
 
   # GET /matches/new

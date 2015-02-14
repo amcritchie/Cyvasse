@@ -1,0 +1,32 @@
+Message = {
+    register: function () {
+
+        $('#sendMessage').on('click', function () {
+            $('.messageError').remove();
+            var message = $(this).parent().children('#messageBody').val();
+            if (message.length <= 200){
+                console.log('Message is under');
+                var sender = You.id;
+                var receiver = Opponent.id;
+                var match = MatchData.matchID;
+                $.ajax({
+                    type: 'post',
+                    url: ('/users/' + receiver + '/messages'),
+                    data: {user_id: Opponent.id, match_id: match, message: message},
+                    dataType: 'json'
+                });
+                $('#messages').prepend(
+                    "<a class='message " + ((You.team == 1) ? 'away' : 'home') + "'>" + message + "</a>"
+                );
+                $('#messageBody').val('')
+
+            } else {
+                $('#messageNav').append('<p class="messageError">Message must be under 200 chars</p>');
+                setTimeout(function(){
+                    $('.messageError').fadeOut();
+                }, 2000);
+            }
+
+        });
+    }
+};

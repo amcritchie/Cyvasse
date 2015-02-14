@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :favorites, only: [:create, :destroy, :index]
+    resources :messages, only: [:create, :destroy, :index]
     resources :setups, only: [:create, :destroy, :index]
   end
   post "update_last_active" => "users#update_last_active"
@@ -19,6 +20,10 @@ Rails.application.routes.draw do
     post "game_declined" => "matches#game_declined"
   end
   resources :world_statuses
+
+  get 'qwertyuiopasdfghjklzxcvbnm' => 'users#change_password'
+
+  get "admin/home" => "admin#home", as: :admin
 
   get "login" => "sessions#new", as: :login
   post "login" => "sessions#create"

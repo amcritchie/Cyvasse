@@ -14,9 +14,13 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       @user.update(last_active: Time.new)
-      Keen.publish(:logins, { :username => @user.username }) if Rails.env.production?
-      flash[:success] = "Welcome back #{@user.username}"
-      redirect_to root_path
+      if @user[:admin]
+        redirect_to admin_path
+      else
+        Keen.publish(:logins, { :username => @user.username }) if Rails.env.production?
+        flash[:success] = "Welcome back #{@user.username}"
+        redirect_to root_path
+      end
     else
       @user = User.new(email: params[:user][:email])
       flash[:error] = "Username / password is invalid."

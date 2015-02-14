@@ -1,16 +1,22 @@
-class HomeController < ApplicationController
+class AdminController < ApplicationController
   # skip_before_action :ensure_current_user
 
   def index
   end
 
-  def root
+  def home
     # @matches = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id])
     if current_user != nil
-      @matches = current_user.active_matches(session[:user_id])
-      @finishedMatches = current_user.finished_matches(session[:user_id]).last(4).reverse
-      @lastTenUsers = last_active_users(7)
-      @favorites = current_user.favorites(current_user,6)
+
+      @allUsers = User.all.order('created_at DESC')
+      @allMatches = Match.all.order('created_at DESC')
+
+      @pvp_matches = Match.where(['away_user_id > ?', 10])
+
+      @in_progress_matches = Match.where(match_status: 'in progress').order('created_at DESC')
+      @finished_matches = Match.where(match_status: 'finished').order('created_at DESC')
+      @new_matches = Match.where(match_status: 'new').order('created_at DESC')
+      @pending_matches = Match.where(match_status: 'pending').order('created_at DESC')
     end
 
   end

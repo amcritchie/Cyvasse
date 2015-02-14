@@ -19,8 +19,21 @@
     <article class="navOption">
       <h6><%= link_to 'Contact', contact_path %></h6>
     </article>
+    <% if session[:user_id] != nil %>
+        <!--<article class="navOption dropdown">-->
+            <!--<button class='dropdown-toggle'>-->
+            <!--</button>-->
+            <!--<div class="dropdown-text"><h6><a>Messages</a></h6></div>-->
+            <!--<ul class="dropdown-content">-->
+              <!--<li><a href="#">Settings</a></li>-->
+              <!--<li><a href="#">Projects</a></li>-->
+              <!--<li><a href="#">Log out</a></li>-->
+            <!--</ul>-->
+        <!--</article>-->
+    <% end %>
 
   </article>
+
   <article class="one_fourth">
 
     <article class="navLogin">

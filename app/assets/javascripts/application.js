@@ -254,6 +254,8 @@ $(document).ready(function () {
         $(this).css('backround-color', 'blue')
     });
 
+    Message.register();
+
     $('[data-linkType = "favorite"]').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();

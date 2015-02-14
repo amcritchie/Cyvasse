@@ -29,11 +29,13 @@ var MatchData = {
     },
     loadPlayerData: function () {
         if (MatchData.currentUser == MatchData.homeUserID) {
-            You.setAttributes(1, document.getElementById('homeReady').innerHTML, document.getElementById('homeUnitsPos').innerHTML);
-            Opponent.setAttributes(0, document.getElementById('awayReady').innerHTML, document.getElementById('awayUnitsPos').innerHTML);
+
+
+            You.setAttributes(document.getElementById('homeID').innerHTML, 1, document.getElementById('homeReady').innerHTML, document.getElementById('homeUnitsPos').innerHTML);
+            Opponent.setAttributes(document.getElementById('awayID').innerHTML, 0, document.getElementById('awayReady').innerHTML, document.getElementById('awayUnitsPos').innerHTML);
         } else if (MatchData.currentUser == MatchData.awayUserID) {
-            You.setAttributes(0, document.getElementById('awayReady').innerHTML, document.getElementById('awayUnitsPos').innerHTML);
-            Opponent.setAttributes(1, document.getElementById('homeReady').innerHTML, document.getElementById('homeUnitsPos').innerHTML);
+            You.setAttributes(document.getElementById('awayID').innerHTML, 0, document.getElementById('awayReady').innerHTML, document.getElementById('awayUnitsPos').innerHTML);
+            Opponent.setAttributes(document.getElementById('homeID').innerHTML, 1, document.getElementById('homeReady').innerHTML, document.getElementById('homeUnitsPos').innerHTML);
         }
     },
     loadMatchData: function () {

@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :matches
-  has_many :favorites
   has_many :setups
+  has_many :matches
+  has_many :messages
+  has_many :favorites
 
   mount_uploader :image, AvatarUploader
 

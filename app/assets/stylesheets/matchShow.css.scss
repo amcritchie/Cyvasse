@@ -74,6 +74,21 @@
   .hideSelectedUnitInfo {
     visibility: hidden;
   }
+  .toggleOptions {
+    position: absolute;
+    text-align: center;
+    float: right;
+    height: 210px;
+    width: 710px;
+    button {
+      width: 40px;
+      font-size: 6px;
+      margin-bottom: 5px;
+      height: 16px;
+      display: inline-block;
+    }
+  }
+
   #matchInfo {
     //    text-align: center;
     background-color: #666;
@@ -168,26 +183,57 @@
 
     }
   }
-  .toggleOptions {
-    //    background-color: greenyellow;
+  .messageOptions {
     text-align: center;
-    button {
-      width: 200px;
-      margin-bottom: 5px;
-      height: 40px;
-      display: inline-block;
+    height: 210px;
+    background-color: whitesmoke;
+    overflow: hidden;
+
+    #messageNav{
+      input{
+        width: 64%;
+        height: 20px;
+        font-size: 12px;
+        margin-bottom: 0;
+        display: inline-block;
+      }
+
+      button {
+        width: 30%;
+        padding: 0;
+        font-size: 14px;
+        margin: 5px 0;
+        height: 20px;
+        display: inline-block;
+      }
+    }
+
+    .message{
+      padding-left: 8px;
+      padding-right: 8px;
+      font-size: 10px;
+      display: block;
+    }
+    .away {
+      text-align: left;
+    }
+    .home{
+      color: red;
+      text-align: right;
+    }
+
+    .messageError{
+      font-size: 11px;
+      color: white;
+      background-color: red;
+      padding: 2px 10px;
+      display: inline;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px; /* future proofing */
+      -khtml-border-radius: 10px; /* for old Konqueror browsers */
     }
   }
-//  .graveyard {
-//    margin-top: 5px;
-//    width: 40%;
-//    height: 20px;
-//    background-color: peru;
-//    img {
-//      height: 16px;
-//      margin: 0;
-//    }
-//  }
 }
 
 #metaInfo {

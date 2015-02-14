@@ -1,0 +1,22 @@
+<div class="messageOptions">
+  <div id="messageNav">
+    <input id="messageBody" type="text" autofocus="">
+
+    <button id="sendMessage">send</button>
+  </div>
+
+  <!--<a class="home message">Great to hear bra</a>-->
+  <!--<a class="away message">Mine is dope</a>-->
+  <!--<a class="away message">Great, how is your weekend chum</a>-->
+  <!--<a class="home message">How is it going</a>-->
+  <!--<a class="away message">Hi</a>-->
+  <div id="messages">
+    <% @messages.each do |message| %>
+        <a class="message
+        <%= @match.home_user_id == message[:sender] ? 'away' : 'home' %>">
+          <%= message[:message] %>
+        </a>
+
+    <% end %>
+  </div>
+</div>
