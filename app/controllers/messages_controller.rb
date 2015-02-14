@@ -5,19 +5,16 @@ class MessagesController < ApplicationController
   end
 
   def create
-    p '--=-==-='*20
-    @messages = Message.new(
+    @message = Message.new(
         receiver: params[:user_id],
         message: params[:message],
         match: params[:match_id],
         sender: current_user.id,
         read: false
     )
-    p '--=-==-=3333'*20
-    p @messages
-    p '--=-==-=5555'*20
+    if @message.save
+      Keen.publish(:message, { message: @message.message }) # if Rails.env.production?
 
-    if @messages.save
       # flash[:success] = "User Favorited"
     end
     # redirect_to root_path
