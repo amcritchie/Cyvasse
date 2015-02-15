@@ -217,12 +217,16 @@
 
           <td><%= index + 1 %></td>
           <td>
-            <% if (match.match_status == 'pending') %>
+            <% if (match.match_against == 'computer') %>
+                    <%= link_to 'Computer', match_path(match), class: 'toMatchButton yourTurn' %>
+            <% elsif (match.match_status == 'pending') %>
+
                 <% if (match.home_user_id == current_user.id) %>
                     <%= link_to 'Pending', match_path(match), class: 'toMatchButton pendingGame' %>
                 <% else %>
                     <%= link_to 'Accept', match_path(match), class: 'toMatchButton acceptGame' %>
                 <% end %>
+
             <% elsif (match.match_status == 'new') %>
                 <% if ((match.home_user_id == current_user.id)&&(match.home_ready == true)) %>
                     <%= link_to 'Opponent Setting Up', match_path(match), class: 'toMatchButton waitingGame' %>
