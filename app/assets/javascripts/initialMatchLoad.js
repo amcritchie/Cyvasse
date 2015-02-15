@@ -27,7 +27,7 @@ var InitialMatchLoad = {
     },
     freshLoad: function () {
         Rotator.rotateOn('.auxSpace');
-        if (You.team == 0) {
+        if ((You.team == 0) && (Game.status == 'pending')) {
             $.ajax({
                 type: 'post',
                 url: '/game_accepted.json',

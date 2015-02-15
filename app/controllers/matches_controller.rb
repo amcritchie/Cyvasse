@@ -9,34 +9,6 @@ class MatchesController < ApplicationController
     @messages = Message.where(match: params[:id]).order('created_at desc')
   end
 
-  # def new
-  #   @match = Match.new
-  #   @challengers = User.where.not(id: current_user)
-  # end
-
-  # def edit
-  # end
-
-  # def create
-  #   @match = Match.new(match_params)
-  #
-  #   @match.home_user_id = current_user.id
-  #   @match.turn = 0
-  #   if params[:match][:match_against] == 'computer'
-  #     @match.away_user_id = 2
-  #     @match.match_status = 'new'
-  #   else
-  #     @match.away_user_id = User.last.id
-  #     @match.match_status = 'pending'
-  #   end
-  #
-  #   if @match.save
-  #     redirect_to :root
-  #   else
-  #     render :new
-  #   end
-  # end
-
   def finished_games
     @matches = current_user.finished_matches(session[:user_id]).reverse
   end

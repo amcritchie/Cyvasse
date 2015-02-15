@@ -1,11 +1,11 @@
 Message = {
     register: function () {
 
-        $('#sendMessage').on('click', function () {
+        $('#sendMessage').on('click', function (e) {
+            e.preventDefault();
             $('.messageError').remove();
             var message = $(this).parent().children('#messageBody').val();
             if (message.length <= 200){
-                console.log('Message is under');
                 var sender = You.id;
                 var receiver = Opponent.id;
                 var match = MatchData.matchID;
