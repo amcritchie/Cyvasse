@@ -30,7 +30,6 @@ var MatchData = {
     loadPlayerData: function () {
         if (MatchData.currentUser == MatchData.homeUserID) {
 
-
             You.setAttributes(document.getElementById('homeID').innerHTML, 1, document.getElementById('homeReady').innerHTML, document.getElementById('homeUnitsPos').innerHTML);
             Opponent.setAttributes(document.getElementById('awayID').innerHTML, 0, document.getElementById('awayReady').innerHTML, document.getElementById('awayUnitsPos').innerHTML);
         } else if (MatchData.currentUser == MatchData.awayUserID) {

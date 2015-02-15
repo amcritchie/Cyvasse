@@ -48,11 +48,11 @@ var Game = {
     },
 
     opponentOpeningArray: function () {
-        if (Opponent.isA == 'human') {
+//        if (Opponent.isA == 'human') {
             AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(), Opponent.team);
-        } else {
-            RandomSetup.placeComputerLineUp();
-        }
+//        } else {
+//            RandomSetup.placeComputerLineUp();
+//        }
     },
 
     whoGoesFirst: function () {
