@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 
     match_there_move = Match.where(home_user_id: user_id, whos_turn: 0, match_against: 'human').where.not(match_status: 'finished') + Match.where(away_user_id: user_id, whos_turn: 1).where.not(match_status: 'finished')
 
-    match_vs_computer = Match.where(home_user_id: user_id, match_against: 'computer')
+    match_vs_computer = Match.where(home_user_id: user_id, match_against: 'computer').where.not(match_status: 'finished')
 
     home_waiting = Match.where(home_user_id: user_id, home_ready: true, match_against: 'human').where.not(match_status: 'finished').where.not(match_status: 'in progress')
     away_waiting = Match.where(away_user_id: user_id, away_ready: true).where.not(match_status: 'finished').where.not(match_status: 'in progress')
