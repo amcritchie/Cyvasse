@@ -5,14 +5,12 @@ class HomeController < ApplicationController
   end
 
   def root
-    # @matches = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id])
     if current_user != nil
       @matches = current_user.active_matches(session[:user_id])
       @finishedMatches = current_user.finished_matches(session[:user_id]).last(4).reverse
       @lastTenUsers = last_active_users(7)
       @favorites = current_user.favorites(current_user,6)
     end
-
   end
 
   def about

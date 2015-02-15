@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
         read: false
     )
     if @message.save
-      Keen.publish(:message, { message: @message.message }) # if Rails.env.production?
+      Keen.publish(:message, { message: @message.message }) if Rails.env.production?
 
       # flash[:success] = "User Favorited"
     end

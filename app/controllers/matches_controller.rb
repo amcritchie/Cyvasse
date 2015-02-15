@@ -1,59 +1,45 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
 
-  # GET /matches
-  # GET /matches.json
   def index
     @matches = Match.all
   end
 
+  def show
+    @messages = Message.where(match: params[:id]).order('created_at desc')
+  end
+
+  # def new
+  #   @match = Match.new
+  #   @challengers = User.where.not(id: current_user)
+  # end
+
+  # def edit
+  # end
+
+  # def create
+  #   @match = Match.new(match_params)
+  #
+  #   @match.home_user_id = current_user.id
+  #   @match.turn = 0
+  #   if params[:match][:match_against] == 'computer'
+  #     @match.away_user_id = 2
+  #     @match.match_status = 'new'
+  #   else
+  #     @match.away_user_id = User.last.id
+  #     @match.match_status = 'pending'
+  #   end
+  #
+  #   if @match.save
+  #     redirect_to :root
+  #   else
+  #     render :new
+  #   end
+  # end
+
   def finished_games
     @matches = current_user.finished_matches(session[:user_id]).reverse
   end
-
-
-  # GET /matches/1
-  # GET /matches/1.json
-  def show
-    p '-=-=-$$$' * 30
-    p params
-    @messages = Message.where(match: params[:id]).order('created_at desc')
-    p @messages
-    @messages
-  end
-
-  # GET /matches/new
-  def new
-    @match = Match.new
-    @challengers = User.where.not(id: current_user)
-  end
-
-  # GET /matches/1/edit
-  def edit
-  end
-
-  # POST /matches
-  # POST /matches.json
-  def create
-    @match = Match.new(match_params)
-
-    @match.home_user_id = current_user.id
-    @match.turn = 0
-    if params[:match][:match_against] == 'computer'
-      @match.away_user_id = 2
-      @match.match_status = 'new'
-    else
-      @match.away_user_id = User.last.id
-      @match.match_status = 'pending'
-    end
-
-    if @match.save
-      redirect_to :root
-    else
-      render :new
-    end
-  end
-
 
   def create_match_vs_computer
     @match = Match.new(
@@ -76,13 +62,6 @@ class MatchesController < ApplicationController
       flash[:error] = "You may only have 10 active games with a basic account."
       redirect_to :back
     end
-  end
-
-  def game_accepted
-    @match = Match.find(params[:id])
-    @match.update(
-        match_status: 'new'
-    )
   end
 
   def create_match_vs_player
@@ -128,6 +107,13 @@ class MatchesController < ApplicationController
       flash[:error] = "You may only have 10 active games with a basic account."
       redirect_to :back
     end
+  end
+
+  def game_accepted
+    @match = Match.find(params[:id])
+    @match.update(
+        match_status: 'new'
+    )
   end
 
   def start_game
