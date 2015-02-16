@@ -12,8 +12,9 @@ class MessagesController < ApplicationController
         sender: current_user.id,
         read: false
     )
+
     if @message.save
-      Keen.publish(:message, { message: @message.message }) if Rails.env.production?
+      Keen.publish(:message, { message: @message.message, sender_id: User.find(@message.sender) }) if Rails.env.production?
 
       # flash[:success] = "User Favorited"
     end

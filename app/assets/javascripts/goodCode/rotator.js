@@ -24,6 +24,7 @@ var Rotator = {
                 duration: 'slow',
                 complete: function () {
                     $(button).off('click').remove();
+                    setTimeout
                 }
             });
     },

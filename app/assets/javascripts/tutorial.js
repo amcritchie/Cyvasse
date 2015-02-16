@@ -44,7 +44,7 @@ var Tutorial = {
             Rotator.rotateOn($('.tutorialSpecialRules'));
 
             setTimeout(function () {
-                $(".map").prepend("<button class='tutorialToggleRules tutorial'><h5>Click here to open/close the rules.</h5>&#8600</button>");
+                $(".map").prepend("<button class='tutorialToggleRules tutorial'>&#8599<h5>Click here to open/close the rules.</h5></button>");
                 Rotator.rotateOn($('.tutorialToggleRules'));
                 $('#toggleRules').on('click', function () {
                     $('.tutorialSpecialRules').remove();
@@ -115,7 +115,7 @@ var Tutorial = {
         Tutorial.step += 1;
     },
     checkOutRoot: function () {
-        $(".map").prepend("<button class='tutorialCheckIndex tutorial'>&#8598&nbsp&nbsp&nbsp&nbsp<h6>Check out your dashboard, your game saves automatically.</h6></button>");
+        $(".map").prepend("<button class='tutorialCheckIndex tutorial'>&#8598&nbsp&nbsp&nbsp&nbsp<h6>Check out your dashboard.  Don't worry, your game saves automatically.</h6></button>");
         Rotator.rotateOn($('.tutorialCheckIndex'));
         Tutorial.step += 1;
     },
