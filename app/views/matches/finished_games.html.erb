@@ -18,24 +18,26 @@
             <% if (current_user.id == match.home_user_id) %>
                 <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
             <% else %>
-                <% info = ['There Turn', 'thereTurn', match.home_user_id] %>
+                <% info = ['Their Turn', 'thereTurn', match.home_user_id] %>
             <% end %>
         <% else %>
             <% if (current_user.id == match.away_user_id) %>
                 <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
             <% else %>
-                <% info = ['There Turn', 'thereTurn', match.away_user_id] %>
+                <% info = ['Their Turn', 'thereTurn', match.away_user_id] %>
             <% end %>
         <% end %>
 
         <tr>
           <td>
             <% if (match.whos_turn == 1) && (match.home_user_id==current_user.id) %>
-                <%= link_to 'Win', root_path %>
+                <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
             <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user.id) %>
-                <%= link_to 'Win', root_path %>
+                <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
+            <% elsif (match.whos_turn == nil) %>
+                <a class="checkLastTurn">Declined</a>
             <% else %>
-                <%= link_to 'Lose', root_path %>
+                <%= link_to 'Lose', match_path(match), class: 'checkLastTurn' %>
             <% end %>
           </td>
           <td><%= match.turn %></td>

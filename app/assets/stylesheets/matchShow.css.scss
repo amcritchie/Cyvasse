@@ -185,7 +185,7 @@
   }
   .messageOptions {
     height: 210px;
-    background-color: whitesmoke;
+//    background-color: whitesmoke;
     overflow: auto;
     max-height: 210px;
 
@@ -220,7 +220,7 @@
 //        display: block;
 //        width: 100%;
         max-width: 180px;
-        margin-bottom: 1px;
+        margin-bottom: 2px;
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
         border-radius: 10px; /* future proofing */
