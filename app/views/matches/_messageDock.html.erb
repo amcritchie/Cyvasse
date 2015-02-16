@@ -9,11 +9,11 @@
 
   <div id="messages">
     <% @messages.each do |message| %>
-        <a class="message
-        <%= @match.home_user_id == message[:sender] ? 'away' : 'home' %>">
-          <%= message[:message] %>
-        </a>
-
+        <div class="messageRow">
+            <p class="message <%= @match.home_user_id == message[:sender] ? 'away' : 'home' %>">
+              <a class=""><%= message[:message] %></a>
+            </p>
+        </div>
     <% end %>
   </div>
 </div>

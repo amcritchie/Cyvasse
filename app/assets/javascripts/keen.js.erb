@@ -1,11 +1,9 @@
 $(document).ready(function () {
 
-
     var client = new Keen({
         projectId: "<%= ENV['KEEN_PROJECT_ID']%>",
         readKey: "<%= ENV['KEEN_READ_KEY'] %>"
     });
-
 
     Keen.ready(function () {
 
@@ -20,7 +18,6 @@ $(document).ready(function () {
             colors: ["#666"],
             width: "auto"
         });
-
         var signupsPerWeek = new Keen.Query("count", {
             timeframe: "this_month",
             interval: "daily",
@@ -33,7 +30,6 @@ $(document).ready(function () {
             width: "auto"
         });
 
-
         var loginsPerDay = new Keen.Query("count", {
             timeframe: "previous_7_days",
             interval: "daily",
@@ -45,7 +41,6 @@ $(document).ready(function () {
             colors: ["#666"],
             width: "auto"
         });
-
         var loginsPerWeek = new Keen.Query("count", {
             timeframe: "this_month",
             interval: "daily",
@@ -69,7 +64,6 @@ $(document).ready(function () {
             colors: ["#666"],
             width: "auto"
         });
-
         var gamesStartedPerWeek = new Keen.Query("count", {
             timeframe: "this_month",
             interval: "daily",
@@ -82,7 +76,6 @@ $(document).ready(function () {
             width: "auto"
         });
 
-
         var gamesFinishedPerDay = new Keen.Query("count", {
             timeframe: "previous_7_days",
             interval: "daily",
@@ -94,7 +87,6 @@ $(document).ready(function () {
             colors: ["#666"],
             width: "auto"
         });
-
         var gamesFinishedPerWeek = new Keen.Query("count", {
             timeframe: "this_month",
             interval: "daily",
@@ -107,26 +99,69 @@ $(document).ready(function () {
             width: "auto"
         });
 
+        var messageUsernameMinute = new Keen.Query("count", {
+            eventCollection: "message",
+            timeframe: "this_minute",
+            groupBy: "sender_id.username"
+        });
+        client.draw(messageUsernameMinute, document.getElementById("messageUsernameMinute"), {
+            // Custom configuration here
+            title: "Messages/Minute"
 
+        });
+        var messageUsernameHour = new Keen.Query("count", {
+            eventCollection: "message",
+            timeframe: "this_hour",
+            groupBy: "sender_id.username"
+        });
+        client.draw(messageUsernameHour, document.getElementById("messageUsernameHour"), {
+            // Custom configuration here
+            title: "Messages/Hour"
+        });
+        var messageUsernameDay = new Keen.Query("count", {
+            eventCollection: "message",
+            timeframe: "this_day",
 
-//        var client = new Keen({
-//            projectId: "your_project_id",
-//            readKey: "your_read_key"
-//        });
-//        Keen.ready(function(){
-            var query = new Keen.Query("sum", {
-                eventCollection: "message",
-                targetProperty: "sender",
-                groupBy: "sender"
-            });
-            client.draw(query, document.getElementById("messageSenders"), {
-                // Custom configuration here
-            });
-//        });
+            groupBy: "sender_id.username"
+        });
+        client.draw(messageUsernameDay, document.getElementById("messageUsernameDay"), {
+            // Custom configuration here
+            title: "Messages/Day"
 
+        });
+        var messageUsernameWeek = new Keen.Query("count", {
+            eventCollection: "message",
+            timeframe: "this_week",
+            title: "Messages/Week",
 
+            groupBy: "sender_id.username"
+        });
+        client.draw(messageUsernameWeek, document.getElementById("messageUsernameWeek"), {
+            // Custom configuration here
+            title: "Messages/Week"
 
+        });
+        var messageUsernameMonth = new Keen.Query("count", {
+            eventCollection: "message",
+            timeframe: "this_month",
 
+            groupBy: "sender_id.username"
+        });
+        client.draw(messageUsernameMonth, document.getElementById("messageUsernameMonth"), {
+            // Custom configuration here
+            title: "Messages/Month"
+
+        });
+        var messageUsernameYear = new Keen.Query("count", {
+            eventCollection: "message",
+            timeframe: "this_year",
+
+            groupBy: "sender_id.username"
+        });
+        client.draw(messageUsernameYear, document.getElementById("messageUsernameYear"), {
+            // Custom configuration here
+            title: "Messages/Year"
+
+        });
     });
-
 });

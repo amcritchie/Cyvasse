@@ -184,17 +184,18 @@
     }
   }
   .messageOptions {
-    text-align: center;
     height: 210px;
     background-color: whitesmoke;
-    overflow: hidden;
+    overflow: auto;
+    max-height: 210px;
 
     #messageNav{
       input{
-        width: 64%;
+        width: 62%;
         height: 20px;
         font-size: 12px;
         margin-bottom: 0;
+        margin-left: 6px;
         display: inline-block;
       }
 
@@ -208,18 +209,43 @@
       }
     }
 
-    .message{
-      padding-left: 8px;
-      padding-right: 8px;
-      font-size: 10px;
+    .messageRow{
+      overflow: auto;
       display: block;
-    }
-    .away {
-      text-align: left;
-    }
-    .home{
-      color: red;
-      text-align: right;
+      width: 100%;
+      padding: 0 8px;
+
+      .message{
+        overflow: auto;
+//        display: block;
+//        width: 100%;
+        max-width: 180px;
+        margin-bottom: 1px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        -khtml-border-radius: 10px; /* for old Konqueror browsers */
+        a{
+          font: normal normal normal 12px/normal '.HelveticaNeueDeskInterface-Regular';
+          color: white;
+          display: inline-block;
+          max-width: 180px;
+          padding: 2px 4px;
+          margin: 0 8px;
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+          border-radius: 10px; /* future proofing */
+          -khtml-border-radius: 10px; /* for old Konqueror browsers */
+        }
+      }
+      .away {
+        float: left;
+        background-color: #477dca;
+      }
+      .home{
+        float: right;
+        background-color: red;
+      }
     }
 
     .messageError{

@@ -16,7 +16,7 @@ Message = {
                     dataType: 'json'
                 });
                 $('#messages').prepend(
-                    "<a class='message " + ((You.team == 1) ? 'away' : 'home') + "'>" + message + "</a>"
+                    "<div class='messageRow'><p class='message " + ((You.team == 1) ? 'away' : 'home') + "'><a>" + message + "</a></p></div>"
                 );
                 $('#messageBody').val('')
 
