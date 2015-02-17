@@ -35,8 +35,12 @@
 <div class="wrapper">
   <section class="clearfix">
     <%= render 'layouts/navBar' %>
+    <div class="theYeild">
+      <%= yield %>
+    </div>
+    <%= render 'layouts/footerBar' %>
 
-    <%= yield %>
+
     <!--<FORM action="https://www.paypal.com/cgi-bin/webscr" method="post">-->
       <!--<INPUT TYPE="hidden" name="" value="allowedValue">-->
     <!--</FORM>-->
@@ -44,7 +48,6 @@
 
   </section>
 
-  <%= render 'layouts/footerBar' %>
 
 </div>
 
