@@ -101,6 +101,8 @@ body {
 /* * For IE 6/7 only * Include this rule to trigger hasLayout and contain floats. */
 .clearfix {
   *zoom: 1;
+  min-height: 710px;
+
 }
 
 //About Page CSS

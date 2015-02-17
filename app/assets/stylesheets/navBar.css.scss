@@ -79,7 +79,20 @@
   height: 54px;
   z-index: 40;
   //  background-color: #000;
-  vertical-align: middle;
+//  vertical-align: middle;
+
+  .one_fourth {
+    width: 220px;
+//    position: absolute;
+//    float: right;
+    //  border: red solid 3px;
+  }
+
+  .three_fourth {
+    width: 680px;
+//    position: absolute;
+    //  border: greenyellow solid 3px;
+  }
   .root{
     //    margin-left: 70px;
 //        float: left;
