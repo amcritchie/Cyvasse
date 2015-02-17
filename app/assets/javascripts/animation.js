@@ -30,7 +30,6 @@ var Animation = {
             }
 
         }, 120);
-
     },
 
     updateRangeRing: function(distanceFromUnit){
@@ -41,8 +40,6 @@ var Animation = {
 
         Animation.updateStroke('red', 2, distanceFromUnit,8);
         Animation.updateStroke('red', 1, distanceFromUnit,8);
-//        Animation.updateStroke('red', 8, distanceFromUnit,8);
-
     },
 
     updateStroke: function(color, code, distanceFromUnit,zIndex){
@@ -59,10 +56,6 @@ var Animation = {
         Animation.updateFill(10, 4, distanceFromUnit);
         Animation.updateFill(280, 5, distanceFromUnit);
 
-//        Animation.updateFill(200, 6, distanceFromUnit);
-//        Animation.updateFill(200, 7, distanceFromUnit);
-//        Animation.updateFill(200, 8, distanceFromUnit);
-
         $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', 'blue');
         $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').css('overflow','overlay');
         $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').css('z-index',8);
@@ -74,24 +67,7 @@ var Animation = {
         $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', 'purple');
         $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').css('overflow','overlay');
         $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').css('z-index',9);
-//        Animation.updateStroke('blue', 6, distanceFromUnit,8);
-//        var color = "hsl(" + 205 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
-//        $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color).css('stroke', color);
-//        var color = "hsl(" + 205 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
-//        $('[data-ring=' + 7 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color);
-//        var color = "hsl(" + 205 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
-//        $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('fill', color);
 
-//        var color = "hsl(" + 240 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
-//        $('[data-ring=' + 6 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', color);
-
-//        var color = "hsl(" + 10 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
-//        $('[data-ring=' + 7 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', color);
-//
-//        var color = "hsl(" + 280 + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";
-//        $('[data-ring=' + 8 + '' + (distanceFromUnit - 1) + ']').children('svg').children('polygon').css('stroke', color);
-//        Animation.updateFill(10, 7, distanceFromUnit);
-//        Animation.updateFill(280, 8, distanceFromUnit);
     },
     updateRangeFill: function (hslColor, code, distanceFromUnit) {
         var color = "hsl(" + hslColor + ", " + Animation.hslRange[(distanceFromUnit - 1)] + ")";

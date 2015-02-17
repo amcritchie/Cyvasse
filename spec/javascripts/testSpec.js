@@ -341,7 +341,7 @@ describe("A spy", function() {
     it("tracks that the spy was called", function () {
         $('.randomSetUpButton').click();
         $('.startGameButton').click();
-        expect(window.startGame).toHaveBeenCalled();
+        expect(window.Game.startGame).toHaveBeenCalled();
     });
 });
 
