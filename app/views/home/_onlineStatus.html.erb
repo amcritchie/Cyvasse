@@ -1,5 +1,5 @@
 
-<% if (Time.new - locals[:user].last_active) < 60 %>
+<% if (Time.new - locals[:user].last_active) < 120 %>
     <%= image_tag'/images/green-ball.png', class: 'onlineStatusLight' %>
 <% elsif (Time.new - locals[:user].last_active) < 300 %>
     <%= image_tag '/images/yellow-ball.png', class: 'onlineStatusLight' %>

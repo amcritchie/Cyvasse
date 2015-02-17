@@ -85,7 +85,7 @@
               <tr>
 
                 <td>
-                  <%= link_to User.find(info[2]).name_or_username, user_path(User.find(info[2])) %>
+                  <%= link_to User.find(info[2]).username, user_path(User.find(info[2])) %>
                 </td>
                 <td>
                   <%= link_to match.turn, match_path(match), class: 'checkLastTurn' %>

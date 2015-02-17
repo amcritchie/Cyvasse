@@ -159,17 +159,8 @@ $(document).ready(function () {
 
     var i = 0;
 
-//    function appendSomeItems() {
-//        for (var j = 0; j < 10; i++, j++) {
-//            $('#messageDock').append('<li>Line Item</li>');
-//            sleep(1000);
-//
-//        }
-//        if (i < 5) window.setTimeout(appendSomeItems, 1000);
-//    }
-
     if ($('#activeGames').children().length > 4){
-        $('#userColumn').css('height',(380+($('#activeGames').children().length * 70))+'px')
+        $('#userColumn').css('height',(390+($('#activeGames').children().length * 70))+'px')
     }
 
     $('.playThisUser').on('click', function () {

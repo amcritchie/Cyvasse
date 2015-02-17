@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215024819) do
+ActiveRecord::Schema.define(version: 20150216230656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,13 +78,4 @@ ActiveRecord::Schema.define(version: 20150215024819) do
     t.boolean  "show_extra_info"
     t.boolean  "confirm_move"
   end
-
-  create_table "world_statuses", force: true do |t|
-    t.integer  "match_id"
-    t.string   "home_units_position"
-    t.string   "away_units_position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
 end

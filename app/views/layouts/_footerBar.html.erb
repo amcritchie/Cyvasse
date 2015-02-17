@@ -1,0 +1,40 @@
+<div class="footerBar">
+
+  <!--<article class="one_fourth"></article>-->
+  <article class="three_fourth">
+
+    <article class="navOption">
+      <h6><%= link_to 'Blog', 'http://ironocean.blogspot.com/', :target => "_blank" %></h6>
+    </article>
+    <article class="navOption">
+      <h6><%= link_to 'Twitter', 'https://twitter.com/cyvasseio', :target => "_blank" %></h6>
+    </article>
+    <article class="navOption">
+      <h6><%= link_to 'Facebook', 'https://www.facebook.com/cyvasseio', :target => "_blank" %></h6>
+    </article>
+
+    <% if session[:user_id] != nil %>
+        <!--<article class="navOption dropdown">-->
+        <!--<button class='dropdown-toggle'>-->
+        <!--</button>-->
+        <!--<div class="dropdown-text"><h6><a>Messages</a></h6></div>-->
+        <!--<ul class="dropdown-content">-->
+        <!--<li><a href="#">Settings</a></li>-->
+        <!--<li><a href="#">Projects</a></li>-->
+        <!--<li><a href="#">Log out</a></li>-->
+        <!--</ul>-->
+        <!--</article>-->
+    <% end %>
+
+  </article>
+
+  <article class="one_fourth">
+
+    <article class="navLogin">
+      <h6><%= link_to '© 2015 Iron Ocean, LLC.', root_path %></h6>
+    </article>
+
+  </article>
+
+</div>
+<div class="footerBackdrop"></div>
