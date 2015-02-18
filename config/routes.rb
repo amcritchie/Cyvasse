@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   post "change_setup_name" => "setups#change_name"
 
+  # match '/create_computer_match', :to => "matches#create_match_vs_computer"
+  get "create_computer_match" => "matches#create_match_vs_computer"
   post "create_computer_match" => "matches#create_match_vs_computer"
   post "create_player_match" => "matches#create_match_vs_player"
 

@@ -72,10 +72,10 @@ var KeenFunctions = {
         });
     },
     collection: function(code,htmlPrefix,rate) {
-        KeenFunctions.draw(KeenFunctions.query('this_24_hours','hourly',code),htmlPrefix + "PerHourDay", rate +"/Day");
-        KeenFunctions.draw(KeenFunctions.query('this_7_days','hourly',code), htmlPrefix +"PerHourWeek", rate +"/Week");
-        KeenFunctions.draw(KeenFunctions.query('this_month','daily',code), htmlPrefix +"PerDayMonth", rate +"/Month");
-        KeenFunctions.draw(KeenFunctions.query('this_year','weekly',code),htmlPrefix + "PerWeekYear", rate +"/Month");
+        KeenFunctions.draw(KeenFunctions.query('this_24_hours','hourly',code),htmlPrefix + "PerHourDay", rate +"/Hour");
+        KeenFunctions.draw(KeenFunctions.query('this_7_days','daily',code), htmlPrefix +"PerHourWeek", rate +"/Day");
+        KeenFunctions.draw(KeenFunctions.query('this_month','daily',code), htmlPrefix +"PerDayMonth", rate +"/Day");
+        KeenFunctions.draw(KeenFunctions.query('this_year','weekly',code),htmlPrefix + "PerWeekYear", rate +"/Week");
     },
 
     ready: function() {
