@@ -1,74 +1,48 @@
 <% if current_user.admin %>
-    <article class="one_fourth">
+    <!--<article class="one_fourth">-->
       Welcome back <%= current_user.username %>
-      <br>
-      <%= link_to "Play Computer", create_computer_match_path, method: :post, class: 'vsComputer' %>
-      <br>
-      <%= link_to "Play Admin", create_player_match_path, method: :post, class: 'vsComputer' %>
+      <!--<br>-->
+      <!--<%= link_to "Play Computer", create_computer_match_path, method: :post, class: 'vsComputer' %>-->
+      <!--<br>-->
+      <!--<%= link_to "Play Admin", create_player_match_path, method: :post, class: 'vsComputer' %>-->
 
-      <br>
-      <%= link_to "Two Player", new_match_path, class: 'vsComputer' %>
+      <!--<br>-->
+      <!--<%= link_to "Two Player", new_match_path, class: 'vsComputer' %>-->
 
-    </article>
-    <article id="adminInfo" class="three_fourth">
+    <!--</article>-->
+    <article id="adminInfo" class="full_column">
 
       <hr>
-      <h2>Sign Ups</h2>
-
-      <div class="chart" id="signupsPerMinuteDay"></div>
+      <h2>Today</h2>
       <div class="chart" id="signupsPerHourDay"></div>
-      <div class="chart" id="signupsPerHourWeek"></div>
-      <div class="chart" id="signupsPerDayWeek"></div>
-      <div class="chart" id="signupsPerDayMonth"></div>
-      <div class="chart" id="signupsPerWeekMonth"></div>
-      <hr>
-
-      <h2>Logins</h2>
-
-      <!--<div class="chart" id="loginsPerDay"></div>-->
-      <!--<div class="chart" id="loginsPerWeek"></div>-->
-      <div class="chart" id="loginsPerMinuteDay"></div>
       <div class="chart" id="loginsPerHourDay"></div>
-      <div class="chart" id="loginsPerHourWeek"></div>
-      <div class="chart" id="loginsPerDayWeek"></div>
-      <div class="chart" id="loginsPerDayMonth"></div>
-      <div class="chart" id="loginsPerWeekMonth"></div>
-      <hr>
-
-      <h2>Games Started</h2>
-      <div class="chart" id="gamesStartedPerMinuteDay"></div>
       <div class="chart" id="gamesStartedPerHourDay"></div>
-      <div class="chart" id="gamesStartedPerHourWeek"></div>
-      <div class="chart" id="gamesStartedPerDayWeek"></div>
-      <div class="chart" id="gamesStartedPerDayMonth"></div>
-      <div class="chart" id="gamesStartedPerWeekMonth"></div>
-      <!--<div class="chart" id="gamesStartedPerDay"></div>-->
-      <!--<div class="chart" id="gamesStartedPerWeek"></div>-->
-      <hr>
-
-
-      <h2>Games Finished</h2>
-
-      <!--<div class="chart" id="gamesFinishedPerDay"></div>-->
-      <!--<div class="chart" id="gamesFinishedPerWeek"></div>-->
-      <div class="chart" id="gamesFinishedPerMinuteDay"></div>
       <div class="chart" id="gamesFinishedPerHourDay"></div>
+      <div class="chart" id="messagesPerHourDay"></div>
+
+      <h2>This Week</h2>
+      <div class="chart" id="signupsPerHourWeek"></div>
+      <div class="chart" id="loginsPerHourWeek"></div>
+      <div class="chart" id="gamesStartedPerHourWeek"></div>
       <div class="chart" id="gamesFinishedPerHourWeek"></div>
-      <div class="chart" id="gamesFinishedPerDayWeek"></div>
+      <div class="chart" id="messagesPerHourWeek"></div>
+
+      <h2>This Month</h2>
+      <div class="chart" id="signupsPerDayMonth"></div>
+      <div class="chart" id="loginsPerDayMonth"></div>
+      <div class="chart" id="gamesStartedPerDayMonth"></div>
       <div class="chart" id="gamesFinishedPerDayMonth"></div>
-      <div class="chart" id="gamesFinishedPerWeekMonth"></div>
-      <hr>
+      <div class="chart" id="messagesPerDayMonth"></div>
+
+      <h2>This Year</h2>
+      <div class="chart" id="signupsPerWeekYear"></div>
+      <div class="chart" id="loginsPerWeekYear"></div>
+      <div class="chart" id="gamesStartedPerWeekYear"></div>
+      <div class="chart" id="gamesFinishedPerWeekYear"></div>
+      <div class="chart" id="messagesPerWeekYear"></div>
 
       <h2>Messages</h2>
 
-      <hr>
-      <div class="chart" id="messagesPerMinuteDay"></div>
-      <div class="chart" id="messagesPerHourDay"></div>
-      <div class="chart" id="messagesPerHourWeek"></div>
-      <div class="chart" id="messagesPerDayWeek"></div>
-      <div class="chart" id="messagesPerDayMonth"></div>
-      <div class="chart" id="messagesPerWeekMonth"></div>
-        <hr>
       <div class="chart" id="messageUsernameMinute"></div>
       <div class="chart" id="messageUsernameHour"></div>
       <div class="chart" id="messageUsernameDay"></div>

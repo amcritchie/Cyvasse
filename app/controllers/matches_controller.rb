@@ -69,10 +69,12 @@ class MatchesController < ApplicationController
               @match.match_against = 'computer'
               @match.away_ready = true
               @match.match_status = 'new'
+              redirect_to :back
+            else
+              @match.away_user_id = @opponent.id
+              @match.save
+              redirect_to match_path(@match)
             end
-            @match.away_user_id = @opponent.id
-            @match.save
-            redirect_to match_path(@match)
           end
         end
       end

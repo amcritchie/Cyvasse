@@ -72,12 +72,10 @@ var KeenFunctions = {
         });
     },
     collection: function(code,htmlPrefix,rate) {
-        KeenFunctions.draw(KeenFunctions.query('previous_1_days','minutely',code),htmlPrefix + "PerMinuteDay", rate + "/Day");
-        KeenFunctions.draw(KeenFunctions.query('previous_1_days','hourly','sign_ups'),htmlPrefix + "PerHourDay", rate +"/Day");
-        KeenFunctions.draw(KeenFunctions.query('previous_7_days','hourly','sign_ups'), htmlPrefix +"PerHourWeek", rate +"/Week");
-        KeenFunctions.draw(KeenFunctions.query('previous_7_days','daily','sign_ups'), htmlPrefix +"PerDayWeek", rate +"/Week");
-        KeenFunctions.draw(KeenFunctions.query('this_month','daily','sign_ups'), htmlPrefix +"PerDayMonth", rate +"/Month");
-        KeenFunctions.draw(KeenFunctions.query('this_month','weekly','sign_ups'),htmlPrefix + "PerWeekMonth", rate +"/Month");
+        KeenFunctions.draw(KeenFunctions.query('this_24_hours','hourly',code),htmlPrefix + "PerHourDay", rate +"/Day");
+        KeenFunctions.draw(KeenFunctions.query('this_7_days','hourly',code), htmlPrefix +"PerHourWeek", rate +"/Week");
+        KeenFunctions.draw(KeenFunctions.query('this_month','daily',code), htmlPrefix +"PerDayMonth", rate +"/Month");
+        KeenFunctions.draw(KeenFunctions.query('this_year','weekly',code),htmlPrefix + "PerWeekYear", rate +"/Month");
     },
 
     ready: function() {
