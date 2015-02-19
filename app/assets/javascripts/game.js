@@ -65,8 +65,10 @@ var Game = {
 
         if (team0distance > team1distance) {
             Game.offense = 1;
-        } else {
+        } else if (team0distance < team1distance) {
             Game.offense = 0;
+        } else {
+            Game.offense = (Math.floor(Math.random() * 2))
         }
     },
 
