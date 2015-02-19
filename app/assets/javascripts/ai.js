@@ -5,6 +5,11 @@ var AI = {
     unitBeingMoved: null,
     hexBeingMovedTo: null,
 
+    selectRandom: function(list) {
+        var randomElement = list[Math.floor((Math.random()*list.length )+1)];
+        return $(randomElement)
+    },
+
     shouldAIMove: function () {
         if ((Game.offense == 0) && (Game.playingAI == true)) {
             AI.makeAMove();
@@ -21,7 +26,8 @@ var AI = {
         AI.findKillableEnemies(moveableUnits);
 
         if (AI.unitBeingMoved == 'empty') {
-            AI.unitBeingMoved = Offense.selectableUnits.not($('[alt=mountain]').parent()).random();
+            AI.unitBeingMoved = AI.selectRandom(Offense.selectableUnits.not($('[alt=mountain]').parent()));
+//            AI.unitBeingMoved = Offense.selectableUnits.not($('[alt=mountain]').parent()).random();
         }
 
         setTimeout(function () {
@@ -29,13 +35,16 @@ var AI = {
             Offense.utility = false;
             Game.utilMove = false;
 
+            debugger;
             Offense.selectUnit(AI.unitBeingMoved);
 
             if (AI.hexBeingMovedTo == 'empty') {
-                AI.hexBeingMovedTo = Offense.moveRange.random();
+                AI.hexBeingMovedTo = AI.selectRandom(Offense.moveRange);
+//                AI.hexBeingMovedTo = Offense.moveRange[Math.floor((Math.random()* Offense.moveRange.length )+1)];
 
                 if (Offense.attackRange.length != 0) {
-                    AI.hexBeingMovedTo = Offense.attackRange.random();
+                    AI.hexBeingMovedTo = AI.selectRandom(Offense.attackRange);
+//                    AI.hexBeingMovedTo = Offense.attackRange[Math.floor((Math.random()* Offense.attackRange.length )+1)];
                 }
             }
 
@@ -45,12 +54,14 @@ var AI = {
                     setTimeout(function () {
                         AI.findKillableEnemies(SelectedUnit.unit.parent());
                         if (AI.hexBeingMovedTo == 'empty') {
-                            AI.hexBeingMovedTo = Offense.moveRange.random();
+//                            debugger;
+//                            AI.hyexBeingMovedTo = Offense.moveRange.random();
+                            AI.hexBeingMovedTo = Offense.moveRange[Math.floor((Math.random()* Offense.moveRange.length )+1)];
                             if (Offense.attackRange.length != 0) {
-                                AI.hexBeingMovedTo = Offense.attackRange.random();
+                                AI.hexBeingMovedTo = Offense.attackRange[Math.floor((Math.random()* Offense.attackRange.length )+1)];
                             }
                         }
-                        Offense.moveToAttack(AI.hexBeingMovedTo);
+                        Offense.moveToAttack($(AI.hexBeingMovedTo));
                     }, 1000);
                 }
 

@@ -1,11 +1,11 @@
 var Offense = {
     jump: 1,
     defense: null,
-    selectableUnits: $('hex53'),
-    newLocation: $('hex52'),
-    oldLocation: $('hex52'),
-    moveRange: $('hex52'),
-    attackRange: $('hex54'),
+    selectableUnits: $('#hex_5_2'),
+    newLocation: $('#hex_5_2'),
+    oldLocation: $('#hex_5_2'),
+    moveRange: $('#hex_5_2'),
+    attackRange: $('#hex_5_2'),
     utility: false,
 
     runOffense: function (offense) {
@@ -72,7 +72,9 @@ var Offense = {
     },
     moveToAttack: function (hex) {
         Offense.newLocation = hex;
+//        debugger;
         Offense.oldLocation = SelectedUnit.unit.parent();
+        debugger;
         if (hex.children('img').length == 0) {
             Offense.moveUnitToNewPosition();
         } else {
