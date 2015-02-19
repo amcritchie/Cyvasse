@@ -72,9 +72,7 @@ var Offense = {
     },
     moveToAttack: function (hex) {
         Offense.newLocation = hex;
-//        debugger;
         Offense.oldLocation = SelectedUnit.unit.parent();
-        debugger;
         if (hex.children('img').length == 0) {
             Offense.moveUnitToNewPosition();
         } else {

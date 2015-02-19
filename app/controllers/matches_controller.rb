@@ -107,9 +107,24 @@ class MatchesController < ApplicationController
     render nothing: true
   end
 
+  def position_of_kings(match_id)
+    @match = Match.find(match_id)
+    new_home = @match.home_units_position.split('|').map { |s| s.split(':') }
+    new_away = @match.away_units_position.split('|').map { |s| s.split(':') }
+    home_king = new_home.select { |unit| unit[0].to_i == 17 }
+    away_king = new_away.select { |unit| unit[0].to_i == 17 }
+    return [home_king, away_king]
+  end
+
   def finish_game
     @match = Match.find(params[:match_id])
-    if @match[:match_status] == 'in progress'
+
+    kings = position_of_kings(params[:match_id])
+    kings.map! do |king|
+      (king[0][1][0] == 'g')
+    end
+
+    if ((@match[:match_status] == 'in progress') && (kings.include? true))
       @match.update(match_status: 'finished')
       if params[:winner] == '1'
         winner = User.find(@match.home_user_id)
