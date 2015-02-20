@@ -526,6 +526,13 @@ dd{
   height: 166px;
 }
 
+.borderRadius6{
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px; /* future proofing */
+  -khtml-border-radius: 6px; /* for old Konqueror browsers */
+}
+
 .close::after, .open::after{
   border-radius: 8px;
 
