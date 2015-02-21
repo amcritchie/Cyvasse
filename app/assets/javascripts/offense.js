@@ -118,6 +118,7 @@ var Offense = {
         Offense.turnOffClickHandlers();
         SelectedUnit.clear();
         if ($('[alt=king][data-status=dead]').length == 1) {
+            console.log('king dead');
             Game.over();
         } else {
             Game.finishTurn();

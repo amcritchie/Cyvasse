@@ -108,6 +108,69 @@ var GameStatus = {
         });
     },
 
+    saveGameStatusss: function () {
+        GameStatus.setStrings();
+        GameStatus.setLastMove();
+        var deferred = $.Deferred();
+
+        $.ajax({
+            type: 'put',
+            url: '/update_match_info',
+            data: {
+                turn: Game.turn,
+                whos_turn: Game.offense,
+                match_id: MatchData.matchID,
+                home_units: GameStatus.teamOneString,
+                away_units: GameStatus.teamZeroString,
+                last_move: GameStatus.setLastMove()
+            },
+//            url: config.getValue('server') + '/api/categories',
+            success: function(response) {
+                deferred.resolve(response);
+            },
+            error: function(response) {
+                deferred.reject(response);
+            }
+//            dataType: 'json'
+        });
+
+        return deferred;
+
+//        GameStatus.setStrings();
+//        GameStatus.setLastMove();
+//
+//        $.ajax({
+//            type: 'put',
+//            url: '/update_match_info',
+//            data: {
+//                turn: Game.turn,
+//                whos_turn: Game.offense,
+//                match_id: MatchData.matchID,
+//                home_units: GameStatus.teamOneString,
+//                away_units: GameStatus.teamZeroString,
+//                last_move: GameStatus.setLastMove()
+//            },
+//            success: function(data) {
+////                if (data.accessToken) {
+////                    // set token
+////                    session.setAuthToken(data.accessToken);
+////                    session.setDisplayName(data.displayName);
+////                    if (data.notSendEvents) {
+////                        session.setDoNotTrackValue(data.notSendEvents);
+////                    }
+////
+////                    session.authenticate();
+////
+////                    _this.setCookieToken(7);
+////
+////                    // throw event for logging in
+////                    $(document).trigger(enums.events.userLogin);
+////                }
+//            },
+//            dataType: 'json'
+//        });
+    },
+
     saveTeam: function (team) {
         var array = [];
         $.each($('[data-team=' + team + ']'), function (index, unit) {

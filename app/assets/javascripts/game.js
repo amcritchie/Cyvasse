@@ -198,19 +198,24 @@ var Game = {
     },
 
     over: function () {
-        GameStatus.saveGameStatus();
-        var stop = new Date();
-        var teamNum = Game.offense;
-        if (teamNum == You.team) {
-            Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
-        } else {
-            Rotator.createAndRotateOn('over', 'You were defeated, at turn ' + Game.turn + '.');
-        }
-        $.ajax({
-            type: 'put',
-            url: '/finish_game',
-            data: {match_id: MatchData.matchID, winner: Game.offense},
-            dataType: 'json'
+        $.when(GameStatus.saveGameStatusss()).done(function(categories) {
+           console.log('--++++--==--++++--');
+            var stop = new Date();
+            var teamNum = Game.offense;
+            if (teamNum == You.team) {
+                Rotator.createAndRotateOn('over', 'You win, at turn ' + Game.turn + '.');
+            } else {
+                Rotator.createAndRotateOn('over', 'You were defeated, at turn ' + Game.turn + '.');
+            }
+            $.ajax({
+                type: 'put',
+                url: '/finish_game',
+                data: {match_id: MatchData.matchID, winner: Game.offense},
+                dataType: 'json'
+            });
         });
+
+//            GameStatus.saveGameStatusss();
+
     }
 };
