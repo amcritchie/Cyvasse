@@ -8,6 +8,7 @@ var RootJavaScript = {
         RootJavaScript.playUserLink();
         RootJavaScript.favoriteUsername();
         RootJavaScript.countDownTimer();
+        RootJavaScript.selectPlayUsername();
         RootJavaScript.dashboardInfoBoard();
     },
     playUserLink: function () {
@@ -79,6 +80,11 @@ var RootJavaScript = {
                 }
             );
         });
+    },
+    selectPlayUsername: function() {
+        $('#opponent_username').on('click',function(){
+          $('#opponent_which_user_chosen_user').click()
+      })
     },
     dashboardInfoBoard: function () {
         if ($('dt').attr('class') === 'startOpen') {

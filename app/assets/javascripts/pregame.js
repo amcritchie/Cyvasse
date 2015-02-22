@@ -143,11 +143,14 @@ var PreGame = {
     readyOpponent: function () {
         if (Opponent.ready == 'true') {
             Game.startGame()
-        } else {
+        }
+        else {
+
             Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');
-            setTimeout(function () {
-                window.location.reload()
-            }, 5000)
+//            setTimeout(function () {
+//                window.location.reload()
+//            }, 5000)
+
         }
     }
 };

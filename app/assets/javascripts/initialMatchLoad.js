@@ -4,6 +4,7 @@ var InitialMatchLoad = {
         LoadingFactory.loadMapUnitsAndEnemiesHTML();
         InitialMatchLoad.setGlobalHexVariables();
         InitialMatchLoad.runGame();
+        MessageOcean.start()
     },
     setGlobalHexVariables: function () {
         $allHexDivs = $('.hexDiv');
@@ -19,6 +20,12 @@ var InitialMatchLoad = {
         }
     },
     notReadyFunctions: function () {
+        if (Game.status === 'new'){
+            MatchOcean.opponentReady();
+        } else {
+            MatchOcean.opponentAccepted();
+        }
+
         if (You.unitsPos == '') {
             InitialMatchLoad.freshLoad()
         } else {
@@ -70,8 +77,10 @@ var InitialMatchLoad = {
     },
     nonFinishedGame: function () {
         if (Opponent.ready == 'true') {
+            MatchOcean.listenForUpdate();
             InitialMatchLoad.continueGame();
         } else {
+            MatchOcean.opponentReady();
             InitialMatchLoad.opponentNotReady();
         }
     },
@@ -86,9 +95,9 @@ var InitialMatchLoad = {
         Rotator.createAndRotateOn('pleaseWait', 'Opponent is setting up, Please Wait');
         AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(You.unitsPos).reverse(), You.team);
         $('[data-occupied=true]').children("svg").children("polygon").css('stroke', 'blue');
-        setTimeout(function () {
-            window.location.reload()
-        }, 4000)
+//        setTimeout(function () {
+//            window.location.reload()
+//        }, 4000)
     },
     randomSetupButton: function () {
         Rotator.createAndRotateOn('randomSetUpButton', 'Random Setup');

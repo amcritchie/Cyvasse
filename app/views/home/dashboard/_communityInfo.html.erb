@@ -1,0 +1,121 @@
+<article class="one_fourth">
+  <h5>Last Games</h5>
+
+  <table id="finishedGamesTable">
+    <thead>
+    <tr>
+      <th>Opponent</th>
+      <th>Final Turn</th>
+      <th>Result</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @finishedMatches.each_with_index do |match, index| %>
+
+        <% if (match.whos_turn == 1) %>
+            <% if (current_user.id == match.home_user_id) %>
+                <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
+            <% else %>
+                <% info = ['Their Turn', 'thereTurn', match.home_user_id] %>
+            <% end %>
+        <% else %>
+            <% if (current_user.id == match.away_user_id) %>
+                <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
+            <% else %>
+                <% info = ['Their Turn', 'thereTurn', match.away_user_id] %>
+            <% end %>
+        <% end %>
+
+        <tr>
+
+          <td>
+            <%= link_to User.find(info[2]).username, user_path(User.find(info[2])) %>
+          </td>
+          <td>
+            <%= link_to match.turn, match_path(match), class: 'checkLastTurn' %>
+          </td>
+          <td>
+            <% if (match.whos_turn == 1) && (match.home_user_id==current_user.id) %>
+                <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
+            <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user.id) %>
+                <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
+            <% elsif (match.whos_turn == nil) %>
+                <a class="checkLastTurn">Declined</a>
+            <% else %>
+                <%= link_to 'Lose', match_path(match), class: 'checkLastTurn' %>
+            <% end %>
+          </td>
+
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Past Games', finished_games_path, class: 'dashLink' %>
+
+</article>
+<article id="favorites" class="one_fourth">
+  <h5>Favorites</h5>
+
+  <div id="fourFavorites">
+    <% @favorites.sample(4).each do |favorite| %>
+
+        <article class="favorite" data-favorited="<%= favorite.id %>">
+          <div class="username">
+            <%= link_to favorite.username, user_path(favorite), class: 'favoriteUsername' %>
+          </div>
+          <div class="image">
+            <%= link_to image_tag(favorite.image), user_path(favorite), class: 'favoriteImage' %>
+          </div>
+          <div class="play">
+            <%= render 'onlineStatus', :locals => {user: favorite} %>
+
+            <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => favorite.username}) %>
+          </div>
+          <div class="unfavorite">
+            <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.id} %>
+          </div>
+
+        </article>
+
+    <% end %>
+  </div>
+  <%= link_to 'All Favorites', user_favorites_path(current_user.id), class: 'dashLink' %>
+</article>
+<article class="one_fourth">
+  <h5>Online Players</h5>
+
+  <table id="onlinePlayersTable">
+    <thead>
+    <tr>
+      <th>.</th>
+      <th>Username</th>
+      <th>.</th>
+      <th>Favorite</th>
+      <th>W - L</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @lastTenUsers.each_with_index do |user, index| %>
+        <tr>
+          <td>
+            <%= render 'onlineStatus', :locals => {user: user} %>
+          </td>
+          <td>
+            <%= link_to user.username, user_path(user) %>
+          </td>
+          <td>
+            <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => user.username}) %>
+          </td>
+          <td>
+            <% if Favorite.where(favoriter: current_user.id, favorited: user.id)== [] ? true : false %>
+                <%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: user.id} %>
+            <% else %>
+                <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: user.id} %>
+            <% end %>
+          </td>
+          <td><%= user.wins %> - <%= user.losses %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</article>

@@ -1,287 +1,37 @@
 <article id="userColumn" class="one_fourth">
+  <div class="adminMessage borderRadius6"><h5>Hi everyone, we are trying out our new in-game updating system!</h5><h6>This means you do not need to refresh the page to see your opponent's move or messages.(comment's very welcome)</h6></div>
 
-  <div class="profImage">
-    <%= link_to image_tag(current_user.image_url), edit_user_path(current_user) %>
-  </div>
+  <%= render 'home/dashboard/userColumn' %>
 
-  <div>
-    <h2>
-      <%= link_to current_user.name_or_username, edit_user_path(current_user) %>
-    </h2>
-  </div>
-
-  <br><br>
-
-  <div>
-    <%= form_for :opponent, url: create_computer_match_path, method: :post, html: {class: 'playComp'} do |f| %>
-        <%= button_tag 'Play Computer', class: 'newMatch' %>
-    <% end %>
-
-    <p style="margin-bottom: 2px">or</p>
-    <%= form_for :opponent, url: create_player_match_path, method: :post, html: {class: 'playUser'} do |f| %>
-        <%= button_tag 'Play User', class: 'newMatch' %>
-        <div>
-          <%= f.radio_button :which_user, 'Random User', :checked => true %>
-          <%= f.label :which_user, 'Play Random User' %>
-        </div>
-        <div>
-          <%= f.radio_button :which_user, 'Chosen User' %>
-          <%= f.label :which_user, 'Play' %>
-          <%= f.text_field :username, class: 'usernameField', placeholder: 'username' %>
-        </div>
-        <div class="flashFail">
-          <h6><%= flash[:cant_find_username] %></h6>
-        </div>
-    <% end %>
-  </div>
-  <br><br><br><br>
 </article>
 
 <article id="gameIndex" class="three_fourth">
 
-<div id="messageDock">
-  <div class="flashSuccess"><h5><%= flash[:success] %></h5></div>
-  <div class="flashError"><h5><%= flash[:error] %></h5></div>
-</div>
+  <div id="messageDock">
+    <div class="flashSuccess"><h5><%= flash[:success] %></h5></div>
+    <div class="flashError"><h5><%= flash[:error] %></h5></div>
+  </div>
 
-
-<dl>
-  <% if current_user.show_extra_info %>
-      <dt class="startOpen">Information</dt>
-  <% else %>
-      <dt class="startClose">Information</dt>
-  <% end %>
-  <dd>
-    <article class="communityInfo">
-
-      <article class="one_fourth">
-        <h5>Last Games</h5>
-
-        <table id="finishedGamesTable">
-          <thead>
-          <tr>
-            <th>Opponent</th>
-            <th>Final Turn</th>
-            <th>Result</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @finishedMatches.each_with_index do |match, index| %>
-
-              <% if (match.whos_turn == 1) %>
-                  <% if (current_user.id == match.home_user_id) %>
-                      <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
-                  <% else %>
-                      <% info = ['Their Turn', 'thereTurn', match.home_user_id] %>
-                  <% end %>
-              <% else %>
-                  <% if (current_user.id == match.away_user_id) %>
-                      <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
-                  <% else %>
-                      <% info = ['Their Turn', 'thereTurn', match.away_user_id] %>
-                  <% end %>
-              <% end %>
-
-              <tr>
-
-                <td>
-                  <%= link_to User.find(info[2]).username, user_path(User.find(info[2])) %>
-                </td>
-                <td>
-                  <%= link_to match.turn, match_path(match), class: 'checkLastTurn' %>
-                </td>
-                <td>
-                  <% if (match.whos_turn == 1) && (match.home_user_id==current_user.id) %>
-                      <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
-                  <% elsif (match.whos_turn == 0) && (match.away_user_id==current_user.id) %>
-                      <%= link_to 'Win', match_path(match), class: 'checkLastTurn' %>
-                  <% elsif (match.whos_turn == nil) %>
-                      <a class="checkLastTurn">Declined</a>
-                  <% else %>
-                      <%= link_to 'Lose', match_path(match), class: 'checkLastTurn' %>
-                  <% end %>
-                </td>
-
-              </tr>
-          <% end %>
-          </tbody>
-        </table>
-        <%= link_to 'Past Games', finished_games_path, class: 'dashLink' %>
-
-      </article>
-      <article id="favorites" class="one_fourth">
-        <h5>Favorites</h5>
-
-        <div id="fourFavorites">
-          <% @favorites.sample(4).each do |favorite| %>
-
-              <article class="favorite" data-favorited="<%= favorite.id %>">
-                <div class="username">
-                  <%= link_to favorite.username, user_path(favorite), class: 'favoriteUsername' %>
-                </div>
-                <div class="image">
-                  <%= link_to image_tag(favorite.image), user_path(favorite), class: 'favoriteImage' %>
-                </div>
-                <div class="play">
-                  <%= render 'onlineStatus', :locals => {user: favorite} %>
-
-                  <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => favorite.username}) %>
-                </div>
-                <div class="unfavorite">
-                  <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: favorite.id} %>
-                </div>
-
-              </article>
-
-          <% end %>
-        </div>
-        <%= link_to 'All Favorites', user_favorites_path(current_user.id), class: 'dashLink' %>
-      </article>
-      <article class="one_fourth">
-        <h5>Online Players</h5>
-
-        <table id="onlinePlayersTable">
-          <thead>
-          <tr>
-            <th>.</th>
-            <th>Username</th>
-            <th>.</th>
-            <th>Favorite</th>
-            <th>W - L</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @lastTenUsers.each_with_index do |user, index| %>
-              <tr>
-                <td>
-                  <%= render 'onlineStatus', :locals => {user: user} %>
-                </td>
-                <td>
-                  <%= link_to user.username, user_path(user) %>
-                </td>
-                <td>
-                  <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => user.username}) %>
-                </td>
-                <td>
-                  <% if Favorite.where(favoriter: current_user.id, favorited: user.id)== [] ? true : false %>
-                      <%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: user.id} %>
-                  <% else %>
-                      <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: user.id} %>
-                  <% end %>
-                </td>
-                <td><%= user.wins %> - <%= user.losses %></td>
-              </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </article>
-    </article>
-  </dd>
-
-</dl>
-
-
-<h1>Games</h1>
-
-<div id="matchesTable">
-  <table>
-    <thead>
-    <tr>
-      <th>Index</th>
-      <th>Status</th>
-      <th>Time Left</th>
-      <th>Opponent</th>
-      <th>Turn</th>
-      <th>Quit</th>
-    </tr>
-    </thead>
-
-    <tbody id="activeGames">
-    <% @matches.each_with_index do |match, index| %>
-
-        <% if (match.whos_turn == 1) %>
-            <% if (current_user.id == match.home_user_id) %>
-                <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
-            <% else %>
-                <% info = ['Their Turn', 'thereTurn', match.home_user_id] %>
-            <% end %>
-        <% else %>
-            <% if (current_user.id == match.away_user_id) %>
-                <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
-            <% else %>
-                <% info = ['Their Turn', 'thereTurn', match.away_user_id] %>
-            <% end %>
-        <% end %>
-        <tr data-matchID=<%= match.id %> data-opponentID=<%= info[2] %>>
-
-          <td><%= index + 1 %></td>
-          <td>
-            <% if (match.match_against == 'computer') %>
-                    <%= link_to 'Computer', match_path(match), class: 'toMatchButton yourTurn' %>
-            <% elsif (match.match_status == 'pending') %>
-
-                <% if (match.home_user_id == current_user.id) %>
-                    <%= link_to 'Pending', match_path(match), class: 'toMatchButton pendingGame' %>
-                <% else %>
-                    <%= link_to 'Accept', match_path(match), class: 'toMatchButton acceptGame' %>
-                <% end %>
-
-            <% elsif (match.match_status == 'new') %>
-                <% if ((match.home_user_id == current_user.id)&&(match.home_ready == true)) %>
-                    <%= link_to 'Opponent Setting Up', match_path(match), class: 'toMatchButton waitingGame' %>
-                <% elsif ((match.away_user_id == current_user.id)&&(match.away_ready == true)) %>
-                    <%= link_to 'Opponent Setting Up', match_path(match), class: 'toMatchButton waitingGame' %>
-                <% else %>
-                    <%= link_to 'Setup', match_path(match), class: 'toMatchButton setupGame' %>
-                <% end %>
-
-            <% elsif (match.match_status == 'finished') %>
-                <%= link_to 'Finished', match_path(match), class: 'toMatchButton newGame' %>
-            <% else %>
-                <%= link_to info[0], match_path(match), class: "toMatchButton #{info[1]}" %>
-            <% end %>
-          </td>
-          <td>
-            <% if match.time_of_last_move == nil %>
-                <% t = Time.now %>
-                <div class="countDown" data-time="<%= t %>"></div>
-            <% else %>
-                <% t = (match.time_of_last_move.gmtime()+86400) %>
-                <div class="countDown" data-time="<%= t %>"></div>
-            <% end %>
-          </td>
-          <td>
-            <h4>
-              <%= User.find(info[2]).name_or_username %>
-              <%= render 'onlineStatus', :locals => {user: User.find(info[2])} %>
-
-            </h4>
-            <% if Favorite.where(favoriter: current_user.id, favorited: info[2])== [] ? true : false %>
-                <h6><%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: info[2]} %></h6>
-            <% else %>
-                <h6><%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: info[2]} %></h6>
-            <% end %>
-          </td>
-          <td><%= match.turn %></td>
-
-          <td class="Resign">
-            <% if (match.match_status == 'in progress') %>
-                <%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!', type: 'resign'} %>
-            <% else %>
-                <%= link_to 'Decline', "/matches/#{match.id}/game_declined", method: :post %><p class="small-font">no penalty</p>
-            <% end %>
-          </td>
-        </tr>
+  <dl>
+    <% if current_user.show_extra_info %>
+        <dt class="startOpen">Information</dt>
+    <% else %>
+        <dt class="startClose">Information</dt>
     <% end %>
-    </tbody>
-  </table>
-</div>
+    <dd>
+      <article class="communityInfo">
+        <%= render 'home/dashboard/communityInfo' %>
+      </article>
+    </dd>
+  </dl>
 
+  <h1>Games</h1>
 
+  <div id="matchesTable">
+    <%= render 'home/dashboard/activeGames' %>
+  </div>
 </article>
 
 <div id=metaInfo>
-
   <a id="accountType"><%= current_user.account_type %></a>
-
 </div>

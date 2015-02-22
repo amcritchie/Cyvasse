@@ -32,7 +32,6 @@ var Setup = {
                     Setup.createNewSetupError(saveButton);
                 } else {
 
-                    debugger;
                     var setupPosition = saveButton.parent().data('setup');
                     $.ajax({
                         type: 'post',

@@ -1,0 +1,63 @@
+<table>
+  <thead>
+  <tr>
+    <th>Index</th>
+    <th>Status</th>
+    <th>Time Left</th>
+    <th>Opponent</th>
+    <th>Turn</th>
+    <th>Quit</th>
+  </tr>
+  </thead>
+
+  <tbody id="activeGames">
+  <% @matches.each_with_index do |match, index| %>
+      <% if (match.whos_turn == 1) %>
+          <% if (current_user.id == match.home_user_id) %>
+              <% info = ['Your Turn', 'yourTurn', match.away_user_id] %>
+          <% else %>
+              <% info = ['Their Turn', 'thereTurn', match.home_user_id] %>
+          <% end %>
+      <% else %>
+          <% if (current_user.id == match.away_user_id) %>
+              <% info = ['Your Turn', 'yourTurn', match.home_user_id] %>
+          <% else %>
+              <% info = ['Their Turn', 'thereTurn', match.away_user_id] %>
+          <% end %>
+      <% end %>
+      <tr data-matchID=<%= match.id %> data-opponentID=<%= info[2] %>>
+        <td>
+          <%= index + 1 %>
+        </td>
+        <td>
+          <%= render 'home/dashboard/matchStatus', :locals => {match: match, info: info} %>
+        </td>
+        <td>
+          <%= render 'home/dashboard/timeLeft', :locals => {match: match} %>
+        </td>
+        <td>
+          <h4>
+            <%= User.find(info[2]).name_or_username %>
+            <%= render 'onlineStatus', :locals => {user: User.find(info[2])} %>
+
+          </h4>
+          <% if Favorite.where(favoriter: current_user.id, favorited: info[2])== [] ? true : false %>
+              <h6><%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: info[2]} %></h6>
+          <% else %>
+              <h6><%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: info[2]} %></h6>
+          <% end %>
+        </td>
+        <td><%= match.turn %></td>
+
+        <td class="Resign">
+          <% if (match.match_status == 'in progress') %>
+              <%= link_to 'Resign', match, method: :delete, data: {confirm: 'Are you sure?  Resigning will count as a loss!', type: 'resign'} %>
+          <% else %>
+              <%= link_to 'Decline', "/matches/#{match.id}/game_declined", method: :post %>
+              <p class="small-font">no penalty</p>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

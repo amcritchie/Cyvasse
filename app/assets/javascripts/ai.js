@@ -35,7 +35,6 @@ var AI = {
             Offense.utility = false;
             Game.utilMove = false;
 
-            debugger;
             Offense.selectUnit(AI.unitBeingMoved);
 
             if (AI.hexBeingMovedTo == 'empty') {
@@ -54,8 +53,6 @@ var AI = {
                     setTimeout(function () {
                         AI.findKillableEnemies(SelectedUnit.unit.parent());
                         if (AI.hexBeingMovedTo == 'empty') {
-//                            debugger;
-//                            AI.hyexBeingMovedTo = Offense.moveRange.random();
                             AI.hexBeingMovedTo = Offense.moveRange[Math.floor((Math.random()* Offense.moveRange.length )+1)];
                             if (Offense.attackRange.length != 0) {
                                 AI.hexBeingMovedTo = Offense.attackRange[Math.floor((Math.random()* Offense.attackRange.length )+1)];

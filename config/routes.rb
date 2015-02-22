@@ -45,5 +45,15 @@ Rails.application.routes.draw do
   put 'cavalry_first_jump' => 'matches#cavalry_first_jump'
   put 'finish_game' => 'matches#finish_game'
 
+  put 'match_status' => 'matches#match_status'
+  put 'match_away_ready' => 'matches#match_away_ready'
+  put 'match_home_ready' => 'matches#match_home_ready'
+  put 'match_away_units_pos' => 'matches#match_away_units_pos'
+  put 'match_home_units_pos' => 'matches#match_home_units_pos'
+  put 'who_goes_first' => 'matches#who_goes_first'
+  put 'check_turn' => 'matches#check_turn'
+  put 'get_match_messages' => 'matches#get_match_messages'
+
+
   get 'qwertyuiopasdfghjklzxcvbnm' => 'users#change_password'
 end

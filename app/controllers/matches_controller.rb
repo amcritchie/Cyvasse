@@ -13,6 +13,63 @@ class MatchesController < ApplicationController
     @matches = current_user.finished_matches(session[:user_id]).reverse
   end
 
+  def match_status
+    @match = Match.find(params[:match_id])
+
+    # game_accepted = { status: (@match.match_status != 'pending') ? true : false }
+    # p '-=-=-=7-=--='*800
+    # game_accepted = {name: 'alex'}
+    p '-=-=-=7-=--='*80
+
+    # render json: game_accepted
+    render json: (@match.match_status != 'pending') ? true : false
+  end
+
+  def match_home_ready
+    @match = Match.find(params[:match_id])
+    render json: @match.home_ready
+  end
+
+  def match_away_ready
+    @match = Match.find(params[:match_id])
+    render json: @match.away_ready
+  end
+
+  def match_away_units_pos
+    @match = Match.find(params[:match_id])
+    render json: {data: @match.away_units_position}
+  end
+
+  def match_home_units_pos
+    @match = Match.find(params[:match_id])
+    render json: {data: @match.home_units_position}
+  end
+
+  def who_goes_first
+    @match = Match.find(params[:match_id])
+    render json: {data: @match.who_started}
+  end
+
+  def check_turn
+    @match = Match.find(params[:match_id])
+    render json: {
+        turn: @match.turn,
+        last_move: @match.last_move,
+        match_status: @match.match_status,
+        who_started: @match.who_started,
+        home_units: @match.home_units_position,
+        away_units: @match.away_units_position,
+        utility_saved_hex: @match.utility_saved_hex
+    }
+  end
+
+  def get_match_messages
+    @messages = Message.where(match: params[:match_id])
+    render json: {
+        messages: @messages
+    }
+  end
+
   def create_match_vs_computer
     opponent = current_user.cpu_opponent
     @match = Match.new(
@@ -39,6 +96,7 @@ class MatchesController < ApplicationController
   end
 
   def create_match_vs_player
+
     @match = Match.new(
         time_of_last_move: Time.now.utc,
         home_user_id: current_user.id,
@@ -48,6 +106,8 @@ class MatchesController < ApplicationController
         match_against: 'human',
         turn: 0,
         utility_saved_hex: 95
+    # ,
+    #     fast_game: !params[:game_speed]
     )
 
     if (current_user.active_matches(current_user).length <= 9) || (current_user.account_type == 'premium')

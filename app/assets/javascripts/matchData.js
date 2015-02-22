@@ -6,6 +6,7 @@ var MatchData = {
     homeUnitsString: null,
     awayUnitsString: null,
 
+    fastGame: false,
     firstGame: false,
     whoStarted: null,
     matchID: null,
@@ -41,6 +42,7 @@ var MatchData = {
         MatchData.matchID = parseInt(document.getElementById('matchID').innerHTML);
         MatchData.firstGame = document.getElementById('firstGame').innerHTML;
         MatchData.whoStarted = parseInt(document.getElementById('matchWhoStarted').innerHTML);
+        MatchData.fastGame = document.getElementById('matchFastGame').innerHTML;
     },
     loadGameData: function () {
         Game.turn = parseInt(document.getElementById('matchTurn').innerHTML);

@@ -10,6 +10,7 @@
 @import "rotatorButtons";
 @import "tutorialBubbles";
 @import "dropdownmessages";
+@import "speedGameSwitch";
 @import url(http://fonts.googleapis.com/css?family=Cinzel);
 
 $black: #333333;
@@ -410,6 +411,22 @@ polygon {
   z-index: 11;
 }
 
+.adminMessage{
+  position: absolute;
+  color: #ffffff;
+  background-color: blueviolet;
+  padding: 4px 8px;
+//  margin: -16px 0 0 620px;
+  margin: 520px 0 0 20px;
+  z-index: 20;
+  font-size: 17px;
+  width: 280px;
+  h6{
+//    background-color: yellow;
+  }
+
+}
+
 //CSS for each row of Hexagons.
 .grid {
   overflow: hidden;
@@ -665,4 +682,3 @@ dd{
     }
   }
 }
-

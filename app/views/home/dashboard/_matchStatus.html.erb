@@ -1,0 +1,24 @@
+<% if (locals[:match].match_against == 'computer') %>
+    <%= link_to 'Computer', match_path(locals[:match]), class: 'toMatchButton yourTurn' %>
+<% elsif (locals[:match].match_status == 'pending') %>
+
+    <% if (locals[:match].home_user_id == current_user.id) %>
+        <%= link_to 'Pending', match_path(locals[:match]), class: 'toMatchButton pendingGame' %>
+    <% else %>
+        <%= link_to 'Accept', match_path(locals[:match]), class: 'toMatchButton acceptGame' %>
+    <% end %>
+
+<% elsif (locals[:match].match_status == 'new') %>
+    <% if ((locals[:match].home_user_id == current_user.id)&&(locals[:match].home_ready == true)) %>
+        <%= link_to 'Opponent Setting Up', match_path(locals[:match]), class: 'toMatchButton waitingGame' %>
+    <% elsif ((locals[:match].away_user_id == current_user.id)&&(locals[:match].away_ready == true)) %>
+        <%= link_to 'Opponent Setting Up', match_path(locals[:match]), class: 'toMatchButton waitingGame' %>
+    <% else %>
+        <%= link_to 'Setup', match_path(locals[:match]), class: 'toMatchButton setupGame' %>
+    <% end %>
+
+<% elsif (locals[:match].match_status == 'finished') %>
+    <%= link_to 'Finished', match_path(locals[:match]), class: 'toMatchButton newGame' %>
+<% else %>
+    <%= link_to locals[:info][0], match_path(locals[:match]), class: "toMatchButton #{locals[:info][1]}" %>
+<% end %>

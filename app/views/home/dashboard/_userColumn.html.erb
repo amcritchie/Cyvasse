@@ -1,0 +1,41 @@
+<div class="profImage">
+  <%= link_to image_tag(current_user.image_url), edit_user_path(current_user) %>
+</div>
+
+<div>
+  <h2>
+    <%= link_to current_user.name_or_username, edit_user_path(current_user) %>
+  </h2>
+</div>
+
+<br><br>
+
+<div>
+  <%= form_for :opponent, url: create_computer_match_path, method: :post, html: {class: 'playComp'} do |f| %>
+      <%= button_tag 'Play Computer', class: 'newMatch' %>
+  <% end %>
+
+  <p style="margin-bottom: 2px">or</p>
+  <%= form_for :opponent, url: create_player_match_path, method: :post, html: {class: 'playUser'} do |f| %>
+      <%= button_tag 'Play User', class: 'newMatch' %>
+
+      <!--<p id="gameSpeedRadio">-->
+        <!--<input name="game_speed" type="checkbox" id="switch3" switch="bool"/>-->
+        <!--<label for="switch3" data-on-label="Casual Game" data-off-label="Speed Game"></label>-->
+      <!--</p>-->
+
+      <div>
+        <%= f.radio_button :which_user, 'Random User', :checked => true %>
+        <%= f.label :which_user, 'Play Random User' %>
+      </div>
+      <div>
+        <%= f.radio_button :which_user, 'Chosen User' %>
+        <%= f.label :which_user, 'Play' %>
+        <%= f.text_field :username, class: 'usernameField', placeholder: 'username' %>
+      </div>
+      <div class="flashFail">
+        <h6><%= flash[:cant_find_username] %></h6>
+      </div>
+  <% end %>
+</div>
+<br><br><br><br>

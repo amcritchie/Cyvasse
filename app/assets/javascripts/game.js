@@ -11,48 +11,88 @@ var Game = {
 
     lastMove: [0, 0],
 
-    startGame: function () {
+    enterStartingGame: function () {
+        Game.turn = 1;
+        Game.opponentOpeningArray();
+
+
+    },
+
+    initStartGame: function () {
+        var deferred = $.Deferred();
 
         Game.turn = 1;
         Game.opponentOpeningArray();
-        Game.whoGoesFirst();
-        GameStatus.saveGameStatus();
-        Game.updateOpponentsObjects();
-        HexHover.setHover();
+        if ((MatchData.fastGame) && (You.team === 0)) {
+            var interval;
+            interval = setInterval(function () {
+                $.ajax({
+                    type: 'put',
+                    url: '/who_goes_first',
+                    data: {
+                        match_id: MatchData.matchID
+                    },
+                    success: function (response) {
+                        if ((response.data == 0) || (response.data == 1)) {
+                            clearInterval(interval);
+                            Game.offense = response.data;
+                            deferred.resolve();
+                        }
+                    },
+                    error: function (response) {
+                        console.log('initStartGame - ajax error');
+                        deferred.reject(response);
+                    }
+//            dataType: 'json'
+                });
+            }, 500);
+        } else {
+            Game.whoGoesFirst();
+            $.ajax({
+                type: 'put',
+                url: '/start_game',
+                data: {match_id: MatchData.matchID, who_started: Game.offense},
+                dataType: 'json'
+            });
+            deferred.resolve();
+        }
+        return deferred;
+    },
 
-        $.ajax({
-            type: 'put',
-            url: '/start_game',
-            data: {match_id: MatchData.matchID, who_started: Game.offense},
-            dataType: 'json'
+    startGame: function () {
+
+        $.when(Game.initStartGame()).done(function (res) {
+
+            Rotator.rotateOff('.pleaseWait');
+
+            GameStatus.saveGameStatus();
+            Game.updateOpponentsObjects();
+            HexHover.setHover();
+
+            if (Game.offense == You.team) {
+                Rotator.createAndRotateOn('whoGoesFirst', 'You have the first move.');
+            } else {
+                Rotator.createAndRotateOn('whoGoesFirst', 'Opponent moves first');
+            }
+            setTimeout(function () {
+                Rotator.rotateOff('.whoGoesFirst');
+            }, 1300);
+
+            if (MatchData.firstGame === 'true') {
+                $('.tutorial').remove();
+                Tutorial.firstTurn();
+                setTimeout(function () {
+                    Game.runTurn(Game.offense)
+                }, 2000);
+            } else {
+                Game.runTurn(Game.offense)
+            }
         });
 
-        if (Game.offense == You.team) {
-            Rotator.createAndRotateOn('whoGoesFirst', 'You have the first move.');
-        } else {
-            Rotator.createAndRotateOn('whoGoesFirst', 'Opponent moves first');
-        }
-        setTimeout(function () {
-            Rotator.rotateOff('.whoGoesFirst');
-        }, 1300);
-
-        if (MatchData.firstGame === 'true') {
-            $('.tutorial').remove();
-            Tutorial.firstTurn();
-            setTimeout(function () {
-                Game.runTurn(Game.offense)
-            }, 2000);
-        } else {
-            Game.runTurn(Game.offense)
-        }
     },
 
     opponentOpeningArray: function () {
-//        if (Opponent.isA == 'human') {
-            AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(), Opponent.team);
-//        } else {
-//            RandomSetup.placeComputerLineUp();
-//        }
+        AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(Opponent.unitsPos).reverse(), Opponent.team);
     },
 
     whoGoesFirst: function () {
@@ -80,13 +120,19 @@ var Game = {
 
     runTurn: function (offense) {
         clearInterval(Animation.function);
-        Rotator.createAndRotateOn('turn', 'Turn ' + Game.turn);
+        var turnString = (Game.offense == You.team) ? 'Your Turn' : 'Opponents Turn';
+        Rotator.createAndRotateOn('turn', turnString + ', Turn ' + Game.turn);
         setTimeout(function () {
             Rotator.rotateOff('.turn');
         }, 1300);
         Validates.updateUnitCount();
         Game.hexVisualUpdate();
-        Offense.runOffense(Game.offense);
+        if (Game.offense == You.team) {
+            clearInterval(MatchOcean.interval);
+            Offense.runOffense(Game.offense);
+        } else {
+            MatchOcean.listenForUpdate()
+        }
         AI.shouldAIMove();
     },
 
@@ -113,12 +159,26 @@ var Game = {
         AwayTeamNormalize.placeUnits(GameStatus.convertStringToArray(MatchData.awayUnitsString), 0);
         AwayTeamNormalize.placeLastMove();
         HexHover.setHover();
+        Game.setGameOffense();
+//        if (MatchData.whoStarted == 1) {
+//            Game.offense = Game.turn % 2
+//        } else {
+//            Game.offense = Math.abs((Game.turn % 2) - 1)
+//        }
+//        if (Game.turn === 0) {
+//            Game.startGame()
+//        } else {
+//            Game.runTurn();
+//        }
+    },
+
+    setGameOffense: function() {
         if (MatchData.whoStarted == 1) {
             Game.offense = Game.turn % 2
         } else {
             Game.offense = Math.abs((Game.turn % 2) - 1)
         }
-        if (Game.turn === 0){
+        if (Game.turn === 0) {
             Game.startGame()
         } else {
             Game.runTurn();
@@ -198,8 +258,7 @@ var Game = {
     },
 
     over: function () {
-        $.when(GameStatus.saveGameStatusss()).done(function(categories) {
-           console.log('--++++--==--++++--');
+        $.when(GameStatus.saveGameStatusss()).done(function (categories) {
             var stop = new Date();
             var teamNum = Game.offense;
             if (teamNum == You.team) {

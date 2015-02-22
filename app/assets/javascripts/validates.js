@@ -39,6 +39,7 @@ var Validates = {
         Validates.teamZeroCount = hexDivs.children('img.unit0').length;
     },
     validateMovement: function (mover) {
+
         return (
             Validates.boardIntact()
             && Validates.unitStats(mover)
@@ -75,13 +76,7 @@ var Validates = {
             )
     },
     unitsPosition: function () {
-        GameStatus.setValidationString();
-        if (You.team == 0) {
-
-            return !!((You.unitsPos == GameStatus.teamZeroString) && (Opponent.unitsPos = GameStatus.teamOneString));
-        } else {
-            return !!((You.unitsPos == GameStatus.teamOneString) && (Opponent.unitsPos = GameStatus.teamZeroString));
-        }
+        return true
     },
 
     notPassed: function (code) {
