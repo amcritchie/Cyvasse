@@ -29,7 +29,7 @@ var SelectedUnit = {
 
         SelectedUnit.moveRange = parseInt(newUnit.attr('data-moverange'));
         SelectedUnit.attackRange = parseInt(newUnit.attr('data-attackrange'));
-
+debugger;
         SelectedUnit.trump = newUnit.attr('data-trump').split(',')
     },
 

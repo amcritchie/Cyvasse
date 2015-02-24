@@ -23,6 +23,7 @@ var AI = {
 
         var moveableUnits = Offense.selectableUnits.not($('[alt=mountain]').parent());
 
+        debugger;
         AI.findKillableEnemies(moveableUnits);
 
         if (AI.unitBeingMoved == 'empty') {
@@ -35,6 +36,7 @@ var AI = {
             Offense.utility = false;
             Game.utilMove = false;
 
+            debugger;
             Offense.selectUnit(AI.unitBeingMoved);
 
             if (AI.hexBeingMovedTo == 'empty') {
@@ -152,6 +154,7 @@ var AI = {
 
     SearchKillableEnemiesFor: function (unitName) {
         AI.killableEnemies.forEach(function (e) {
+            debugger;
             if (e[0] == unitName) {
                 AI.unitBeingMoved = $('#' + e[3]);
                 AI.hexBeingMovedTo = $('#' + e[1]);
