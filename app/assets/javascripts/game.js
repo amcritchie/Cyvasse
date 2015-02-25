@@ -127,9 +127,10 @@ var Game = {
         }, 1300);
         Validates.updateUnitCount();
         Game.hexVisualUpdate();
+        Offense.runOffense(Game.offense);
+
         if (Game.offense == You.team) {
             clearInterval(MatchOcean.interval);
-            Offense.runOffense(Game.offense);
         } else {
             MatchOcean.listenForUpdate()
         }
