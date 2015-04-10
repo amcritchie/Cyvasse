@@ -120,8 +120,8 @@ var Game = {
 
     runTurn: function (offense) {
         clearInterval(Animation.function);
-        var turnString = (Game.offense == You.team) ? 'Your Turn' : 'Opponents Turn';
-        Rotator.createAndRotateOn('turn', turnString + ', Turn ' + Game.turn);
+        var turnString = (Game.offense == You.team) ? 'Your move' : 'Opponents Move';
+        Rotator.createAndRotateOn('turn', 'Turn ' + Game.turn + ', ' + turnString);
         setTimeout(function () {
             Rotator.rotateOff('.turn');
         }, 1300);
