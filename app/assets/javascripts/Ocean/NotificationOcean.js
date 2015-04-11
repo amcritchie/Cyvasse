@@ -33,7 +33,7 @@ var NotificationOcean = {
 
     initialNotifications: function () {
         $.each(NotificationOcean.matchesLastUpdate, function (i, match) {
-            if (match.against !== 'computer') {
+            if ((match.against !== 'computer') && (match.id !== MatchData.matchID)) {
                 if (match.progress === 'in progress') {
                     if (match.yourTurn) {
                         NotificationOcean.notifications[match.id] = {
@@ -57,7 +57,7 @@ var NotificationOcean = {
     addNotifications: function () {
 
         $.each(NotificationOcean.matchesLastUpdate, function (i, match) {
-            if (match.against !== 'computer') {
+            if ((match.against !== 'computer') && (match.id !== MatchData.matchID)) {
 
                 var addNotification = true;
                 $.each($('#notificationList').children(), function (i, listItem) {
