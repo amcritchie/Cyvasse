@@ -147,6 +147,7 @@ var AlwaysJavaScript = {
         AlwaysJavaScript.updateLastActive();
         AlwaysJavaScript.favoriteUser();
         AlwaysJavaScript.userColumnGrow();
+        NotificationOcean.start();
     },
     flashMessageFade: function () {
         setInterval(function () {

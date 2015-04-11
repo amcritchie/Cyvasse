@@ -21,16 +21,24 @@
       <h6><%= link_to 'Contact', contact_path %></h6>
     </article>
     <% if session[:user_id] != nil %>
-        <!--<article class="navOption dropdown">-->
-            <!--<button class='dropdown-toggle'>-->
-            <!--</button>-->
-            <!--<div class="dropdown-text"><h6><a>Messages</a></h6></div>-->
-            <!--<ul class="dropdown-content">-->
-              <!--<li><a href="#">Settings</a></li>-->
-              <!--<li><a href="#">Projects</a></li>-->
-              <!--<li><a href="#">Log out</a></li>-->
-            <!--</ul>-->
-        <!--</article>-->
+        <article class="navNotifications">
+
+          <ul>
+            <li><a href="#"><div>
+              <%= image_tag '/images/mail-icon.png', class: 'onlineStatffusLight' %>
+            </div>
+              <div>
+                <h6 id="notificationCount">4</h6>
+              </div></a>
+              <!-- First Tier Drop Down -->
+              <ul id="notificationList">
+                <!--<li><a href="#">Themes</a></li>-->
+                <!--<li><a href="#">Plugins</a></li>-->
+                <!--<li><a href="#">Tutorials</a></li>-->
+              </ul>
+            </li>
+          </ul>
+        </article>
     <% end %>
 
   </article>

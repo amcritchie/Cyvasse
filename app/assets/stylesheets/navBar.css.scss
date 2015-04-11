@@ -31,6 +31,75 @@
 
     }
   }
+  .navNotifications{
+
+    :hover{
+      li ul{
+        display:inherit;
+      }
+    }
+      ul {
+        padding:0;
+        margin:0;
+        list-style: none;
+        position: relative;
+        z-index: 20;
+        li {
+          max-height: 40px;
+          display:inline-block;
+          background-color: black;
+        }
+        li:hover > ul {
+          display:inherit;
+        }
+
+        li > a:only-child:after { content: ''; }
+        ul {
+          display: none;
+          position: absolute;
+          top: 48px;
+          left: -10px;
+
+          li {
+            width:170px;
+            float:none;
+            display:list-item;
+          }
+        }
+      }
+      a {
+        display:block;
+        padding:0 10px;
+        color:#FFF;
+        font-size:14px;
+        text-decoration:none;
+      }
+      a:hover {
+        background-color: #477dca;
+      }
+
+    width: 100px;
+    div{
+      float: left;
+    }
+    img {
+      width: 30px;
+      margin-top: 10px;
+    }
+    h6{
+      height: 100%;
+      vertical-align: middle;
+      font-size: 17px;
+      margin: 12px 0 0 5px;
+      color: white;
+      padding: 2px 7px;
+      border-radius: 20px;
+      background-color: #477dca;
+    }
+    #notificationCount{
+      display: none;
+    }
+  }
   .navOptionSmall{
     h6{
       height: 100%;

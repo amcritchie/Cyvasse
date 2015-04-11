@@ -38,6 +38,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_active_matches
+    # current_user.active_matches(session[:user_id])
+    # @match = Match.find(params[:match_id])
+    p 'p' * 800
+    p current_user
+    p '<' * 800
+    if current_user
+      p '>' * 800
+
+      render json: {data: current_user.active_matches(session[:user_id]), currentUser: current_user.id}
+    else
+      render json: {error: 'no current user'};
+    end
+    # render json: {data: current_user.active_matches(session[:user_id]), currentUser: current_user.id}
+  end
+
   def change_password
     @user = User.find(11)
 

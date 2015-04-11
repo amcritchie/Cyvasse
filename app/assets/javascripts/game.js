@@ -230,6 +230,7 @@ var Game = {
                 dataType: 'json'
             });
         }
+        NotificationOcean.removeNotification(MatchData.matchID);
         Game.updateOpponentsObjects();
         if (Tutorial.step == 7) {
             $('.tutorial').remove();

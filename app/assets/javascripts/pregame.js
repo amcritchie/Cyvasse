@@ -121,6 +121,7 @@ var PreGame = {
         Rotator.rotateOff($('.startGameButton'));
         Rotator.rotateOff($('.randomSetUpButton'));
         Rotator.rotateOff($('.setUp'));
+        NotificationOcean.removeNotification(MatchData.matchID);
         PreGame.readyOpponent();
     },
     startButtonAjax: function () {

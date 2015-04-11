@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     post "game_declined" => "matches#game_declined"
   end
 
+  put 'get_active_matches' => 'users#get_active_matches'
+
   # Match Routes
   post "game_accepted" => "matches#game_accepted"
   put 'update_home_units_position' => 'matches#update_home_units_position'
