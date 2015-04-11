@@ -72,11 +72,11 @@ var Game = {
             if (Game.offense == You.team) {
                 Rotator.createAndRotateOn('whoGoesFirst', 'You have the first move.');
             } else {
-                Rotator.createAndRotateOn('whoGoesFirst', 'Opponent moves first');
+                Rotator.createAndRotateOn('whoGoesFirst', 'Opponent has the first move.');
             }
             setTimeout(function () {
                 Rotator.rotateOff('.whoGoesFirst');
-            }, 1300);
+            }, 1800);
 
             if (MatchData.firstGame === 'true') {
                 $('.tutorial').remove();
@@ -121,10 +121,10 @@ var Game = {
     runTurn: function (offense) {
         clearInterval(Animation.function);
         var turnString = (Game.offense == You.team) ? 'Your move' : 'Opponents Move';
-        Rotator.createAndRotateOn('turn', 'Turn ' + Game.turn + ', ' + turnString);
+        Rotator.createAndRotateOn('turn', 'Turn ' + Game.turn + ' - ' + turnString);
         setTimeout(function () {
             Rotator.rotateOff('.turn');
-        }, 1300);
+        }, 1800);
         Validates.updateUnitCount();
         Game.hexVisualUpdate();
         Offense.runOffense(Game.offense);

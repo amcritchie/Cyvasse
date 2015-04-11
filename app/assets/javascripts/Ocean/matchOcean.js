@@ -42,6 +42,8 @@ var MatchOcean = {
         $.when(MatchOcean.ajax(route)).done(function (res) {
             Opponent.ready = 'true';
             Opponent.unitsPos = res.data;
+            Rotator.rotateOff('.pleaseWait');
+
             if (You.ready == true) {
                 Game.startGame()
             }
