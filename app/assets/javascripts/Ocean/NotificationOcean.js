@@ -1,6 +1,7 @@
 var NotificationOcean = {
 
     interval: null,
+    usernames: null,
     currentUser: null,
     matchesLastUpdate: null,
     matchesCurrentUpdate: null,
@@ -11,18 +12,23 @@ var NotificationOcean = {
         arrayOfMatches.forEach(function (match) {
             var yourTurn = false;
             var ready = false;
+            var enemy = null;
+            debugger;
             if (match.home_user_id === NotificationOcean.currentUser) {
                 yourTurn = (match.whos_turn === 1);
                 ready = (match.home_ready === true);
+                enemy = NotificationOcean.usernames[match.id].home_username;
             } else {
                 yourTurn = (match.whos_turn === 0);
                 ready = (match.away_ready === true);
+                enemy = NotificationOcean.usernames[match.id].away_username;
             }
 
             matches[match.id] = {
                 id: match.id,
-                ready: ready,
                 turn: match.turn,
+                ready: ready,
+                enemy: enemy,
                 yourTurn: yourTurn,
                 against: match.match_against,
                 progress: match.match_status
@@ -38,14 +44,14 @@ var NotificationOcean = {
                     if (match.yourTurn) {
                         NotificationOcean.notifications[match.id] = {
                             id: match.id,
-                            message: "It's your turn."
+                            message: "It's your turn against " + match.enemy
                         }
                     }
                 } else {
                     if (!match.ready) {
                         NotificationOcean.notifications[match.id] = {
                             id: match.id,
-                            message: "Finish setup."
+                            message: "Finish setup against " + match.enemy
                         }
                     }
                 }
@@ -115,6 +121,7 @@ var NotificationOcean = {
             if (res.currentUser) {
                 NotificationOcean.currentUser = res.currentUser;
 
+                NotificationOcean.usernames = res.usernames;
                 NotificationOcean.matchesLastUpdate = NotificationOcean.convertMatches(res.data);
 
                 NotificationOcean.initialNotifications();
@@ -132,6 +139,7 @@ var NotificationOcean = {
     start: function () {
         NotificationOcean.shell('/get_active_matches', function (res) {
 
+            NotificationOcean.usernames = res.usernames;
             NotificationOcean.matchesLastUpdate = NotificationOcean.convertMatches(res.data);
 
             NotificationOcean.addNotifications();

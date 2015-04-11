@@ -47,7 +47,29 @@ class UsersController < ApplicationController
     if current_user
       p '>' * 800
 
-      render json: {data: current_user.active_matches(session[:user_id]), currentUser: current_user.id}
+      p ' ++++'
+
+      active_matches_hash = {}
+      p current_user.active_matches(session[:user_id])
+      p '__'*20
+      current_user.active_matches(session[:user_id]).each do |match|
+        p '--_>' * 60
+        p match
+        p '--_>' * 60
+        p match.home_user_id
+        p '--_>' * 60
+        p User.find(match.home_user_id)
+        p '--_>' * 60
+        p User.find(match.home_user_id).username
+        p '--_>' * 60
+        active_matches_hash[match.id] = {
+            id: match.id,
+            home_username: User.find(match.home_user_id).username,
+            away_username: User.find(match.away_user_id).username
+        }
+      end
+
+      render json: {data: current_user.active_matches(session[:user_id]), usernames: active_matches_hash, currentUser: current_user.id}
     else
       render json: {error: 'no current user'};
     end

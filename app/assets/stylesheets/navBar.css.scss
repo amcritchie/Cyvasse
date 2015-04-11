@@ -58,20 +58,24 @@
           display: none;
           position: absolute;
           top: 48px;
-          left: -10px;
+          left: -30px;
 
           li {
-            width:170px;
+//            padding: 4px 0;
+            width:250px;
             float:none;
             display:list-item;
+            a {
+              padding: 4px 10px;
+            }
           }
         }
       }
       a {
         display:block;
-        padding:0 10px;
+//        padding:0 10px;
         color:#FFF;
-        font-size:14px;
+        font-size:12px;
         text-decoration:none;
       }
       a:hover {
