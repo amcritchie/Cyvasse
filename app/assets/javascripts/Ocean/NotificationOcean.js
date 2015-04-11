@@ -17,11 +17,11 @@ var NotificationOcean = {
             if (match.home_user_id === NotificationOcean.currentUser) {
                 yourTurn = (match.whos_turn === 1);
                 ready = (match.home_ready === true);
-                enemy = NotificationOcean.usernames[match.id].home_username;
+                enemy = NotificationOcean.usernames[match.id].away_username;
             } else {
                 yourTurn = (match.whos_turn === 0);
                 ready = (match.away_ready === true);
-                enemy = NotificationOcean.usernames[match.id].away_username;
+                enemy = NotificationOcean.usernames[match.id].home_username;
             }
 
             matches[match.id] = {
