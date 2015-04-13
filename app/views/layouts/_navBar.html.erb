@@ -10,9 +10,11 @@
       <h6 class="borderRadius6">Beta</h6>
     </article>
 
-    <article class="navOption">
-      <h6><%= link_to 'Messages', '/message_board' %></h6>
-    </article>
+    <% if session[:user_id] != nil %>
+        <article class="navOption">
+          <h6><%= link_to 'Messages', '/message_board' %></h6>
+        </article>
+    <% end %>
 
     <article class="navOption">
       <h6><%= link_to 'Rules', rules_path %></h6>
@@ -28,12 +30,14 @@
         <article class="navNotifications">
 
           <ul>
-            <li><a href="#"><div>
-              <%= image_tag '/images/mail-icon.png', class: 'onlineStatffusLight' %>
-            </div>
+            <li><a href="#">
+              <div>
+                <%= image_tag '/images/mail-icon.png', class: 'onlineStatffusLight' %>
+              </div>
               <div>
                 <h6 id="notificationCount">4</h6>
-              </div></a>
+              </div>
+            </a>
               <ul id="notificationList"></ul>
             </li>
           </ul>
