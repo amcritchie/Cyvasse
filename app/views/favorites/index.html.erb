@@ -1,7 +1,7 @@
 <article id="userColumn" class="one_fourth">
 
   <div class="profImage">
-    <%= link_to image_tag(current_user.image_url), edit_user_path(current_user) %>
+    <%= link_to image_tag(current_user.image_url(:thumb)), edit_user_path(current_user) %>
   </div>
 
   <div>
@@ -49,7 +49,7 @@
             <%= link_to User.find(favorite.favorited).username, user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
           </div>
           <div class="image">
-            <%= link_to image_tag(User.find(favorite.favorited).image), user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
+            <%= link_to image_tag(User.find(favorite.favorited).image_url(:thumb)), user_path(User.find(favorite.favorited)), class: 'favoriteUsername' %>
           </div>
           <div class="play">
             <%= link_to('Play', 'javascript:;', :id => :foo, :class => :playThisUser, :data => {:username => User.find(favorite.favorited).username}) %>

@@ -132,7 +132,7 @@ var NotificationOcean = {
                 clearInterval(NotificationOcean.interval);
                 NotificationOcean.interval = setInterval(function () {
                     $.when(NotificationOcean.ajax(route)).done(callback);
-                }, 1500);
+                }, 5000);
             }
 
         });

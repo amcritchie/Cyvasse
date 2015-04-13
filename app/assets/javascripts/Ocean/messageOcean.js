@@ -6,7 +6,7 @@ var MessageOcean = {
         clearInterval(MessageOcean.interval);
         MessageOcean.interval = setInterval(function () {
             $.when(MessageOcean.ajax(route)).done(callback);
-        }, 1500);
+        }, 5000);
     },
 
     start: function () {

@@ -6,7 +6,7 @@ var MatchOcean = {
         clearInterval(MatchOcean.interval);
         MatchOcean.interval = setInterval(function () {
             $.when(MatchOcean.ajax(route)).done(callback);
-        }, 1500);
+        }, 5000);
     },
 
     message: function (className, message) {

@@ -1,5 +1,5 @@
 <div class="profImage">
-  <%= link_to image_tag(current_user.image_url), edit_user_path(current_user) %>
+  <%= link_to image_tag(current_user.image_url(:thumb)), edit_user_path(current_user) %>
 </div>
 
 <div>
