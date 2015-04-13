@@ -55,5 +55,33 @@ class HomeController < ApplicationController
 
   end
 
+  def message_board
+    @messages = Message.where(match: 0).order('created_at desc')
+    @user = current_user
+  end
 
+  def get_board_messages
+    @messages = Message.where(match: 0)
+    users = {}
+
+    if current_user
+
+      @messages.each do |message|
+
+        users[message.sender] = {
+            id: message.sender,
+            username: User.find(message.sender).username.capitalize,
+            imagePath: User.find(message.sender).image
+        }
+      end
+
+      render json: {messages: @messages, users: users, currentUser: current_user.id}
+    else
+      render json: {error: 'no current user'};
+    end
+  end
+
+  def new_rules
+
+  end
 end

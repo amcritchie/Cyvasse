@@ -35,7 +35,6 @@ var AI = {
             Offense.utility = false;
             Game.utilMove = false;
 
-            debugger;
             Offense.selectUnit(AI.unitBeingMoved);
 
             if (AI.hexBeingMovedTo == 'empty') {

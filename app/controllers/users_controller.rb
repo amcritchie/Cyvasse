@@ -39,29 +39,13 @@ class UsersController < ApplicationController
   end
 
   def get_active_matches
-    # current_user.active_matches(session[:user_id])
-    # @match = Match.find(params[:match_id])
-    p 'p' * 800
-    p current_user
-    p '<' * 800
-    if current_user
-      p '>' * 800
 
-      p ' ++++'
+    if current_user
 
       active_matches_hash = {}
-      p current_user.active_matches(session[:user_id])
-      p '__'*20
+
       current_user.active_matches(session[:user_id]).each do |match|
-        p '--_>' * 60
-        p match
-        p '--_>' * 60
-        p match.home_user_id
-        p '--_>' * 60
-        p User.find(match.home_user_id)
-        p '--_>' * 60
-        p User.find(match.home_user_id).username
-        p '--_>' * 60
+
         active_matches_hash[match.id] = {
             id: match.id,
             home_username: User.find(match.home_user_id).username,

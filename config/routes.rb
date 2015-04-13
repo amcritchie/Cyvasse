@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/about', to: 'home#about'
   get '/rules', to: 'home#rules'
   get '/contact', to: 'home#contact'
+  get '/message_board', to: 'home#message_board'
+  get '/new_rules', to: 'home#new_rules'
 
   get "admin/home" => "admin#home", as: :admin
   get "finished_games" => "matches#finished_games"
@@ -55,6 +57,7 @@ Rails.application.routes.draw do
   put 'who_goes_first' => 'matches#who_goes_first'
   put 'check_turn' => 'matches#check_turn'
   put 'get_match_messages' => 'matches#get_match_messages'
+  put 'get_board_messages' => 'home#get_board_messages'
 
 
   get 'qwertyuiopasdfghjklzxcvbnm' => 'users#change_password'

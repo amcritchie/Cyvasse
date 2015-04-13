@@ -1,0 +1,49 @@
+<div id="messageBoard">
+  <article class="full_column">
+    <br>
+    <h1>Message Board</h1>
+    <br>
+  </article>
+
+  <article class="one_fourth">
+    <div class="messageOptions">
+      <div id="messageNav">
+        <form>
+          <input id="messageBody" type="text" autofocus="">
+
+          <button id="sendMessage" type='submit'>send</button>
+        </form>
+      </div>
+    </div>
+    <!--<div id="match"></div>-->
+  </article>
+
+  <article class="three_fourth messages">
+    <div id="match"></div>
+    <div id="messages">
+      <% @messages.each do |message| %>
+          <div class="messageRow">
+            <div class="message home">
+              <article class="image">
+                <img src="<%= User.find(message[:sender]).image %>">
+              </article>
+              <article class="info">
+                <div class="userInfo">
+                  <h6 class=""><%= User.find(message[:sender]).username.capitalize %></h6>
+                  <p> - <%= distance_of_time_in_words(Time.now - message.created_at) %> ago </p>
+                </div>
+                <div>
+                  <p class=""><%= message[:message] %></p>
+                </div>
+              </article>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </article>
+</div>
+
+<div id=metaInfo>
+  <a id="username"><%= @user.username %></a>
+  <a id="imagePath"><%= @user.image %></a>
+</div>

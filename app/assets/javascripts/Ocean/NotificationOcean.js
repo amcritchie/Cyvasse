@@ -13,7 +13,6 @@ var NotificationOcean = {
             var yourTurn = false;
             var ready = false;
             var enemy = null;
-            debugger;
             if (match.home_user_id === NotificationOcean.currentUser) {
                 yourTurn = (match.whos_turn === 1);
                 ready = (match.home_ready === true);
@@ -77,14 +76,14 @@ var NotificationOcean = {
                         if (match.yourTurn) {
                             NotificationOcean.notifications[match.id] = {
                                 id: match.id,
-                                message: "It's your turn."
+                                message: "It's your turn against " + match.enemy
                             }
                         }
                     } else {
                         if (!match.ready) {
                             NotificationOcean.notifications[match.id] = {
                                 id: match.id,
-                                message: "Finish setup."
+                                message: "Finish setup against " + match.enemy
                             }
                         }
                     }
@@ -106,9 +105,12 @@ var NotificationOcean = {
             if (addNotification) {
                 $('#notificationList').prepend('<li data-id="' + notification.id + '"><a href="/matches/' + notification.id + '" >' + notification.message + '</a></li>')
             }
-            if ($('#notificationList').children().length) {
-                $('#notificationCount').show().html($('#notificationList').children().length);
+            var notificationCount = $('#notificationList').children().length;
+            if (notificationCount) {
+                document.title = '(' + notificationCount + ')www.cyvasse.io';
+                $('#notificationCount').show().html(notificationCount);
             } else {
+                document.title = 'www.cyvasse.io';
                 $('#notificationCount').hide();
             }
 

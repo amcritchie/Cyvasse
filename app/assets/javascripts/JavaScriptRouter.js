@@ -3,6 +3,9 @@ var RootJavaScript = {
         if (window.location.pathname.indexOf('/matches/') !== 0) {
             RootJavaScript.load();
         }
+        if (window.location.pathname.indexOf('/message_board') !== -1) {
+            MessageBoard.load();
+        }
     },
     load: function () {
         RootJavaScript.playUserLink();
@@ -138,6 +141,20 @@ var MatchJavaScript = {
         Message.register();
         Toggle.createAll();
 
+    }
+};
+
+var MessageBoard = {
+    username: null,
+    imagePath: null,
+    load: function() {
+        MessageBoard.username = MessageBoard.capitalizeFirstLetter($('#username').html());
+        MessageBoard.imagePath = $('#imagePath').html();
+        Message.register();
+        MessageOcean.startBoard();
+    },
+    capitalizeFirstLetter: function (string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 };
 

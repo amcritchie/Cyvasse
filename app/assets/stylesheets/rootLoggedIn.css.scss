@@ -218,6 +218,32 @@
   }
 }
 
+.gamesTitle{
+  h1{
+    display: inline-block;
+  }
+  h5{
+    border: 1px solid black;
+    margin-left: 14px;
+    padding: 5px 10px;
+    font-size: 16px;
+//    background-color: royalblue;
+    background-color: #000000;
+    display: inline-block;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+
+    a{
+//      color: white;
+      :hover {
+        color: #000000;
+      }
+    }
+  }
+}
+
 #favorites {
   text-align: center;
   #fourFavorites{
