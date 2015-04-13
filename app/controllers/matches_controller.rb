@@ -16,23 +16,26 @@ class MatchesController < ApplicationController
   def match_status
     @match = Match.find(params[:match_id])
 
-    # game_accepted = { status: (@match.match_status != 'pending') ? true : false }
-    # p '-=-=-=7-=--='*800
-    # game_accepted = {name: 'alex'}
-    p '-=-=-=7-=--='*80
-
     # render json: game_accepted
     render json: (@match.match_status != 'pending') ? true : false
   end
 
   def match_home_ready
     @match = Match.find(params[:match_id])
-    render json: @match.home_ready
+    if @match.match_against == 'human'
+      render json: @match.home_ready
+    else
+      render json: false
+    end
   end
 
   def match_away_ready
     @match = Match.find(params[:match_id])
-    render json: @match.away_ready
+    if @match.match_against == 'human'
+      render json: @match.away_ready
+    else
+      render json: false
+    end
   end
 
   def match_away_units_pos
@@ -184,7 +187,7 @@ class MatchesController < ApplicationController
       (king[0][1][0] == 'g')
     end
 
-    if ((@match[:match_status] == 'in progress') && (kings.include? true))
+    if ((@match[:match_status] == 'in progress') && (kings.include? true) && (@match[:match_against] == 'human'))
       @match.update(match_status: 'finished')
       if params[:winner] == '1'
         winner = User.find(@match.home_user_id)

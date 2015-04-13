@@ -6,9 +6,10 @@
   <h2>
     <%= link_to current_user.name_or_username, edit_user_path(current_user) %>
   </h2>
+  <%= current_user.wins %> - <%= current_user.losses %>
 </div>
 
-<br><br>
+<br>
 
 <div>
   <%= form_for :opponent, url: create_computer_match_path, method: :post, html: {class: 'playComp'} do |f| %>

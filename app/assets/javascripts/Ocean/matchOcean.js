@@ -29,6 +29,7 @@ var MatchOcean = {
     opponentReady: function () {
         var route = (Opponent.team === 0) ? '/match_away_ready' : '/match_home_ready';
         MatchOcean.shell(route, function (res) {
+            console.log(res);
             if (res) {
                 MatchOcean.message('gameUpdate2', 'Opponent Ready');
                 clearInterval(MatchOcean.interval);
