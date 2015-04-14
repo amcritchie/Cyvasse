@@ -9,10 +9,10 @@ class Catapult < Unit
         :codename => "catapult",
         :image => "svgs/catapult.svg",
         :movement => 2,
-        :strength => 4,
+        :strength => 3,
         :range => 3,
         :flank => 0,
-        :trump => nil
+        :trump => ["Dragon"]
     }
   end
 

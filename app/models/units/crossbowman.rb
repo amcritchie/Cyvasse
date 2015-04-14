@@ -12,7 +12,7 @@ class Crossbowman < Unit
         :strength => 2,
         :flank => 0,
         :range => 2,
-        :trump => nil
+        :trump => ["Elephant"]
     }
   end
 

@@ -10,6 +10,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # storage :file
 
   version :thumb do
+
+    # the recreate version write in user console.
+    # User.find_each do |user|
+    #   user.image.recreate_versions! if user.image?
+    # end
+
     # returns an image with a maximum width of 100px
     # while maintaining the aspect ratio
     # 10000 is used to tell CW that the height is free

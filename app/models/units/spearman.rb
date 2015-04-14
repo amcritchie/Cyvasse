@@ -12,7 +12,7 @@ class Spearman < Unit
         :strength => 2,
         :range => 0,
         :flank => 2,
-        :trump => ["Light Horse", "Heavy Horse"]
+        :trump => ["Light Horse"]
     }
   end
 end

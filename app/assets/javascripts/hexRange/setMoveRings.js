@@ -113,7 +113,7 @@ var MoveRings = {
     },
     dragonVsEnemy: function (image, hex, lastRingNum) {
         if ((image.getAttribute('data-rank') == 'range') || (image.getAttribute('alt') == 'dragon')) {
-            if (image.getAttribute('alt') == 'trebuchet') {
+            if ((image.getAttribute('alt') == 'trebuchet') || (image.getAttribute('alt') == 'catapult')) {
                 hex.setAttribute('data-ring', (lastRingNum + 50));
             } else {
                 hex.setAttribute('data-ring', (lastRingNum + 40));
