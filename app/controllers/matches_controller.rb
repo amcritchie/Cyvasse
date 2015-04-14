@@ -180,14 +180,21 @@ class MatchesController < ApplicationController
   end
 
   def finish_game
+    p 'finish game 1' * 80
     @match = Match.find(params[:match_id])
+    p @match
 
     kings = position_of_kings(params[:match_id])
     kings.map! do |king|
       (king[0][1][0] == 'g')
     end
-
-    if ((@match[:match_status] == 'in progress') && (kings.include? true) && (@match[:match_against] == 'human'))
+    p @match[:match_status]
+    p kings.include? true
+    p kings
+    p
+    p 'finish game 2' * 80
+    if ((@match[:match_status] == 'in progress') && (kings.include? true))
+      p 'finish game 3' * 80
       @match.update(match_status: 'finished')
       if params[:winner] == '1'
         winner = User.find(@match.home_user_id)
@@ -196,9 +203,12 @@ class MatchesController < ApplicationController
         winner = User.find(@match.away_user_id)
         loser = User.find(@match.home_user_id)
       end
+      p 'finish game 4' * 80
       Keen.publish(:finish_games, {winner: winner.id, loser: loser.id, turn: @match.turn}) if Rails.env.production?
-      winner.update(wins: (winner.wins + 1))
-      loser.update(losses: (loser.losses + 1))
+      if (@match[:match_against] == 'human')
+        winner.update(wins: (winner.wins + 1))
+        loser.update(losses: (loser.losses + 1))
+      end
     end
     render nothing: true
   end
