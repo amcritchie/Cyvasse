@@ -55,7 +55,7 @@ var MessageOcean = {
                             "<div class='messageRow'>" +
                             "<div class='message home'>" +
                             "<article class='image'>" +
-                            "<img src='" + res.users[message.sender].imagePath.image.url + "'>" +
+                            "<img src='" + res.users[message.sender].imagePath.image.thumb.url + "'>" +
                             "</article>" +
                             "<article class='info'>" +
                             "<div><h6>" + res.users[message.sender].username + "</h6></div>" +

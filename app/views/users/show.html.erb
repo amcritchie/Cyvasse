@@ -6,7 +6,7 @@
     <%= @user.username %>
   </div>
   <div>
-    <%= image_tag @user.image, class: 'profileImage' %>
+    <%= image_tag @user.image_url(:thumb), class: 'profileImage' %>
   </div>
   <div>
     <h3><%= @user.username %></h3>

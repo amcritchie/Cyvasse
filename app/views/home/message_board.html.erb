@@ -25,7 +25,7 @@
           <div class="messageRow">
             <div class="message home">
               <article class="image">
-                <img src="<%= User.find(message[:sender]).image %>">
+                <img src="<%= User.find(message[:sender]).image_url(:thumb) %>">
               </article>
               <article class="info">
                 <div class="userInfo">
