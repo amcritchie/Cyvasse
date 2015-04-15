@@ -1,32 +1,31 @@
 <article class="one_fourth">&nbsp</article>
 
 <article id="userShow" class="one_half">
-
-  <div>
-    <%= @user.username %>
-  </div>
+  <br>
   <div>
     <%= image_tag @user.image_url(:thumb), class: 'profileImage' %>
   </div>
   <div>
-    <h3><%= @user.username %></h3>
-  </div>
-  <div>
-    <%= @user.first_name %>
+    <h3><%= @user.username.capitalize %></h3>
+    <% if @user == current_user %>
+        <%= link_to 'Edit Info', edit_user_path(current_user) %>
+    <% else %>
+        <% if Favorite.where(favoriter: current_user.id, favorited: @user.id)== [] ? true : false %>
+            <%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: @user.id} %>
+        <% else %>
+            <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: @user.id} %>
+        <% end %>
+    <% end %>
   </div>
   <br>
+
   <div>
-    <h6>Wins/Losses</h6><p style="font-size: 10px">against players</p>
+    <h6>Wins/Losses</h6>
+
+    <p style="font-size: 10px">against players</p>
     <%= @user.wins %>/<%= @user.losses %>
   </div>
 
-  <div>
-    <% if Favorite.where(favoriter: current_user.id, favorited: @user.id)== [] ? true : false %>
-        <%= link_to 'Favorite', "#privacy", data: {linkType: 'favorite', favoriter: current_user.id, favorited: @user.id} %>
-    <% else %>
-        <%= link_to 'Unfavorite', "#privacy", data: {linkType: 'unfavorite', favoriter: current_user.id, favorited: @user.id} %>
-    <% end %>
-  </div>
   <p id="notice"><%= notice %></p>
 
   <p>
