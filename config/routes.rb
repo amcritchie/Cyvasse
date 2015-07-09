@@ -61,4 +61,6 @@ Rails.application.routes.draw do
 
 
   get 'qwertyuiopasdfghjklzxcvbnm' => 'users#change_password'
+
+  get 'sitemap' => 'application#sitemap', :defaults => { :format => 'xml' }
 end
