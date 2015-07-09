@@ -88,8 +88,6 @@ var AI = {
     },
 
     checkKillableEnemies: function (unit) {
-
-
         $('.hexDiv').attr('data-ring', 8);
         $('.hexDiv').attr('data-locked', false);
         $(unit).parent().attr('data-ring', 9);
