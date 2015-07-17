@@ -106,7 +106,7 @@ body {
 }
 
 .theYeild{
-  min-height: 710px;
+//  min-height: 710px;
 }
 
 //About Page CSS
@@ -682,4 +682,15 @@ dd{
       //      background-color: orangered;
     }
   }
+}
+
+#beta-tag{
+  background-color: blueviolet;
+  font-size: 14px;
+  padding: 4px 6px;
+  margin: 0 0 0 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px; /* future proofing */
+  -khtml-border-radius: 6px; /* for old Konqueror browsers */
 }

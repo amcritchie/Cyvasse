@@ -5,9 +5,23 @@
   <meta name="description" content="The best digital version of Westeros and Essos favorite board game, Cyvasse!  Set up your army, and play against our computer or
    your friends.  Cyvasse is a fictitious board game played in George R. R. Martin's A Song of Ice and Fire, the book series Game of Thrones is based on.
    The game is first mentioned in A Feast for Crows, and is played in A Dance with Dragons by Tyrion and other character across Essos.">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+
+
+
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'elephant.png' %>
+
+  <!--Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   <%= csrf_meta_tags %>
 
@@ -32,13 +46,14 @@
           e = document.createElement("script"), e.async = !0, e.src = b, f = document.getElementsByTagName("script")[0], f.parentNode.insertBefore(e, f)
       }, this);
   </script>
+
 </head>
 <body class="essos">
+<%= render 'layouts/navBar' %>
 
 
 <div class="wrapper">
   <section class="clearfix">
-    <%= render 'layouts/navBar' %>
     <div class="theYeild">
       <%= yield %>
     </div>

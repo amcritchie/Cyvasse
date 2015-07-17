@@ -1,65 +1,91 @@
-<div class="navBackdrop"></div>
-<div class="navBar">
+<nav class="navbar navbar-inverse" style="margin-bottom: -2px">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">cyvasse.io<b id="beta-tag">Beta</b></a>
+    </div>
 
-  <!--<article class="one_fourth"></article>-->
-  <article class="three_fourth">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if session[:user_id] != nil %>
+            <li><%= link_to 'Messages', '/message_board' %></li>
+        <% end %>
+        <li><%= link_to 'Rules', rules_path %></li>
+        <li><%= link_to 'About', about_path %></li>
+        <li><%= link_to 'Contact', contact_path %></li>
+
+        <!--<li class="dropdown">-->
+        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+        <!--<ul id="notificationList"></ul>-->
+
+        <!--&lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#">Action</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#">Another action</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#">Something else here</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li role="separator" class="divider"></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#">Separated link</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li role="separator" class="divider"></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#">One more separated link</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--</li>-->
 
 
-    <article class="root">
-      <h3><%= link_to 'Cyvasse.io', root_path %></h3>
-      <h6 class="borderRadius6">Beta</h6>
-    </article>
-
-    <% if session[:user_id] != nil %>
-        <article class="navOption">
-          <h6><%= link_to 'Messages', '/message_board' %></h6>
-        </article>
-    <% end %>
-
-    <article class="navOption">
-      <h6><%= link_to 'Rules', rules_path %></h6>
-    </article>
-
-    <article class="navOption">
-      <h6><%= link_to 'About', about_path %></h6>
-    </article>
-    <article class="navOption">
-      <h6><%= link_to 'Contact', contact_path %></h6>
-    </article>
-    <% if session[:user_id] != nil %>
-        <article class="navNotifications">
-
-          <ul>
-            <li><a href="#">
+        <% if session[:user_id] != nil %>
+            <li class="navNotifications">
+              <!--<ul>-->
+              <!--<li><a href="#">-->
               <div>
                 <%= image_tag '/images/mail-icon.png', class: 'onlineStatffusLight' %>
+                <h6 id="notificationCount"></h6>
+
               </div>
-              <div>
-                <h6 id="notificationCount">4</h6>
-              </div>
-            </a>
+              <!--<div>-->
+              <!--<h6 id="notificationCount">4</h6>-->
+              <!--</div>-->
+              <!--</a>-->
               <ul id="notificationList"></ul>
+              <!--</li>-->
+              <!--</ul>-->
             </li>
-          </ul>
-        </article>
-    <% end %>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right navLogin">
+        <% if session[:user_id] == nil %>
+            <li>
+              <%= link_to 'Login', login_path %>
+            </li>
+            <li>
+              <%= link_to 'New User', new_user_path %>
+            </li>
+        <% else %>
+            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+        <% end %>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
 
-  </article>
 
-  <article class="one_fourth">
 
-    <article class="navLogin">
-      <% if session[:user_id] == nil %>
-          <h6>
-            <%= link_to 'Login', login_path %>
-            |
-            <%= link_to 'New User', new_user_path %>
-          </h6>
-      <% else %>
-          <h6><%= link_to 'Logout', logout_path, method: :delete %></h6>
-      <% end %>
-    </article>
 
-  </article>
 
-</div>
+
+
+
+
+
+
+
+
+
+
+

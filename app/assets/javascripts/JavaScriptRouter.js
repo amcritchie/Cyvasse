@@ -192,7 +192,7 @@ var AlwaysJavaScript = {
     },
     userColumnGrow: function () {
         if ($('#activeGames').children().length > 4) {
-            $('#userColumn').css('height', (390 + ($('#activeGames').children().length * 70)) + 'px')
+            $('#userColumn').css('height', (390 + ($('#activeGames').children().length * 56)) + 'px')
         }
     }
 };

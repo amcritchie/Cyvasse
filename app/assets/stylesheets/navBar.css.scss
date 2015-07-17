@@ -33,10 +33,20 @@
   }
   .navNotifications{
 
+//    #notificationList{
+//      display: none;
+//    }
+//
+//    :hover{
+//      #notificationList{
+//        display: none;
+//      }
+//    }
+
     :hover{
-      li ul{
-        display:inherit;
-      }
+//      li ul{
+//        display:inherit;
+//      }
     }
       ul {
         padding:0;
@@ -212,3 +222,74 @@
   margin-bottom: -8px;
   margin-left: -160px;
 }
+
+
+#notificationList{
+  z-index: 999;
+  &:hover {
+    //    background-color: yellow;
+      display: block;
+  }
+  li{
+    a{
+      color: white;
+//      &:hover {
+//        //    background-color: yellow;
+//        #notificationList{
+//          display: block;
+//        }
+//      }
+    }
+//    &:hover {
+//      //    background-color: yellow;
+//      #notificationList{
+//        display: block;
+//      }
+//    }
+  }
+
+  display: none;
+  position: absolute;
+//  color: white;
+  background-color: #000000;
+  left: -10px;
+  li {
+//    text-decoration: none;
+    width: 200px;
+    padding: 4px;
+    &:hover {
+//      color: black;
+      background-color: #666;
+      a {
+        color: black;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.navNotifications{
+  width: 140px;
+  margin-left: 8px;
+  &:hover {
+//    background-color: yellow;
+    #notificationList{
+      display: block;
+    }
+  }
+  #notificationCount{
+    display: inline-block;
+    color: white;
+  }
+}
+
+//#notificationCount{
+//
+//}
+//
+//#notificationCount:hover {
+//    //    background-color: yellow;
+////    #notificationList{
+//      display: block;
+////    }
+//  }
