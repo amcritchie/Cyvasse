@@ -4,6 +4,7 @@
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
+
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
 //
@@ -29,4 +30,26 @@ $(document).ready(function () {
     $('#button').on('click', function () {
         $(this).css('backround-color', 'blue')
     });
+
+//    var img = new Image();
+//    $.when(minTime(), onImageLoad()).then(function () {
+//        $(".background-image").css("background-image", "url('" + img.src + "')").fadeIn('medium');
+//        $(".page-load-spinner").fadeOut('medium');
+//    });
+//    function minTime() {
+//        var minLoadTime = 500;
+//        var deferred = $.Deferred();
+//        setTimeout(function () {
+//            deferred.resolve();
+//        }, minLoadTime);
+//        return deferred;
+//    }
+//    function onImageLoad() {
+//        var deferred = $.Deferred();
+//        img.src = "http://farm1.staticflickr.com/293/18278124840_42bcd162cb_b.jpg";
+//        img.onload = function () {
+//            deferred.resolve();
+//        };
+//        return deferred;
+//    }
 });

@@ -1,35 +1,85 @@
-<article class="one_fourth">&nbsp</article>
-<article class="one_half">
-  <div id="messageDock">
-    <div class="flashSuccess"><h5><%= flash[:success] %></h5></div>
-    <div class="flashError"><h5><%= flash[:error] %></h5></div>
-  </div>
-  <div>
-    <h1>Hi, Welcome To Cyvasse.io</h1>
-    <h6>The best digital version of Westeros and Essos favorite board game, Cyvasse!  Set up your army, and play against our computer or
-      your friends.  We are currently in beta, and appreciate all feedback!</h6><br>
-  </div>
-  <div>
-    <article>
-      <div>
-        <h3>
-          <%= link_to 'Login', login_path %>
-          |
-          <%= link_to 'New Player', new_user_path %>
-        </h3>
-      </div>
-    </article>
-  </div>
+<!--<div class="container align-center page-load-spinner">-->
+  <!--<i class="fa fa-spinner fa-spin fa-5x"></i>-->
+<!--</div>-->
+<style>
+  .navbar{
+    z-index: 999;
+  }
+</style>
+<div id="homePage" class="main-content background-image">
+  <div class="layer blackLayer">
+    <div class="container">
 
-  <div style="display: block">
-    <article>
+      <div class="container">
+        <hr class="prettyline">
+        <hr class="prettyline">
+        <hr class="prettyline">
+      </div>
       <br>
-      cyvasse.io currently works on Google Chrome, Firefox, and Safari on PC and Mac
-    </article>
-    <article>
+
+      <h1>
+        Welcome To Cyvasse.io,
+      </h1>
       <br>
-      Avast antivirus not supported
-    </article>
+      <h3>
+        The best digital version of
+        <a href="http://awoiaf.westeros.org/index.php/Cyvasse" style="color: whitesmoke;" target="_blank">
+          Cyvasse,
+        </a>
+        the board game described in
+        <a href="http://en.wikipedia.org/wiki/George_R._R._Martin" style="color: whitesmoke;" target="_blank">
+          George R. R. Martin's
+        </a>
+        <a href="http://en.wikipedia.org/wiki/A_Song_of_Ice_and_Fire" style="color: whitesmoke;" target="_blank">
+          <i>A Song of Ice and Fire.</i>
+        </a>
+        Cyvasse is first mentioned in
+        <a href="'http://awoiaf.westeros.org/index.php/A_Feast_for_Crows'" style="color: whitesmoke;" target="_blank">
+          <i>A Feast for Crows,</i>
+        </a>
+         and is played in
+        <a href="http://awoiaf.westeros.org/index.php/A_Dance_with_Dragons" style="color: whitesmoke;" target="_blank">
+          <i>A Dance with Dragons</i>
+        </a>
+        by an number of characters across
+        <a href="http://awoiaf.westeros.org/index.php/Westeros" style="color: whitesmoke;" target="_blank">
+          Westeros
+        </a>
+        and
+        <a href="http://awoiaf.westeros.org/index.php/Essos" style="color: whitesmoke;" target="_blank">
+          Essos,
+        </a>
+        including,
+        <a href="http://awoiaf.westeros.org/index.php/Tyrion_Lannister" style="color: whitesmoke;" target="_blank">
+          Tyrion,
+        </a>
+        <a href="http://awoiaf.westeros.org/index.php/Myrcella_Baratheon" style="color: whitesmoke;" target="_blank">
+          Myrcella,
+        </a>
+        <a href="http://awoiaf.westeros.org/index.php/House_Martell" style="color: whitesmoke;" target="_blank">
+          the Martells,
+        </a>
+        and many more.
+        Join our community and play against friend's or our computers.
+        <br>
+        <br>
+        We are currently in beta, and appreciate all feedback!
+      </h3>
+      <br><br>
+      <h4>
+        <%= link_to 'New Player', new_user_path, :class => 'btn-success btn sign-up', :target => "_self" %> |
+        <%= link_to 'Login', login_path, :class => 'btn-info btn sign-up', :target => "_self" %>
+      </h4>
+      <br>
+      <br>
+      <!--<br>-->
+      <h6>cyvasse.io currently works on Google Chrome, Firefox, and Safari on PC and Mac</h6>
+      <br>
+      <!--<br>-->
+      <h6>Avast antivirus not supported</h6>
+      <div class="meta">
+        <a id="signedOut"></a>
+      </div>
+    </div>
   </div>
-</article>
-<article class="one_fourth">&nbsp</article>
+</div>
