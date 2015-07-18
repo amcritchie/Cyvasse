@@ -8,18 +8,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">cyvasse.io<b id="beta-tag">Beta</b></a>
+      <a class="navbar-brand" href="/" id="cyvasseio-home">cyvasse.io<b id="beta-tag">Beta</b></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if session[:user_id] != nil %>
-            <li><%= link_to 'Messages', '/message_board' %></li>
+            <li><%= link_to 'Messages', '/message_board', :id => 'message-board' %> %></li>
         <% end %>
-        <li><%= link_to 'Rules', rules_path %></li>
-        <li><%= link_to 'About', about_path %></li>
-        <li><%= link_to 'Contact', contact_path %></li>
+        <li><%= link_to 'Rules', rules_path, :id => 'cyvasse-rules' %> %></li>
+        <li><%= link_to 'About', about_path, :id => 'about-cyvasse' %></li>
+        <li><%= link_to 'Contact', contact_path, :id => 'contact-iron-ocean' %></li>
 
         <!--<li class="dropdown">-->
         <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
@@ -42,7 +42,7 @@
               <!--<ul>-->
               <!--<li><a href="#">-->
               <div>
-                <%= image_tag '/images/mail-icon.png', class: 'onlineStatffusLight' %>
+                <%= image_tag '/images/mail-icon.png', class: 'onlineStatffusLight', :id => 'cyvasse-messages-nav' %>
                 <h6 id="notificationCount"></h6>
 
               </div>
@@ -59,13 +59,13 @@
       <ul class="nav navbar-nav navbar-right navLogin">
         <% if session[:user_id] == nil %>
             <li>
-              <%= link_to 'Login', login_path %>
+              <%= link_to 'Login', login_path, :id => 'cyvasse-login-nav' %>
             </li>
             <li>
-              <%= link_to 'New User', new_user_path %>
+              <%= link_to 'New User', new_user_path, :id => 'cyvasse-sign-up-nav' %>
             </li>
         <% else %>
-            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+            <li><%= link_to 'Logout', logout_path, method: :delete, :id => 'cyvasse-logout' %></li>
         <% end %>
       </ul>
     </div>
