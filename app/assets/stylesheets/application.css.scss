@@ -700,12 +700,29 @@ dd{
 }
 
 .blackLayer {
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .6);
   color: white;
+  overflow: scroll;
 }
 
 .background-image{
   background-image: url('cyvasse_background.png');
+}
+
+.background-404-image{
+  background-image: url('cyvasse_404_background.png');
+}
+
+.background-message-image{
+  background-image: url('cyvasse_message_background.png');
+}
+
+.background-rules-image{
+  background-image: url('cyvasse_rules_background.png');
+}
+
+.background-about-background{
+  background-image: url('cyvasse_about_background.png');
 }
 
 .background-image{
@@ -725,3 +742,4 @@ dd{
   background-color: rgba(0, 0, 0, .6);
   color: white;
 }
+

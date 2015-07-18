@@ -1,49 +1,71 @@
-<div id="messageBoard">
-  <article class="full_column">
-    <br>
-    <h1>Message Board</h1>
-    <br>
-  </article>
+<style>
+    .navbar {
+        z-index: 999;
+    }
+</style>
+<div id="homePage" class="main-content background-image background-message-image">
+  <div class="layer blackLayer" style="color: black;">
+    <div class="container">
 
-  <article class="one_fourth">
-    <div class="messageOptions">
-      <div id="messageNav">
-        <form>
-          <input id="messageBody" type="text" autofocus="">
-
-          <button id="sendMessage" type='submit'>send</button>
-        </form>
+      <div class="container">
+        <hr class="prettyline">
+        <hr class="prettyline">
+        <hr class="prettyline">
       </div>
-    </div>
-    <!--<div id="match"></div>-->
-  </article>
+      <br>
 
-  <article class="three_fourth messages">
-    <div id="match"></div>
-    <div id="messages">
-      <% @messages.each do |message| %>
-          <div class="messageRow">
-            <div class="message home">
-              <article class="image">
-                <img src="<%= User.find(message[:sender]).image_url(:thumb) %>">
-              </article>
-              <article class="info">
-                <div class="userInfo">
-                  <h6 class=""><%= User.find(message[:sender]).username.capitalize %></h6>
-                  <p> - <%= distance_of_time_in_words(Time.now - message.created_at) %> ago </p>
-                </div>
-                <div>
-                  <p class=""><%= message[:message] %></p>
-                </div>
-              </article>
+      <div id="messageBoard">
+        <article class="full_column">
+          <br>
+
+          <h1>Message Board</h1>
+          <br>
+        </article>
+
+        <article class="one_fourth">
+          <div class="messageOptions">
+            <div id="messageNav">
+              <form>
+                <input id="messageBody" type="text" autofocus="">
+
+                <button id="sendMessage" type='submit'>send</button>
+              </form>
             </div>
           </div>
-      <% end %>
-    </div>
-  </article>
-</div>
+          <!--<div id="match"></div>-->
+        </article>
 
-<div id=metaInfo>
-  <a id="username"><%= @user.username %></a>
-  <a id="imagePath"><%= @user.image_url(:thumb) %></a>
+        <article class="three_fourth messages">
+          <div id="match"></div>
+          <div id="messages">
+            <% @messages.each do |message| %>
+                <div class="messageRow">
+                  <div class="message home">
+                    <article class="image">
+                      <img src="<%= User.find(message[:sender]).image_url(:thumb) %>">
+                    </article>
+                    <article class="info">
+                      <div class="userInfo">
+                        <h6 class=""><%= User.find(message[:sender]).username.capitalize %></h6>
+
+                        <p> - <%= distance_of_time_in_words(Time.now - message.created_at) %> ago </p>
+                      </div>
+                      <div>
+                        <p class=""><%= message[:message] %></p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </article>
+      </div>
+
+      <div id=metaInfo>
+        <a id="username"><%= @user.username %></a>
+        <a id="imagePath"><%= @user.image_url(:thumb) %></a>
+      </div>
+
+    </div>
+  </div>
 </div>

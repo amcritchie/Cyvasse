@@ -1,132 +1,151 @@
-<article class="full_column" id="aboutPage">
+<style>
+    .navbar{
+        z-index: 999;
+    }
+</style>
+<div id="homePage" class="main-content background-image background-about-background">
+  <div class="layer blackLayer" style="background-color: rgba(0, 0, 0, .7);">
+    <div class="container">
 
-  <div>
-  <h1 style="text-align: center;">About</h1>
-  <br>
-
-
-  <article class="aboutMe">
-    <h4>Alex McRitchie</h4>
-    <a href="https://www.linkedin.com/in/amcritchie" target="_blank">
-      <%= image_tag '/images/thanks/alexmcritchie.jpg' %>
-    </a>
-
-    <p>
-      amcritchie@gmail.com
+      <div class="container">
+        <hr class="prettyline">
+        <hr class="prettyline">
+        <hr class="prettyline">
+      </div>
       <br>
-      @mcritchiealex
-    </p>
-  </article>
+
+      <article class="full_column" id="aboutPage" style="overflow: scroll;">
+
+        <div style="overflow: scroll;">
+          <h1 style="text-align: center;">About</h1>
+          <br>
 
 
-  <p style="font-size: 11px">
-    <%= link_to 'Cyvasse', 'http://awoiaf.westeros.org/index.php/Cyvasse', :target => "_blank" %>
-    is a fictitious game from
-    <%= link_to "George R. R. Martin's", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>
-    series
-    <i><%= link_to 'A Song of Ice and Fire', 'http://en.wikipedia.org/wiki/A_Song_of_Ice_and_Fire', :target => "_blank" %></i>,
-    played in
-    <%= link_to 'Essos', 'http://awoiaf.westeros.org/index.php/Essos', :target => "_blank" %>
-    and
-    <%= link_to 'Dorne', 'http://awoiaf.westeros.org/index.php/Dorne', :target => "_blank" %>.
-    The true rules to Cyvasse are not known, save by George R. R. Martin himself, and it may
-    be the case that he has never developed a complete set of rules.
-    The goal of this website is to allow fans to get together and play each
-    other using a set of rules I developed.
+          <article class="aboutMe">
+            <h4>Alex McRitchie</h4>
+            <a href="https://www.linkedin.com/in/amcritchie" target="_blank">
+              <%= image_tag '/images/thanks/alexmcritchie.jpg' %>
+            </a>
 
-  </p>
+            <p>
+              amcritchie@gmail.com
+              <br>
+              @mcritchiealex
+            </p>
+          </article>
 
-  <p style="font-size: 10px">
-    Though the rules of Cyvasse are not specified in great detail throughout any of the books,
-    we are given hints on how the game is played.
 
-    In preparation for creating the rules, I have gone over the entire <i>A Song of Ice and Fire</i>
-    series multiple times, including
-    <i><%= link_to 'A World of Ice and Fire', 'http://awoiaf.westeros.org/index.php/The_World_of_Ice_and_Fire', :target => "_blank" %></i>
-    and
-    <i><%= link_to 'The Hedge Knight', 'http://awoiaf.westeros.org/index.php/The_Hedge_Knight', :target => "_blank" %></i>
-    diligently, paying special attention to
-    <i><%= link_to 'A Feast for Crows', 'http://awoiaf.westeros.org/index.php/A_Feast_for_Crows', :target => "_blank" %></i>
-    and
-    <i><%= link_to 'A Dance with Dragons', 'http://awoiaf.westeros.org/index.php/A_Dance_with_Dragons', :target => "_blank" %></i>
-    where Cyvasse is referenced. The rules used in this imagining are a combination of the specifics found in the books
-    combined with my views on game design.
+          <p style="font-size: 14px">
+            <%= link_to 'Cyvasse', 'http://awoiaf.westeros.org/index.php/Cyvasse', :target => "_blank" %>
+            is a fictitious game from
+            <%= link_to "George R. R. Martin's", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>
+            series
+            <i><%= link_to 'A Song of Ice and Fire', 'http://en.wikipedia.org/wiki/A_Song_of_Ice_and_Fire', :target => "_blank" %></i>,
+            played in
+            <%= link_to 'Essos', 'http://awoiaf.westeros.org/index.php/Essos', :target => "_blank" %>
+            and
+            <%= link_to 'Dorne', 'http://awoiaf.westeros.org/index.php/Dorne', :target => "_blank" %>.
+            The true rules to Cyvasse are not known, save by George R. R. Martin himself, and it may
+            be the case that he has never developed a complete set of rules.
+            The goal of this website is to allow fans to get together and play each
+            other using a set of rules I developed.
 
-  </p>
+          </p>
 
-  <p style="font-size: 11px">
-    This project initially started on August 8th of 2014, as a personal project for
-    <%= link_to 'gSchool', 'http://www.galvanize.it/school/#main', :target => "_blank" %>,
-    a full stack web development boot camp. gSchool played a crucial role in the development of Cyvasse, as
-    this is where I learned the skills I used to build this site.
-  </p>
+          <p style="font-size: 14px">
+            Though the rules of Cyvasse are not specified in great detail throughout any of the books,
+            we are given hints on how the game is played.
 
-  <p style="font-size: 11px">
-    If nothing else, this site as a love letter to my favorite author
-    <%= link_to "George R. R. Martin", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>,
-    as well as an attempt to solidify a set of rules that reflect the specifics
-    and spirit we learn about Cyvasse through out <i>A Song of Ice and Fire</i>.
-  </p>
+            In preparation for creating the rules, I have gone over the entire <i>A Song of Ice and Fire</i>
+            series multiple times, including
+            <i><%= link_to 'A World of Ice and Fire', 'http://awoiaf.westeros.org/index.php/The_World_of_Ice_and_Fire', :target => "_blank" %></i>
+            and
+            <i><%= link_to 'The Hedge Knight', 'http://awoiaf.westeros.org/index.php/The_Hedge_Knight', :target => "_blank" %></i>
+            diligently, paying special attention to
+            <i><%= link_to 'A Feast for Crows', 'http://awoiaf.westeros.org/index.php/A_Feast_for_Crows', :target => "_blank" %></i>
+            and
+            <i><%= link_to 'A Dance with Dragons', 'http://awoiaf.westeros.org/index.php/A_Dance_with_Dragons', :target => "_blank" %></i>
+            where Cyvasse is referenced. The rules used in this imagining are a combination of the specifics found in the books
+            combined with my views on game design.
+
+          </p>
+
+          <p style="font-size: 14px">
+            This project initially started on August 8th of 2014, as a personal project for
+            <%= link_to 'gSchool', 'http://www.galvanize.it/school/#main', :target => "_blank" %>,
+            a full stack web development boot camp. gSchool played a crucial role in the development of Cyvasse, as
+            this is where I learned the skills I used to build this site.
+          </p>
+
+          <p style="font-size: 14px">
+            If nothing else, this site as a love letter to my favorite author
+            <%= link_to "George R. R. Martin", 'http://en.wikipedia.org/wiki/George_R._R._Martin', :target => "_blank" %>,
+            as well as an attempt to solidify a set of rules that reflect the specifics
+            and spirit we learn about Cyvasse through out <i>A Song of Ice and Fire</i>.
+          </p>
+        </div>
+
+        <div>
+          <h3 style="text-align: center">Thanks</h3>
+          <h6 style="text-align: center">I want to give a special thanks to the people who have been my friends and mentors though this whole journey.</h6>
+          <br>
+
+          <article class="thanksProfile">
+            <h6>Jeff Taggart</h6>
+            <a href="https://www.linkedin.com/in/jetaggart" target="_blank">
+              <%= image_tag '/images/thanks/jefftaggart.jpeg' %>
+            </a>
+          </article>
+
+          <article class="thanksProfile">
+            <h6>Bobby Wilson</h6>
+            <a href="https://www.linkedin.com/in/bobbywilson0" target="_blank">
+              <%= image_tag '/images/thanks/bobbywilson.jpg' %>
+            </a>
+          </article>
+
+          <article class="thanksProfile">
+            <h6>Bobby Blackstock</h6>
+            <a href="http://www.bobbyblackstock.com/" target="_blank">
+              <%= image_tag '/images/thanks/bobbyblackstock.jpeg' %>
+            </a>
+          </article>
+
+          <article class="thanksProfile">
+            <h6>Sean Smith</h6>
+            <a href="https://www.linkedin.com/in/seansmith1020" target="_blank">
+              <%= image_tag '/images/thanks/seansmith.jpeg' %>
+            </a>
+          </article>
+
+          <article class="thanksProfile">
+            <h6>Zach Klabunde</h6>
+            <a href="https://www.linkedin.com/in/zbunde" target="_blank">
+              <%= image_tag '/images/thanks/zachklabunde.jpeg' %>
+            </a>
+          </article>
+
+          <article class="thanksProfile">
+            <h6>Aaron Gray</h6>
+            <a href="http://hellometa.com/" target="_blank">
+              <%= image_tag '/images/thanks/aarongray.jpg' %>
+            </a>
+          </article>
+        </div>
+
+        <article class="thanksgSchool">
+          <h5>gSchool g[3]</h5>
+
+          <p>
+            Last and most importantly, I want to thank gSchool for being greatest group
+            I have ever had the privilege of being a part of. I love you all!
+          </p>
+          <a href="http://www.galvanize.com/courses/full-stack/denver/" target="_blank">
+            <%= image_tag '/images/thanks/gschool.jpg' %>
+          </a>
+        </article>
+
+      </article>
+    </div>
   </div>
-
-  <div>
-    <h3 style="text-align: center">Thanks</h3>
-    <h6 style="text-align: center">I want to give a special thanks to the people who have been my friends and mentors though this whole journey.</h6>
-    <br>
-
-  <article class="thanksProfile">
-    <h6>Jeff Taggart</h6>
-    <a href="https://www.linkedin.com/in/jetaggart" target="_blank">
-      <%= image_tag '/images/thanks/jefftaggart.jpeg' %>
-    </a>
-  </article>
-
-  <article class="thanksProfile">
-    <h6>Bobby Wilson</h6>
-    <a href="https://www.linkedin.com/in/bobbywilson0" target="_blank">
-      <%= image_tag '/images/thanks/bobbywilson.jpg' %>
-    </a>
-  </article>
-
-  <article class="thanksProfile">
-    <h6>Bobby Blackstock</h6>
-    <a href="http://www.bobbyblackstock.com/" target="_blank">
-      <%= image_tag '/images/thanks/bobbyblackstock.jpeg' %>
-    </a>
-  </article>
-
-  <article class="thanksProfile">
-    <h6>Sean Smith</h6>
-    <a href="https://www.linkedin.com/in/seansmith1020" target="_blank">
-      <%= image_tag '/images/thanks/seansmith.jpeg' %>
-    </a>
-  </article>
-
-  <article class="thanksProfile">
-    <h6>Zach Klabunde</h6>
-    <a href="https://www.linkedin.com/in/zbunde" target="_blank">
-      <%= image_tag '/images/thanks/zachklabunde.jpeg' %>
-    </a>
-  </article>
-
-  <article class="thanksProfile">
-    <h6>Aaron Gray</h6>
-    <a href="http://hellometa.com/" target="_blank">
-      <%= image_tag '/images/thanks/aarongray.jpg' %>
-    </a>
-  </article>
-  </div>
-
-  <article class="thanksgSchool">
-    <h5>gSchool g[3]</h5>
-
-    <p>
-      Last and most importantly, I want to thank gSchool for being greatest group
-      I have ever had the privilege of being a part of. I love you all!
-    </p>
-    <a href="http://www.galvanize.com/courses/full-stack/denver/" target="_blank">
-      <%= image_tag '/images/thanks/gschool.jpg' %>
-    </a>
-  </article>
-
-</article>
+</div>
