@@ -29,17 +29,15 @@ var Tutorial = {
     placeUnit: function () {
         $('.tutorialSelectUnit').remove();
         $('.tutorialWelcome').remove();
-        $(".map").prepend("<button class='tutorialStats tutorial'><h5>You can see this units stats here. &#8594</h5><p>Each unit has a STRENGTH and MOVEMENT, used for navigating the board.</p></button>");
+        $(".map").prepend("<button class='tutorialStats tutorial'><h5>You can see this units stats here. &#8594</h5><h6>Each unit has a STRENGTH and MOVEMENT, used for navigating the board.</h6></button>");
         Rotator.rotateOn($('.tutorialStats'));
         setTimeout(function () {
             $(".map").prepend("<button class='tutorialSpecialRules tutorial'><h5>Special Rules</h5>" +
                 "<div>" +
-                "<article><h5>Range Units</h5><img src='/images/tutorial/range.png'><p>Range units, attack from a distance, and block dragon movement, but are vulnerable to any attack.</p></article>" +
-                "<article><h5>Cavalry Units</h5><img src='/images/tutorial/cavalry.png'><p>Cavalry units, move/attack twice a turn.  In this case the primary movement is 3, and the secondary is 2.</p></article>" +
-                "<article><h5>Your Dragon</h5><img src='/images/tutorial/dragon.png'><p>A Dragon flys any distance in a straight line, and can only be taken by a Trebuchet, Catapult, or other Dragon.  Opposing range units will block it, but not kill it.</p></article>" +
-                "<article><h5>Trumps</h5><img src='/images/tutorial/trump.png'><p>Some units TRUMP others, for example, a Spearman will always defeat a Light Horse, even though the Light Horse has equal STRENGTH then the Spearman.</p></article>" +
-                "<article><h5>Cavalry Units</h5><img src='/images/tutorial/range.png'><p>Cavalry units, can move/attack twice a turn.  So there MOVEMENT, can be thought of as double.</p></article>" +
-                "<article><h5>Range Units</h5><img src='/images/tutorial/range.png'><p>Some units have a RANGE, which allows them to attack from a distance, and block dragon movement.</p></article>" +
+                "<article><h5>Range Units</h5><img src='/images/tutorial/range.png'><h6 class='font-12'>Range units, attack from a distance, and block dragon movement, but are vulnerable to any attack.</h6></article>" +
+                "<article><h5>Cavalry Units</h5><img src='/images/tutorial/cavalry.png'><h6 class='font-12'>Cavalry units, move/attack twice a turn.  In this case the primary movement is 3, and the secondary is 2.</h6></article>" +
+                "<article><h5>Your Dragon</h5><img src='/images/tutorial/dragon.png'><h6 class='font-12'>A Dragon flys any distance in a straight line, and can only be taken by a Trebuchet, Catapult, or other Dragon.  Opposing range units will block it, but not kill it.</h6></article>" +
+                "<article><h5>Trumps</h5><img src='/images/tutorial/trump.png'><h6 class='font-12'>Some units TRUMP others, for example, a Spearman will always defeat a Light Horse, even though the Light Horse has equal STRENGTH then the Spearman.</h6></article>" +
                 "</div></button>");
             Rotator.rotateOn($('.tutorialSpecialRules'));
 
@@ -66,6 +64,9 @@ var Tutorial = {
         $('.tutorialPlaceUnit').remove();
         $(".map").prepend("<button class='tutorialSecondMove tutorial'>&#8599<h5>Great!  Now you can place your units manually, or randomly place the rest of them. &#8594</h5></button>");
         Rotator.rotateOn($('.tutorialSecondMove'));
+        setTimeout(function () {
+            $('.tutorialSecondMove').remove()
+        }, 2500);
         Tutorial.step = 4;
     },
     goal: function () {

@@ -9,10 +9,13 @@
 
 .tutorialSpecialRules{
   width: 670px;
-  height: 244px;
+  height: 270px;
   margin: 320px 0 0 -684px;
   h5 {
     font-size: 18px;
+  }
+  h6 {
+    font-size: 12px;
   }
   article{
     width: 144px;
@@ -32,8 +35,11 @@
 .tutorialTotalRules{
   z-index: 100;
   width: 670px;
-  height: 400px;
+  height: 420px;
   margin: 120px 0 0 -684px;
+  h6{
+    font-size: 12px;
+  }
   #TutorailGoal{
     img{
       &:nth-of-type(1){
@@ -248,6 +254,9 @@
 
 
 .tutorialStats {
+  h6{
+    font-size: 12px;
+  }
   margin: 200px 0 0 -160px;
 }
 
