@@ -8,17 +8,17 @@ class AdminController < ApplicationController
     # @matches = Match.where(home_user_id: session[:user_id]) + Match.where(away_user_id: session[:user_id])
     if current_user != nil
 
-      # @allUsers = User.all.order('created_at DESC')
-      # @allMatches = Match.all.order('created_at DESC')
-      #
-      # @pvp_matches = Match.where(['away_user_id > ?', 10])
-      #
+      @allUsers = User.all.order('created_at DESC')
+      @allMatches = Match.all.order('created_at DESC')
+
+      @pvp_matches = Match.where(['away_user_id > ?', 10])
+
       # @in_progress_matches = Match.where(match_status: 'in progress').order('created_at DESC')
       # @finished_matches = Match.where(match_status: 'finished').order('created_at DESC')
       # @new_matches = Match.where(match_status: 'new').order('created_at DESC')
       # @pending_matches = Match.where(match_status: 'pending').order('created_at DESC')
     end
-
+  #
   end
 
   def about

@@ -10,48 +10,74 @@
       <!--<%= link_to "Two Player", new_match_path, class: 'vsComputer' %>-->
 
     <!--</article>-->
-    <!--<article id="adminInfo" class="full_column">-->
+    <article id="adminInfo" class="full_column">
 
-      <!--<hr>-->
-      <!--<h2>Today</h2>-->
-      <!--<div class="chart" id="signupsPerHourDay"></div>-->
-      <!--<div class="chart" id="loginsPerHourDay"></div>-->
-      <!--<div class="chart" id="gamesStartedPerHourDay"></div>-->
-      <!--<div class="chart" id="gamesFinishedPerHourDay"></div>-->
-      <!--<div class="chart" id="messagesPerHourDay"></div>-->
+      <hr>
+      <h2>Today</h2>
+      <div class="chart" id="signupsPerHourDay"></div>
+      <div class="chart" id="loginsPerHourDay"></div>
+      <div class="chart" id="gamesStartedPerHourDay"></div>
+      <div class="chart" id="gamesFinishedPerHourDay"></div>
+      <div class="chart" id="messagesPerHourDay"></div>
 
-      <!--<h2>This Week</h2>-->
-      <!--<div class="chart" id="signupsPerHourWeek"></div>-->
-      <!--<div class="chart" id="loginsPerHourWeek"></div>-->
-      <!--<div class="chart" id="gamesStartedPerHourWeek"></div>-->
-      <!--<div class="chart" id="gamesFinishedPerHourWeek"></div>-->
-      <!--<div class="chart" id="messagesPerHourWeek"></div>-->
+      <h2>This Week</h2>
+      <div class="chart" id="signupsPerHourWeek"></div>
+      <div class="chart" id="loginsPerHourWeek"></div>
+      <div class="chart" id="gamesStartedPerHourWeek"></div>
+      <div class="chart" id="gamesFinishedPerHourWeek"></div>
+      <div class="chart" id="messagesPerHourWeek"></div>
 
-      <!--<h2>This Month</h2>-->
-      <!--<div class="chart" id="signupsPerDayMonth"></div>-->
-      <!--<div class="chart" id="loginsPerDayMonth"></div>-->
-      <!--<div class="chart" id="gamesStartedPerDayMonth"></div>-->
-      <!--<div class="chart" id="gamesFinishedPerDayMonth"></div>-->
-      <!--<div class="chart" id="messagesPerDayMonth"></div>-->
+      <h2>This Month</h2>
+      <div class="chart" id="signupsPerDayMonth"></div>
+      <div class="chart" id="loginsPerDayMonth"></div>
+      <div class="chart" id="gamesStartedPerDayMonth"></div>
+      <div class="chart" id="gamesFinishedPerDayMonth"></div>
+      <div class="chart" id="messagesPerDayMonth"></div>
 
-      <!--<h2>This Year</h2>-->
-      <!--<div class="chart" id="signupsPerWeekYear"></div>-->
-      <!--<div class="chart" id="loginsPerWeekYear"></div>-->
-      <!--<div class="chart" id="gamesStartedPerWeekYear"></div>-->
-      <!--<div class="chart" id="gamesFinishedPerWeekYear"></div>-->
-      <!--<div class="chart" id="messagesPerWeekYear"></div>-->
+      <h2>This Year</h2>
+      <div class="chart" id="signupsPerWeekYear"></div>
+      <div class="chart" id="loginsPerWeekYear"></div>
+      <div class="chart" id="gamesStartedPerWeekYear"></div>
+      <div class="chart" id="gamesFinishedPerWeekYear"></div>
+      <div class="chart" id="messagesPerWeekYear"></div>
 
-      <!--<h2>Messages</h2>-->
+      <h2>Messages</h2>
 
-      <!--<div class="chart" id="messageUsernameMinute"></div>-->
-      <!--<div class="chart" id="messageUsernameHour"></div>-->
-      <!--<div class="chart" id="messageUsernameDay"></div>-->
-      <!--<div class="chart" id="messageUsernameWeek"></div>-->
-      <!--<div class="chart" id="messageUsernameMonth"></div>-->
-      <!--<div class="chart" id="messageUsernameYear"></div>-->
-      <!--<hr>-->
+      <div class="chart" id="messageUsernameMinute"></div>
+      <div class="chart" id="messageUsernameHour"></div>
+      <div class="chart" id="messageUsernameDay"></div>
+      <div class="chart" id="messageUsernameWeek"></div>
+      <div class="chart" id="messageUsernameMonth"></div>
+      <div class="chart" id="messageUsernameYear"></div>
+      <hr>
 
-    <!--</article>-->
+    </article>
+
+    <div style="text-align: center">
+      <h3>Matches</h3><hr>
+
+      <article class="one_half">
+        Total matches <br>
+        <%= @allMatches.length %>
+      </article>
+      <article class="one_half">
+        PvP matches <br>
+        <%= @pvp_matches.length %>
+      </article>
+      <br><br><hr>
 
 
+      <hr>
+      <h3>Users</h3>
+      <hr>
+        Users <br>
+        <%= @allUsers.length %>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    </div>
 <% end %>
