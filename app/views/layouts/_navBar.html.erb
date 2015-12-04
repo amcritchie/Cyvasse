@@ -15,9 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if session[:user_id] != nil %>
-            <li><%= link_to 'Messages', '/message_board', :id => 'message-board' %> %></li>
+            <li><%= link_to 'Messages', '/message_board', :id => 'message-board' %></li>
         <% end %>
-        <li><%= link_to 'Rules', rules_path, :id => 'cyvasse-rules' %> %></li>
+        <li><%= link_to 'Rules', rules_path, :id => 'cyvasse-rules' %></li>
         <li><%= link_to 'About', about_path, :id => 'about-cyvasse' %></li>
         <li><%= link_to 'Contact', contact_path, :id => 'contact-iron-ocean' %></li>
 
