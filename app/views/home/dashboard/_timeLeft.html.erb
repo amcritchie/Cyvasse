@@ -5,7 +5,7 @@
         <% t = Time.now %>
         <div class="countDown" data-time="<%= t %>"></div>
     <% else %>
-        <% t = (locals[:match].time_of_last_move.gmtime()+86400) %>
+        <% t = (locals[:match].time_of_last_move.gmtime()+604800) %>
         <div class="countDown" data-time="<%= t %>"></div>
     <% end %>
 <% end %>

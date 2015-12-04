@@ -75,7 +75,8 @@ class User < ActiveRecord::Base
 
       if match.match_against == 'human'
 
-        if (Time.now.utc - match.time_of_last_move) > 86400
+        # if (Time.now.utc - match.time_of_last_move) > 86400
+        if (Time.now.utc - match.time_of_last_move) > 604800 # Older than 7 days
 
           if match.match_status == 'in progress'
 
